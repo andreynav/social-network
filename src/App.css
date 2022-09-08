@@ -4,71 +4,75 @@
     box-sizing: border-box;
 }
 
-/*.App {
-    text-align: center;
-}
-
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
-}*/
-
 .App-wrapper {
     display: grid;
     height: 100vh;
     grid-template-columns: 220px 3fr;
-    grid-template-rows: 100px 5fr 100px;
-    grid-gap: 10px;
-    padding: 10px;
+    grid-template-rows: 60px 5fr 60px;
+    /*grid-gap: 10px;*/
     grid-template-areas: "header header header header"
                          "nav main main main"
                          "footer footer footer footer";
     font-family: sans-serif;
-    font-size: 18px;
+    font-size: 16px;
+    background-color: #404040;
 }
 
 .App-header {
     grid-area: header;
     background-color: #282c34;
+    color: #cdd9e5;
     grid-column: 1/5;
-    padding: 10px;
-
+    padding: 0 10px;
     display: grid;
-    grid-template-columns: 120px auto;
-    grid-template-areas: "app-header-logo app-header-title"
+    grid-template-columns: 50px 4fr 1fr;
+    grid-template-areas: "app-header-logo app-header-title app-header-login";
 }
 
 .App-header .logo {
     grid-area: app-header-logo;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    display: grid;
+}
+
+.App-header .logo img {
+    justify-self: center;
+    align-self: center;
+    height: 50px;
+    width: 50px;
 }
 
 .App-header .title {
     grid-area: app-header-title;
-    color: #61dafb;
-    display:flex;
-    justify-content:start;
-    align-items:center;
-    font-size: 26px;
+    font-size: 24px;
+    padding-left: 10px;
+    display: grid;
 }
 
-.App-header img {
-    height: 80px;
+.App-header .title p {
+    justify-self: start;
+    align-self: center;
+}
+
+.App-header .login {
+    grid-area: app-header-login;
+    display: grid;
+}
+
+.App-header .login p {
+    justify-self: end;
+    align-self: center;
 }
 
 .App-nav {
+    display: grid;
     grid-area: nav;
     grid-column: 1;
+    margin: 10px;
     padding: 10px;
-    background-color: #282c34;
+    border-radius: 8px;
+    background-color: #cdd9e5;
+
+    align-self: start;
 }
 
 .App-nav div {
@@ -77,15 +81,21 @@
 
 .App-nav a {
     font-size: 20px;
-    color: orange;
+    /*color: orange;*/
+    color: #000000e6;
     text-decoration: none;
 }
 
 .App-main {
+    display: grid;
     grid-area: main;
     grid-column: 2/5;
+    grid-template-rows: 120px 120px 1fr;
+    margin: 10px;
     padding: 10px;
-    background-color: #282c34;
+    border-radius: 8px;
+    background-color: #cdd9e5;
+    color: #000000e6;
 }
 
 .App-main div {
@@ -94,36 +104,33 @@
 
 .App-main-background {
     background-color: orangered;
-    height: 120px;
 }
 
 .App-main-user-info {
-    background-color: darkred;
-    height: 120px;
+    background-color: darkgrey;
+    grid-template-columns: 120px 1fr;
+    grid-template-areas: "app-main-logo app-main-info";
     display: grid;
-    grid-template-columns: 120px auto;
-    grid-template-areas: "app-main-logo app-main-info"
 }
 
 .App-main-avatar {
     grid-area: app-main-logo;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    /*align-self: center;
+    justify-self: center;*/
+    border: 2px solid black;
 }
 
 .App-main-info {
     grid-area: app-main-info;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    justify-self: start;
+    border: 2px solid black;
 }
 
 .App-main-posts {
     background-color: darkgrey;
-    height: 300px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 50px 150px 1fr;
     grid-template-areas: "app-main-posts-title"
                         'app-main-posts-input'
                         'app-main-posts-posts';
@@ -131,26 +138,40 @@
 
 .App-main-posts-title {
     grid-area: app-main-posts-title;
+    grid-column: 1/span3;
+    padding: 5px;
 }
 
 .App-main-posts-input {
     grid-area: app-main-posts-input;
+    display: grid;
+    grid-column: 1/span3;
+    padding: 5px;
 }
 
 .App-main-posts-posts {
+    display: grid;
     grid-area: app-main-posts-posts;
+    grid-column: 1/span3;
+}
+
+.App-main-posts-posts div {
+    background-color: #cdd9e5;
+    padding: 5px;
 }
 
 .App-footer {
     grid-area: footer;
     grid-column: 1/5;
-    padding: 10px;
+    padding: 5px 10px;
     background-color: #282c34;
+    color: #cdd9e5;
+    display: grid;
 }
 
-.App-footer div {
-    margin: 5px;
-    color: orange;
+.App-footer .email, .App-footer .phone {
+    justify-self: end;
+    align-self: center;
 }
 
 

@@ -9,7 +9,10 @@ function App() {
                     <img src={logo} className="App-logo" alt="logo"/>
                 </div>
                 <div className='title'>
-                    REACT NETWORK
+                    <p> 4GEEKS</p>
+                </div>
+                <div className='login'>
+                    <p>Login</p>
                 </div>
             </header>
             <nav className='App-nav'>
@@ -31,20 +34,20 @@ function App() {
             </nav>
             <main className='App-main'>
                 <div className="App-main-background">
-                    <img src='' alt="background"/>
+                    {/*<img src='' alt="background"/>*/}
                 </div>
                 <div className="App-main-user-info">
                     <div className="App-main-avatar">
-                        avatar
+                        <p>avatar</p>
                     </div>
                     <div className="App-main-info">
-                        info
+                        <p>Data: ...</p>
                     </div>
                 </div>
                 <div className='App-main-posts'>
                     <div className='App-main-posts-title'>My Posts</div>
                     <div className='App-main-posts-input'>
-                        <input/>
+                        <textarea />
                     </div>
                     <div className='App-main-posts-posts'>
                         <div>Post 1</div>
@@ -55,11 +58,11 @@ function App() {
                 </div>
             </main>
             <footer className='App-footer'>
-                <div>
-                    <a>Email</a>
+                <div className='email'>
+                    <a>Email: nav.testsw@gmail.com</a>
                 </div>
-                <div>
-                    <a>Phone</a>
+                <div className='phone'>
+                    <a>Phone: +375 29 6066602</a>
                 </div>
             </footer>
         </div>
