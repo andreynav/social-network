@@ -6,9 +6,8 @@
 
 .appWrapper {
     display: grid;
-    height: 100vh;
     grid-template-columns: 220px 3fr;
-    grid-template-rows: 60px 5fr 60px;
+    grid-template-rows: 60px 1fr 60px;
     /*grid-gap: 10px;*/
     grid-template-areas:
             "header header header header"
