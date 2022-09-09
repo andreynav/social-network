@@ -1,6 +1,6 @@
 import React from "react";
 import style from './Profile.module.css'
-import Post from "./myPosts/post/Post";
+import MyPosts from "./myPosts/MyPosts";
 
 export default function Profile() {
     return (
@@ -16,19 +16,7 @@ export default function Profile() {
                     <p>Data: ...</p>
                 </div>
             </div>
-            <div className={style.userPostsWrapper}>
-                <div className={style.postsTitle}>My Posts</div>
-                <div className={style.postsInput}>
-                    <textarea className={style.area} />
-                    <button className={style.buttonSend}>Send</button>
-                </div>
-                <div className={style.allPostsWrapper}>
-                    <Post />
-                    <Post />
-                    <Post />
-                    <Post />
-                </div>
-            </div>
+            <MyPosts />
         </main>
     );
 }

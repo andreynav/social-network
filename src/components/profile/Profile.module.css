@@ -29,37 +29,3 @@
     /*justify-self: start;*/
     border: 2px solid black;
 }
-
-.userPostsWrapper {
-    display: grid;
-    /*background-color: darkgrey;*/
-    grid-template-rows: 30px minmax(50px, 150px) auto;
-}
-
-.postsTitle {
-    padding: 5px;
-}
-
-.postsInput {
-    display: grid;
-    grid-auto-flow: column;
-    grid-template-columns: 1fr 100px;
-    grid-template-rows: minmax(50px, 150px) 35px;
-    grid-template-areas:
-        "area area"
-        ". buttonSend";
-}
-
-.area {
-    grid-area: area;
-    margin: 5px 0;
-}
-
-.buttonSend {
-    grid-area: buttonSend;
-    margin: 5px 0;
-}
-
-.allPostsWrapper {
-    /*grid-column: 1/span3;*/
-}
