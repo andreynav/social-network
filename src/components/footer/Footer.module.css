@@ -1,0 +1,13 @@
+.footerWrapper {
+    grid-area: footer;
+    grid-column: 1/5;
+    padding: 5px 10px;
+    background-color: #282c34;
+    color: #cdd9e5;
+    display: grid;
+}
+
+.email, .phone {
+    justify-self: end;
+    align-self: center;
+}

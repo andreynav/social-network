@@ -1,0 +1,44 @@
+.headerWrapper {
+    grid-area: header;
+    background-color: #282c34;
+    color: #cdd9e5;
+    grid-column: 1/5;
+    padding: 0 10px;
+    display: grid;
+    grid-template-columns: 50px 4fr 1fr;
+    grid-template-areas: "app-header-logo app-header-title app-header-login";
+}
+
+.logo {
+    grid-area: app-header-logo;
+    display: grid;
+}
+
+.logo > img {
+    justify-self: center;
+    align-self: center;
+    height: 50px;
+    width: 50px;
+}
+
+.title {
+    grid-area: app-header-title;
+    font-size: 24px;
+    padding-left: 10px;
+    display: grid;
+}
+
+.title > p {
+    justify-self: start;
+    align-self: center;
+}
+
+.login {
+    grid-area: app-header-login;
+    display: grid;
+}
+
+.login > p {
+    justify-self: end;
+    align-self: center;
+}

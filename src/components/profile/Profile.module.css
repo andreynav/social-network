@@ -1,0 +1,75 @@
+.profileWrapper {
+    display: grid;
+    grid-area: main;
+    grid-column: 2/5;
+    grid-template-rows: 120px 120px 1fr;
+    margin: 20px 10px 10px 10px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #cdd9e5;
+    color: #000000e6;
+}
+
+.profileWrapper > div {
+    margin: 5px;
+}
+
+.backgroundPhoto {
+    background-color: orangered;
+}
+
+.userDataWrapper {
+    background-color: darkgrey;
+    grid-template-columns: 120px 1fr;
+    grid-template-areas: "app-main-logo app-main-info";
+    display: grid;
+}
+
+.userAvatar {
+    grid-area: app-main-logo;
+    /*align-self: center;
+    justify-self: center;*/
+    border: 2px solid black;
+}
+
+.userInfo {
+    grid-area: app-main-info;
+    justify-self: start;
+    border: 2px solid black;
+}
+
+.userPostsWrapper {
+    background-color: darkgrey;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 50px 150px 1fr;
+    grid-template-areas:
+            'app-main-posts-title'
+            'app-main-posts-input'
+            'app-main-posts-posts';
+}
+
+.postsTitle {
+    grid-area: app-main-posts-title;
+    grid-column: 1/span3;
+    padding: 5px;
+}
+
+.postsInput {
+    grid-area: app-main-posts-input;
+    display: grid;
+    grid-column: 1/span3;
+    padding: 5px;
+}
+
+.allPostsWrapper {
+    display: grid;
+    grid-area: app-main-posts-posts;
+    grid-column: 1/span3;
+}
+
+.allPostsWrapper > div {
+    background-color: #fff;
+    margin: 5px;
+    padding: 5px;
+}

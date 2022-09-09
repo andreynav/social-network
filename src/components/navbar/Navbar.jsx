@@ -1,8 +1,9 @@
 import React from "react";
+import style from './Navbar.module.css'
 
 export default function Navbar() {
     return (
-        <nav className='App-nav'>
+        <nav className={style.navbarWrapper}>
             <div>
                 <a href='/profile'>Profile</a>
             </div>

@@ -1,25 +1,26 @@
 import React from "react";
+import style from './Profile.module.css'
 
 export default function Profile() {
     return (
-        <main className='App-main'>
-            <div className="App-main-background">
+        <main className={style.profileWrapper}>
+            <div className={style.backgroundPhoto}>
                 {/*<img src='' alt="background"/>*/}
             </div>
-            <div className="App-main-user-info">
-                <div className="App-main-avatar">
+            <div className={style.userDataWrapper}>
+                <div className={style.userAvatar}>
                     <p>avatar</p>
                 </div>
-                <div className="App-main-info">
+                <div className={style.userInfo}>
                     <p>Data: ...</p>
                 </div>
             </div>
-            <div className='App-main-posts'>
-                <div className='App-main-posts-title'>My Posts</div>
-                <div className='App-main-posts-input'>
+            <div className={style.userPostsWrapper}>
+                <div className={style.postsTitle}>My Posts</div>
+                <div className={style.postsInput}>
                     <textarea />
                 </div>
-                <div className='App-main-posts-posts'>
+                <div className={style.allPostsWrapper}>
                     <div>Post 1</div>
                     <div>Post 2</div>
                     <div>Post 3</div>
