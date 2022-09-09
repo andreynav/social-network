@@ -1,0 +1,20 @@
+.navbarWrapper {
+    display: grid;
+    grid-area: nav;
+    grid-column: 1;
+    margin: 20px 10px 0 20px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #cdd9e5;
+    align-self: start;
+}
+
+.navbarWrapper > div {
+    margin: 5px;
+}
+
+.navbarWrapper > div > a {
+    font-size: 20px;
+    color: #000000e6;
+    text-decoration: none;
+}
