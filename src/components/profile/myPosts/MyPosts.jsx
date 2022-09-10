@@ -11,10 +11,10 @@ export default function MyPosts() {
                 <button className={style.buttonSend}>Send</button>
             </div>
             <div className={style.allPostsWrapper}>
-                <Post />
-                <Post />
-                <Post />
-                <Post />
+                <Post message="Hey, how are you?" like="105" />
+                <Post message="Yuo shell not pass, fellow!" like="304" />
+                <Post message="It's my life" like="118" />
+                <Post message="Nice day, let's learn React" like="267" />
             </div>
         </div>
     );
