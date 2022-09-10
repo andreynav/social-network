@@ -12,7 +12,7 @@
     display: grid;
     grid-auto-flow: column;
     grid-template-columns: 1fr 100px;
-    grid-template-rows: minmax(50px, 150px) 35px;
+    grid-template-rows: minmax(50px, auto) 35px;
     grid-template-areas:
         "area area"
         ". buttonSend";
