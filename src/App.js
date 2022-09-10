@@ -11,8 +11,8 @@ function App() {
             <Header />
             <Navbar />
             <div className='contentWrapper'>
-                <Profile />
-                {/*<Dialogs />*/}
+                {/*<Profile />*/}
+                <Dialogs />
             </div>
             <Footer />
         </div>

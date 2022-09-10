@@ -4,10 +4,9 @@
 }
 
 .appWrapper {
-    min-height: 100vh;
     display: grid;
     grid-template-columns: 220px 3fr;
-    grid-template-rows: 60px 1fr 60px;
+    grid-template-rows: 60px calc(100vh - 120px) 60px;
     grid-template-areas:
             "header header header header"
             "nav main main main"

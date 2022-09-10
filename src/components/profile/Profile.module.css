@@ -1,6 +1,7 @@
 .profileWrapper {
     display: grid;
     grid-template-rows: 120px 120px auto;
+    overflow: visible auto;
 }
 
 .backgroundPhoto {
