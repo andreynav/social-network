@@ -15,6 +15,10 @@ export default function MyPosts() {
                 <Post message="Yuo shell not pass, fellow!" like="304" />
                 <Post message="It's my life" like="118" />
                 <Post message="Nice day, let's learn React" like="267" />
+                <Post message="Nice day, let's learn React" like="267" />
+                <Post message="Nice day, let's learn React" like="267" />
+                <Post message="Nice day, let's learn React" like="267" />
+                <Post message="Nice day, let's learn React" like="267" />
             </div>
         </div>
     );
