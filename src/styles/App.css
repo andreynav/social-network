@@ -1,10 +1,10 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 .appWrapper {
+    min-height: 100vh;
     display: grid;
     grid-template-columns: 220px 3fr;
     grid-template-rows: 60px 1fr 60px;
@@ -15,6 +15,15 @@
     font-family: sans-serif;
     font-size: 16px;
     background-color: #404040;
+}
+
+.contentWrapper {
+    display: grid;
+    margin: 20px 20px 20px 10px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #cdd9e5;
+    color: #000000e6;
 }
 
 @keyframes App-logo-spin {
