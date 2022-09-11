@@ -1,23 +1,25 @@
 import React from "react";
 import style from './Navbar.module.css'
+import { NavLink } from 'react-router-dom'
 
 export default function Navbar() {
+    const setActive = ({ isActive }) => isActive ? style.activeLink : '';
     return (
         <nav className={style.navbarWrapper}>
-            <div>
-                <a href='/profile'>Profile</a>
+            <div className={style.item}>
+                <NavLink to='/profile' className={setActive} >Profile</NavLink>
             </div>
-            <div>
-                <a href='/massages'>Messages</a>
+            <div className={style.item}>
+                <NavLink to='/massages' className={setActive} >Messages</NavLink>
             </div>
-            <div>
-                <a href='/news'>News</a>
+            <div className={style.item}>
+                <NavLink to='/news' className={setActive} >News</NavLink>
             </div>
-            <div>
-                <a href='/music'>Music</a>
+            <div className={style.item}>
+                <NavLink to='/music' className={setActive} >Music</NavLink>
             </div>
-            <div>
-                <a href='/settings'>Settings</a>
+            <div className={style.item}>
+                <NavLink to='/settings' className={setActive} >Settings</NavLink>
             </div>
         </nav>
     );
