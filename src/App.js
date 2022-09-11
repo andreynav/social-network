@@ -4,6 +4,11 @@ import Navbar from "./components/navbar/Navbar";
 import Profile from "./components/profile/Profile";
 import Footer from "./components/footer/Footer";
 import Dialogs from "./components/dialogs/Dialogs";
+import { Routes, Route } from "react-router-dom";
+import React from "react";
+import News from "./components/news/News";
+import Music from "./components/music/Music";
+import Settings from "./components/settings/Settings";
 
 function App() {
     return (
@@ -11,8 +16,13 @@ function App() {
             <Header />
             <Navbar />
             <div className='contentWrapper'>
-                {/*<Profile />*/}
-                <Dialogs />
+                <Routes>
+                    <Route path='/profile' element={<Profile />} />
+                    <Route path='/massages' element={<Dialogs />} />
+                    <Route path='/news' element={<News />} />
+                    <Route path='/music' element={<Music />} />
+                    <Route path='/settings' element={<Settings />} />
+                </Routes>
             </div>
             <Footer />
         </div>
