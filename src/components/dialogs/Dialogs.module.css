@@ -1,0 +1,16 @@
+.dialogWrapper {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+}
+
+.dialogUsers {
+    display: grid;
+    align-self: start;
+    background-color: white;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.dialogMessages {
+    margin-left: 20px;
+}
