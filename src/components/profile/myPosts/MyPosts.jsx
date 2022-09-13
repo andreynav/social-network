@@ -5,7 +5,7 @@ import Post from "./post/Post";
 export default function MyPosts() {
     return (
         <div className={style.userPostsWrapper}>
-            <div className={style.postsTitle}>My Posts</div>
+            <h3 className={style.postsTitle}>My Posts</h3>
             <div className={style.postsInput}>
                 <textarea className={style.area} />
                 <button className={style.buttonSend}>Send</button>
