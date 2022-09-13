@@ -1,0 +1,26 @@
+.profileInfoWrapper {
+    display: grid;
+    grid-template-rows: 120px 120px;
+}
+
+.backgroundPhoto {
+    background-color: orangered;
+}
+
+.userDataWrapper {
+    display: grid;
+    margin: 10px 0;
+    background-color: darkgrey;
+    grid-template-columns: 120px 1fr;
+}
+
+.userAvatar {
+    /*align-self: center;
+    justify-self: center;*/
+    border: 2px solid black;
+}
+
+.userInfo {
+    /*justify-self: start;*/
+    border: 2px solid black;
+}
