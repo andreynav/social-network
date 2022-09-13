@@ -9,6 +9,7 @@ import React from "react";
 import News from "./components/news/News";
 import Music from "./components/music/Music";
 import Settings from "./components/settings/Settings";
+import NotFound from "./components/notFound/NotFound";
 
 function App() {
     return (
@@ -17,11 +18,14 @@ function App() {
             <Navbar />
             <div className='contentWrapper'>
                 <Routes>
+                    <Route path='/' element={<Profile />} />
                     <Route path='/profile' element={<Profile />} />
                     <Route path='/massages' element={<Dialogs />} />
+                    <Route path='/massages/:id' element={<Dialogs />} />
                     <Route path='/news' element={<News />} />
                     <Route path='/music' element={<Music />} />
                     <Route path='/settings' element={<Settings />} />
+                    <Route path='/*' element={<NotFound />} />
                 </Routes>
             </div>
             <Footer />
