@@ -3,20 +3,17 @@ import style from "./Dialogs.module.css";
 import DialogMessage from './dialogMessages/DialogMessage'
 import DialogUser from "./dialogUsers/DialogUser";
 
-export default function Dialogs() {
+export default function Dialogs({ dialogUsers, messages }) {
+    let dialogsUsers = dialogUsers.map( user => <DialogUser key={user.id} userName={user.name} userId={user.id} />)
+    let userMessages = messages.map( (message, item) => <DialogMessage key={item} message={message.message} />)
+
     return (
         <div className={style.dialogWrapper}>
             <div className={style.dialogUsers}>
-                <DialogUser userName='Andrey' userId='1' />
-                <DialogUser userName='Anna' userId='2' />
-                <DialogUser userName='Zlata' userId='3' />
-                <DialogUser userName='Ura' userId='4' />
+                { dialogsUsers }
             </div>
             <div className={style.dialogMessages}>
-                <DialogMessage message='Hi nigga!' />
-                <DialogMessage message='How are you?' />
-                <DialogMessage message='Yo!' />
-                <DialogMessage message='Just do it!' />
+                { userMessages }
             </div>
         </div>
     );
