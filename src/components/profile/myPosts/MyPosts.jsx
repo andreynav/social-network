@@ -2,7 +2,9 @@ import React from "react";
 import style from './MyPosts.module.css'
 import Post from "./post/Post";
 
-export default function MyPosts() {
+export default function MyPosts({ myPosts }) {
+    let posts = myPosts.map( post => <Post key={post.id} message={post.message} like={post.like} />)
+
     return (
         <div className={style.userPostsWrapper}>
             <h3 className={style.postsTitle}>My Posts</h3>
@@ -11,14 +13,7 @@ export default function MyPosts() {
                 <button className={style.buttonSend}>Send</button>
             </div>
             <div className={style.allPostsWrapper}>
-                <Post message="Hey, how are you?" like="105" />
-                <Post message="Yuo shell not pass, fellow!" like="304" />
-                <Post message="It's my life" like="118" />
-                <Post message="Nice day, let's learn React" like="267" />
-                <Post message="Nice day, let's learn React" like="267" />
-                <Post message="Nice day, let's learn React" like="267" />
-                <Post message="Nice day, let's learn React" like="267" />
-                <Post message="Nice day, let's learn React" like="267" />
+                { posts }
             </div>
         </div>
     );

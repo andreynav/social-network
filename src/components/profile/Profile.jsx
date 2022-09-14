@@ -3,11 +3,11 @@ import style from './Profile.module.css'
 import MyPosts from "./myPosts/MyPosts";
 import ProfileInfo from "./profileInfo/ProfileInfo";
 
-export default function Profile() {
+export default function Profile({ myPosts }) {
     return (
         <main className={style.profileWrapper}>
             <ProfileInfo />
-            <MyPosts />
+            <MyPosts myPosts={myPosts} />
         </main>
     );
 }
