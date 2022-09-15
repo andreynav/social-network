@@ -11,7 +11,7 @@ import Music from "./components/music/Music";
 import Settings from "./components/settings/Settings";
 import NotFound from "./components/notFound/NotFound";
 
-function App({ data }) {
+function App({ state }) {
     return (
         <div className='appWrapper'>
             <Header />
@@ -19,12 +19,12 @@ function App({ data }) {
             <div className='contentWrapper'>
                 <Routes>
                     <Route path='/' element={<Profile />} />
-                    <Route path='/profile' element={<Profile myPosts={data.myPosts} />} />
-                    <Route path='/massages' element={<Dialogs dialogUsers={data.dialogUsers}
-                                                              messages={data.messages} />}
+                    <Route path='/profile' element={<Profile myPosts={state.profilePage.myPosts} />} />
+                    <Route path='/massages' element={<Dialogs dialogUsers={state.dialogPage.dialogUsers}
+                                                              messages={state.dialogPage.messages} />}
                     />
-                    <Route path='/massages/:id' element={<Dialogs dialogUsers={data.dialogUsers}
-                                                                  messages={data.messages} />}
+                    <Route path='/massages/:id' element={<Dialogs dialogUsers={state.dialogPage.dialogUsers}
+                                                                  messages={state.dialogPage.messages} />}
                     />
                     <Route path='/news' element={<News />} />
                     <Route path='/music' element={<Music />} />
