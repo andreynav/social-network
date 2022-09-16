@@ -4,8 +4,17 @@ import DialogMessage from './dialogMessages/DialogMessage'
 import DialogUser from "./dialogUsers/DialogUser";
 
 export default function Dialogs({ dialogUsers, messages }) {
-    let dialogsUsers = dialogUsers.map( user => <DialogUser key={user.id} userName={user.name} userId={user.id} />)
-    let userMessages = messages.map( (message, item) => <DialogMessage key={item} message={message.message} />)
+    let dialogsUsers = dialogUsers.map( user =>
+        <DialogUser
+            key={user.id}
+            userName={user.name}
+            userId={user.id} />
+    );
+    let userMessages = messages.map( (message, item) =>
+        <DialogMessage
+            key={item}
+            message={message.message} />
+    );
 
     return (
         <div className={style.dialogWrapper}>
