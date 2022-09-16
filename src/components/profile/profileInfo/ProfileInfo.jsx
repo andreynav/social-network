@@ -1,6 +1,8 @@
 import React from "react";
 import style from "./ProfileInfo.module.css";
 
+let comp = React.createRef();
+
 export default function ProfileInfo() {
     return (
         <div className={style.profileInfoWrapper}>
