@@ -11,7 +11,7 @@ import Music from "./components/music/Music";
 import Settings from "./components/settings/Settings";
 import NotFound from "./components/notFound/NotFound";
 
-function App({ state }) {
+function App({ state, addPost }) {
     return (
         <div className='appWrapper'>
             <Header />
@@ -19,7 +19,7 @@ function App({ state }) {
             <div className='contentWrapper'>
                 <Routes>
                     <Route path='/' element={<Profile />} />
-                    <Route path='/profile' element={<Profile myPosts={state.profilePage.myPosts} />} />
+                    <Route path='/profile' element={<Profile myPosts={state.profilePage.myPosts} addPosts={addPost} />} />
                     <Route path='/massages' element={<Dialogs dialogUsers={state.dialogPage.dialogUsers}
                                                               messages={state.dialogPage.messages} />}
                     />

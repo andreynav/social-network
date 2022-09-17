@@ -27,4 +27,14 @@ let state = {
     }
 }
 
+export let addPost = (postMessage) => {
+    let postId =  state.profilePage.myPosts.length;
+    let post = {
+        id: ++postId,
+        message: postMessage,
+        like: 0
+    }
+    state.profilePage.myPosts.push(post);
+}
+
 export default state;
