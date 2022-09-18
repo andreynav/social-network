@@ -5,7 +5,10 @@ import Post from "./post/Post";
 export default function MyPosts({ myPosts, addPost }) {
     let posts = myPosts.map( post => <Post key={post.id} message={post.message} like={post.like} />)
     let refArea = React.createRef();
-    let postValue = () => addPost(refArea.current.value);
+    let postValue = () => {
+        addPost(refArea.current.value);
+        refArea.current.value = ''
+    }
 
     return (
         <div className={style.userPostsWrapper}>

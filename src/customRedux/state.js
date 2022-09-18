@@ -1,3 +1,5 @@
+import {renderAllTree} from "../render";
+
 let state = {
     dialogPage: {
         dialogUsers : [
@@ -35,6 +37,7 @@ export let addPost = (postMessage) => {
         like: 0
     }
     state.profilePage.myPosts.push(post);
+    renderAllTree(state);
 }
 
 export default state;
