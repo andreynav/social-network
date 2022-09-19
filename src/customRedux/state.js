@@ -25,19 +25,27 @@ let state = {
             {id: 6, message: "Nice day, let's learn React3",  like: 457 },
             {id: 7, message: "Nice day, let's learn React4",  like: 557 },
             {id: 8, message: "Nice day, let's learn React5",  like: 657 }
-        ]
+        ],
+        postArea: ''
     }
 }
 
-export let addPost = (postMessage) => {
+export let addPost = () => {
     let postId =  state.profilePage.myPosts.length;
     let post = {
         id: ++postId,
-        message: postMessage,
+        message: state.profilePage.postArea,
         like: 0
     }
     state.profilePage.myPosts.push(post);
+    state.profilePage.postArea = '';
     renderAllTree(state);
 }
+
+export let updatePostArea = ({ target }) => {
+    state.profilePage.postArea = target.value;
+    renderAllTree(state);
+}
+window.state = state;
 
 export default state;
