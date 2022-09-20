@@ -1,5 +1,3 @@
-import {renderAllTree} from "../render";
-
 let state = {
     dialogPage: {
         dialogUsers : [
@@ -30,7 +28,9 @@ let state = {
     }
 }
 
-export let addPost = () => {
+window.state = state;
+
+export const addPost = () => {
     let postId =  state.profilePage.myPosts.length;
     let post = {
         id: ++postId,
@@ -42,10 +42,17 @@ export let addPost = () => {
     renderAllTree(state);
 }
 
-export let updatePostArea = ({ target }) => {
+export const updatePostArea = ({ target }) => {
     state.profilePage.postArea = target.value;
     renderAllTree(state);
 }
-window.state = state;
+
+let renderAllTree = () => {
+    console.log('render all tree')
+}
+
+export const subscribe = (observer) => {
+    renderAllTree = observer;
+}
 
 export default state;
