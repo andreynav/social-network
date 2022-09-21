@@ -19,7 +19,7 @@ function App({ state, addPost, updatePostArea }) {
             <div className='contentWrapper'>
                 <Routes>
                     <Route path='/' element={<Profile />} />
-                    <Route path='/profile' element={<Profile myPosts={state.profilePage.myPosts}
+                    <Route path='/profile' element={<Profile profilePage={state.profilePage}
                                                              addPosts={addPost}
                                                              updatePostArea={updatePostArea}/>} />
                     <Route path='/massages' element={<Dialogs dialogUsers={state.dialogPage.dialogUsers}
