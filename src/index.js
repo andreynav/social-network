@@ -6,17 +6,18 @@ import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-let renderAllTree = (store) => {
-    console.log('rendered');
+let renderAllTree = (state) => {
     root.render(
         <React.StrictMode>
             <BrowserRouter>
-                <App state={store.state} addPost={store.addPost} updatePostArea={store.updatePostArea}/>
+                <App state={state}
+                     addPost={store.addPost.bind(store)}
+                     updatePostArea={store.updatePostArea.bind(store)}/>
             </BrowserRouter>
         </React.StrictMode>
     );
 }
 
-renderAllTree(store);
+renderAllTree(store.getState());
 
 store.subscribe(renderAllTree);
