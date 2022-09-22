@@ -1,5 +1,5 @@
 let store = {
-    state: {
+    _state: {
         dialogPage: {
             dialogUsers : [
                 { id: 1, name: 'Andrey' },
@@ -29,28 +29,28 @@ let store = {
         }
     },
     getState() {
-        return this.state;
+        return this._state;
     },
-    renderAllTree() {
+    _callSubscriber() {
         console.log('render all tree')
     },
     addPost() {
-        let postId =  store.state.profilePage.myPosts.length;
+        let postId =  this._state.profilePage.myPosts.length;
         let post = {
             id: ++postId,
-            message: store.state.profilePage.postArea,
+            message: this._state.profilePage.postArea,
             like: 0
         }
-        store.state.profilePage.myPosts.push(post);
-        store.state.profilePage.postArea = '';
-        store.renderAllTree(store);
+        this._state.profilePage.myPosts.push(post);
+        this._state.profilePage.postArea = '';
+        this._callSubscriber(this._state);
     },
     updatePostArea(event) {
-        store.state.profilePage.postArea = event.target.value;
-        store.renderAllTree(store);
+        this._state.profilePage.postArea = event.target.value;
+        this._callSubscriber(this._state);
     },
     subscribe(observer) {
-        this.renderAllTree = observer;
+        this._callSubscriber = observer;
     }
 }
 
