@@ -1,7 +1,7 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import style from "./DialogUser.module.css";
-import {NavLink} from "react-router-dom";
-import {setActive} from "../../../utils/utills";
+import { setActive } from "../../../utils/utills";
 
 export default function DialogUser({ userName, userId }) {
     return (

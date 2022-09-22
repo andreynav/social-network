@@ -1,7 +1,7 @@
 import React from "react";
-import style from './Navbar.module.css'
 import { NavLink } from 'react-router-dom'
-import {setActive} from "../../utils/utills";
+import style from './Navbar.module.css'
+import { setActive } from "../../utils/utills";
 
 export default function Navbar() {
     return (

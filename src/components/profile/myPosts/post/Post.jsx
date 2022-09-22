@@ -1,7 +1,6 @@
 import React from "react";
 import style from './Post.module.css'
-import avatar from '../../../../assets/img/avatar-post.png'
-import like from '../../../../assets/img/like.png'
+import { avatar, like } from "../../../../assets/index"
 
 export default function Post(props) {
     return (

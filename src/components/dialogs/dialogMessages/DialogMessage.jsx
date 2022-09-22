@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./DialogMessage.module.css";
-import avatar from "../../../assets/img/avatar-post.png";
+import { avatar } from "../../../assets/index"
 
 export default function DialogMessage({ message }) {
     return (

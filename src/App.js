@@ -1,15 +1,15 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import './styles/App.css';
-import Header from "./components/header/Header";
-import Navbar from "./components/navbar/Navbar";
-import Profile from "./components/profile/Profile";
-import Footer from "./components/footer/Footer";
-import Dialogs from "./components/dialogs/Dialogs";
-import News from "./components/news/News";
-import Music from "./components/music/Music";
-import Settings from "./components/settings/Settings";
-import NotFound from "./components/notFound/NotFound";
+import { Header,
+    Navbar,
+    Profile,
+    Footer,
+    Dialogs,
+    News,
+    Music,
+    Settings,
+    NotFound } from "./components/index"
 
 function App({ state, addPost, updatePostArea }) {
     return (

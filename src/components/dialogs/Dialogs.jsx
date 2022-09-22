@@ -1,7 +1,6 @@
 import React from "react";
 import style from "./Dialogs.module.css";
-import DialogMessage from './dialogMessages/DialogMessage'
-import DialogUser from "./dialogUsers/DialogUser";
+import { DialogMessage, DialogUser } from "../index"
 
 export default function Dialogs({ dialogUsers, messages }) {
     let dialogsUsers = dialogUsers.map( user =>

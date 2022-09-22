@@ -1,6 +1,6 @@
 import React from "react";
 import style from './MyPosts.module.css'
-import Post from "./post/Post";
+import { Post } from "../../index";
 
 export default function MyPosts({ myPosts, postAreaValue, addPost, updatePostArea }) {
     let posts = myPosts.map( post => <Post key={post.id} message={post.message} like={post.like} />)
