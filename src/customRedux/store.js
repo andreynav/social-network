@@ -38,7 +38,7 @@ let store = {
         this._callSubscriber = observer;
     },
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
+        if (action.type === ADD_POST) {
             let postId =  this._state.profilePage.myPosts.length;
             let post = {
                 id: ++postId,
@@ -48,11 +48,16 @@ let store = {
             this._state.profilePage.myPosts.push(post);
             this._state.profilePage.postArea = '';
             this._callSubscriber(this._state);
-        } else if (action.type === 'UPDATE-POST-AREA') {
+        } else if (action.type === UPDATE_POST_AREA) {
             this._state.profilePage.postArea = action.newText
             this._callSubscriber(this._state);
         }
     }
 }
+
+const ADD_POST = 'ADD-POST';
+const UPDATE_POST_AREA = 'UPDATE-POST-AREA';
+export const addPostActionCreator = () => ({ type: ADD_POST})
+export const updatePostAreaActionCreator = (text) => ({ type: UPDATE_POST_AREA, newText: text })
 
 export default store;
