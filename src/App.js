@@ -11,7 +11,7 @@ import { Header,
     Settings,
     NotFound } from "./components/index"
 
-function App({ state, addPost, updatePostArea }) {
+function App({ state, dispatch }) {
     return (
         <div className='appWrapper'>
             <Header />
@@ -20,8 +20,7 @@ function App({ state, addPost, updatePostArea }) {
                 <Routes>
                     <Route path='/' element={<Profile />} />
                     <Route path='/profile' element={<Profile profilePage={state.profilePage}
-                                                             addPosts={addPost}
-                                                             updatePostArea={updatePostArea}/>} />
+                                                             dispatch={dispatch} />} />
                     <Route path='/massages' element={<Dialogs dialogUsers={state.dialogPage.dialogUsers}
                                                               messages={state.dialogPage.messages} />}
                     />
