@@ -1,16 +1,17 @@
 import React from "react";
 import style from './MyPosts.module.css'
 import { Post } from "../../index";
+import {addPostActionCreator, updatePostAreaActionCreator} from "../../../customRedux/store";
 
 export default function MyPosts({ myPosts, postAreaValue, dispatch }) {
     let posts = myPosts.map( post => <Post key={post.id} message={post.message} like={post.like} />)
     let refArea = React.createRef();
     let addPost = () => {
-        dispatch({ type: 'ADD-POST'})
+        dispatch(addPostActionCreator())
     }
     let updatePostArea = (event) => {
         let text = event.target.value;
-        dispatch({ type: 'UPDATE-POST-AREA', newText: text })
+        dispatch(updatePostAreaActionCreator(text))
     }
 
     return (
