@@ -1,7 +1,7 @@
 import React from "react";
 import style from './MyPosts.module.css'
 import { Post, TextAreaForm } from "../../index";
-import { addPostActionCreator, updatePostAreaActionCreator } from "../../../customRedux/store";
+import { addPostActionCreator, updatePostAreaActionCreator } from "../../../customRedux/profilePageReducer";
 
 export default function MyPosts({ myPosts, postAreaValue, dispatch }) {
     let posts = myPosts.map( post => <Post key={post.id} message={post.message} like={post.like} />)
