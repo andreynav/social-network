@@ -12,7 +12,8 @@ let store = {
                 { id: 2, message: 'How are you?' },
                 { id: 3, message: 'Yo!' },
                 { id: 4, message: 'Just do it!' }
-            ]
+            ],
+            messageArea: ''
         },
         profilePage: {
             myPosts : [
@@ -51,13 +52,31 @@ let store = {
         } else if (action.type === UPDATE_POST_AREA) {
             this._state.profilePage.postArea = action.newText
             this._callSubscriber(this._state);
+        } else if (action.type === ADD_MESSAGE) {
+            let messageId =  this._state.dialogPage.messages.length;
+            let message = {
+                id: ++messageId,
+                message: this._state.dialogPage.messageArea,
+            }
+            this._state.dialogPage.messages.push(message);
+            this._state.dialogPage.messageArea = '';
+            this._callSubscriber(this._state);
+        } else if (action.type === UPDATE_MESSAGE_AREA) {
+            this._state.dialogPage.messageArea = action.newText
+            this._callSubscriber(this._state);
         }
     }
 }
 
+window.store = store;
+
 const ADD_POST = 'ADD-POST';
 const UPDATE_POST_AREA = 'UPDATE-POST-AREA';
+const ADD_MESSAGE = 'ADD-MESSAGE'
+const UPDATE_MESSAGE_AREA = 'UPDATE-MESSAGE-AREA'
 export const addPostActionCreator = () => ({ type: ADD_POST})
 export const updatePostAreaActionCreator = (text) => ({ type: UPDATE_POST_AREA, newText: text })
+export const addMessageActionCreator = () => ({ type: ADD_MESSAGE })
+export const updateMessageActionCreator = (text) => ({ type: UPDATE_MESSAGE_AREA, newText: text })
 
 export default store;

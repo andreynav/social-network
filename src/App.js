@@ -22,10 +22,14 @@ function App({ state, dispatch }) {
                     <Route path='/profile' element={<Profile profilePage={state.profilePage}
                                                              dispatch={dispatch} />} />
                     <Route path='/massages' element={<Dialogs dialogUsers={state.dialogPage.dialogUsers}
-                                                              messages={state.dialogPage.messages} />}
+                                                              messages={state.dialogPage.messages}
+                                                              messageAreaValue={state.dialogPage.messageArea}
+                                                              dispatch={dispatch} />}
                     />
                     <Route path='/massages/:id' element={<Dialogs dialogUsers={state.dialogPage.dialogUsers}
-                                                                  messages={state.dialogPage.messages} />}
+                                                                  messages={state.dialogPage.messages}
+                                                                  messageAreaValue={state.dialogPage.messageArea}
+                                                                  dispatch={dispatch} />}
                     />
                     <Route path='/news' element={<News />} />
                     <Route path='/music' element={<Music />} />

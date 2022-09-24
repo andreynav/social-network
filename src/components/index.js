@@ -7,6 +7,7 @@ import News from "./news/News"
 import NotFound from "./notFound/NotFound"
 import { Post, MyPosts, ProfileInfo, Profile } from "./profile/index"
 import Settings from "./settings/Settings"
+import TextAreaForm from "./textAreaForm/TextAreaForm";
 
 export {
     Dialogs,
@@ -22,5 +23,6 @@ export {
     MyPosts,
     ProfileInfo,
     Profile,
-    Settings
+    Settings,
+    TextAreaForm
 }
