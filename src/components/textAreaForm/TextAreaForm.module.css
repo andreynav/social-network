@@ -1,0 +1,22 @@
+.postsInput {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 100px;
+    grid-template-rows: minmax(100px, auto) 35px;
+    grid-template-areas:
+        "area area"
+        ". buttonSend";
+}
+
+.area {
+    grid-area: area;
+    margin: 5px 0;
+    border-radius: 8px;
+}
+
+.buttonSend {
+    grid-area: buttonSend;
+    margin: 5px 0;
+    border: 1px solid black;
+    border-radius: 3px;
+}

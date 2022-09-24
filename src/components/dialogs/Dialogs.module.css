@@ -1,6 +1,7 @@
 .dialogWrapper {
     display: grid;
     grid-template-columns: 200px 1fr;
+    overflow: visible auto;
 }
 
 .dialogUsers {
@@ -12,5 +13,8 @@
 }
 
 .dialogMessages {
+    display: grid;
     margin-left: 20px;
+    align-self: start;
+    grid-template-rows: 1fr minmax(100px, 150px);
 }
