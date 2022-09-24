@@ -26,16 +26,20 @@ export default function Dialogs({dialogUsers, messages, messageAreaValue, dispat
 
     return (
         <div className={style.dialogWrapper}>
-            <div className={style.dialogUsers}>
-                {dialogsUsers}
-            </div>
-            <div className={style.dialogMessages}>
-                <div>
+            <div className={style.dialogMessagesWrapper}>
+                <div className={style.dialogUsers}>
+                    {dialogsUsers}
+                </div>
+                <div className={style.dialogMessages}>
                     {userMessages}
                 </div>
-                <TextAreaForm updatePostArea={updatePostArea}
-                              postAreaValue={messageAreaValue}
-                              addPost={addPost}/>
+            </div>
+
+            <div className={style.dialogInput}>
+                <TextAreaForm
+                    updatePostArea={updatePostArea}
+                    postAreaValue={messageAreaValue}
+                    addPost={addPost}/>
             </div>
         </div>
     );
