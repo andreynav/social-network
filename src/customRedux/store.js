@@ -1,3 +1,6 @@
+import dialogPageReducer from "./dialogPageReducer";
+import profilePageReducer from "./profilePageReducer";
+
 let store = {
     _state: {
         dialogPage: {
@@ -39,44 +42,12 @@ let store = {
         this._callSubscriber = observer;
     },
     dispatch(action) {
-        if (action.type === ADD_POST) {
-            let postId =  this._state.profilePage.myPosts.length;
-            let post = {
-                id: ++postId,
-                message: this._state.profilePage.postArea,
-                like: 0
-            }
-            this._state.profilePage.myPosts.push(post);
-            this._state.profilePage.postArea = '';
-            this._callSubscriber(this._state);
-        } else if (action.type === UPDATE_POST_AREA) {
-            this._state.profilePage.postArea = action.newText
-            this._callSubscriber(this._state);
-        } else if (action.type === ADD_MESSAGE) {
-            let messageId =  this._state.dialogPage.messages.length;
-            let message = {
-                id: ++messageId,
-                message: this._state.dialogPage.messageArea,
-            }
-            this._state.dialogPage.messages.push(message);
-            this._state.dialogPage.messageArea = '';
-            this._callSubscriber(this._state);
-        } else if (action.type === UPDATE_MESSAGE_AREA) {
-            this._state.dialogPage.messageArea = action.newText
-            this._callSubscriber(this._state);
-        }
+        this._state.profilePage = profilePageReducer(this._state.profilePage, action);
+        this._state.dialogPage = dialogPageReducer(this._state.dialogPage, action);
+        this._callSubscriber(this._state);
     }
 }
 
 window.store = store;
-
-const ADD_POST = 'ADD-POST';
-const UPDATE_POST_AREA = 'UPDATE-POST-AREA';
-const ADD_MESSAGE = 'ADD-MESSAGE'
-const UPDATE_MESSAGE_AREA = 'UPDATE-MESSAGE-AREA'
-export const addPostActionCreator = () => ({ type: ADD_POST})
-export const updatePostAreaActionCreator = (text) => ({ type: UPDATE_POST_AREA, newText: text })
-export const addMessageActionCreator = () => ({ type: ADD_MESSAGE })
-export const updateMessageActionCreator = (text) => ({ type: UPDATE_MESSAGE_AREA, newText: text })
 
 export default store;

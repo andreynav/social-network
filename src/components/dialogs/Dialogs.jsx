@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./Dialogs.module.css";
 import { DialogMessage, DialogUser, TextAreaForm } from "../index"
-import { addMessageActionCreator, updateMessageActionCreator } from "../../customRedux/store";
+import { addMessageActionCreator, updateMessageActionCreator } from "../../customRedux/dialogPageReducer";
 
 export default function Dialogs({dialogUsers, messages, messageAreaValue, dispatch}) {
     let dialogsUsers = dialogUsers.map(user =>
