@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./Dialogs.module.css";
 import { DialogMessage, DialogUser, TextAreaForm } from "../index"
-import { addMessageActionCreator, updateMessageActionCreator } from "../../customRedux/dialogPageReducer";
+import { addMessage, updateMessageArea } from "../../store/dialogPageReducer";
 
 export default function Dialogs({dialogUsers, messages, messageAreaValue, dispatch}) {
     let dialogsUsers = dialogUsers.map(user =>
@@ -16,11 +16,11 @@ export default function Dialogs({dialogUsers, messages, messageAreaValue, dispat
             message={message.message}/>
     );
     let addPost = () => {
-        dispatch(addMessageActionCreator())
+        dispatch(addMessage());
     }
     let updatePostArea = (event) => {
         let text = event.target.value;
-        dispatch(updateMessageActionCreator(text))
+        dispatch(updateMessageArea(text));
     }
 
 
@@ -39,7 +39,7 @@ export default function Dialogs({dialogUsers, messages, messageAreaValue, dispat
                 <TextAreaForm
                     updatePostArea={updatePostArea}
                     postAreaValue={messageAreaValue}
-                    addPost={addPost}/>
+                    addPost={addPost} />
             </div>
         </div>
     );

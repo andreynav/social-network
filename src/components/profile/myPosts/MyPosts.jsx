@@ -1,16 +1,16 @@
 import React from "react";
 import style from './MyPosts.module.css'
 import { Post, TextAreaForm } from "../../index";
-import { addPostActionCreator, updatePostAreaActionCreator } from "../../../customRedux/profilePageReducer";
+import { addNewPost, updateNewPostArea} from "../../../store/profilePageReducer";
 
 export default function MyPosts({ myPosts, postAreaValue, dispatch }) {
     let posts = myPosts.map( post => <Post key={post.id} message={post.message} like={post.like} />)
     let addPost = () => {
-        dispatch(addPostActionCreator())
-    }
+        dispatch(addNewPost());
+    };
     let updatePostArea = (event) => {
         let text = event.target.value;
-        dispatch(updatePostAreaActionCreator(text))
+        dispatch(updateNewPostArea(text));
     }
 
     return (

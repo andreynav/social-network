@@ -2,7 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-import store from "./customRedux/store";
+// import store from "./store/customStore";
+import store from './store/store'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -18,4 +19,7 @@ let renderAllTree = (state) => {
 
 renderAllTree(store.getState());
 
-store.subscribe(renderAllTree);
+store.subscribe(() => {
+    let state = store.getState();
+    renderAllTree(state);
+});
