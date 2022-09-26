@@ -1,13 +1,4 @@
-import {createAction, createReducer} from '@reduxjs/toolkit';
-
-export const addNewPost = createAction('ADD-POST');
-export const updateNewPostArea = createAction('UPDATE-POST-AREA', function prepare(text) {
-    return {
-        payload: {
-            newText: text
-        }
-    }
-});
+import {createSlice} from '@reduxjs/toolkit';
 
 let initialState = {
     myPosts: [
@@ -23,9 +14,11 @@ let initialState = {
     postArea: ''
 };
 
-const profilePageReducer = createReducer(initialState, (builder) => {
-    builder
-        .addCase(addNewPost, (state) => {
+const profilePageSlice = createSlice({
+    name: 'profilePage',
+    initialState,
+    reducers: {
+        addNewPost(state) {
             let postId = state.myPosts.length;
             let post = {
                 id: ++postId,
@@ -34,10 +27,12 @@ const profilePageReducer = createReducer(initialState, (builder) => {
             }
             state.myPosts.push(post);
             state.postArea = '';
-        })
-        .addCase(updateNewPostArea, (state, action) => {
-            state.postArea = action.payload.newText;
-        });
+        },
+        updateNewPostArea(state, action) {
+            state.postArea = action.payload;
+        }
+    }
 });
 
-export default profilePageReducer;
+export const { addNewPost, updateNewPostArea } = profilePageSlice.actions;
+export default profilePageSlice.reducer;
