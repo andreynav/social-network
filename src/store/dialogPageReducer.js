@@ -25,19 +25,20 @@ let initialState = {
     messageArea: ''
 };
 
-const dialogPageReducer = createReducer(initialState, {
-    [addMessage]: (state) => {
-        let messageId =  state.messages.length;
-        let message = {
-            id: ++messageId,
-            message: state.messageArea,
-        }
-        state.messages.push(message);
-        state.messageArea = '';
-    },
-    [updateMessageArea]: (state, action) => {
-        state.messageArea = action.payload.newText;
-    }
+const dialogPageReducer = createReducer(initialState, (builder) => {
+    builder
+        .addCase(addMessage, (state) => {
+            let messageId =  state.messages.length;
+            let message = {
+                id: ++messageId,
+                message: state.messageArea,
+            }
+            state.messages.push(message);
+            state.messageArea = '';
+        })
+        .addCase(updateMessageArea, (state, action) => {
+            state.messageArea = action.payload.newText;
+        })
 });
 
 export default dialogPageReducer;
