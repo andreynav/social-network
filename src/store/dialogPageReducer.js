@@ -1,13 +1,4 @@
-import { createAction, createReducer } from '@reduxjs/toolkit';
-
-export const addMessage = createAction('ADD-MESSAGE');
-export const updateMessageArea = createAction('UPDATE-MESSAGE-AREA', function prepare(text) {
-    return {
-        payload: {
-            newText: text
-        }
-    }
-});
+import { createSlice } from '@reduxjs/toolkit';
 
 let initialState = {
     dialogUsers : [
@@ -25,9 +16,11 @@ let initialState = {
     messageArea: ''
 };
 
-const dialogPageReducer = createReducer(initialState, (builder) => {
-    builder
-        .addCase(addMessage, (state) => {
+const dialogPageSlice = createSlice({
+    name: 'dialogPage',
+    initialState,
+    reducers: {
+        addMessage(state) {
             let messageId =  state.messages.length;
             let message = {
                 id: ++messageId,
@@ -35,10 +28,12 @@ const dialogPageReducer = createReducer(initialState, (builder) => {
             }
             state.messages.push(message);
             state.messageArea = '';
-        })
-        .addCase(updateMessageArea, (state, action) => {
-            state.messageArea = action.payload.newText;
-        })
+        },
+        updateMessageArea(state, action) {
+            state.messageArea = action.payload;
+        }
+    }
 });
 
-export default dialogPageReducer;
+export const { addMessage, updateMessageArea } = dialogPageSlice.actions;
+export default dialogPageSlice.reducer;
