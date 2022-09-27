@@ -1,14 +1,12 @@
 import React from "react";
 import style from './Profile.module.css'
-import { MyPosts, ProfileInfo } from "../index"
+import {MyPostsContainer, ProfileInfo} from "../index"
 
-export default function Profile({ profilePage, dispatch }) {
+export default function Profile({ store }) {
     return (
         <main className={style.profileWrapper}>
             <ProfileInfo />
-            <MyPosts myPosts={profilePage.myPosts}
-                     postAreaValue={profilePage.postArea}
-                     dispatch={dispatch} />
+            <MyPostsContainer store={store} />
         </main>
     );
 }

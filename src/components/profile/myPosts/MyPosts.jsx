@@ -1,16 +1,16 @@
 import React from "react";
 import style from './MyPosts.module.css'
-import { Post, TextAreaForm } from "../../index";
-import { addNewPost, updateNewPostArea} from "../../../store/profilePageReducer";
+import {Post, TextAreaForm} from "../../index";
 
-export default function MyPosts({ myPosts, postAreaValue, dispatch }) {
-    let posts = myPosts.map( post => <Post key={post.id} message={post.message} like={post.like} />)
-    let addPost = () => {
-        dispatch(addNewPost());
+export default function MyPosts({ myPosts, postAreaValue, addPost, updatePostAreaValue }) {
+    let posts = myPosts.map( post => <Post key={post.id} message={post.message} like={post.like} />);
+
+    let addNewPost = () => {
+        addPost();
     };
     let updatePostArea = (event) => {
         let text = event.target.value;
-        dispatch(updateNewPostArea(text));
+        updatePostAreaValue(text);
     }
 
     return (
@@ -18,7 +18,7 @@ export default function MyPosts({ myPosts, postAreaValue, dispatch }) {
             <h3 className={style.postsTitle}>My Posts</h3>
             <TextAreaForm updatePostArea={updatePostArea}
                           postAreaValue={postAreaValue}
-                          addPost={addPost} />
+                          onAddPost={addNewPost} />
             <div className={style.allPostsWrapper}>
                 { posts }
             </div>

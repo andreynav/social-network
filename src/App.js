@@ -1,17 +1,19 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import './styles/App.css';
-import { Header,
+import {
+    Header,
     Navbar,
     Profile,
     Footer,
-    Dialogs,
     News,
     Music,
     Settings,
-    NotFound } from "./components/index"
+    NotFound,
+    DialogsContainer
+} from "./components/index"
 
-function App({ state, dispatch }) {
+function App({ store }) {
     return (
         <div className='appWrapper'>
             <Header />
@@ -19,17 +21,10 @@ function App({ state, dispatch }) {
             <div className='contentWrapper'>
                 <Routes>
                     <Route path='/' element={<Profile />} />
-                    <Route path='/profile' element={<Profile profilePage={state.profilePage}
-                                                             dispatch={dispatch} />} />
-                    <Route path='/massages' element={<Dialogs dialogUsers={state.dialogPage.dialogUsers}
-                                                              messages={state.dialogPage.messages}
-                                                              messageAreaValue={state.dialogPage.messageArea}
-                                                              dispatch={dispatch} />}
+                    <Route path='/profile' element={<Profile store={store} />} />
+                    <Route path='/massages' element={<DialogsContainer store={store} />}
                     />
-                    <Route path='/massages/:id' element={<Dialogs dialogUsers={state.dialogPage.dialogUsers}
-                                                                  messages={state.dialogPage.messages}
-                                                                  messageAreaValue={state.dialogPage.messageArea}
-                                                                  dispatch={dispatch} />}
+                    <Route path='/massages/:id' element={<DialogsContainer store={store} />}
                     />
                     <Route path='/news' element={<News />} />
                     <Route path='/music' element={<Music />} />

@@ -1,28 +1,18 @@
 import React from "react";
 import style from "./Dialogs.module.css";
-import { DialogMessage, DialogUser, TextAreaForm } from "../index"
-import { addMessage, updateMessageArea } from "../../store/dialogPageReducer";
+import {DialogMessage, DialogUser, TextAreaForm} from "../index"
 
-export default function Dialogs({dialogUsers, messages, messageAreaValue, dispatch}) {
-    let dialogsUsers = dialogUsers.map(user =>
-        <DialogUser
-            key={user.id}
-            userName={user.name}
-            userId={user.id}/>
-    );
-    let userMessages = messages.map((message, item) =>
-        <DialogMessage
-            key={item}
-            message={message.message}/>
-    );
-    let addPost = () => {
-        dispatch(addMessage());
-    }
+export default function Dialogs({dialogUsers, messages, messageAreaValue, addPost, updatePostAreaValue}) {
+    let dialogsUsers = dialogUsers.map(user => <DialogUser key={user.id} userName={user.name} userId={user.id}/>);
+    let userMessages = messages.map((message, item) => <DialogMessage key={item} message={message.message}/>);
+
+    let addNewPost = () => {
+        addPost();
+    };
     let updatePostArea = (event) => {
         let text = event.target.value;
-        dispatch(updateMessageArea(text));
-    }
-
+        updatePostAreaValue(text);
+    };
 
     return (
         <div className={style.dialogWrapper}>
@@ -34,12 +24,11 @@ export default function Dialogs({dialogUsers, messages, messageAreaValue, dispat
                     {userMessages}
                 </div>
             </div>
-
             <div className={style.dialogInput}>
                 <TextAreaForm
                     updatePostArea={updatePostArea}
                     postAreaValue={messageAreaValue}
-                    addPost={addPost} />
+                    onAddPost={addNewPost} />
             </div>
         </div>
     );
