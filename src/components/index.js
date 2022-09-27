@@ -8,6 +8,8 @@ import NotFound from "./notFound/NotFound"
 import { Post, MyPosts, ProfileInfo, Profile } from "./profile/index"
 import Settings from "./settings/Settings"
 import TextAreaForm from "./textAreaForm/TextAreaForm";
+import MyPostsContainer from "./profile/myPosts/MyPostsContainer";
+import DialogsContainer from "./dialogs/DialogsContainer";
 
 export {
     Dialogs,
@@ -24,5 +26,7 @@ export {
     ProfileInfo,
     Profile,
     Settings,
-    TextAreaForm
+    TextAreaForm,
+    MyPostsContainer,
+    DialogsContainer
 }
