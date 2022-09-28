@@ -1,22 +1,26 @@
 import React from "react";
 import {MyPosts} from "../../index";
 import {addNewPost, updateNewPostArea} from "../../../store/profilePageReducer";
+import {connect} from "react-redux";
 
-export default function MyPostsContainer({ store }) {
-    let state = store.getState();
-    let addPost = () => {
-        store.dispatch(addNewPost());
-    };
-    let updatePostAreaValue = (text) => {
-        store.dispatch(updateNewPostArea(text));
-    };
+let mapStateToProps = (state) => {
+    return {
+        myPosts: state.profilePage.myPosts,
+        postAreaValue: state.profilePage.postArea
+    }
+};
 
-    return (
-        <MyPosts
-            myPosts={state.profilePage.myPosts}
-            postAreaValue={state.profilePage.postArea}
-            addPost={addPost}
-            updatePostAreaValue={updatePostAreaValue}
-        />
-    );
-}
+let mapDispatchToProps = (dispatch) => {
+    return {
+        addPost: () => {
+            dispatch(addNewPost());
+        },
+        updatePostAreaValue: (text) => {
+            dispatch(updateNewPostArea(text));
+        }
+    }
+};
+
+const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
+
+export default MyPostsContainer;

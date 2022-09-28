@@ -13,7 +13,7 @@ import {
     DialogsContainer
 } from "./components/index"
 
-function App({ store }) {
+function App() {
     return (
         <div className='appWrapper'>
             <Header />
@@ -21,11 +21,9 @@ function App({ store }) {
             <div className='contentWrapper'>
                 <Routes>
                     <Route path='/' element={<Profile />} />
-                    <Route path='/profile' element={<Profile store={store} />} />
-                    <Route path='/massages' element={<DialogsContainer store={store} />}
-                    />
-                    <Route path='/massages/:id' element={<DialogsContainer store={store} />}
-                    />
+                    <Route path='/profile' element={<Profile />} />
+                    <Route path='/massages' element={<DialogsContainer />} />
+                    <Route path='/massages/:id' element={<DialogsContainer />} />
                     <Route path='/news' element={<News />} />
                     <Route path='/music' element={<Music />} />
                     <Route path='/settings' element={<Settings />} />
