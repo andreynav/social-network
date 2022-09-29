@@ -10,6 +10,9 @@ import Settings from "./settings/Settings"
 import TextAreaForm from "./textAreaForm/TextAreaForm";
 import MyPostsContainer from "./profile/myPosts/MyPostsContainer";
 import DialogsContainer from "./dialogs/DialogsContainer";
+import Users from "./users/Users"
+import User from "./users/user/User";
+import UsersContainer from "./users/UsersContainer";
 
 export {
     Dialogs,
@@ -28,5 +31,8 @@ export {
     Settings,
     TextAreaForm,
     MyPostsContainer,
-    DialogsContainer
+    DialogsContainer,
+    UsersContainer,
+    Users,
+    User
 }

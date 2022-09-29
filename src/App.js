@@ -10,7 +10,8 @@ import {
     Music,
     Settings,
     NotFound,
-    DialogsContainer
+    DialogsContainer,
+    UsersContainer,
 } from "./components/index"
 
 function App() {
@@ -24,6 +25,8 @@ function App() {
                     <Route path='/profile' element={<Profile />} />
                     <Route path='/massages' element={<DialogsContainer />} />
                     <Route path='/massages/:id' element={<DialogsContainer />} />
+                    <Route path='/users' element={<UsersContainer />} />
+                    <Route path='/users/:id' element={<UsersContainer />} />
                     <Route path='/news' element={<News />} />
                     <Route path='/music' element={<Music />} />
                     <Route path='/settings' element={<Settings />} />

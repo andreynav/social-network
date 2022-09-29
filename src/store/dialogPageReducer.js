@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 let initialState = {
-    dialogUsers : [
+    dialogUsers: [
         { id: 1, name: 'Andrey' },
         { id: 2, name: 'Anna' },
         { id: 3, name: 'Zlata' },
