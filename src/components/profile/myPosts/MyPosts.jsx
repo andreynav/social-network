@@ -2,7 +2,7 @@ import React from "react";
 import style from './MyPosts.module.css'
 import {Post, TextAreaForm} from "../../index";
 
-export default function MyPosts({ myPosts, postAreaValue, addPost, updatePostAreaValue }) {
+export default function MyPosts({myPosts, postAreaValue, addPost, updatePostAreaValue}) {
     let posts = myPosts.map( post => <Post key={post.id} message={post.message} like={post.like} />);
 
     let addNewPost = () => {

@@ -1,0 +1,76 @@
+.userWrapper {
+    display: grid;
+    margin: 20px 0;
+    grid-template-columns: 80px 1fr;
+    grid-template-areas:
+        "userAvatarWrapper userData"
+}
+
+.userAvatarWrapper {
+    border-radius: 35px;
+    height: auto;
+    width: 70px;
+    align-self: start;
+    align-items: start;
+}
+
+.userFollowStatus {
+    display: grid;
+    background-color: #282c34;
+    color: #cdd9e5;
+    font-size: 14px;
+    border-radius: 4px;
+    padding: 4px;
+    height: 18px;
+    margin-top: 5px;
+    align-content: center;
+    justify-content: center;
+}
+
+.userAvatarWrapper > div > img {
+    height: 70px;
+    width: 70px;
+}
+
+.userData {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+        "name country"
+        "status city";
+    background-color: white;
+    border-radius: 8px;
+    padding: 5px;
+    font-weight: bold;
+    height: 60px;
+}
+
+.name {
+    display: grid;
+    grid-area: name;
+    align-content: start;
+    justify-content: start;
+}
+
+.status {
+    display: grid;
+    grid-area: status;
+    align-content: end;
+    justify-content: start;
+    font-weight: normal;
+}
+
+.country {
+    display: grid;
+    grid-area: country;
+    align-content: start;
+    justify-content: end;
+}
+
+.city {
+    display: grid;
+    grid-area: city;
+    align-content: end;
+    justify-content: end;
+}
