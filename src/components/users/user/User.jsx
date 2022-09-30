@@ -3,7 +3,7 @@ import style from "./User.module.css"
 import {avatar} from "../../../assets";
 
 export default function User(props) {
-    let srcData = props.photoUrl !== "" ? props.photoUrl : avatar;
+    let srcData = props.photos.small !== null ? props.photos.small : avatar;
     return (
         <div className={style.userWrapper}>
             <div className={style.userAvatarWrapper}>
@@ -16,10 +16,11 @@ export default function User(props) {
             </div>
             <div className={style.userData}>
                 <div className={style.name}>
-                    {props.fullName}
+                    {props.name}
                 </div>
                 <div className={style.status}>
-                    {props.status}
+                    user id: {props.id}
+                    {/*{props.status}*/}
                 </div>
                 <div className={style.country}>
                     {props.country}

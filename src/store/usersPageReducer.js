@@ -1,52 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 let initialState = {
-    users: [
-        {
-            id: 1,
-            fullName: "Andrey N",
-            status: "I'm am boss",
-            location: {
-                country: "Belarus",
-                city: "Minsk"
-            },
-            followed: true,
-            photoUrl: ""
-        },
-        {
-            id: 2,
-            fullName: "Anna N",
-            status: "Life is beautiful",
-            location: {
-                country: "Belarus",
-                city: "Minsk"
-            },
-            followed: false,
-            photoUrl: ""
-        },
-        {
-            id: 3,
-            fullName: "Zlata N",
-            status: "Minecraft forever!",
-            location: {
-                country: "Belarus",
-                city: "Minsk"
-            },
-            followed: true,
-            photoUrl: ""
-        },
-        {
-            id: 4,
-            fullName: "Yuri K",
-            status: "Let's code",
-            location: {
-                country: "Russia",
-                city: "Moscow"
-            },
-            followed: false,
-            photoUrl: ""
-        }
-    ]
+    users: []
 };
 
 const usersPageSlice = createSlice({
@@ -61,6 +16,7 @@ const usersPageSlice = createSlice({
             })
         },
         setUsersAC(state, action) {
+            console.log(action.payload.users)
             state.users = [...state.users, ...action.payload.users]
         }
     }
