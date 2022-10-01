@@ -16,7 +16,6 @@ const usersPageSlice = createSlice({
             })
         },
         setUsersAC(state, action) {
-            console.log(action.payload.users)
             state.users = [...state.users, ...action.payload.users]
         }
     }
