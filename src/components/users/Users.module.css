@@ -1,5 +1,7 @@
 .usersWrapper {
     overflow: auto;
+    display: grid;
+    grid-template-rows: 30px auto auto;
 }
 
 .sectionTitle {
@@ -8,4 +10,29 @@
 
 .allUsersWrapper {
 
+}
+
+.pages {
+    display: grid;
+    grid-template-columns: repeat(20, 25px);
+    grid-gap: 4px;
+}
+
+.pages > div {
+    display: grid;
+    border: 1px solid black;
+    justify-items: center;
+    align-items: center;
+    border-radius: 2px;
+    height: 25px;
+}
+
+.pages > div:hover {
+    cursor: pointer;
+}
+
+.active {
+    background-color: #282c34;
+    color: #cdd9e5;
+    font-weight: bold;
 }

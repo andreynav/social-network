@@ -1,7 +1,10 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 let initialState = {
-    users: []
+    users: [],
+    currentPage: 1,
+    totalCount: 0,
+    usersOnPage: 5
 };
 
 const usersPageSlice = createSlice({
@@ -16,10 +19,16 @@ const usersPageSlice = createSlice({
             })
         },
         setUsersAC(state, action) {
-            state.users = [...state.users, ...action.payload.users]
+            state.users = [...action.payload.users]
+        },
+        setCurrentPageAC(state, action) {
+            state.currentPage = action.payload.currentPage;
+        },
+        setTotalCountAC(state, action) {
+            state.totalCount = action.payload.totalCount;
         }
     }
 });
 
-export const {changeToggleAC, setUsersAC} = usersPageSlice.actions;
+export const {changeToggleAC, setUsersAC, setCurrentPageAC, setTotalCountAC} = usersPageSlice.actions;
 export default usersPageSlice.reducer;

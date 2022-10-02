@@ -1,11 +1,14 @@
 import React from "react";
 import {Users} from "../index";
-import {changeToggleAC, setUsersAC} from "../../store/usersPageReducer";
+import {changeToggleAC, setUsersAC, setCurrentPageAC, setTotalCountAC} from "../../store/usersPageReducer";
 import {connect} from "react-redux";
 
 let mapStateToProps = (state) => {
     return {
-        users: state.usersPage.users
+        users: state.usersPage.users,
+        currentPage: state.usersPage.currentPage,
+        totalCount: state.usersPage.totalCount,
+        usersOnPage: state.usersPage.usersPage
     }
 };
 
@@ -14,8 +17,14 @@ let mapDispatchToProps = (dispatch) => {
         changeToggle: (id) => {
             dispatch(changeToggleAC(id));
         },
-        setUsers(users) {
+        setUsers: (users) => {
             dispatch(setUsersAC(users));
+        },
+        setCurrentPage: (pageNumber) => {
+            dispatch(setCurrentPageAC(pageNumber));
+        },
+        setTotalCount: (totalCount) => {
+            dispatch(setTotalCountAC(totalCount));
         }
     }
 };
