@@ -1,19 +1,10 @@
 import React from "react";
 import style from "./Users.module.css"
 import {User} from "../index";
+import ReactPaginate from 'react-paginate';
 
 export default function Users(props) {
     let pagesCount = Math.ceil(Number(props.totalCount) / props.usersOnPage);
-
-    let getPagesList = () => {
-        let pages = [];
-        let pageCount = pagesCount < 20 ? pagesCount : 20; // hardcode 20
-        for (let i = 1; i <= pageCount; i++) {
-            pages.push(<div key={i} onClick={() => props.selectPage(i)}
-                            className={props.currentPage === i ? style.active : ""}>{i}</div>)
-        }
-        return pages;
-    }
 
     let getUsersList = () => props.users.map(user => <User key={user.id}
                                                            id={user.id}
@@ -27,7 +18,17 @@ export default function Users(props) {
     return (
         <div className={style.usersWrapper}>
             <h3 className={style.sectionTitle}>Users</h3>
-            <div className={style.pages}>{getPagesList()}</div>
+            <ReactPaginate
+                className={style.pages}
+                breakLabel="..."
+                nextLabel="&#5125;"
+                onPageChange={(event) => props.selectPage(event.selected + 1)}
+                pageRangeDisplayed={3}
+                pageCount={pagesCount}
+                previousLabel="&#5130;"
+                renderOnZeroPageCount={null}
+                activeClassName={style.active}
+            />
             <div className={style.allUsersWrapper}>
                 {getUsersList()}
             </div>

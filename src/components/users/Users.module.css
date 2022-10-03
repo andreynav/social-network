@@ -1,24 +1,19 @@
 .usersWrapper {
     overflow: auto;
     display: grid;
-    grid-template-rows: 30px auto auto;
+    grid-template-rows: 30px 30px auto;
 }
 
-.sectionTitle {
-
-}
-
-.allUsersWrapper {
-
-}
+.sectionTitle { }
 
 .pages {
     display: grid;
-    grid-template-columns: repeat(20, 25px);
+    grid-template-columns: repeat(auto-fit, minmax(40px, 1fr) ) ;
     grid-gap: 4px;
+    align-items: center;
 }
 
-.pages > div {
+.pages > li {
     display: grid;
     border: 1px solid black;
     justify-items: center;
@@ -27,12 +22,17 @@
     height: 25px;
 }
 
-.pages > div:hover {
+.pages > li:hover {
     cursor: pointer;
 }
 
 .active {
     background-color: #282c34;
-    color: #cdd9e5;
     font-weight: bold;
 }
+
+.active > a {
+    color: #cdd9e5;
+}
+
+.allUsersWrapper { }
