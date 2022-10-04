@@ -4,7 +4,8 @@ let initialState = {
     users: [],
     currentPage: 1,
     totalCount: 0,
-    usersOnPage: 5
+    usersOnPage: 5,
+    isFetching: false,
 };
 
 const usersPageSlice = createSlice({
@@ -22,13 +23,17 @@ const usersPageSlice = createSlice({
             state.users = [...action.payload.users]
         },
         setCurrentPageAC(state, action) {
+            // console.log(action.payload.currentPage)
             state.currentPage = action.payload.currentPage;
         },
         setTotalCountAC(state, action) {
             state.totalCount = action.payload.totalCount;
+        },
+        setIsFetchingAC(state, action) {
+            state.isFetching = action.payload.isFetching;
         }
     }
 });
 
-export const {changeToggleAC, setUsersAC, setCurrentPageAC, setTotalCountAC} = usersPageSlice.actions;
+export const {changeToggleAC, setUsersAC, setCurrentPageAC, setTotalCountAC, setIsFetchingAC} = usersPageSlice.actions;
 export default usersPageSlice.reducer;
