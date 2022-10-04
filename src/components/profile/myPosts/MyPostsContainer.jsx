@@ -1,6 +1,6 @@
 import React from "react";
 import {MyPosts} from "../../index";
-import {addNewPost, updateNewPostArea} from "../../../store/profilePageReducer";
+import {addNewPostAC, updateNewPostAreaAC} from "../../../store/profilePageReducer";
 import {connect} from "react-redux";
 
 let mapStateToProps = (state) => {
@@ -10,17 +10,9 @@ let mapStateToProps = (state) => {
     }
 };
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        addPost: () => {
-            dispatch(addNewPost());
-        },
-        updatePostAreaValue: (text) => {
-            dispatch(updateNewPostArea(text));
-        }
-    }
-};
-
-const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
+const MyPostsContainer = connect(mapStateToProps, {
+    addNewPostAC,
+    updateNewPostAreaAC
+})(MyPosts);
 
 export default MyPostsContainer;

@@ -2,16 +2,16 @@ import React from "react";
 import style from "./Dialogs.module.css";
 import {DialogMessage, DialogUser, TextAreaForm} from "../index"
 
-export default function Dialogs({dialogUsers, messages, messageAreaValue, addPost, updatePostAreaValue}) {
+export default function Dialogs({dialogUsers, messages, messageAreaValue, addMessageAC, updateMessageAreaAC}) {
     let dialogsUsers = dialogUsers.map(user => <DialogUser key={user.id} userName={user.name} userId={user.id}/>);
     let userMessages = messages.map((message, item) => <DialogMessage key={item} message={message.message}/>);
 
-    let addNewPost = () => {
-        addPost();
+    let addMessage = () => {
+        addMessageAC();
     };
     let updatePostArea = (event) => {
         let text = event.target.value;
-        updatePostAreaValue(text);
+        updateMessageAreaAC(text);
     };
 
     return (
@@ -28,7 +28,7 @@ export default function Dialogs({dialogUsers, messages, messageAreaValue, addPos
                 <TextAreaForm
                     updatePostArea={updatePostArea}
                     postAreaValue={messageAreaValue}
-                    onAddPost={addNewPost} />
+                    onAddPost={addMessage} />
             </div>
         </div>
     );

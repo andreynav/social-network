@@ -1,6 +1,6 @@
 import React from "react";
 import {Dialogs} from "../index";
-import {addMessage, updateMessageArea} from "../../store/dialogPageReducer";
+import {addMessageAC, updateMessageAreaAC} from "../../store/dialogPageReducer";
 import {connect} from "react-redux";
 
 let mapStateToProps = (state) => {
@@ -11,17 +11,9 @@ let mapStateToProps = (state) => {
     }
 };
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        addPost: () => {
-            dispatch(addMessage());
-        },
-        updatePostAreaValue: (text) => {
-            dispatch(updateMessageArea(text));
-        }
-    }
-};
-
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+const DialogsContainer = connect(mapStateToProps, {
+    addMessageAC,
+    updateMessageAreaAC
+})(Dialogs);
 
 export default DialogsContainer;

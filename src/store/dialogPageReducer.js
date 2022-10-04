@@ -20,7 +20,7 @@ const dialogPageSlice = createSlice({
     name: 'dialogPage',
     initialState,
     reducers: {
-        addMessage(state) {
+        addMessageAC(state) {
             let messageId =  state.messages.length;
             let message = {
                 id: ++messageId,
@@ -29,11 +29,11 @@ const dialogPageSlice = createSlice({
             state.messages.push(message);
             state.messageArea = '';
         },
-        updateMessageArea(state, action) {
+        updateMessageAreaAC(state, action) {
             state.messageArea = action.payload;
         }
     }
 });
 
-export const { addMessage, updateMessageArea } = dialogPageSlice.actions;
+export const { addMessageAC, updateMessageAreaAC } = dialogPageSlice.actions;
 export default dialogPageSlice.reducer;
