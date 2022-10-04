@@ -23,7 +23,6 @@ const usersPageSlice = createSlice({
             state.users = [...action.payload.users]
         },
         setCurrentPageAC(state, action) {
-            // console.log(action.payload.currentPage)
             state.currentPage = action.payload.currentPage;
         },
         setTotalCountAC(state, action) {

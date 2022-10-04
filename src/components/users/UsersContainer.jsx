@@ -8,7 +8,7 @@ class UsersContainerAPI extends React.Component {
     constructor(props) {
         super(props);
         this.onChangeToggle = (id) => {
-            this.props.changeToggle({userId: id});
+            this.props.changeToggleAC({userId: id});
         };
     }
 
@@ -17,25 +17,25 @@ class UsersContainerAPI extends React.Component {
     }
 
     selectPage = (page) => {
-        this.props.setCurrentPage({currentPage: page});
-        this.props.setIsFetching({isFetching: true});
+        this.props.setCurrentPageAC({currentPage: page});
+        this.props.setIsFetchingAC({isFetching: true});
         axios.get(this.getPage(this.props.usersOnPage, page))
             .then(response => {
-                this.props.setUsers({users: response.data.items});
-                this.props.setIsFetching({isFetching: false});
+                this.props.setUsersAC({users: response.data.items});
+                this.props.setIsFetchingAC({isFetching: false});
             })
             .catch(error => console.log(error));
 
     }
 
     componentDidMount() {
-        this.props.setIsFetching({isFetching: true});
+        this.props.setIsFetchingAC({isFetching: true});
         axios.get(this.getPage())
             .then(response => {
-                this.props.setUsers({users: response.data.items});
-                this.props.setTotalCount({totalCount: response.data.totalCount});
-                this.props.setCurrentPage({currentPage: 1});
-                this.props.setIsFetching({isFetching: false});
+                this.props.setUsersAC({users: response.data.items});
+                this.props.setTotalCountAC({totalCount: response.data.totalCount});
+                this.props.setCurrentPageAC({currentPage: 1});
+                this.props.setIsFetchingAC({isFetching: false});
             })
             .catch(error => console.log(error));
     }
@@ -52,7 +52,6 @@ class UsersContainerAPI extends React.Component {
     }
 }
 
-
 let mapStateToProps = (state) => {
     return {
         users: state.usersPage.users,
@@ -63,26 +62,12 @@ let mapStateToProps = (state) => {
     }
 };
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        changeToggle: (id) => {
-            dispatch(changeToggleAC(id));
-        },
-        setUsers: (users) => {
-            dispatch(setUsersAC(users));
-        },
-        setCurrentPage: (pageNumber) => {
-            dispatch(setCurrentPageAC(pageNumber));
-        },
-        setTotalCount: (totalCount) => {
-            dispatch(setTotalCountAC(totalCount));
-        },
-        setIsFetching: (isFetching) => {
-            dispatch(setIsFetchingAC(isFetching));
-        }
-    }
-};
-
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersContainerAPI);
+const UsersContainer = connect(mapStateToProps, {
+    changeToggleAC,
+    setUsersAC,
+    setCurrentPageAC,
+    setTotalCountAC,
+    setIsFetchingAC
+})(UsersContainerAPI);
 
 export default UsersContainer;

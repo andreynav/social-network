@@ -18,7 +18,7 @@ const profilePageSlice = createSlice({
     name: 'profilePage',
     initialState,
     reducers: {
-        addNewPost(state) {
+        addNewPostAC(state) {
             let postId = state.myPosts.length;
             let post = {
                 id: ++postId,
@@ -28,11 +28,11 @@ const profilePageSlice = createSlice({
             state.myPosts.push(post);
             state.postArea = '';
         },
-        updateNewPostArea(state, action) {
+        updateNewPostAreaAC(state, action) {
             state.postArea = action.payload;
         }
     }
 });
 
-export const { addNewPost, updateNewPostArea } = profilePageSlice.actions;
+export const { addNewPostAC, updateNewPostAreaAC } = profilePageSlice.actions;
 export default profilePageSlice.reducer;
