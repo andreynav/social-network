@@ -1,11 +1,10 @@
 import React from "react";
 import style from "./Users.module.css"
-import {User} from "../index";
+import {Loader, User} from "../index";
 import ReactPaginate from 'react-paginate';
 
 export default function Users(props) {
     let pagesCount = Math.ceil(Number(props.totalCount) / props.usersOnPage);
-
     let getUsersList = () => props.users.map(user => <User key={user.id}
                                                            id={user.id}
                                                            name={user.name}
@@ -29,9 +28,14 @@ export default function Users(props) {
                 renderOnZeroPageCount={null}
                 activeClassName={style.active}
             />
-            <div className={style.allUsersWrapper}>
-                {getUsersList()}
-            </div>
+            {props.isFetching ?
+                <div className={style.loaderContainer}>
+                    <Loader/>
+                </div> :
+                <div className={style.allUsersWrapper}>
+                    {getUsersList()}
+                </div>
+            }
         </div>
     );
 }

@@ -6,6 +6,12 @@
 
 .sectionTitle { }
 
+.loaderContainer {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
 .pages {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(40px, 1fr) ) ;

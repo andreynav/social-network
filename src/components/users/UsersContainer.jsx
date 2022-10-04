@@ -1,6 +1,6 @@
 import React from "react";
 import {Users} from "../index";
-import {changeToggleAC, setUsersAC, setCurrentPageAC, setTotalCountAC} from "../../store/usersPageReducer";
+import {changeToggleAC, setUsersAC, setCurrentPageAC, setTotalCountAC, setIsFetchingAC} from "../../store/usersPageReducer";
 import {connect} from "react-redux";
 import axios from "axios";
 
@@ -17,20 +17,25 @@ class UsersContainerAPI extends React.Component {
     }
 
     selectPage = (page) => {
+        this.props.setCurrentPage({currentPage: page});
+        this.props.setIsFetching({isFetching: true});
         axios.get(this.getPage(this.props.usersOnPage, page))
             .then(response => {
-                this.props.setUsers({users: response.data.items})
-                this.props.setCurrentPage({currentPage: page});
+                this.props.setUsers({users: response.data.items});
+                this.props.setIsFetching({isFetching: false});
             })
             .catch(error => console.log(error));
+
     }
 
     componentDidMount() {
+        this.props.setIsFetching({isFetching: true});
         axios.get(this.getPage())
             .then(response => {
                 this.props.setUsers({users: response.data.items});
                 this.props.setTotalCount({totalCount: response.data.totalCount});
                 this.props.setCurrentPage({currentPage: 1});
+                this.props.setIsFetching({isFetching: false});
             })
             .catch(error => console.log(error));
     }
@@ -42,6 +47,7 @@ class UsersContainerAPI extends React.Component {
                       users={this.props.users}
                       selectPage={this.selectPage}
                       onChangeToggle={this.onChangeToggle}
+                      isFetching={this.props.isFetching}
         />
     }
 }
@@ -52,7 +58,8 @@ let mapStateToProps = (state) => {
         users: state.usersPage.users,
         currentPage: state.usersPage.currentPage,
         totalCount: state.usersPage.totalCount,
-        usersOnPage: state.usersPage.usersOnPage
+        usersOnPage: state.usersPage.usersOnPage,
+        isFetching: state.usersPage.isFetching,
     }
 };
 
@@ -69,6 +76,9 @@ let mapDispatchToProps = (dispatch) => {
         },
         setTotalCount: (totalCount) => {
             dispatch(setTotalCountAC(totalCount));
+        },
+        setIsFetching: (isFetching) => {
+            dispatch(setIsFetchingAC(isFetching));
         }
     }
 };
