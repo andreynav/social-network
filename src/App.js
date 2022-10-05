@@ -13,6 +13,7 @@ import {
     DialogsContainer,
     UsersContainer,
 } from "./components/index"
+import ProfileContainer from "./components/profile/ProfileContainer";
 
 function App() {
     return (
@@ -22,7 +23,8 @@ function App() {
             <div className='contentWrapper'>
                 <Routes>
                     <Route path='/' element={<Profile />} />
-                    <Route path='/profile' element={<Profile />} />
+                    <Route path='/profile' element={<ProfileContainer />} />
+                    <Route path='/profile/:id' element={<ProfileContainer />} />
                     <Route path='/massages' element={<DialogsContainer />} />
                     <Route path='/massages/:id' element={<DialogsContainer />} />
                     <Route path='/users' element={<UsersContainer />} />

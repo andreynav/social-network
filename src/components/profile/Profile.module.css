@@ -1,5 +1,5 @@
 .profileWrapper {
     display: grid;
-    grid-template-rows: 250px auto;
+    grid-template-rows: auto auto;
     overflow: visible auto;
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import style from "./User.module.css"
 import {avatar} from "../../../assets";
+import {NavLink} from "react-router-dom";
 
 export default function User(props) {
     let srcData = props.photos.small !== null ? props.photos.small : avatar;
@@ -8,7 +9,9 @@ export default function User(props) {
         <div className={style.userWrapper}>
             <div className={style.userAvatarWrapper}>
                 <div>
-                    <img src={srcData} alt='avatar'/>
+                    <NavLink to={`/profile/${props.id}`}>
+                        <img src={srcData} alt={`${props.name}`}/>
+                    </NavLink>
                 </div>
                 <div className={style.userFollowStatus} onClick={() => props.toggleFollow(props.id)}>
                     {props.followed ? "Follow" : "Unfollow"}

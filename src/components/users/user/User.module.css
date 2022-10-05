@@ -6,7 +6,7 @@
         "userAvatarWrapper userData"
 }
 
-.userAvatarWrapper {
+.userAvatarWrapper > div img {
     border-radius: 35px;
     height: auto;
     width: 70px;
