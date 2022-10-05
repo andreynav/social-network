@@ -11,7 +11,8 @@ let initialState = {
         {id: 7, message: "Nice day, let's learn React4", like: 557},
         {id: 8, message: "Nice day, let's learn React5", like: 657}
     ],
-    postArea: ''
+    postArea: '',
+    profileInfo: null
 };
 
 const profilePageSlice = createSlice({
@@ -30,9 +31,12 @@ const profilePageSlice = createSlice({
         },
         updateNewPostAreaAC(state, action) {
             state.postArea = action.payload;
+        },
+        setProfileInfoAC(state, action) {
+            state.profileInfo = action.payload.profileInfo;
         }
     }
 });
 
-export const { addNewPostAC, updateNewPostAreaAC } = profilePageSlice.actions;
+export const { addNewPostAC, updateNewPostAreaAC, setProfileInfoAC } = profilePageSlice.actions;
 export default profilePageSlice.reducer;

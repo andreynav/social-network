@@ -1,26 +1,40 @@
 .profileInfoWrapper {
     display: grid;
-    grid-template-rows: 120px 120px;
+    grid-template-rows: 120px auto;
 }
 
 .backgroundPhoto {
-    background-color: orangered;
+    background-color: #ffc300;
+    border-radius: 8px 8px 0 0;
 }
 
 .userDataWrapper {
     display: grid;
-    margin: 10px 0;
-    background-color: darkgrey;
+    margin: 20px 0;
     grid-template-columns: 120px 1fr;
 }
 
 .userAvatar {
-    /*align-self: center;
-    justify-self: center;*/
-    border: 2px solid black;
+    align-self: start;
+    justify-self: start;
+}
+
+.userAvatar > img {
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
 }
 
 .userInfo {
-    /*justify-self: start;*/
-    border: 2px solid black;
+    background-color: white;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.userInfo > div > span {
+    font-weight: bold;
+}
+
+.userInfo > div > div {
+    padding-left: 20px;
 }
