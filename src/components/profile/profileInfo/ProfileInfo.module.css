@@ -10,7 +10,7 @@
 
 .userDataWrapper {
     display: grid;
-    margin: 20px 0;
+    margin: 20px 0 10px 0;
     grid-template-columns: 120px 1fr;
 }
 
