@@ -4,7 +4,7 @@ import {changeToggleAC, setUsersAC, setCurrentPageAC, setTotalCountAC, setIsFetc
 import {connect} from "react-redux";
 import axios from "axios";
 
-class UsersContainerAPI extends React.Component {
+class UsersContainer extends React.Component {
     constructor(props) {
         super(props);
         this.onChangeToggle = (id) => {
@@ -62,12 +62,10 @@ let mapStateToProps = (state) => {
     }
 };
 
-const UsersContainer = connect(mapStateToProps, {
+export default connect(mapStateToProps, {
     changeToggleAC,
     setUsersAC,
     setCurrentPageAC,
     setTotalCountAC,
     setIsFetchingAC
-})(UsersContainerAPI);
-
-export default UsersContainer;
+})(UsersContainer);

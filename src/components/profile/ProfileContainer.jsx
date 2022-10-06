@@ -1,17 +1,21 @@
 import React from "react";
-import {Profile} from "./index";
-import axios from "axios";
+import {useParams} from "react-router-dom";
 import {connect} from "react-redux";
+import axios from "axios";
+import {Profile} from "./index";
 import {setProfileInfoAC} from "../../store/profilePageReducer";
 
-class ProfileContainerAPI extends React.Component {
+class ProfileContainer extends React.Component {
     getProfileInfo = (userId) => {
         return `https://social-network.samuraijs.com/api/1.0/profile/${userId}`
     }
 
     componentDidMount() {
-        // console.log(this.props)
-        axios.get(this.getProfileInfo(2))
+        let profileId = this.props.params.id;
+        if (!profileId) {
+            profileId = 2;
+        }
+        axios.get(this.getProfileInfo(profileId))
             .then(response => {
                 this.props.setProfileInfoAC({profileInfo: response.data});
             })
@@ -19,7 +23,7 @@ class ProfileContainerAPI extends React.Component {
     }
 
     render() {
-        return <Profile {...this.props} profileInfo={this.props.profileInfo} />
+        return <Profile {...this.props} />
     }
 }
 
@@ -29,8 +33,14 @@ let mapStateToProps = (state) => {
     }
 }
 
-const ProfileContainer = connect(mapStateToProps, {
-    setProfileInfoAC
-})(ProfileContainerAPI);
+let withRouter = (Component) => {
+    function ComponentWithRouterProp(props) {
+        let params = useParams();
+        return <Component {...props} params={params} />;
+    }
+    return ComponentWithRouterProp;
+}
 
-export default ProfileContainer;
+export default connect(mapStateToProps, {
+    setProfileInfoAC
+})(withRouter(ProfileContainer));
