@@ -15,6 +15,7 @@ import User from "./users/user/User";
 import UsersContainer from "./users/UsersContainer";
 import Loader from "./loader/Loader";
 import ProfileContainer from "./profile/ProfileContainer";
+import HeaderContainer from "./header/HeaderContainer";
 
 export {
     Dialogs,
@@ -38,5 +39,6 @@ export {
     Users,
     User,
     Loader,
-    ProfileContainer
+    ProfileContainer,
+    HeaderContainer
 }

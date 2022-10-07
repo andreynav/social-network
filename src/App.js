@@ -2,7 +2,6 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import './styles/App.css';
 import {
-    Header,
     Navbar,
     Profile,
     Footer,
@@ -12,13 +11,14 @@ import {
     NotFound,
     DialogsContainer,
     UsersContainer,
+    HeaderContainer,
 } from "./components/index"
 import ProfileContainer from "./components/profile/ProfileContainer";
 
 function App() {
     return (
         <div className='appWrapper'>
-            <Header />
+            <HeaderContainer />
             <Navbar />
             <div className='contentWrapper'>
                 <Routes>

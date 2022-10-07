@@ -1,6 +1,6 @@
 import React from "react";
 import {useParams} from "react-router-dom";
-import {connect} from "react-redux";
+import {connect, useSelector} from "react-redux";
 import axios from "axios";
 import {Profile} from "./index";
 import {setProfileInfoAC} from "../../store/profilePageReducer";
@@ -13,7 +13,7 @@ class ProfileContainer extends React.Component {
     componentDidMount() {
         let profileId = this.props.params.id;
         if (!profileId) {
-            profileId = 2;
+            profileId = this.props.userId || 2;
         }
         axios.get(this.getProfileInfo(profileId))
             .then(response => {
@@ -36,7 +36,8 @@ let mapStateToProps = (state) => {
 let withRouter = (Component) => {
     function ComponentWithRouterProp(props) {
         let params = useParams();
-        return <Component {...props} params={params} />;
+        let id = useSelector(store => store.auth.id);
+        return <Component {...props} params={params} userId={id} />;
     }
     return ComponentWithRouterProp;
 }
