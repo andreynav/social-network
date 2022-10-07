@@ -5,21 +5,20 @@ import {connect} from "react-redux";
 import axios from "axios";
 
 class UsersContainer extends React.Component {
-    constructor(props) {
-        super(props);
-        this.onChangeToggle = (id) => {
-            this.props.changeToggleAC({userId: id});
-        };
-    }
-
     getPage = (count = this.props.usersOnPage, page = 1) => {
         return `https://social-network.samuraijs.com/api/1.0/users?count=${count}&page=${page}`
+    }
+
+    followUser = (id) => {
+        return `https://social-network.samuraijs.com/api/1.0/follow/${id}`
     }
 
     selectPage = (page) => {
         this.props.setCurrentPageAC({currentPage: page});
         this.props.setIsFetchingAC({isFetching: true});
-        axios.get(this.getPage(this.props.usersOnPage, page))
+        axios.get(this.getPage(this.props.usersOnPage, page), {
+            withCredentials: true
+        })
             .then(response => {
                 this.props.setUsersAC({users: response.data.items});
                 this.props.setIsFetchingAC({isFetching: false});
@@ -28,9 +27,47 @@ class UsersContainer extends React.Component {
 
     }
 
+    onChangeToggle = (id) => {
+        this.props.users.filter(user => {
+            if (user.id === id) {
+                if (user.followed) {
+                    axios.delete(this.followUser(id), {
+                        withCredentials: true,
+                        headers: {
+                            'API-KEY': 'b055b506-f05b-42fe-928f-891da5e27dea'
+                        }
+                    })
+                        .then(response => {
+                            if (response.data.resultCode === 0) {
+                                this.props.changeToggleAC({userId: id});
+                            }
+                        })
+                        .catch(error => console.log(error));
+                } else {
+                    axios.post(this.followUser(id), {},{
+                        withCredentials: true,
+                        headers: {
+                            'API-KEY': 'b055b506-f05b-42fe-928f-891da5e27dea'
+                        }
+                    })
+                        .then(response => {
+                            if (response.data.resultCode === 0) {
+                                this.props.changeToggleAC({userId: id});
+                            }
+                        })
+                        .catch(error => console.log(error));
+                }
+            }
+        });
+
+
+    };
+
     componentDidMount() {
         this.props.setIsFetchingAC({isFetching: true});
-        axios.get(this.getPage())
+        axios.get(this.getPage(), {
+            withCredentials: true
+        })
             .then(response => {
                 this.props.setUsersAC({users: response.data.items});
                 this.props.setTotalCountAC({totalCount: response.data.totalCount});
