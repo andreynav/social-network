@@ -1,25 +1,20 @@
 import React from "react";
 import {useParams} from "react-router-dom";
 import {connect, useSelector} from "react-redux";
-import axios from "axios";
 import {Profile} from "./index";
 import {setProfileInfoAC} from "../../store/profilePageReducer";
+import {profileAPI} from "../../api/api";
 
 class ProfileContainer extends React.Component {
-    getProfileInfo = (userId) => {
-        return `https://social-network.samuraijs.com/api/1.0/profile/${userId}`
-    }
-
     componentDidMount() {
-        let profileId = this.props.params.id;
-        if (!profileId) {
-            profileId = this.props.userId || 2;
+        let userId = this.props.params.id;
+        if (!userId) {
+            userId = this.props.userId || 2;
         }
-        axios.get(this.getProfileInfo(profileId))
-            .then(response => {
-                this.props.setProfileInfoAC({profileInfo: response.data});
-            })
-            .catch(error => console.log(error));
+        profileAPI.getProfileInfo(userId)
+            .then(data => {
+                this.props.setProfileInfoAC({profileInfo: data});
+            });
     }
 
     render() {
