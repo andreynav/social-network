@@ -16,12 +16,13 @@
 
 .userFollowStatus {
     display: grid;
-    background-color: #282c34;
-    color: #cdd9e5;
+    color: #282c34;
+    border: 1px solid #282c34;
     font-size: 14px;
     border-radius: 4px;
     padding: 4px;
-    height: 18px;
+    height: 26px;
+    width: 70px;
     margin-top: 5px;
     align-content: center;
     justify-content: center;

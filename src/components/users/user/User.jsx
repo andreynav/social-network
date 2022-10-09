@@ -13,9 +13,11 @@ export default function User(props) {
                         <img src={srcData} alt={`${props.name}`}/>
                     </NavLink>
                 </div>
-                <div className={style.userFollowStatus} onClick={() => props.toggleFollow(props.id)}>
+                <button disabled={props.followInProgress.some(id => id === props.id)}
+                        className={style.userFollowStatus}
+                        onClick={() => props.toggleFollow(props.id)}>
                     {props.followed ? "Follow" : "Unfollow"}
-                </div>
+                </button>
             </div>
             <div className={style.userData}>
                 <div className={style.name}>
