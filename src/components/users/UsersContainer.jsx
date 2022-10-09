@@ -5,7 +5,8 @@ import {
     setUsersAC,
     setCurrentPageAC,
     setTotalCountAC,
-    setIsFetchingAC
+    setIsFetchingAC,
+    setFollowInProgressAC
 } from "../../store/usersPageReducer";
 import {connect} from "react-redux";
 import {userAPI} from "../../api/api";
@@ -21,13 +22,15 @@ class UsersContainer extends React.Component {
             });
     }
 
-    onChangeToggle = (id) => {
+    onChangeFollow = (id) => {
         let currentUser = this.props.users.find(user => user.id === id);
+        this.props.setFollowInProgressAC({isInProgress: true,  id: currentUser.id});
         let promise = currentUser.followed ? userAPI.unfollowUser(id) : userAPI.followUser(id);
         promise.then(data => {
             if (data.resultCode === 0) {
                 this.props.changeToggleAC({userId: id});
             }
+            this.props.setFollowInProgressAC({isInProgress: false, id: currentUser.id});
         });
     };
 
@@ -48,8 +51,9 @@ class UsersContainer extends React.Component {
                       currentPage={this.props.currentPage}
                       users={this.props.users}
                       selectPage={this.selectPage}
-                      onChangeToggle={this.onChangeToggle}
+                      onChangeToggle={this.onChangeFollow}
                       isFetching={this.props.isFetching}
+                      followInProgress={this.props.followInProgress}
         />
     }
 }
@@ -61,6 +65,7 @@ let mapStateToProps = (state) => {
         totalCount: state.usersPage.totalCount,
         usersOnPage: state.usersPage.usersOnPage,
         isFetching: state.usersPage.isFetching,
+        followInProgress: state.usersPage.followInProgress
     }
 };
 
@@ -69,5 +74,6 @@ export default connect(mapStateToProps, {
     setUsersAC,
     setCurrentPageAC,
     setTotalCountAC,
-    setIsFetchingAC
+    setIsFetchingAC,
+    setFollowInProgressAC
 })(UsersContainer);

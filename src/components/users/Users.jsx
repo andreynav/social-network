@@ -13,7 +13,8 @@ export default function Users(props) {
                                                            city={"user.location.city"}
                                                            followed={user.followed}
                                                            photos={user.photos}
-                                                           toggleFollow={props.onChangeToggle}/>)
+                                                           toggleFollow={props.onChangeToggle}
+                                                           followInProgress={props.followInProgress} />)
     return (
         <div className={style.usersWrapper}>
             <h3 className={style.sectionTitle}>Users</h3>

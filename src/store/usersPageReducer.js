@@ -6,6 +6,7 @@ let initialState = {
     totalCount: 0,
     usersOnPage: 5,
     isFetching: false,
+    followInProgress: []
 };
 
 const usersPageSlice = createSlice({
@@ -30,9 +31,19 @@ const usersPageSlice = createSlice({
         },
         setIsFetchingAC(state, action) {
             state.isFetching = action.payload.isFetching;
+        },
+        setFollowInProgressAC(state, action) {
+            state.followInProgress = action.payload.isInProgress
+                ? [...state.followInProgress, action.payload.id]
+                : state.followInProgress.filter(id => id !== action.payload.id);
         }
     }
 });
 
-export const {changeToggleAC, setUsersAC, setCurrentPageAC, setTotalCountAC, setIsFetchingAC} = usersPageSlice.actions;
+export const {changeToggleAC,
+    setUsersAC,
+    setCurrentPageAC,
+    setTotalCountAC,
+    setIsFetchingAC,
+    setFollowInProgressAC} = usersPageSlice.actions;
 export default usersPageSlice.reducer;
