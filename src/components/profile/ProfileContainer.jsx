@@ -2,19 +2,12 @@ import React from "react";
 import {useParams} from "react-router-dom";
 import {connect, useSelector} from "react-redux";
 import {Profile} from "./index";
-import {setProfileInfoAC} from "../../store/profilePageReducer";
-import {profileAPI} from "../../api/api";
+import {setProfileInfo} from "../../store/profileReducer";
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
-        let userId = this.props.params.id;
-        if (!userId) {
-            userId = this.props.userId || 2;
-        }
-        profileAPI.getProfileInfo(userId)
-            .then(data => {
-                this.props.setProfileInfoAC({profileInfo: data});
-            });
+        let userId = this.props.params.id || this.props.userId || 2;
+        this.props.setProfileInfo(userId);
     }
 
     render() {
@@ -24,7 +17,9 @@ class ProfileContainer extends React.Component {
 
 let mapStateToProps = (state) => {
     return {
-        profileInfo: state.profilePage.profileInfo
+        profileInfo: state.profile.profileInfo,
+        profileInfoStatus: state.profile.profileInfoStatus,
+        profileInfoError: state.profile.profileInfoError
     }
 }
 
@@ -38,5 +33,5 @@ let withRouter = (Component) => {
 }
 
 export default connect(mapStateToProps, {
-    setProfileInfoAC
+    setProfileInfo
 })(withRouter(ProfileContainer));

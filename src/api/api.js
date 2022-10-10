@@ -11,33 +11,28 @@ const samuraiApi = axios.create({
 export const userAPI = {
     getUsers: (userOnPage, pageNumber = 1) => {
         return samuraiApi.get(`users?count=${userOnPage}&page=${pageNumber}`)
-            .then(response => response.data)
-            .catch(error => console.log(error));
+            .then(response => response.data);
     },
     followUser: (id) => {
         return samuraiApi.post(`follow/${id}`)
-            .then(response => response.data)
-            .catch(error => console.log(error));
+            .then(response => response.data);
     },
     unfollowUser: (id) => {
         return samuraiApi.delete(`follow/${id}`)
-            .then(response => response.data)
-            .catch(error => console.log(error));
+            .then(response => response.data);
     }
 }
 
 export const authAPI = {
     me: () => {
         return samuraiApi.get(`auth/me`)
-            .then(response => response.data)
-            .catch(error => console.log(error));
+            .then(response => response.data);
     }
 }
 
 export const profileAPI = {
     getProfileInfo: (userId) => {
         return samuraiApi.get(`profile/${userId}`)
-            .then(response => response.data)
-            .catch(error => console.log(error));
+            .then(response => response.data);
     }
 }
