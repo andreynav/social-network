@@ -1,5 +1,5 @@
 import dialogPageReducer from "./dialogPageReducer";
-import profilePageReducer from "./profilePageReducer";
+import profileReducer from "./profileReducer";
 
 let store = {
     _state: {
@@ -18,7 +18,7 @@ let store = {
             ],
             messageArea: ''
         },
-        profilePage: {
+        profile: {
             myPosts : [
                 {id: 1, message: "Hey, how are you?",  like: 105 },
                 {id: 2, message: "You shell not pass, fellow!",  like: 304 },
@@ -42,7 +42,7 @@ let store = {
         this._callSubscriber = observer;
     },
     dispatch(action) {
-        this._state.profilePage = profilePageReducer(this._state.profilePage, action);
+        this._state.profile = profileReducer(this._state.profile, action);
         this._state.dialogPage = dialogPageReducer(this._state.dialogPage, action);
         this._callSubscriber(this._state);
     }

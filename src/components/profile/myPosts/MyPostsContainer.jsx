@@ -1,12 +1,12 @@
 import React from "react";
 import {MyPosts} from "../../index";
-import {addNewPostAC, updateNewPostAreaAC} from "../../../store/profilePageReducer";
+import {addNewPostAC, updateNewPostAreaAC} from "../../../store/profileReducer";
 import {connect} from "react-redux";
 
 let mapStateToProps = (state) => {
     return {
-        myPosts: state.profilePage.myPosts,
-        postAreaValue: state.profilePage.postArea
+        myPosts: state.profile.myPosts,
+        postAreaValue: state.profile.postArea
     }
 };
 
