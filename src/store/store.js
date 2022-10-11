@@ -1,13 +1,13 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
-import dialogPageSlice from "./dialogPageReducer";
+import dialogsReducer from "./dialogReducer";
 import profileReducer from "./profileReducer";
-import usersPageReducer from "./usersPageReducer";
+import usersReducer from "./usersReducer";
 import authReducer from "./authReducer";
 
 const rootReducer = combineReducers({
-    dialogPage: dialogPageSlice,
+    dialogs: dialogsReducer,
     profile: profileReducer,
-    usersPage: usersPageReducer,
+    users: usersReducer,
     auth: authReducer
 });
 

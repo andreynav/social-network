@@ -16,8 +16,8 @@ let initialState = {
     messageArea: ''
 };
 
-const dialogPageSlice = createSlice({
-    name: 'dialogPage',
+const dialogsReducer = createSlice({
+    name: 'dialogs',
     initialState,
     reducers: {
         addMessageAC(state) {
@@ -35,5 +35,5 @@ const dialogPageSlice = createSlice({
     }
 });
 
-export const { addMessageAC, updateMessageAreaAC } = dialogPageSlice.actions;
-export default dialogPageSlice.reducer;
+export const { addMessageAC, updateMessageAreaAC } = dialogsReducer.actions;
+export default dialogsReducer.reducer;

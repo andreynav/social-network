@@ -32,6 +32,4 @@ let withRouter = (Component) => {
     return ComponentWithRouterProp;
 }
 
-export default connect(mapStateToProps, {
-    setProfileInfo
-})(withRouter(ProfileContainer));
+export default connect(mapStateToProps, {setProfileInfo})(withRouter(ProfileContainer));

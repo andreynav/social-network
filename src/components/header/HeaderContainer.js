@@ -23,6 +23,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {
-    getAuthUserData
-})(HeaderContainer);
+export default connect(mapStateToProps, {getAuthUserData})(HeaderContainer);
