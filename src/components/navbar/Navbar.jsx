@@ -10,7 +10,7 @@ export default function Navbar() {
                 <NavLink to='/profile' className={setActive(style.activeLink)}>Profile</NavLink>
             </div>
             <div className={style.item}>
-                <NavLink to='/massages' className={setActive(style.activeLink)}>Messages</NavLink>
+                <NavLink to='/massages' className={setActive(style.activeLink)}>Dialogs</NavLink>
             </div>
             <div className={style.item}>
                 <NavLink to='/users' className={setActive(style.activeLink)}>Users</NavLink>

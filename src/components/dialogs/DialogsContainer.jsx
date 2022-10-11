@@ -1,19 +1,15 @@
 import React from "react";
 import {Dialogs} from "../index";
-import {addMessageAC, updateMessageAreaAC} from "../../store/dialogPageReducer";
+import {addMessageAC, updateMessageAreaAC} from "../../store/dialogReducer";
 import {connect} from "react-redux";
 
 let mapStateToProps = (state) => {
     return {
-        messages: state.dialogPage.messages,
-        messageAreaValue: state.dialogPage.messageArea,
-        dialogUsers: state.dialogPage.dialogUsers
+        messages: state.dialogs.messages,
+        messageAreaValue: state.dialogs.messageArea,
+        dialogUsers: state.dialogs.dialogUsers
     }
 };
 
-const DialogsContainer = connect(mapStateToProps, {
-    addMessageAC,
-    updateMessageAreaAC
-})(Dialogs);
-
+const DialogsContainer = connect(mapStateToProps, {addMessageAC, updateMessageAreaAC})(Dialogs);
 export default DialogsContainer;
