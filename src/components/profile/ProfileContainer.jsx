@@ -19,7 +19,8 @@ let mapStateToProps = (state) => {
     return {
         profileInfo: state.profile.profileInfo,
         profileInfoStatus: state.profile.profileInfoStatus,
-        profileInfoError: state.profile.profileInfoError
+        profileInfoError: state.profile.profileInfoError,
+
     }
 }
 

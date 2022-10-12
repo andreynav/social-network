@@ -19,7 +19,7 @@ const mapStateToProps = (state) => {
         email: state.auth.email,
         isAuth: state.auth.isAuth,
         status: state.auth.status,
-        error: state.auth.error
+        error: state.auth.error,
     }
 }
 

@@ -12,6 +12,7 @@ import {
     DialogsContainer,
     UsersContainer,
     HeaderContainer,
+    Login
 } from "./components/index"
 import ProfileContainer from "./components/profile/ProfileContainer";
 
@@ -33,6 +34,7 @@ function App() {
                     <Route path='/music' element={<Music />} />
                     <Route path='/settings' element={<Settings />} />
                     <Route path='/*' element={<NotFound />} />
+                    <Route path='/login' element={<Login />} />
                 </Routes>
             </div>
             <Footer />
