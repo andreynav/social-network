@@ -8,5 +8,7 @@ export const withRouter = (Component) => {
         let id = useSelector(store => store.auth.id);
         return <Component {...props} params={params} userId={id} />;
     }
+
+    ComponentWithRouterProp.displayName = `withRouter(${Component.displayName || Component.name})`;
     return ComponentWithRouterProp;
 }
