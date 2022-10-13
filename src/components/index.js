@@ -17,6 +17,8 @@ import Loader from "./loader/Loader";
 import ProfileContainer from "./profile/ProfileContainer";
 import HeaderContainer from "./header/HeaderContainer";
 import Login from "./login/Login";
+import {withAuthRedirect} from "./hoc/withAuthRedirect";
+import {withRouter} from "./hoc/withRouter"
 
 export {
     Dialogs,
@@ -42,5 +44,7 @@ export {
     Loader,
     ProfileContainer,
     HeaderContainer,
-    Login
+    Login,
+    withAuthRedirect,
+    withRouter,
 }
