@@ -1,5 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
+import {compose} from "@reduxjs/toolkit";
 import {Profile} from "../index";
 import {setProfileInfo} from "../../store/profileReducer";
 import {withRouter} from "../hoc/withRouter"; // import from index.js doesn't work. Why?
@@ -24,4 +25,8 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {setProfileInfo})(withAuthRedirect(withRouter(ProfileContainer)));
+export default compose(
+    connect(mapStateToProps, {setProfileInfo}),
+    withAuthRedirect,
+    withRouter
+)(ProfileContainer)
