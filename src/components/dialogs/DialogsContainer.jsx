@@ -1,8 +1,10 @@
 import React from "react";
+import {connect} from "react-redux";
+import {compose} from "@reduxjs/toolkit";
 import {Dialogs} from "../index";
 import {addMessageAC, updateMessageAreaAC} from "../../store/dialogReducer";
-import {connect, useSelector} from "react-redux";
-import {Navigate} from "react-router-dom";
+import {withAuthRedirect} from "../hoc/withAuthRedirect" // import from index.js doesn't work. Why?
+
 
 let mapStateToProps = (state) => {
     return {
@@ -12,14 +14,7 @@ let mapStateToProps = (state) => {
     }
 };
 
-const withAuthRedirect = (Component) => {
-    function ContainerWithAuthRedirect(props) {
-        let isAuth = useSelector(store => store.auth.isAuth);
-        if (!isAuth) return <Navigate to='/login' />
-        return <Component {...props} />
-    }
-    return ContainerWithAuthRedirect;
-}
-
-const DialogsContainer = connect(mapStateToProps, {addMessageAC, updateMessageAreaAC})(withAuthRedirect(Dialogs));
-export default DialogsContainer;
+export default compose(
+    connect(mapStateToProps, {addMessageAC, updateMessageAreaAC}),
+    withAuthRedirect
+)(Dialogs)

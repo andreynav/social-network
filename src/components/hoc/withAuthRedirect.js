@@ -4,7 +4,7 @@ import {useSelector} from "react-redux";
 
 export const withAuthRedirect = (Component) => {
     function ContainerWithAuthRedirect(props) {
-        let isAuth = useSelector(store => store.auth.isAuth);
+        let isAuth = useSelector(state => state.auth.isAuth);
         if (!isAuth) return <Navigate to='/login' />
         return <Component {...props} />
     }
