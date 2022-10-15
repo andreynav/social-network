@@ -21,11 +21,11 @@ export default function Users(props) {
             <ReactPaginate
                 className={style.pages}
                 breakLabel="..."
-                nextLabel="&#5125;"
+                nextLabel="next"
                 onPageChange={(event) => props.selectPage(event.selected + 1)}
                 pageRangeDisplayed={3}
                 pageCount={pagesCount}
-                previousLabel="&#5130;"
+                previousLabel="prev"
                 renderOnZeroPageCount={null}
                 activeClassName={style.active}
             />

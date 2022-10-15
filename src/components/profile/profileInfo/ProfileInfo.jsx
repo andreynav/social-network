@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./ProfileInfo.module.css";
 import {avatar} from "../../../assets";
-import {Loader} from "../../index";
+import {Loader, ProfileStatus} from "../../index";
 
 export default function ProfileInfo({profileInfo}) {
     if (!profileInfo) return <Loader />
@@ -12,6 +12,7 @@ export default function ProfileInfo({profileInfo}) {
         lookingForAJob,
         lookingForAJobDescription,
         contacts} = profileInfo
+
     let srcData = photos.small !== null ? photos.small : avatar;
 
     return (
@@ -24,32 +25,31 @@ export default function ProfileInfo({profileInfo}) {
                     <img src={srcData} alt={`${fullName}`}/>
                 </div>
                 <div className={style.userInfo}>
-                    <div>
-                        <span>Full name: </span>
-                        {fullName || "-"}
+                    <div className={style.itemWrapper}>
+                        <div className={style.title}>Full name:</div>
+                        <div className={style.data}>{fullName ?? "-"}</div>
                     </div>
-                    <div>
-                        <span>About me: </span>
-                        {aboutMe || "-"}
+                    <div className={style.itemWrapper}>
+                        <ProfileStatus aboutMe={aboutMe ?? "Yo-yo-yo"}/>
                     </div>
-                    <div>
-                        <span>Looking for a job status: </span>
-                        {lookingForAJob ? 'Yes' : 'No'}
+                    <div className={style.itemWrapper}>
+                        <div className={style.title}>Looking for a job status: </div>
+                        <div className={style.data}>{lookingForAJob ? 'Yes' : 'No'}</div>
                     </div>
-                    <div>
-                        <span>Looking for a job description: </span>
-                        {lookingForAJobDescription}
+                    <div className={style.itemWrapper}>
+                        <div className={style.title}>Looking for a job description: </div>
+                        <div className={style.data}>{lookingForAJobDescription ?? "-"}</div>
                     </div>
-                    <div>
-                        <span>Contacts: </span>
-                        <div><span>Facebook: </span>{contacts.facebook || "-"}</div>
-                        <div><span>Website: </span>{contacts.website || "-"}</div>
-                        <div><span>Vk: </span>{contacts.vk || "-"}</div>
-                        <div><span>Twitter: </span>{contacts.twitter || "-"}</div>
-                        <div><span>Instagram: </span>{contacts.instagram || "-"}</div>
-                        <div><span>Youtube: </span>{contacts.youtube || "-"}</div>
-                        <div><span>Github: </span>{contacts.github || "-"}</div>
-                        <div><span>MainLink: </span>{contacts.mainLink || "-"}</div>
+                    <div className={style.contactsWrapper}>
+                        <span className={style.title}>Contacts: </span>
+                        <div><span>Facebook: </span>{contacts.facebook ?? "-"}</div>
+                        <div><span>Website: </span>{contacts.website ?? "-"}</div>
+                        <div><span>Vk: </span>{contacts.vk ?? "-"}</div>
+                        <div><span>Twitter: </span>{contacts.twitter ?? "-"}</div>
+                        <div><span>Instagram: </span>{contacts.instagram ?? "-"}</div>
+                        <div><span>Youtube: </span>{contacts.youtube ?? "-"}</div>
+                        <div><span>Github: </span>{contacts.github ?? "-"}</div>
+                        <div><span>MainLink: </span>{contacts.mainLink ?? "-"}</div>
                     </div>
                 </div>
             </div>
