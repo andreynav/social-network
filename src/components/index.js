@@ -5,7 +5,7 @@ import Music from "./music/Music"
 import Navbar from "./navbar/Navbar"
 import News from "./news/News"
 import NotFound from "./notFound/NotFound"
-import { Post, MyPosts, ProfileInfo, Profile } from "./profile/index"
+import { Post, MyPosts, ProfileInfo, Profile, ProfileStatus } from "./profile/index"
 import Settings from "./settings/Settings"
 import TextAreaForm from "./textAreaForm/TextAreaForm";
 import MyPostsContainer from "./profile/myPosts/MyPostsContainer";
@@ -47,4 +47,5 @@ export {
     Login,
     withAuthRedirect,
     withRouter,
+    ProfileStatus
 }
