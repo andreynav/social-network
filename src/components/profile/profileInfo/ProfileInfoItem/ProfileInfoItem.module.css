@@ -1,0 +1,23 @@
+.itemWrapper {
+    display: grid;
+    grid-template-rows: 12px auto;
+    align-items: center;
+}
+
+.itemTitle {
+    font-size: 10px;
+    text-transform: uppercase;
+    color: darkgrey;
+}
+
+.itemInput {
+    cursor: pointer;
+}
+
+.itemInput > input {
+    min-width: 100%;
+}
+
+.itemText {
+    cursor: pointer;
+}

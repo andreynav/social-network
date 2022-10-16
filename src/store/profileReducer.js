@@ -14,16 +14,43 @@ let initialState = {
     ],
     postArea: '',
     profileInfo: null,
-    profileInfoStatus: null,
-    profileInfoError: null
+    profileInfoLoadingStatus: null,
+    profileInfoLoadingError: null,
+    profileStatus: null
 };
 
-export const setProfileInfo = createAsyncThunk(
-    'profile/setProfileInfo',
+export const getProfileInfo = createAsyncThunk(
+    'profile/getProfileInfo',
     async (userId, {dispatch,rejectWithValue}) => {
         try {
             const data = await profileAPI.getProfileInfo(userId);
             dispatch(setProfileInfoAC({profileInfo: data}));
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
+export const getProfileStatus = createAsyncThunk(
+    'profile/getProfileStatus',
+    async (userId, {dispatch, rejectWithValue}) => {
+        try {
+            const data = await profileAPI.getProfileStatus(userId);
+            dispatch(setProfileStatusAC({profileStatus: data}));
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
+export const updateProfileStatus = createAsyncThunk(
+    'profile/updateProfileStatus',
+    async (status, {dispatch, rejectWithValue}) => {
+        try {
+            const data = await profileAPI.updateProfileStatus(status);
+            if (data.resultCode === 0) {
+                dispatch(setProfileStatusAC({profileStatus: status}));
+            }
         } catch (error) {
             return rejectWithValue(error.message);
         }
@@ -49,24 +76,33 @@ const profileSlice = createSlice({
         },
         setProfileInfoAC(state, action) {
             state.profileInfo = action.payload.profileInfo;
+        },
+        setProfileStatusAC(state, action) {
+            state.profileStatus = action.payload.profileStatus;
         }
     },
     extraReducers: {
-        [setProfileInfo.pending]: (state) => {
-            state.profileInfoStatus = 'pending';
-            state.profileInfoError = null;
+        [getProfileInfo.pending]: (state) => {
+            state.profileInfoLoadingStatus = 'pending';
+            state.profileInfoLoadingError = null;
         },
-        [setProfileInfo.fulfilled]: (state) => {
-            state.profileInfoStatus = 'resolved';
-            state.profileInfoError = null;
+        [getProfileInfo.fulfilled]: (state) => {
+            state.profileInfoLoadingStatus = 'resolved';
+            state.profileInfoLoadingError = null;
         },
-        [setProfileInfo.rejected]: (state, action) => {
-            state.profileInfoStatus = 'rejected';
-            state.profileInfoError = action.error.message;
+        [getProfileInfo.rejected]: (state, action) => {
+            state.profileInfoLoadingStatus = 'rejected';
+            state.profileInfoLoadingError = action.error.message;
             console.log(state.error);
-        }
+        },
+        [getProfileStatus.pending]: (state) => {  },
+        [getProfileStatus.fulfilled]: (state, action) => { },
+        [getProfileStatus.rejected]: (state, action) => { },
+        [updateProfileStatus.pending]: (state) => {  },
+        [updateProfileStatus.fulfilled]: (state, action) => { },
+        [updateProfileStatus.rejected]: (state, action) => { },
     }
 });
 
-export const { addNewPostAC, updateNewPostAreaAC, setProfileInfoAC } = profileSlice.actions;
+export const { addNewPostAC, updateNewPostAreaAC, setProfileInfoAC, setProfileStatusAC } = profileSlice.actions;
 export default profileSlice.reducer;

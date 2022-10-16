@@ -34,5 +34,15 @@ export const profileAPI = {
     getProfileInfo: (userId) => {
         return samuraiApi.get(`profile/${userId}`)
             .then(response => response.data);
+    },
+    getProfileStatus: (id) => {
+        return samuraiApi.get(`profile/status/${id}`)
+            .then(response => response.data);
+    },
+    updateProfileStatus: (status) => {
+        return samuraiApi.put(`profile/status`, {
+            status: status
+        })
+            .then(response => response.data);
     }
 }
