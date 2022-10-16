@@ -31,34 +31,5 @@
     background-color: white;
     border-radius: 8px;
     padding: 10px;
-    grid-row-gap: 5px;
+    grid-row-gap: 8px;
 }
-
-.itemWrapper {
-    display: grid;
-    grid-template-areas:
-        "div div";
-    grid-template-columns: auto 1fr;
-    grid-template-rows: 30px;
-    align-items: center;
-}
-
-.title {
-    font-weight: bold;
-    padding-left: 0;
-}
-
-.data {
-    padding-left: 10px;
-}
-
-.contactsWrapper > div {
-    padding-left: 20px;
-}
-
-.userInfo > div > span {
-    font-weight: bold;
-}
-
-
-

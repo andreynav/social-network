@@ -2,14 +2,15 @@ import React from "react";
 import {connect} from "react-redux";
 import {compose} from "@reduxjs/toolkit";
 import {Profile} from "../index";
-import {setProfileInfo} from "../../store/profileReducer";
+import {getProfileInfo, getProfileStatus, updateProfileStatus} from "../../store/profileReducer";
 import {withRouter} from "../hoc/withRouter"; // import from index.js doesn't work. Why?
 import {withAuthRedirect} from "../hoc/withAuthRedirect"; // import from index.js doesn't work. Why?
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
         let userId = this.props.params.id || this.props.userId || 2;
-        this.props.setProfileInfo(userId);
+        this.props.getProfileInfo(userId);
+        this.props.getProfileStatus(userId);
     }
 
     render() {
@@ -20,13 +21,14 @@ class ProfileContainer extends React.Component {
 let mapStateToProps = (state) => {
     return {
         profileInfo: state.profile.profileInfo,
-        profileInfoStatus: state.profile.profileInfoStatus,
-        profileInfoError: state.profile.profileInfoError,
+        profileInfoLoadingStatus: state.profile.profileInfoLoadingStatus,
+        profileInfoLoadingError: state.profile.profileInfoLoadingError,
+        profileStatus: state.profile.profileStatus,
     }
 }
 
 export default compose(
-    connect(mapStateToProps, {setProfileInfo}),
+    connect(mapStateToProps, {getProfileInfo, getProfileStatus, updateProfileStatus}),
     withAuthRedirect,
     withRouter
 )(ProfileContainer)
