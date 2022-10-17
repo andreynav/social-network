@@ -2,12 +2,9 @@ import React from "react"
 import style from "./ProfileInfoItem.module.css"
 
 export class ProfileInfoItem extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            editMode: false,
-            status: this.props.profileStatus,
-        }
+    state = {
+        editMode: false,
+        status: this.props.itemData,
     }
 
     onEditMode = () => {
@@ -23,6 +20,12 @@ export class ProfileInfoItem extends React.Component {
         this.setState({status: event.target.value });
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.itemData !== this.props.itemData) {
+            this.setState({status: this.props.itemData});
+        }
+    }
+
     render() {
         const {itemWrapper, itemTitle, itemInput, itemText} = style;
         const {itemData, itemName} = this.props;
@@ -33,7 +36,7 @@ export class ProfileInfoItem extends React.Component {
                 { this.state.editMode
                     ? <div className={itemInput}>
                         <input type="text"
-                               defaultValue={itemData}
+                               defaultValue={this.state.status}
                                onBlur={this.onEditMode}
                                onChange={this.updateStatusValue}
                                autoFocus />
