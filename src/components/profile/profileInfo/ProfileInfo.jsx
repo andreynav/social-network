@@ -40,7 +40,7 @@ export default function ProfileInfo({profileInfo, profileStatus, updateProfileSt
                     <img src={srcData} alt={`${fullName}`}/>
                 </div>
                 <div className={userInfo}>
-                    <ProfileInfoItem itemData={profileStatus ?? "No status"}
+                    <ProfileInfoItem itemData={profileStatus || " - "}
                                      itemName={"My status"}
                                      isPointer
                                      updateProfileStatus={updateProfileStatus}
