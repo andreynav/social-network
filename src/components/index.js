@@ -19,6 +19,7 @@ import HeaderContainer from "./header/HeaderContainer";
 import Login from "./login/Login";
 import {withAuthRedirect} from "./hoc/withAuthRedirect";
 import {withRouter} from "./hoc/withRouter"
+import InputField from "./login/InputField/InputField";
 
 export {
     Dialogs,
@@ -47,5 +48,6 @@ export {
     Login,
     withAuthRedirect,
     withRouter,
-    ProfileInfoItem
+    ProfileInfoItem,
+    InputField
 }
