@@ -1,0 +1,28 @@
+.inputWrapper {
+    display: grid;
+    grid-template-rows: 16px auto 16px;
+    align-items: center;
+}
+
+.labelTitle {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: darkgrey;
+}
+
+.inputField {
+    display: grid;
+    min-width: 100%;
+    height: 35px;
+    border: 1px solid darkgrey;
+    border-radius: 4px;
+    padding: 0 5px;
+    font-size: 16px;
+}
+
+.error {
+    display: grid;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: red;
+}

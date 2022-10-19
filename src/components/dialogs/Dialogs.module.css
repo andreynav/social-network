@@ -1,6 +1,6 @@
 .dialogWrapper {
     display: grid;
-    grid-template-rows: 1fr 160px;
+    grid-template-rows: 1fr 170px;
     grid-template-columns: 200px 1fr;
     overflow: auto;
 }
@@ -12,7 +12,7 @@
     overflow: auto;
 }
 
-.dialogUsers {
+.dialogUsersContainer {
     display: grid;
     align-self: start;
     background-color: white;
@@ -27,9 +27,8 @@
     overflow: visible ;
 }
 
-.dialogInput {
+.dialogTextArea {
     display: grid;
-    grid-template-rows: minmax(100px, 150px);
     grid-column: 2/3;
-    align-self: end;
+    padding-top: 5px;
 }

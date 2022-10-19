@@ -1,6 +1,5 @@
 .userPostsWrapper {
     display: grid;
-    /*background-color: darkgrey;*/
     grid-template-rows: 30px minmax(50px, 150px) auto;
 }
 
@@ -8,6 +7,10 @@
     padding: 5px;
 }
 
+.profileTextArea {
+    display: grid;
+}
+
 .allPostsWrapper {
-    /*grid-column: 1/span3;*/
+    display: grid;
 }
