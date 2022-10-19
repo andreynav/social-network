@@ -2,19 +2,18 @@ import React from "react";
 import {connect} from "react-redux";
 import {compose} from "@reduxjs/toolkit";
 import {Dialogs} from "../index";
-import {addMessageAC, updateMessageAreaAC} from "../../store/dialogReducer";
+import {addMessageAC} from "../../store/dialogReducer";
 import {withAuthRedirect} from "../hoc/withAuthRedirect" // import from index.js doesn't work. Why?
 
 
 let mapStateToProps = (state) => {
     return {
-        messages: state.dialogs.messages,
-        messageAreaValue: state.dialogs.messageArea,
         dialogUsers: state.dialogs.dialogUsers,
+        messages: state.dialogs.messages,
     }
 };
 
 export default compose(
-    connect(mapStateToProps, {addMessageAC, updateMessageAreaAC}),
+    connect(mapStateToProps, {addMessageAC}),
     withAuthRedirect
 )(Dialogs)

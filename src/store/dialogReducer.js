@@ -8,32 +8,27 @@ let initialState = {
         { id: 4, name: 'Yuri' }
     ],
     messages : [
-        { id: 1, message: 'Hi nigga!' },
+        { id: 1, message: 'Good day to learn React!' },
         { id: 2, message: 'How are you?' },
-        { id: 3, message: 'Yo!' },
-        { id: 4, message: 'Just do it!' }
+        { id: 3, message: 'Per Aspera ad Astra' },
+        { id: 4, message: 'Just do it!!!' }
     ],
-    messageArea: ''
 };
 
 const dialogsReducer = createSlice({
     name: 'dialogs',
     initialState,
     reducers: {
-        addMessageAC(state) {
+        addMessageAC(state, action) {
             let messageId =  state.messages.length;
             let message = {
                 id: ++messageId,
-                message: state.messageArea,
+                message: action.payload.message,
             }
-            state.messages.push(message);
-            state.messageArea = '';
+            state.messages = [...state.messages, message]
         },
-        updateMessageAreaAC(state, action) {
-            state.messageArea = action.payload;
-        }
     }
 });
 
-export const { addMessageAC, updateMessageAreaAC } = dialogsReducer.actions;
+export const { addMessageAC } = dialogsReducer.actions;
 export default dialogsReducer.reducer;

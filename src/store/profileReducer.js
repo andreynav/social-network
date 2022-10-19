@@ -7,17 +7,16 @@ let initialState = {
         {id: 2, message: "You shell not pass, fellow!", like: 304},
         {id: 3, message: "It\'s my life", like: 118},
         {id: 4, message: "Nice day, let's learn React", like: 257},
-        {id: 5, message: "Nice day, let's learn React2", like: 357},
-        {id: 6, message: "Nice day, let's learn React3", like: 457},
-        {id: 7, message: "Nice day, let's learn React4", like: 557},
-        {id: 8, message: "Nice day, let's learn React5", like: 657}
     ],
-    postArea: '',
     profileInfo: null,
     profileInfoLoadingStatus: null,
     profileInfoLoadingError: null,
     profileStatus: null
 };
+
+let getRandomLike = max => {
+    return Math.floor(Math.random() * max)
+}
 
 export const getProfileInfo = createAsyncThunk(
     'profile/getProfileInfo',
@@ -61,18 +60,14 @@ const profileSlice = createSlice({
     name: 'profile',
     initialState,
     reducers: {
-        addNewPostAC(state) {
+        addNewPostAC(state, action) {
             let postId = state.myPosts.length;
             let post = {
                 id: ++postId,
-                message: state.postArea,
-                like: 0
+                message: action.payload.message,
+                like: getRandomLike(400)
             }
-            state.myPosts.push(post);
-            state.postArea = '';
-        },
-        updateNewPostAreaAC(state, action) {
-            state.postArea = action.payload;
+            state.myPosts = [...state.myPosts, post]
         },
         setProfileInfoAC(state, action) {
             state.profileInfo = action.payload.profileInfo;
@@ -104,5 +99,5 @@ const profileSlice = createSlice({
     }
 });
 
-export const { addNewPostAC, updateNewPostAreaAC, setProfileInfoAC, setProfileStatusAC } = profileSlice.actions;
+export const { addNewPostAC, setProfileInfoAC, setProfileStatusAC } = profileSlice.actions;
 export default profileSlice.reducer;

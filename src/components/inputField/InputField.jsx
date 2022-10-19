@@ -14,18 +14,20 @@ export default function InputField(props) {
     } = props;
 
     return (
-        <div>
-            <label htmlFor={name}>
-                <span>{label}</span>
+        <div className={style.inputWrapper}>
+            <label className={style.labelTitle} htmlFor={name}>
+                <span >{label}</span>
             </label>
-            <input className={style.formInput}
+            <input className={style.inputField}
                    name={name}
                    type={type}
                    {...register(name, validationSchema)}
                    placeholder={placeholder}
                    {...inputProps}
             />
-            { errors !== undefined && <div>{errors?.message}</div> }
+            { errors && <div className={style.error}>
+                {errors?.message}
+            </div> }
         </div>
     )
 }

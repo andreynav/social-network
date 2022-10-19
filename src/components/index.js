@@ -7,7 +7,7 @@ import News from "./news/News"
 import NotFound from "./notFound/NotFound"
 import { Post, MyPosts, ProfileInfo, Profile, ProfileInfoItem } from "./profile/index"
 import Settings from "./settings/Settings"
-import TextAreaForm from "./textAreaForm/TextAreaForm";
+import FormPostMessage from "./formPostMessage/FormPostMessage";
 import MyPostsContainer from "./profile/myPosts/MyPostsContainer";
 import DialogsContainer from "./dialogs/DialogsContainer";
 import Users from "./users/Users"
@@ -19,7 +19,9 @@ import HeaderContainer from "./header/HeaderContainer";
 import Login from "./login/Login";
 import {withAuthRedirect} from "./hoc/withAuthRedirect";
 import {withRouter} from "./hoc/withRouter"
-import InputField from "./login/InputField/InputField";
+import InputField from "./inputField/InputField";
+import FormLogin from "./login/formLogin/FormLogin";
+import TextAreaField from "./textAreaField/TextAreaField";
 
 export {
     Dialogs,
@@ -36,7 +38,7 @@ export {
     ProfileInfo,
     Profile,
     Settings,
-    TextAreaForm,
+    FormPostMessage,
     MyPostsContainer,
     DialogsContainer,
     UsersContainer,
@@ -49,5 +51,7 @@ export {
     withAuthRedirect,
     withRouter,
     ProfileInfoItem,
-    InputField
+    InputField,
+    FormLogin,
+    TextAreaField
 }
