@@ -25,7 +25,7 @@ export default function Login() {
                 <FormLogin onSubmit={handleSubmit(onFormSubmit)}
                            registerInput={register}
                            errors={errors}
-                           registerCheckbox={register("checkbox")} />
+                           registerCheckbox={register("rememberMe")} />
             </div>
         </div>
     )

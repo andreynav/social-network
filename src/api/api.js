@@ -27,6 +27,19 @@ export const authAPI = {
     me: () => {
         return samuraiApi.get(`auth/me`)
             .then(response => response.data);
+    },
+    login: (data) => {
+        return samuraiApi.post(`/auth/login`, {
+            email: data.email,
+            password: data.password,
+            rememberMe: data.rememberMe || false,
+            captcha: data.captcha  || false
+        })
+            .then(response => response.data)
+    },
+    logout: () => {
+        return samuraiApi.delete(`/auth/login`)
+            .then(response => response)
     }
 }
 
