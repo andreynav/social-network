@@ -17,7 +17,6 @@ export default function MyPosts(props) {
     } = useForm({mode: "onBlur"});
 
     const onFormSubmit = (data) => {
-        console.log(data)
         addNewPostAC({message: data.postMessage})
         reset();
     }
