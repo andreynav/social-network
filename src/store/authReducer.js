@@ -3,11 +3,25 @@ import {authAPI} from "../api/api";
 
 export const getAuthUserData = createAsyncThunk(
     'auth/getAuthUserData',
-    async (_, {dispatch,rejectWithValue}) => {
+    async (_, {dispatch, rejectWithValue}) => {
         try {
             const data = await authAPI.me();
             if (data.resultCode === 0) {
                 dispatch(setAuthDataAC({data: data.data}));
+            }
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
+export const loginUser = createAsyncThunk(
+    'auth/login',
+    async ({email, password, rememberMe}, {dispatch, rejectWithValue}) => {
+        try {
+            const data = await authAPI.login({email, password, rememberMe});
+            if (data.resultCode === 0) {
+                dispatch(setLoginDataAC({id: data.data.userId}))
             }
         } catch (error) {
             return rejectWithValue(error.message);
@@ -29,13 +43,13 @@ const authSlice = createSlice({
     initialState,
     reducers: {
         setAuthDataAC(state, action) {
-            let {id, login, email} = action.payload.data;
-            if (login) {
-                state.id = id;
-                state.login = login;
-                state.email = email;
-                state.isAuth = true;
-            }
+            let {login, email} = action.payload.data;
+            state.login = login;
+            state.email = email;
+        },
+        setLoginDataAC(state, action) {
+            state.id = action.payload.id;
+            state.isAuth = true;
         }
     },
     extraReducers: {
@@ -51,9 +65,22 @@ const authSlice = createSlice({
             state.status = 'rejected';
             state.error = action.error.message;
             console.log(state.error);
+        },
+        [loginUser.pending]: (state) => {
+            state.status = 'pending';
+            state.error = null;
+        },
+        [loginUser.fulfilled]: (state) => {
+            state.status = 'resolved';
+            state.error = null;
+        },
+        [loginUser.rejected]: (state, action) => {
+            state.status = 'rejected';
+            state.error = action.error.message;
+            console.log(state.error);
         }
     }
 });
 
-export const {setAuthDataAC} = authSlice.actions;
+export const {setAuthDataAC, setLoginDataAC} = authSlice.actions;
 export default authSlice.reducer;
