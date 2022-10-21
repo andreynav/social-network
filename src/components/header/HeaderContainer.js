@@ -5,13 +5,14 @@ import {getAuthUserData} from "../../store/authReducer";
 
 class HeaderContainer extends React.Component {
     componentDidMount() {
-        this.props.getAuthUserData();
+        // this.props.getAuthUserData();
     }
 
     render() {
         return <Header {...this.props} />
     }
 }
+
 const mapStateToProps = (state) => {
     return {
         id: state.auth.id,
