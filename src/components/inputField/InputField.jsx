@@ -10,6 +10,7 @@ export default function InputField(props) {
         validationSchema,
         placeholder,
         errors,
+        onClearErrors,
         ...inputProps
     } = props;
 
@@ -23,10 +24,11 @@ export default function InputField(props) {
                    type={type}
                    {...register(name, validationSchema)}
                    placeholder={placeholder}
+                   onClick={onClearErrors}
                    {...inputProps}
             />
             { errors && <div className={style.error}>
-                {errors?.message}
+                {errors[name] && errors[name]?.message || errors.server?.message}
             </div> }
         </div>
     )

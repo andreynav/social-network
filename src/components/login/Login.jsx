@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import style from "./Login.module.css"
 import {useForm} from "react-hook-form";
 import {FormLogin} from "../index";
-import {getAuthUserData, loginUser} from "../../store/authReducer";
+import {loginUser} from "../../store/authReducer";
 import {connect, useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
@@ -17,6 +17,8 @@ function Login(props) {
         handleSubmit,
         formState: {errors},
         reset,
+        setError,
+        clearErrors
     } = useForm({mode: "onBlur"});
 
     const onFormSubmit = (data) => {
@@ -24,16 +26,18 @@ function Login(props) {
             email: data.email,
             password: data.password,
             rememberMe: data.rememberMe
-        }))
-        reset();
+        }));
+        !!errors.server && reset();
+    }
+
+    const onClearErrors = () => {
+        errors.server && clearErrors();
     }
 
     useEffect(() => {
-        if (props.isAuth) {
-            dispatch(getAuthUserData());
-            navigate('/profile');
-        }
-    }, [props.isAuth]);
+        props.isAuth && navigate('/profile');
+        props.error && setError('server', {message: props.error});
+    }, [props.isAuth, props.error]);
 
     return (
         <div className={wrapper}>
@@ -42,6 +46,7 @@ function Login(props) {
                 <FormLogin onSubmit={handleSubmit(onFormSubmit)}
                            registerInput={register}
                            errors={errors}
+                           onClearErrors={onClearErrors}
                            registerCheckbox={register("rememberMe")}/>
             </div>
         </div>

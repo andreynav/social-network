@@ -1,16 +1,24 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Header} from "../index";
-import {connect} from "react-redux";
-import {getAuthUserData} from "../../store/authReducer";
+import {connect, useDispatch} from "react-redux";
+import {getAuthUserData, logoutUser} from "../../store/authReducer";
+import {useNavigate} from "react-router-dom";
 
-class HeaderContainer extends React.Component {
-    componentDidMount() {
-        // this.props.getAuthUserData();
-    }
+function HeaderContainer(props) {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    render() {
-        return <Header {...this.props} />
-    }
+    const logout = () => {
+        dispatch(logoutUser());
+     }
+
+    useEffect(() => {
+        navigate('/login');
+    }, [])
+
+    return (
+        <Header logout={logout} {...props} />
+    )
 }
 
 const mapStateToProps = (state) => {
@@ -24,4 +32,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {getAuthUserData})(HeaderContainer);
+export default connect(mapStateToProps, {getAuthUserData, logoutUser})(HeaderContainer);
