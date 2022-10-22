@@ -2,6 +2,8 @@ import React from "react";
 import {Users} from "../index";
 import {setCurrentPageAC, setUsers, toggleFollowUnfollow} from "../../store/usersReducer";
 import {connect} from "react-redux";
+import {withAuthRedirect} from "../hoc/withAuthRedirect";
+import {compose} from "@reduxjs/toolkit"; // import from index.js doesn't work. Why?
 
 class UsersContainer extends React.Component {
     selectPage = (page) => {
@@ -44,8 +46,7 @@ let mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, {
-    setCurrentPageAC,
-    setUsers,
-    toggleFollowUnfollow,
-})(UsersContainer);
+export default compose(
+    connect(mapStateToProps, {setCurrentPageAC, setUsers, toggleFollowUnfollow}),
+    withAuthRedirect
+)(UsersContainer)

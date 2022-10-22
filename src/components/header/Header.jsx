@@ -3,22 +3,24 @@ import style from './Header.module.css'
 import {logo} from "../../assets/index"
 
 export default function Header(props) {
-    console.log(props)
+    const {headerWrapper, title, loginWrapper} = style;
+    const {isAuth, logoWrapper, login, logout} = props;
+
     return (
-        <header className={style.headerWrapper}>
-            <div className={style.logo}>
+        <header className={headerWrapper}>
+            <div className={logoWrapper}>
                 <img src={logo} alt="logo"/>
             </div>
-            <div className={style.title}>
+            <div className={title}>
                 <p>4GEEKS</p>
             </div>
-            <div className={style.login}>
-                {props.isAuth ?
-                        <div>
-                            <p>{props.login}</p>
-                            <button>Logout</button>
-                        </div> :
-                        <button>Login</button>}
+            <div className={loginWrapper}>
+                {isAuth ?
+                    <div>
+                        <p>{login}</p>
+                        <button onClick={logout}>Logout</button>
+                    </div> :
+                    <button>Login</button>}
             </div>
         </header>
     );

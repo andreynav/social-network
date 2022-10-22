@@ -39,7 +39,7 @@ export const authAPI = {
     },
     logout: () => {
         return samuraiApi.delete(`/auth/login`)
-            .then(response => response)
+            .then(response => response.data)
     }
 }
 

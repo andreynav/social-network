@@ -21,7 +21,25 @@ export const loginUser = createAsyncThunk(
         try {
             const data = await authAPI.login({email, password, rememberMe});
             if (data.resultCode === 0) {
-                dispatch(setLoginDataAC({id: data.data.userId}))
+                dispatch(setLoginDataAC({id: data.data.userId, isAuth: true}))
+                dispatch(getAuthUserData());
+            } else {
+                dispatch(setLoginDataAC({id: null, isAuth: false}))
+                throw new Error(data.messages[0])
+            }
+        } catch (error) {
+            return rejectWithValue(error.message)
+        }
+    }
+);
+
+export const logoutUser = createAsyncThunk(
+    'auth/logout',
+    async (_, {dispatch, rejectWithValue}) => {
+        try {
+            const data = await authAPI.logout();
+            if (data.resultCode === 0) {
+                dispatch(setAuthDataAC({data: {login: null, email: null, id: null}}));
             }
         } catch (error) {
             return rejectWithValue(error.message);
@@ -43,13 +61,14 @@ const authSlice = createSlice({
     initialState,
     reducers: {
         setAuthDataAC(state, action) {
-            let {login, email} = action.payload.data;
+            let {login, email, id} = action.payload.data;
             state.login = login;
             state.email = email;
+            state.id = id;
         },
         setLoginDataAC(state, action) {
             state.id = action.payload.id;
-            state.isAuth = true;
+            state.isAuth = action.payload.isAuth;
         }
     },
     extraReducers: {
@@ -64,7 +83,6 @@ const authSlice = createSlice({
         [getAuthUserData.rejected]: (state, action) => {
             state.status = 'rejected';
             state.error = action.error.message;
-            console.log(state.error);
         },
         [loginUser.pending]: (state) => {
             state.status = 'pending';
@@ -76,9 +94,22 @@ const authSlice = createSlice({
         },
         [loginUser.rejected]: (state, action) => {
             state.status = 'rejected';
+            state.error = action.payload;
+        },
+        [logoutUser.pending]: (state) => {
+            state.status = 'pending';
+            state.error = null;
+        },
+        [logoutUser.fulfilled]: (state, action) => {
+            state.status = 'resolved';
+            state.error = null;
+            state.isAuth = false;
+        },
+        [logoutUser.rejected]: (state, action) => {
+            state.status = 'rejected';
             state.error = action.error.message;
             console.log(state.error);
-        }
+        },
     }
 });
 

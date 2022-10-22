@@ -1,9 +1,15 @@
 import React from "react";
+import {compose} from "@reduxjs/toolkit";
+import {withAuthRedirect} from "../hoc/withAuthRedirect";
 
-export default function News() {
+function News() {
     return (
         <div>
             News
         </div>
     );
 }
+
+export default compose(
+    withAuthRedirect,
+)(News)

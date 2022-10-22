@@ -1,20 +1,21 @@
 .headerWrapper {
+    display: grid;
+    grid-template-columns: 50px 4fr 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
     grid-area: header;
     background-color: #282c34;
     color: #cdd9e5;
-    grid-column: 1/5;
     padding: 0 20px;
-    display: grid;
-    grid-template-columns: 50px 4fr 1fr;
-    grid-template-areas: "app-header-logo app-header-title app-header-login";
 }
 
-.logo {
-    grid-area: app-header-logo;
+.logoWrapper {
     display: grid;
+    grid-column: 1/2;
+    grid-row: 1/2;
 }
 
-.logo > img {
+.logoWrapper > img {
     justify-self: center;
     align-self: center;
     height: 50px;
@@ -22,10 +23,11 @@
 }
 
 .title {
-    grid-area: app-header-title;
     font-size: 24px;
     padding-left: 10px;
     display: grid;
+    grid-column: 2/3;
+    grid-row: 1/2;
 }
 
 .title > p {
@@ -33,12 +35,31 @@
     align-self: center;
 }
 
-.login {
-    grid-area: app-header-login;
+.loginWrapper {
     display: grid;
+    grid-column: 3/4;
+    grid-row: 1/2;
+    justify-self: end;
 }
 
-.login > p {
-    justify-self: end;
-    align-self: center;
+.loginWrapper div {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 1fr;
+}
+
+.loginWrapper p {
+    display: grid;
+    justify-self: center;
+    color: #ffc300;
+}
+
+.loginWrapper button {
+    display: grid;
+    justify-self: center;
+    border: 0;
+    background: transparent;
+    color: #cdd9e5;
+    font-size: 1rem;
+    cursor: pointer;
 }
