@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {Header} from "../index";
 import {connect, useDispatch} from "react-redux";
-import {getAuthUserData, logoutUser} from "../../store/authReducer";
+import {logoutUser} from "../../store/authReducer";
 import {useNavigate} from "react-router-dom";
 
 function HeaderContainer(props) {
@@ -14,7 +14,7 @@ function HeaderContainer(props) {
 
     useEffect(() => {
         navigate('/login');
-    }, [])
+    }, [props.isAuth])
 
     return (
         <Header logout={logout} {...props} />
@@ -32,4 +32,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {getAuthUserData, logoutUser})(HeaderContainer);
+export default connect(mapStateToProps, {logoutUser})(HeaderContainer);

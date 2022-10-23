@@ -1,5 +1,6 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {authAPI} from "../api/api";
+import {setProfileInfoAC} from "./profileReducer";
 
 export const getAuthUserData = createAsyncThunk(
     'auth/getAuthUserData',
@@ -40,6 +41,7 @@ export const logoutUser = createAsyncThunk(
             const data = await authAPI.logout();
             if (data.resultCode === 0) {
                 dispatch(setAuthDataAC({data: {login: null, email: null, id: null}}));
+                dispatch(setProfileInfoAC({profileInfo: null}))
             }
         } catch (error) {
             return rejectWithValue(error.message);
@@ -65,6 +67,7 @@ const authSlice = createSlice({
             state.login = login;
             state.email = email;
             state.id = id;
+            state.isAuth = true;
         },
         setLoginDataAC(state, action) {
             state.id = action.payload.id;
@@ -100,7 +103,7 @@ const authSlice = createSlice({
             state.status = 'pending';
             state.error = null;
         },
-        [logoutUser.fulfilled]: (state, action) => {
+        [logoutUser.fulfilled]: (state) => {
             state.status = 'resolved';
             state.error = null;
             state.isAuth = false;
