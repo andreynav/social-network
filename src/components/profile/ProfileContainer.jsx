@@ -8,7 +8,8 @@ import {withAuthRedirect} from "../hoc/withAuthRedirect"; // import from index.j
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
-        let userId = this.props.params.id || this.props.userId || 2;
+        let userId = this.props.currentUserId || this.props.userId;
+
         this.props.getProfileInfo(userId);
         this.props.getProfileStatus(userId);
     }

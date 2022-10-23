@@ -30,7 +30,9 @@ export default function ProfileInfo({profileInfo, profileStatus, updateProfileSt
 
     const profileItems = profileData.map( (item, index) => <ProfileInfoItem key={index}
                                                                             itemData={item.itemData || " - "}
-                                                                            itemName={item.itemName} />);
+                                                                            itemName={item.itemName}
+                                                                            currentUserId={currentUserId}
+                                                                            userId={userId} />);
 
     return (
         <div className={profileInfoWrapper}>
@@ -45,7 +47,7 @@ export default function ProfileInfo({profileInfo, profileStatus, updateProfileSt
                                      isPointer
                                      updateProfileStatus={updateProfileStatus}
                                      currentUserId={currentUserId}
-                                     userId={userId}/>
+                                     userId={userId} />
                     { profileItems }
                 </div>
             </div>
