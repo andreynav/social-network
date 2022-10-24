@@ -8,6 +8,7 @@ import {withAuthRedirect} from "../hoc/withAuthRedirect"; // import from index.j
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
+        console.log('inside Profile componentDidMount()')
         let userId = this.props.currentUserId || this.props.userId;
 
         this.props.getProfileInfo(userId);
@@ -15,6 +16,7 @@ class ProfileContainer extends React.Component {
     }
 
     render() {
+        console.log('inside Profile render()')
         return <Profile {...this.props} />
     }
 }

@@ -4,7 +4,7 @@ import {useForm} from "react-hook-form";
 import {FormLogin} from "../index";
 import {loginUser} from "../../store/authReducer";
 import {connect, useDispatch} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import {Navigate, useNavigate} from "react-router-dom";
 
 function Login(props) {
     const dispatch = useDispatch();
@@ -35,6 +35,7 @@ function Login(props) {
     }
 
     useEffect(() => {
+        console.log('inside Login useEffect()')
         props.isAuth && navigate('/profile');
         props.error && setError('server', {message: props.error});
     }, [props.isAuth, props.error]);
@@ -43,6 +44,7 @@ function Login(props) {
         <div className={wrapper}>
             <div className={title}>Login</div>
             <div className={formWrapper}>
+                {console.log('inside Login return()')}
                 <FormLogin onSubmit={handleSubmit(onFormSubmit)}
                            registerInput={register}
                            errors={errors}

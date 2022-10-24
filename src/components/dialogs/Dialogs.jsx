@@ -27,6 +27,7 @@ export default function Dialogs(props) {
             <div className={dialogMessagesWrapper}>
                 <div className={dialogUsersContainer}>
                     {dialogsUsers}
+                    {console.log('inside Dialogs return()')}
                 </div>
                 <div className={dialogMessages}>
                     {userMessages}

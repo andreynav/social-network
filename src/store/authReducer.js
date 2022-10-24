@@ -10,6 +10,12 @@ export const getAuthUserData = createAsyncThunk(
             if (data.resultCode === 0) {
                 dispatch(setAuthDataAC({data: data.data}));
             }
+            // return authAPI.me()
+            //     .then(data => {
+            //         if (data.resultCode === 0) {
+            //             dispatch(setAuthDataAC({data: data.data}));
+            //         }
+            //     });
         } catch (error) {
             return rejectWithValue(error.message);
         }
@@ -22,7 +28,7 @@ export const loginUser = createAsyncThunk(
         try {
             const data = await authAPI.login({email, password, rememberMe});
             if (data.resultCode === 0) {
-                dispatch(setLoginDataAC({id: data.data.userId, isAuth: true}))
+                // dispatch(setLoginDataAC({id: data.data.userId, isAuth: true}))
                 dispatch(getAuthUserData());
             } else {
                 dispatch(setLoginDataAC({id: null, isAuth: false}))
