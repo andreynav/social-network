@@ -22,6 +22,7 @@ import {withRouter} from "./hoc/withRouter"
 import InputField from "./inputField/InputField";
 import FormLogin from "./login/formLogin/FormLogin";
 import TextAreaField from "./textAreaField/TextAreaField";
+import App from "../App";
 
 export {
     Dialogs,
@@ -53,5 +54,6 @@ export {
     ProfileInfoItem,
     InputField,
     FormLogin,
-    TextAreaField
+    TextAreaField,
+    App
 }

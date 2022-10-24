@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import {Routes, Route} from "react-router-dom";
 import './styles/App.css';
 import {
     Navbar,
@@ -22,38 +22,75 @@ import {initializeApp} from "./store/appReducer";
 import {compose} from "@reduxjs/toolkit";
 import {useEffect} from "react";
 
-function App(props) {
-    const dispatch = useDispatch();
-    // console.log(props)
+// function App(props) {
+//     const dispatch = useDispatch();
+//     // console.log(props)
+//
+//     useEffect(() => {
+//         dispatch(initializeApp());
+//     }, [props.isInitialized]);
+//
+//     if (!props.isInitialized) {
+//         return <Loader/>
+//     }
+//     return (
+//         <div className='appWrapper'>
+//             <HeaderContainer/>
+//             <Navbar/>
+//             <div className='contentWrapper'>
+//                 <Routes>
+//                     <Route path='/' element={<Profile/>}/>
+//                     <Route path='/profile' element={<ProfileContainer/>}/>
+//                     <Route path='/profile/:id' element={<ProfileContainer/>}/>
+//                     <Route path='/massages' element={<DialogsContainer/>}/>
+//                     <Route path='/massages/:id' element={<DialogsContainer/>}/>
+//                     <Route path='/users' element={<UsersContainer/>}/>
+//                     <Route path='/users/:id' element={<UsersContainer/>}/>
+//                     <Route path='/news' element={<News/>}/>
+//                     <Route path='/music' element={<Music/>}/>
+//                     <Route path='/settings' element={<Settings/>}/>
+//                     <Route path='/*' element={<NotFound/>}/>
+//                     <Route path='/login' element={<Login/>}/>
+//                 </Routes>
+//             </div>
+//             <Footer/>
+//         </div>
+//     );
+// }
 
-    useEffect(() => {
-        dispatch(initializeApp());
-    }, [props.isInitialized]);
+class App extends React.Component {
+    componentDidMount() {
+        console.log('inside App componentDidMount()')
+        this.props.initializeApp();
+    }
 
-    if (!props.isInitialized) {
-        return <Loader />
-    } else {
+    render() {
+        console.log('inside App render()')
+        if (!this.props.isInitialized) {
+            return <Loader/>
+        }
+
         return (
             <div className='appWrapper'>
-                <HeaderContainer />
-                <Navbar />
+                <HeaderContainer/>
+                <Navbar/>
                 <div className='contentWrapper'>
                     <Routes>
-                        <Route path='/' element={<Profile />} />
-                        <Route path='/profile' element={<ProfileContainer />} />
-                        <Route path='/profile/:id' element={<ProfileContainer />} />
-                        <Route path='/massages' element={<DialogsContainer />} />
-                        <Route path='/massages/:id' element={<DialogsContainer />} />
-                        <Route path='/users' element={<UsersContainer />} />
-                        <Route path='/users/:id' element={<UsersContainer />} />
-                        <Route path='/news' element={<News />} />
-                        <Route path='/music' element={<Music />} />
-                        <Route path='/settings' element={<Settings />} />
-                        <Route path='/*' element={<NotFound />} />
-                        <Route path='/login' element={<Login />} />
+                        <Route path='/' element={<Profile/>}/>
+                        <Route path='/profile' element={<ProfileContainer/>}/>
+                        <Route path='/profile/:id' element={<ProfileContainer/>}/>
+                        <Route path='/massages' element={<DialogsContainer/>}/>
+                        <Route path='/massages/:id' element={<DialogsContainer/>}/>
+                        <Route path='/users' element={<UsersContainer/>}/>
+                        <Route path='/users/:id' element={<UsersContainer/>}/>
+                        <Route path='/news' element={<News/>}/>
+                        <Route path='/music' element={<Music/>}/>
+                        <Route path='/settings' element={<Settings/>}/>
+                        <Route path='/*' element={<NotFound/>}/>
+                        <Route path='/login' element={<Login/>}/>
                     </Routes>
                 </div>
-                <Footer />
+                <Footer/>
             </div>
         );
     }
@@ -61,7 +98,7 @@ function App(props) {
 
 const mapStateToProps = (state) => ({
     isInitialized: state.app.isInitialized,
-    isAuth: state.auth.isAuth,
+    // isAuth: state.auth.isAuth,
 });
 
 export default compose(
