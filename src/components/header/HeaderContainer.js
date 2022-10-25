@@ -1,20 +1,14 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {Header} from "../index";
 import {connect, useDispatch} from "react-redux";
 import {logoutUser} from "../../store/authReducer";
-import {useNavigate} from "react-router-dom";
 
 function HeaderContainer(props) {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const logout = () => {
         dispatch(logoutUser());
      }
-
-    useEffect(() => {
-        navigate('/login');
-    }, [props.isAuth])
 
     return (
         <Header logout={logout} {...props} />
