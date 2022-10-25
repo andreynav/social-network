@@ -22,7 +22,7 @@ let store = {
             myPosts : [
                 {id: 1, message: "Hey, how are you?",  like: 105 },
                 {id: 2, message: "You shell not pass, fellow!",  like: 304 },
-                {id: 3, message: "It\'s my life",  like: 118 },
+                {id: 3, message: "It's my life",  like: 118 },
                 {id: 4, message: "Nice day, let's learn React",  like: 257 },
                 {id: 5, message: "Nice day, let's learn React2",  like: 357 },
                 {id: 6, message: "Nice day, let's learn React3",  like: 457 },
@@ -33,7 +33,7 @@ let store = {
         }
     },
     _callSubscriber() {
-        console.log('render all tree')
+        console.warn('render all tree')
     },
     getState() {
         return this._state;

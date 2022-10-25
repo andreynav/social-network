@@ -46,7 +46,7 @@ let initialState = {
 const setError = (state, action) => {
     state.status = 'rejected';
     state.error = action.error.message;
-    console.log(state.error);
+    console.error(state.error);
 }
 
 const usersReducer = createSlice({

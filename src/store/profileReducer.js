@@ -88,7 +88,7 @@ const profileSlice = createSlice({
         [getProfileInfo.rejected]: (state, action) => {
             state.profileInfoLoadingStatus = 'rejected';
             state.profileInfoLoadingError = action.error.message;
-            console.log(state.error);
+            console.error(state.error);
         },
         [getProfileStatus.pending]: (state) => {  },
         [getProfileStatus.fulfilled]: (state, action) => { },
