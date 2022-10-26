@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import style from "./Login.module.css"
 import {useForm} from "react-hook-form";
 import {FormLogin} from "../index";
-import {loginUser} from "../../store/authReducer";
+import {loginUser, selectError, selectIsAuth} from "../../store/authReducer";
 import {connect, useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 
@@ -53,15 +53,9 @@ function Login(props) {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        id: state.auth.id,
-        login: state.auth.login,
-        email: state.auth.email,
-        isAuth: state.auth.isAuth,
-        status: state.auth.status,
-        error: state.auth.error,
-    }
-}
+const mapStateToProps = (state) => ({
+    isAuth: selectIsAuth(state),
+    error: selectError(state),
+});
 
 export default connect(mapStateToProps, {loginUser})(Login);

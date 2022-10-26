@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 
 let initialState = {
     dialogUsers: [
@@ -30,5 +30,10 @@ const dialogsReducer = createSlice({
     }
 });
 
+export const selectDialogUsers = state => state.dialogs.dialogUsers;
+
+export const selectMessages = state => state.dialogs.messages;
+
 export const { addMessageAC } = dialogsReducer.actions;
+
 export default dialogsReducer.reducer;

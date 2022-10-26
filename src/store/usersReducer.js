@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSelector, createSlice} from "@reduxjs/toolkit";
 import {userAPI} from "../api/api";
 
 export const setUsers = createAsyncThunk(
@@ -40,7 +40,8 @@ let initialState = {
     usersOnPage: 5,
     isFetching: false,
     followInProgress: [],
-    error: null
+    error: null,
+    status: null,
 };
 
 const setError = (state, action) => {
@@ -95,9 +96,30 @@ const usersReducer = createSlice({
     }
 });
 
-export const {changeToggleAC,
+
+export const selectUsers = createSelector(
+    // fake selector for demonstrating cashing of createSelector functionality
+    state => state.users.users,
+    users => users.filter(user => true)
+);
+
+export const selectCurrentPage = state => state.users.currentPage;
+
+export const selectTotalCount = state => state.users.totalCount;
+
+export const selectUsersOnPage = state => state.users.usersOnPage;
+
+export const selectIsFetching = state => state.users.isFetching;
+
+export const selectFollowInProgress = state => state.users.followInProgress;
+
+export const selectError = state => state.users.error;
+
+export const {
+    changeToggleAC,
     setUsersAC,
     setCurrentPageAC,
     setTotalCountAC,
     setFollowInProgressAC} = usersReducer.actions;
+
 export default usersReducer.reducer;
