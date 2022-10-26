@@ -47,6 +47,8 @@ const appSlice = createSlice({
     }
 });
 
+export const selectIsInitialized = state => state.app.isInitialized;
+
 export const {initializeAppAC} = appSlice.actions;
 
 export default appSlice.reducer;

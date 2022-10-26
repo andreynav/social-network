@@ -3,8 +3,8 @@ import style from './Header.module.css'
 import {logo} from "../../assets/index"
 
 export default function Header(props) {
-    const {headerWrapper, title, loginWrapper} = style;
-    const {isAuth, logoWrapper, login, logout} = props;
+    const {headerWrapper, logoWrapper, title, loginWrapper} = style;
+    const {isAuth, login, logout} = props;
 
     return (
         <header className={headerWrapper}>

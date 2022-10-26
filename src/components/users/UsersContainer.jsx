@@ -1,6 +1,17 @@
 import React from "react";
 import {Users} from "../index";
-import {setCurrentPageAC, setUsers, toggleFollowUnfollow} from "../../store/usersReducer";
+import {
+    selectCurrentPage,
+    selectError,
+    selectFollowInProgress,
+    selectIsFetching,
+    selectTotalCount,
+    selectUsers,
+    selectUsersOnPage,
+    setCurrentPageAC,
+    setUsers,
+    toggleFollowUnfollow
+} from "../../store/usersReducer";
 import {connect} from "react-redux";
 import {withAuthRedirect} from "../hoc/withAuthRedirect";
 import {compose} from "@reduxjs/toolkit"; // import from index.js doesn't work. Why?
@@ -29,22 +40,19 @@ class UsersContainer extends React.Component {
                       selectPage={this.selectPage}
                       onChangeToggle={this.onChangeFollow}
                       isFetching={this.props.isFetching}
-                      followInProgress={this.props.followInProgress}
-        />
+                      followInProgress={this.props.followInProgress}/>
     }
 }
 
-let mapStateToProps = (state) => {
-    return {
-        users: state.users.users,
-        currentPage: state.users.currentPage,
-        totalCount: state.users.totalCount,
-        usersOnPage: state.users.usersOnPage,
-        isFetching: state.users.isFetching,
-        followInProgress: state.users.followInProgress,
-        error: state.users.error
-    }
-};
+let mapStateToProps = (state) => ({
+    users: selectUsers(state),
+    currentPage: selectCurrentPage(state),
+    totalCount: selectTotalCount(state),
+    usersOnPage: selectUsersOnPage(state),
+    isFetching: selectIsFetching(state),
+    followInProgress: selectFollowInProgress(state),
+    error: selectError(state)
+});
 
 export default compose(
     connect(mapStateToProps, {setCurrentPageAC, setUsers, toggleFollowUnfollow}),

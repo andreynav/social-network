@@ -18,7 +18,7 @@ import {
 } from "./components/index"
 import ProfileContainer from "./components/profile/ProfileContainer";
 import {connect, useDispatch} from "react-redux";
-import {initializeApp} from "./store/appReducer";
+import {initializeApp, selectIsInitialized} from "./store/appReducer";
 import {compose} from "@reduxjs/toolkit";
 import {useEffect} from "react";
 
@@ -59,7 +59,7 @@ function App(props) {
 }
 
 const mapStateToProps = (state) => ({
-    isInitialized: state.app.isInitialized,
+    isInitialized: selectIsInitialized(state),
 });
 
 export default compose(

@@ -1,13 +1,11 @@
 import React from "react";
 import {MyPosts} from "../../index";
-import {addNewPostAC} from "../../../store/profileReducer";
+import {addNewPostAC, selectMyPosts} from "../../../store/profileReducer";
 import {connect} from "react-redux";
 
-let mapStateToProps = (state) => {
-    return {
-        myPosts: state.profile.myPosts,
-    }
-};
+let mapStateToProps = (state) => ({
+    myPosts: selectMyPosts(state),
+});
 
 const MyPostsContainer = connect(mapStateToProps, {addNewPostAC})(MyPosts);
 

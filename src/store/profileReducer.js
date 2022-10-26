@@ -9,9 +9,9 @@ let initialState = {
         {id: 4, message: "Nice day, let's learn React", like: 257},
     ],
     profileInfo: null,
+    profileStatus: null,
     profileInfoLoadingStatus: null,
     profileInfoLoadingError: null,
-    profileStatus: null
 };
 
 let getRandomLike = max => {
@@ -99,5 +99,16 @@ const profileSlice = createSlice({
     }
 });
 
-export const { addNewPostAC, setProfileInfoAC, setProfileStatusAC } = profileSlice.actions;
+export const selectMyPosts = state => state.profile.myPosts;
+
+export const selectProfileInfo = state => state.profile.profileInfo;
+
+export const selectProfileInfoLoadingStatus = state => state.profile.profileInfoLoadingStatus;
+
+export const selectProfileInfoLoadingError = state => state.profile.profileInfoLoadingError;
+
+export const selectProfileStatus = state => state.profile.profileStatus;
+
+export const { addNewPostAC, setProfileInfoAC, setProfileStatusAC, setFake } = profileSlice.actions;
+
 export default profileSlice.reducer;
