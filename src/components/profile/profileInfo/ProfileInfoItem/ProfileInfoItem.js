@@ -26,15 +26,15 @@ export const ProfileInfoItem = (props) => {
     return (
         <div className={itemWrapper}>
             <div className={itemTitle}>{itemName}</div>
-            {editMode
-                ? <div className={itemInput}>
+            {editMode ?
+                <div className={itemInput}>
                     <input type="text"
                            defaultValue={status}
                            onBlur={onEditMode}
                            onChange={updateStatusValue}
                            autoFocus/>
-                </div>
-                : <div className={itemText}
+                </div> :
+                <div className={itemText}
                        onClick={onEditMode}>
                     {itemData}
                 </div>}

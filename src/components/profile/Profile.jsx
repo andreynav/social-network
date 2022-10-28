@@ -3,13 +3,15 @@ import style from './Profile.module.css'
 import {MyPostsContainer, ProfileInfo} from "../index"
 
 export default function Profile(props) {
+    const {profileInfo, profileStatus, updateProfileStatus, currentUserId, userId} = props
+
     return (
         <main className={style.profileWrapper}>
-            <ProfileInfo profileInfo={props.profileInfo}
-                         profileStatus={props.profileStatus}
-                         updateProfileStatus={props.updateProfileStatus}
-                         currentUserId={props.currentUserId}
-                         userId={props.userId}/>
+            <ProfileInfo profileInfo={profileInfo}
+                         profileStatus={profileStatus}
+                         updateProfileStatus={updateProfileStatus}
+                         currentUserId={currentUserId}
+                         userId={userId}/>
             <MyPostsContainer/>
         </main>
     );
