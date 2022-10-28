@@ -3,13 +3,12 @@ import style from "./ProfileInfo.module.css";
 import {avatar} from "../../../assets";
 import {Loader, ProfileInfoItem} from "../../index";
 
-export default function ProfileInfo({profileInfo, profileStatus, updateProfileStatus, currentUserId, userId}) {
-    if (!profileInfo) return <Loader/>
-
-    const { aboutMe, photos, fullName, lookingForAJob,
-        lookingForAJobDescription, contacts } = profileInfo;
-
+export default function ProfileInfo(props) {
     const {profileInfoWrapper, backgroundPhoto, userDataWrapper, userAvatar, userInfo} = style;
+    const {profileInfo, profileStatus, updateProfileStatus, currentUserId, userId} = props;
+    const { aboutMe, photos, fullName, lookingForAJob, lookingForAJobDescription, contacts } = profileInfo;
+
+    if (!profileInfo) return <Loader/>
 
     let srcData = photos.small !== null ? photos.small : avatar;
 
@@ -18,14 +17,14 @@ export default function ProfileInfo({profileInfo, profileStatus, updateProfileSt
         {itemName: "About me", itemData: aboutMe},
         {itemName: "Looking for a job status", itemData: lookingForAJob ? 'Yes' : 'No'},
         {itemName: "Looking for a job description", itemData: lookingForAJobDescription },
-        {itemName: "Website", itemData: contacts.website},
-        {itemName: "Facebook", itemData: contacts.facebook},
-        {itemName: "Vk", itemData: contacts.vk},
-        {itemName: "Twitter", itemData: contacts.twitter},
-        {itemName: "Instagram", itemData: contacts.instagram},
-        {itemName: "Youtube", itemData: contacts.youtube},
-        {itemName: "Github", itemData: contacts.github},
-        {itemName: "MainLink", itemData: contacts.mainLink},
+        {itemName: "Website", itemData: contacts?.website},
+        {itemName: "Facebook", itemData: contacts?.facebook},
+        {itemName: "Vk", itemData: contacts?.vk},
+        {itemName: "Twitter", itemData: contacts?.twitter},
+        {itemName: "Instagram", itemData: contacts?.instagram},
+        {itemName: "Youtube", itemData: contacts?.youtube},
+        {itemName: "Github", itemData: contacts?.github},
+        {itemName: "MainLink", itemData: contacts?.mainLink},
     ]
 
     const profileItems = profileData.map( (item, index) => <ProfileInfoItem key={index}

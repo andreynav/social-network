@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import {compose} from "@reduxjs/toolkit";
 import {Profile} from "../index";
@@ -14,17 +14,16 @@ import {
 import {withRouter} from "../hoc/withRouter"; // import from index.js doesn't work. Why?
 import {withAuthRedirect} from "../hoc/withAuthRedirect"; // import from index.js doesn't work. Why?
 
-class ProfileContainer extends React.Component {
-    componentDidMount() {
-        let userId = this.props.currentUserId || this.props.userId;
+const ProfileContainer = (props) => {
+    const {currentUserId, userId, getProfileInfo, getProfileStatus} = props
 
-        this.props.getProfileInfo(userId);
-        this.props.getProfileStatus(userId);
-    }
+    useEffect(() => {
+        let id = currentUserId || userId;
+        getProfileInfo(id);
+        getProfileStatus(id);
+    }, [])
 
-    render() {
-        return <Profile {...this.props} />
-    }
+    return <Profile {...props} />
 }
 
 let mapStateToProps = (state) => ({
