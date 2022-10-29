@@ -1,8 +1,8 @@
 import {createAsyncThunk, createSelector, createSlice} from "@reduxjs/toolkit";
 import {userAPI} from "../api/api";
 
-export const setUsers = createAsyncThunk(
-    'users/setUsers',
+export const getUsers = createAsyncThunk(
+    'users/getUsers',
     async ({usersOnPage, page}, {dispatch, rejectWithValue}) => {
         try {
             const data = await userAPI.getUsers(usersOnPage, page);
@@ -77,15 +77,15 @@ const usersReducer = createSlice({
         }
     },
     extraReducers: {
-        [setUsers.pending]: (state) => {
+        [getUsers.pending]: (state) => {
             state.isFetching = true;
             state.error = null;
         },
-        [setUsers.fulfilled]: (state) => {
+        [getUsers.fulfilled]: (state) => {
             state.isFetching = false;
             state.error = null;
         },
-        [setUsers.rejected]: setError,
+        [getUsers.rejected]: setError,
         [toggleFollowUnfollow.pending]: (state) => {
             state.error = null;
         },
