@@ -1,8 +1,8 @@
-import React from "react";
+import React from "react"
 import style from './Profile.module.css'
 import {MyPostsContainer, ProfileInfo} from "../index"
 
-export default function Profile(props) {
+export const Profile = (props) => {
     const {profileInfo, profileStatus, updateProfileStatus, currentUserId, userId} = props
 
     return (
@@ -14,5 +14,5 @@ export default function Profile(props) {
                          userId={userId}/>
             <MyPostsContainer/>
         </main>
-    );
+    )
 }

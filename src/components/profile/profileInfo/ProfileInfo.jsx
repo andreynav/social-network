@@ -1,14 +1,15 @@
-import React from "react";
+import React, {memo} from "react";
 import style from "./ProfileInfo.module.css";
 import {avatar} from "../../../assets";
 import {Loader, ProfileInfoItem} from "../../index";
 
-export default function ProfileInfo(props) {
+export const ProfileInfo = memo((props) => {
     const {profileInfoWrapper, backgroundPhoto, userDataWrapper, userAvatar, userInfo} = style;
     const {profileInfo, profileStatus, updateProfileStatus, currentUserId, userId} = props;
-    const { aboutMe, photos, fullName, lookingForAJob, lookingForAJobDescription, contacts } = profileInfo;
 
     if (!profileInfo) return <Loader/>
+
+    const { aboutMe, photos, fullName, lookingForAJob, lookingForAJobDescription, contacts } = profileInfo;
 
     let srcData = photos.small !== null ? photos.small : avatar;
 
@@ -52,4 +53,4 @@ export default function ProfileInfo(props) {
             </div>
         </div>
     );
-}
+})
