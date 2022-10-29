@@ -3,7 +3,7 @@ import style from "./Users.module.css"
 import {Loader, User} from "../index";
 import ReactPaginate from 'react-paginate';
 
-export default function Users(props) {
+export const Users = (props) => {
     let pagesCount = Math.ceil(Number(props.totalCount) / props.usersOnPage);
     let getUsersList = () => props.users.map(user => <User key={user.id}
                                                            id={user.id}
@@ -15,6 +15,7 @@ export default function Users(props) {
                                                            photos={user.photos}
                                                            toggleFollow={props.onChangeToggle}
                                                            followInProgress={props.followInProgress} />)
+
     return (
         <div className={style.usersWrapper}>
             <h3 className={style.sectionTitle}>Users</h3>

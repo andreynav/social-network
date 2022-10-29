@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Users} from "../index";
 import {
     selectCurrentPage,
@@ -9,39 +9,43 @@ import {
     selectUsers,
     selectUsersOnPage,
     setCurrentPageAC,
-    setUsers,
+    getUsers,
     toggleFollowUnfollow
 } from "../../store/usersReducer";
 import {connect} from "react-redux";
 import {withAuthRedirect} from "../hoc/withAuthRedirect";
 import {compose} from "@reduxjs/toolkit"; // import from index.js doesn't work. Why?
 
-class UsersContainer extends React.Component {
-    selectPage = (page) => {
-        this.props.setCurrentPageAC({page});
-        this.props.setUsers({usersOnPage: this.props.usersOnPage, page});
+const UsersContainer = (props) => {
+    const {setCurrentPageAC, getUsers, usersOnPage, users, toggleFollowUnfollow,
+        totalCount, currentPage, isFetching, followInProgress} = props
+
+    const selectPage = (page) => {
+        setCurrentPageAC({page});
+        getUsers({usersOnPage: usersOnPage, page});
     }
 
-    onChangeFollow = (id) => {
-        let currentUser = this.props.users.find(user => user.id === id);
-        this.props.toggleFollowUnfollow({user: currentUser, id});
+    const onChangeFollow = (id) => {
+        let currentUser = users.find(user => user.id === id);
+        toggleFollowUnfollow({user: currentUser, id});
     };
 
-    componentDidMount() {
-        this.props.setCurrentPageAC({page: 1});
-        this.props.setUsers({usersOnPage: this.props.usersOnPage, page: 1});
-    }
+    useEffect(() => {
+        setCurrentPageAC({page: 1});
+        getUsers({usersOnPage: usersOnPage, page: 1});
+    }, [])
 
-    render() {
-        return <Users totalCount={this.props.totalCount}
-                      usersOnPage={this.props.usersOnPage}
-                      currentPage={this.props.currentPage}
-                      users={this.props.users}
-                      selectPage={this.selectPage}
-                      onChangeToggle={this.onChangeFollow}
-                      isFetching={this.props.isFetching}
-                      followInProgress={this.props.followInProgress}/>
-    }
+    return (
+        <Users totalCount={totalCount}
+               usersOnPage={usersOnPage}
+               currentPage={currentPage}
+               users={users}
+               selectPage={selectPage}
+               onChangeToggle={onChangeFollow}
+               isFetching={isFetching}
+               followInProgress={followInProgress}
+        />
+    )
 }
 
 let mapStateToProps = (state) => ({
@@ -55,6 +59,6 @@ let mapStateToProps = (state) => ({
 });
 
 export default compose(
-    connect(mapStateToProps, {setCurrentPageAC, setUsers, toggleFollowUnfollow}),
+    connect(mapStateToProps, {setCurrentPageAC, getUsers, toggleFollowUnfollow}),
     withAuthRedirect
 )(UsersContainer)

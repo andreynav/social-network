@@ -1,39 +1,42 @@
-import React from "react";
+import React, {memo} from "react";
 import style from "./User.module.css"
 import {avatar} from "../../../assets";
 import {NavLink} from "react-router-dom";
 
-export default function User(props) {
-    let srcData = props.photos.small !== null ? props.photos.small : avatar;
+export const User = memo((props) => {
+    const {userWrapper, userAvatarWrapper, userFollowStatus, userData, userName, userStatus, userCountry, userCity} = style
+    const {photos, id, name, followInProgress, toggleFollow, followed, country, city} = props
+    let srcData = photos.small !== null ? photos.small : avatar;
+
     return (
-        <div className={style.userWrapper}>
-            <div className={style.userAvatarWrapper}>
+        <div className={userWrapper}>
+            <div className={userAvatarWrapper}>
                 <div>
-                    <NavLink to={`/profile/${props.id}`}>
-                        <img src={srcData} alt={`${props.name}`}/>
+                    <NavLink to={`/profile/${id}`}>
+                        <img src={srcData} alt={`${name}`}/>
                     </NavLink>
                 </div>
-                <button disabled={props.followInProgress.some(id => id === props.id)}
-                        className={style.userFollowStatus}
-                        onClick={() => props.toggleFollow(props.id)}>
-                    {props.followed ? "Follow" : "Unfollow"}
+                <button disabled={followInProgress.some(userId => userId === id)}
+                        className={userFollowStatus}
+                        onClick={() => toggleFollow(id)}>
+                    {followed ? "Follow" : "Unfollow"}
                 </button>
             </div>
-            <div className={style.userData}>
-                <div className={style.name}>
-                    {props.name}
+            <div className={userData}>
+                <div className={userName}>
+                    {name}
                 </div>
-                <div className={style.status}>
-                    user id: {props.id}
+                <div className={userStatus}>
+                    user id: {id}
                     {/*{props.status}*/}
                 </div>
-                <div className={style.country}>
-                    {props.country}
+                <div className={userCountry}>
+                    {country}
                 </div>
-                <div className={style.city}>
-                    {props.city}
+                <div className={userCity}>
+                    {city}
                 </div>
             </div>
         </div>
     );
-}
+})

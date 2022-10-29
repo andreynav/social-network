@@ -47,14 +47,14 @@
     height: 60px;
 }
 
-.name {
+.userName {
     display: grid;
     grid-area: name;
     align-content: start;
     justify-content: start;
 }
 
-.status {
+.userStatus {
     display: grid;
     grid-area: status;
     align-content: end;
@@ -62,14 +62,14 @@
     font-weight: normal;
 }
 
-.country {
+.userCountry {
     display: grid;
     grid-area: country;
     align-content: start;
     justify-content: end;
 }
 
-.city {
+.userCity {
     display: grid;
     grid-area: city;
     align-content: end;
