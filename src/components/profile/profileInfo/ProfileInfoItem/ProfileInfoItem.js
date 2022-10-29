@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from "react"
+import React, {memo, useEffect, useState} from "react"
 import style from "./ProfileInfoItem.module.css"
 
-export const ProfileInfoItem = (props) => {
+export const ProfileInfoItem = memo((props) => {
     const {itemWrapper, itemTitle, itemInput, itemText} = style;
     const {itemData, itemName, currentUserId, userId, updateProfileStatus} = props;
 
@@ -40,4 +40,4 @@ export const ProfileInfoItem = (props) => {
                 </div>}
         </div>
     )
-}
+})
