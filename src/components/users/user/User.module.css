@@ -37,41 +37,19 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    grid-template-areas:
-        "name country"
-        "status city";
     background-color: white;
     border-radius: 8px;
-    padding: 5px;
-    font-weight: bold;
-    height: 60px;
-}
-
-.userName {
-    display: grid;
-    grid-area: name;
-    align-content: start;
-    justify-content: start;
-}
-
-.userStatus {
-    display: grid;
-    grid-area: status;
-    align-content: end;
-    justify-content: start;
+    padding: 8px;
     font-weight: normal;
+    align-items: center;
 }
 
-.userCountry {
-    display: grid;
-    grid-area: country;
-    align-content: start;
-    justify-content: end;
+.itemTitle {
+    font-size: 10px;
+    text-transform: uppercase;
+    color: darkgrey;
 }
 
-.userCity {
+.itemData {
     display: grid;
-    grid-area: city;
-    align-content: end;
-    justify-content: end;
 }
