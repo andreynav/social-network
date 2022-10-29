@@ -4,9 +4,24 @@ import {avatar} from "../../../assets";
 import {NavLink} from "react-router-dom";
 
 export const User = memo((props) => {
-    const {userWrapper, userAvatarWrapper, userFollowStatus, userData, userName, userStatus, userCountry, userCity} = style
-    const {photos, id, name, followInProgress, toggleFollow, followed, country, city} = props
+    const {userWrapper, userAvatarWrapper, userFollowStatus, userData, itemTitle, itemData} = style
+    const {photos, id, name, status, followInProgress, toggleFollow, followed, city} = props
+
     let srcData = photos.small !== null ? photos.small : avatar;
+
+    const userDataArray = [
+        {itemName: "Full name", value: name},
+        {itemName: "Status", value: status},
+        {itemName: "Id", value: id},
+        {itemName: "City", value: city},
+    ]
+
+    const userItems = userDataArray.map((item, index) => <div key={index}>
+                                                             <div className={itemTitle}>{item.itemName}</div>
+                                                             <div className={itemData}>
+                                                                 {item.value || " - "}
+                                                             </div>
+                                                         </div>)
 
     return (
         <div className={userWrapper}>
@@ -23,19 +38,7 @@ export const User = memo((props) => {
                 </button>
             </div>
             <div className={userData}>
-                <div className={userName}>
-                    {name}
-                </div>
-                <div className={userStatus}>
-                    user id: {id}
-                    {/*{props.status}*/}
-                </div>
-                <div className={userCountry}>
-                    {country}
-                </div>
-                <div className={userCity}>
-                    {city}
-                </div>
+                {userItems}
             </div>
         </div>
     );

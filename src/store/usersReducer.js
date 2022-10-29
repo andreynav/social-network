@@ -33,6 +33,9 @@ export const toggleFollowUnfollow = createAsyncThunk(
     }
 );
 
+const cities = ['Minsk', 'New York', 'Paris', 'Berlin', 'London', 'Praga', 'Sidney', 'Vena', 'Brno', 'Vilnus']
+let getRandomCity = items => items[Math.floor(Math.random() * items.length)]
+
 let initialState = {
     users: [],
     currentPage: 1,
@@ -63,6 +66,7 @@ const usersReducer = createSlice({
         },
         setUsersAC(state, action) {
             state.users = [...action.payload.users]
+            state.users.forEach(user => {user.city = getRandomCity(cities)})
         },
         setCurrentPageAC(state, action) {
             state.currentPage = action.payload.page;

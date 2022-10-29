@@ -4,17 +4,17 @@ import {Loader, User} from "../index";
 import ReactPaginate from 'react-paginate';
 
 export const Users = (props) => {
-    let pagesCount = Math.ceil(Number(props.totalCount) / props.usersOnPage);
-    let getUsersList = () => props.users.map(user => <User key={user.id}
+    const {totalCount, usersOnPage, users, selectPage, isFetching, onChangeToggle, followInProgress} = props
+    let pagesCount = Math.ceil(Number(totalCount) / usersOnPage);
+    let getUsersList = () => users.map(user => <User key={user.id}
                                                            id={user.id}
                                                            name={user.name}
-                                                           status={"user.status"}
-                                                           country={"user.location.country"}
-                                                           city={"user.location.city"}
+                                                           status={user.status}
+                                                           city={user.city}
                                                            followed={user.followed}
                                                            photos={user.photos}
-                                                           toggleFollow={props.onChangeToggle}
-                                                           followInProgress={props.followInProgress} />)
+                                                           toggleFollow={onChangeToggle}
+                                                           followInProgress={followInProgress} />)
 
     return (
         <div className={style.usersWrapper}>
@@ -23,14 +23,14 @@ export const Users = (props) => {
                 className={style.pages}
                 breakLabel="..."
                 nextLabel="next"
-                onPageChange={(event) => props.selectPage(event.selected + 1)}
+                onPageChange={(event) => selectPage(event.selected + 1)}
                 pageRangeDisplayed={3}
                 pageCount={pagesCount}
                 previousLabel="prev"
                 renderOnZeroPageCount={null}
                 activeClassName={style.active}
             />
-            {props.isFetching ?
+            {isFetching ?
                 <div className={style.loaderContainer}>
                     <Loader/>
                 </div> :
