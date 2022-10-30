@@ -1,6 +1,6 @@
 import React from "react";
 import {Routes, Route} from "react-router-dom";
-import './styles/App.css';
+import '../../styles/App.css';
 import {
     Navbar,
     Profile,
@@ -15,10 +15,10 @@ import {
     Login,
     withRouter,
     Loader
-} from "./components/index"
-import ProfileContainer from "./components/profile/ProfileContainer";
+} from "../index"
+import ProfileContainer from "../profile/ProfileContainer";
 import {connect, useDispatch} from "react-redux";
-import {initializeApp, selectIsInitialized} from "./store/appReducer";
+import {initializeApp, selectIsInitialized} from "../../store/appReducer";
 import {compose} from "@reduxjs/toolkit";
 import {useEffect} from "react";
 
