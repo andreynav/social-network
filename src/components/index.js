@@ -23,6 +23,7 @@ import InputField from "./inputField/InputField";
 import FormLogin from "./login/formLogin/FormLogin";
 import TextAreaField from "./textAreaField/TextAreaField";
 import App from "./app/App";
+import {Paginator} from "./paginator/Paginator";
 
 export {
     Dialogs,
@@ -55,5 +56,6 @@ export {
     InputField,
     FormLogin,
     TextAreaField,
-    App
+    App,
+    Paginator,
 }
