@@ -36,28 +36,32 @@ const infoData = {
 const newPostAction = addNewPostAC({message: 'New post test message'})
 const profileStatus = setProfileStatusAC({profileStatus: 'Test status'})
 
-test('New post should be added', () => {
-    const newState = profileReducer(stateProfileReducer, newPostAction)
-    expect(newState.myPosts.length).toBe(5)
-});
+describe('Profile reducer tests', () => {
+    test('New post should be added', () => {
+        const newState = profileReducer(stateProfileReducer, newPostAction)
+        expect(newState.myPosts.length).toBe(5)
+    });
 
-test('New post text message should be correct', () => {
-    const newState = profileReducer(stateProfileReducer, newPostAction)
-    expect(newState.myPosts[4].message).toEqual('New post test message')
-});
+    test('New post text message should be correct', () => {
+        const newState = profileReducer(stateProfileReducer, newPostAction)
+        expect(newState.myPosts[4].message).toEqual('New post test message')
+    });
 
-test('Profile status should not be null', () => {
-    const newState = profileReducer(stateProfileReducer, profileStatus)
-    expect(newState.profileStatus).not.toEqual(null)
-});
+    test('Profile status should not be null', () => {
+        const newState = profileReducer(stateProfileReducer, profileStatus)
+        expect(newState.profileStatus).not.toEqual(null)
+    });
 
-test('Profile status text should be correct', () => {
-    const newState = profileReducer(stateProfileReducer, profileStatus)
-    expect(newState.profileStatus).toEqual('Test status')
-});
+    test('Profile status text should be correct', () => {
+        const newState = profileReducer(stateProfileReducer, profileStatus)
+        expect(newState.profileStatus).toEqual('Test status')
+    });
 
-test('Profile info should be added', () => {
-    const profileInfo = setProfileInfoAC({profileInfo: infoData})
-    const newState = profileReducer(stateProfileReducer, profileInfo)
-    expect(newState.profileInfo).not.toEqual(null)
-});
+    test('Profile info should be added', () => {
+        const profileInfo = setProfileInfoAC({profileInfo: infoData})
+        const newState = profileReducer(stateProfileReducer, profileInfo)
+        expect(newState.profileInfo).not.toEqual(null)
+    });
+})
+
+
