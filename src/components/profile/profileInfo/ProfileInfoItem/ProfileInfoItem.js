@@ -1,8 +1,9 @@
 import React, {memo, useEffect, useState} from "react"
 import style from "./ProfileInfoItem.module.css"
+import {Label} from "../../../index";
 
 export const ProfileInfoItem = memo((props) => {
-    const {itemWrapper, itemTitle, itemInput, itemText} = style;
+    const {itemWrapper, itemInput, itemText} = style;
     const {itemData, itemName, currentUserId, userId, updateProfileStatus} = props;
 
     const [editMode, setEditMode] = useState(false);
@@ -25,7 +26,7 @@ export const ProfileInfoItem = memo((props) => {
 
     return (
         <div className={itemWrapper}>
-            <div className={itemTitle}>{itemName}</div>
+            <Label fontSize='10px'>{itemName}</Label>
             {editMode ?
                 <div className={itemInput}>
                     <input type="text"
