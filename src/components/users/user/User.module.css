@@ -44,12 +44,6 @@
     align-items: center;
 }
 
-.itemTitle {
-    font-size: 10px;
-    text-transform: uppercase;
-    color: darkgrey;
-}
-
 .itemData {
     display: grid;
 }

@@ -1,5 +1,6 @@
 import React from "react";
-import style from "./InputField.module.css";
+import styled from 'styled-components'
+import {Label} from "../index";
 
 export default function InputField(props) {
     const {
@@ -15,21 +16,38 @@ export default function InputField(props) {
     } = props;
 
     return (
-        <div className={style.inputWrapper}>
-            <label className={style.labelTitle} htmlFor={name}>
-                <span >{label}</span>
-            </label>
-            <input className={style.inputField}
-                   name={name}
+        <InputWrapper>
+            <Label htmlFor={name}>
+                {label}
+            </Label>
+            <Input name={name}
                    type={type}
                    {...register(name, validationSchema)}
                    placeholder={placeholder}
                    onClick={onClearErrors}
                    {...inputProps}
             />
-            { errors && <div className={style.error}>
-                {errors[name] && errors[name]?.message || errors.server?.message}
-            </div> }
-        </div>
+            {
+                errors &&
+                <Label error>
+                    {errors[name] && errors[name]?.message || errors.server?.message}
+                </Label>
+            }
+        </InputWrapper>
     )
 }
+
+const InputWrapper = styled.div`
+  display: grid;
+  grid-template-rows: 16px auto 16px;
+  align-items: center;
+`
+const Input = styled.input`
+  display: grid;
+  min-width: 100%;
+  height: 35px;
+  border: 1px solid darkgrey;
+  border-radius: 4px;
+  padding: 0 5px;
+  font-size: 16px;
+`

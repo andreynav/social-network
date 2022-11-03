@@ -2,9 +2,10 @@ import React, {memo} from "react";
 import style from "./User.module.css"
 import {avatar} from "../../../assets";
 import {NavLink} from "react-router-dom";
+import {Label} from "../../index";
 
 export const User = memo((props) => {
-    const {userWrapper, userAvatarWrapper, userFollowStatus, userData, itemTitle, itemData} = style
+    const {userWrapper, userAvatarWrapper, userFollowStatus, userData, itemData} = style
     const {photos, id, name, status, followInProgress, toggleFollow, followed, city} = props
 
     let srcData = photos.small !== null ? photos.small : avatar;
@@ -17,7 +18,7 @@ export const User = memo((props) => {
     ]
 
     const userItems = userDataArray.map((item, index) => <div key={index}>
-                                                             <div className={itemTitle}>{item.itemName}</div>
+                                                             <Label fontSize='10px'>{item.itemName}</Label>
                                                              <div className={itemData}>
                                                                  {item.value || " - "}
                                                              </div>
