@@ -25,6 +25,7 @@ import TextAreaField from "./textAreaField/TextAreaField";
 import App from "./app/App";
 import {Paginator} from "./paginator/Paginator";
 import {Label} from "./common/Label/Label";
+import {Button} from "./common/button/Button";
 
 export {
     Dialogs,
@@ -60,4 +61,5 @@ export {
     App,
     Paginator,
     Label,
+    Button,
 }

@@ -29,7 +29,7 @@ export default function InputField(props) {
             />
             {
                 errors &&
-                <Label error>
+                <Label color={'error'} >
                     {errors[name] && errors[name]?.message || errors.server?.message}
                 </Label>
             }

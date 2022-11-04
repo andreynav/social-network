@@ -5,6 +5,10 @@
     grid-template-areas:
         "userAvatarWrapper userData"
 }
+.userAvatarWrapper {
+    display: grid;
+    grid-gap: 5px;
+}
 
 .userAvatarWrapper > div img {
     border-radius: 35px;
@@ -12,20 +16,6 @@
     width: 70px;
     align-self: start;
     align-items: start;
-}
-
-.userFollowStatus {
-    display: grid;
-    color: #282c34;
-    border: 1px solid #282c34;
-    font-size: 14px;
-    border-radius: 4px;
-    padding: 4px;
-    height: 26px;
-    width: 70px;
-    margin-top: 5px;
-    align-content: center;
-    justify-content: center;
 }
 
 .userAvatarWrapper > div > img {

@@ -50,16 +50,6 @@
 
 .loginWrapper p {
     display: grid;
-    justify-self: center;
+    align-content: center;
     color: #ffc300;
-}
-
-.loginWrapper button {
-    display: grid;
-    justify-self: center;
-    border: 0;
-    background: transparent;
-    color: #cdd9e5;
-    font-size: 1rem;
-    cursor: pointer;
 }
