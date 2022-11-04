@@ -1,9 +1,9 @@
 import React from "react";
 import style from "./FormLogin.module.css";
-import {InputField} from "../../index";
+import {Button, InputField, Label} from "../../index";
 
 export default function FormLogin(props) {
-    const {form, loginCheckbox, checkbox, labelTitle, loginButton} = style;
+    const {form, loginCheckbox, checkbox} = style;
     const {onSubmit, registerInput, errors, registerCheckbox, onClearErrors} = props;
 
     return (
@@ -38,11 +38,17 @@ export default function FormLogin(props) {
                        type={"checkbox"}
                        {...registerCheckbox}
                 />
-                <label className={labelTitle} htmlFor="rememberMe">
-                    <span>remember me</span>
-                </label>
+                <Label htmlFor={"rememberMe"}
+                       color={'black'}
+                       fontSize={'14px'}
+                       transform={'none'}
+                >
+                    Remember me
+                </Label>
             </div>
-            <button className={loginButton}>Log In</button>
+            <Button fontSize='16px'>
+                Log In
+            </Button>
         </form>
     )
 }

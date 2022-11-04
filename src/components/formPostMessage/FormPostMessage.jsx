@@ -1,20 +1,38 @@
 import React from "react";
-import style from "./FormPostMessage.module.css";
-import {TextAreaField} from "../index";
+import {Button, TextAreaField} from "../index";
+import styled from "styled-components";
 
 export default function FormPostMessage(props) {
-    const {postsInput, area, buttonSend} = style;
     const {onSubmit, register, validationSchema, errors} = props;
 
     return (
-        <form className={postsInput} onSubmit={onSubmit}>
-            <div className={area}>
+        <FormProfilePost onSubmit={onSubmit}>
+            <ProfilePostAreaWrapper>
                 <TextAreaField name={"postMessage"}
                                register={register}
                                validationSchema={validationSchema}
                                errors={errors?.postMessage} />
-            </div>
-            <button className={buttonSend}>Send</button>
-        </form>
+            </ProfilePostAreaWrapper>
+            <Button fontSize='16px'
+                    areaName={'profilePostButton'}
+            >
+                Send
+            </Button>
+        </FormProfilePost>
     );
 }
+
+const FormProfilePost = styled.form`
+  display: grid;
+  grid-template-columns: 1fr 100px;
+  grid-template-rows: auto 35px;
+  grid-template-areas: "profilePostArea profilePostArea"
+                       ". profilePostButton";
+`
+
+const ProfilePostAreaWrapper = styled.div`
+  display: grid;
+  grid-area: profilePostArea;
+  margin: 5px 0;
+  border-radius: 8px;
+`
