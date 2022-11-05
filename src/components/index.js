@@ -9,12 +9,9 @@ import { Post, MyPosts, ProfileInfo, Profile, ProfileInfoItem } from "./profile/
 import Settings from "./settings/Settings"
 import FormPostMessage from "./formPostMessage/FormPostMessage";
 import MyPostsContainer from "./profile/myPosts/MyPostsContainer";
-import DialogsContainer from "./dialogs/DialogsContainer";
 import {Users} from "./users/Users"
 import {User} from "./users/user/User";
-import UsersContainer from "./users/UsersContainer";
-import Loader from "./loader/Loader";
-import ProfileContainer from "./profile/ProfileContainer";
+import {Loader} from "./common/loader/Loader";
 import HeaderContainer from "./header/HeaderContainer";
 import Login from "./login/Login";
 import {withAuthRedirect} from "./hoc/withAuthRedirect";
@@ -44,12 +41,9 @@ export {
     Settings,
     FormPostMessage,
     MyPostsContainer,
-    DialogsContainer,
-    UsersContainer,
     Users,
     User,
     Loader,
-    ProfileContainer,
     HeaderContainer,
     Login,
     withAuthRedirect,

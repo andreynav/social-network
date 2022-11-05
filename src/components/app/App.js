@@ -1,26 +1,25 @@
-import React from "react";
+import React, {useEffect, lazy, Suspense} from "react";
 import {Routes, Route} from "react-router-dom";
 import '../../styles/App.css';
 import {
     Navbar,
-    Profile,
     Footer,
     News,
     Music,
     Settings,
     NotFound,
-    DialogsContainer,
-    UsersContainer,
     HeaderContainer,
     Login,
     withRouter,
     Loader
 } from "../index"
-import ProfileContainer from "../profile/ProfileContainer";
 import {connect, useDispatch} from "react-redux";
 import {initializeApp, selectIsInitialized} from "../../store/appReducer";
 import {compose} from "@reduxjs/toolkit";
-import {useEffect} from "react";
+
+const DialogsContainer = lazy(() => import ('../dialogs/DialogsContainer'));
+const ProfileContainer = lazy(() => import('../profile/ProfileContainer'));
+const UsersContainer = lazy(() => import('../users/UsersContainer'));
 
 function App(props) {
     const dispatch = useDispatch();
@@ -38,20 +37,22 @@ function App(props) {
             <HeaderContainer/>
             <Navbar/>
             <div className='contentWrapper'>
-                <Routes>
-                    <Route path='/' element={<Profile/>}/>
-                    <Route path='/profile' element={<ProfileContainer/>}/>
-                    <Route path='/profile/:id' element={<ProfileContainer/>}/>
-                    <Route path='/massages' element={<DialogsContainer/>}/>
-                    <Route path='/massages/:id' element={<DialogsContainer/>}/>
-                    <Route path='/users' element={<UsersContainer/>}/>
-                    <Route path='/users/:id' element={<UsersContainer/>}/>
-                    <Route path='/news' element={<News/>}/>
-                    <Route path='/music' element={<Music/>}/>
-                    <Route path='/settings' element={<Settings/>}/>
-                    <Route path='/*' element={<NotFound/>}/>
-                    <Route path='/login' element={<Login/>}/>
-                </Routes>
+                <Suspense fallback={<Loader/>}>
+                    <Routes>
+                        <Route path='/' element={<ProfileContainer/>}/>
+                        <Route path='/profile' element={<ProfileContainer/>}/>
+                        <Route path='/profile/:id' element={<ProfileContainer/>}/>
+                        <Route path='/massages' element={<DialogsContainer/>}/>
+                        <Route path='/massages/:id' element={<DialogsContainer/>}/>
+                        <Route path='/users' element={<UsersContainer/>}/>
+                        <Route path='/users/:id' element={<UsersContainer/>}/>
+                        <Route path='/news' element={<News/>}/>
+                        <Route path='/music' element={<Music/>}/>
+                        <Route path='/settings' element={<Settings/>}/>
+                        <Route path='/*' element={<NotFound/>}/>
+                        <Route path='/login' element={<Login/>}/>
+                    </Routes>
+                </Suspense>
             </div>
             <Footer/>
         </div>
