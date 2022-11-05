@@ -17,7 +17,7 @@ export const Users = (props) => {
                     <div className={loaderContainer}>
                         <Loader/>
                     </div> :
-                    <di>
+                    <div>
                         {
                             users.map(user => <User key={user.id}
                                                     id={user.id}
@@ -30,7 +30,7 @@ export const Users = (props) => {
                                                     followInProgress={followInProgress}
                             />)
                         }
-                    </di>
+                    </div>
             }
         </div>
     );

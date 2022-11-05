@@ -3,13 +3,13 @@ import styled from "styled-components";
 
 export const Button = (props) => {
     return (
-        <ButtonStyled {...props}>
+        <StyledButton {...props}>
             {props.children}
-        </ButtonStyled>
+        </StyledButton>
     )
 }
 
-const ButtonStyled = styled.button`
+const StyledButton = styled.button`
   display: grid;
   grid-area: ${({areaName}) => areaName};;
   align-content: ${({alignContent = 'center'}) => alignContent};
