@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {connect} from "react-redux";
+import {connect, useDispatch} from "react-redux";
 import {compose} from "@reduxjs/toolkit";
 import {Profile} from "../index";
 import {
@@ -9,13 +9,16 @@ import {
     selectProfileInfoLoadingError,
     selectProfileInfoLoadingStatus,
     selectProfileStatus,
-    updateProfileStatus
+    updateProfileStatus,
+    updateProfilePhoto
 } from "../../store/profileReducer";
 import {withRouter} from "../hoc/withRouter"; // import from index.js doesn't work. Why?
 import {withAuthRedirect} from "../hoc/withAuthRedirect"; // import from index.js doesn't work. Why?
 
 const ProfileContainer = (props) => {
+
     const {currentUserId, userId, getProfileInfo, getProfileStatus} = props
+    const dispatch = useDispatch();
 
     useEffect(() => {
         let id = currentUserId || userId;
@@ -23,7 +26,11 @@ const ProfileContainer = (props) => {
         getProfileStatus(id);
     }, [])
 
-    return <Profile {...props} />
+    const onSaveAvatar = (e) => {
+        dispatch(updateProfilePhoto(e.target.files[0]))
+    }
+
+    return <Profile {...props} onSavePhoto={onSaveAvatar} />
 }
 
 let mapStateToProps = (state) => ({
@@ -34,7 +41,7 @@ let mapStateToProps = (state) => ({
 })
 
 export default compose(
-    connect(mapStateToProps, {getProfileInfo, getProfileStatus, updateProfileStatus}),
+    connect(mapStateToProps, {getProfileInfo, getProfileStatus, updateProfileStatus, updateProfilePhoto}),
     withAuthRedirect,
     withRouter
 )(ProfileContainer)

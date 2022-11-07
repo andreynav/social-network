@@ -1,18 +1,26 @@
 import React from "react"
-import style from './Profile.module.css'
 import {MyPostsContainer, ProfileInfo} from "../index"
+import styled from "styled-components";
 
 export const Profile = (props) => {
-    const {profileInfo, profileStatus, updateProfileStatus, currentUserId, userId} = props
+    const {profileInfo, profileStatus, updateProfileStatus, currentUserId, userId, onSavePhoto} = props
 
     return (
-        <main className={style.profileWrapper}>
+        <ProfileWrapper>
             <ProfileInfo profileInfo={profileInfo}
                          profileStatus={profileStatus}
                          updateProfileStatus={updateProfileStatus}
                          currentUserId={currentUserId}
-                         userId={userId}/>
+                         userId={userId}
+                         onSavePhoto={onSavePhoto}/>
             <MyPostsContainer/>
-        </main>
+        </ProfileWrapper>
     )
 }
+
+const ProfileWrapper = styled.div`
+  display: grid;
+  grid-template-rows: auto auto;
+  overflow: visible auto;
+`
+
