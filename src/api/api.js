@@ -57,5 +57,15 @@ export const profileAPI = {
             status: status
         })
             .then(response => response.data);
+    },
+    updateProfilePhoto: (file) => {
+        const formData = new FormData();
+        formData.append('image', file)
+        return samuraiApi.put(`profile/photo`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            }
+        })
+            .then(response => response.data);
     }
 }

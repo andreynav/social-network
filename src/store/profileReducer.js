@@ -56,6 +56,20 @@ export const updateProfileStatus = createAsyncThunk(
     }
 );
 
+export const updateProfilePhoto = createAsyncThunk(
+    'profile/updateProfilePhoto',
+    async (file, {dispatch, rejectWithValue}) => {
+        try {
+            const data = await profileAPI.updateProfilePhoto(file);
+            if (data.resultCode === 0) {
+                dispatch(setProfilePhotoAC({photos: data.data.photos}));
+            }
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
 const profileSlice = createSlice({
     name: 'profile',
     initialState,
@@ -74,6 +88,9 @@ const profileSlice = createSlice({
         },
         setProfileStatusAC(state, action) {
             state.profileStatus = action.payload.profileStatus;
+        },
+        setProfilePhotoAC(state, action) {
+            state.profileInfo.photos = action.payload.photos
         }
     },
     extraReducers: {
@@ -96,6 +113,9 @@ const profileSlice = createSlice({
         [updateProfileStatus.pending]: (state) => {  },
         [updateProfileStatus.fulfilled]: (state, action) => { },
         [updateProfileStatus.rejected]: (state, action) => { },
+        [updateProfilePhoto.pending]: (state) => {  },
+        [updateProfilePhoto.fulfilled]: (state, action) => { },
+        [updateProfilePhoto.rejected]: (state, action) => { },
     }
 });
 
@@ -109,6 +129,6 @@ export const selectProfileInfoLoadingError = state => state.profile.profileInfoL
 
 export const selectProfileStatus = state => state.profile.profileStatus;
 
-export const { addNewPostAC, setProfileInfoAC, setProfileStatusAC, setFake } = profileSlice.actions;
+export const { addNewPostAC, setProfileInfoAC, setProfileStatusAC, setProfilePhotoAC } = profileSlice.actions;
 
 export default profileSlice.reducer;
