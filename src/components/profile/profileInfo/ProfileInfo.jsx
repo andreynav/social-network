@@ -1,6 +1,5 @@
 import React, {memo} from "react";
-import {avatar} from "../../../assets";
-import {Loader, ProfileInfoItem} from "../../index";
+import {Loader, PhotoSection, ProfileInfoItem} from "../../index";
 import styled from "styled-components";
 
 export const ProfileInfo = memo((props) => {
@@ -9,8 +8,6 @@ export const ProfileInfo = memo((props) => {
     if (!profileInfo) return <Loader/>
 
     const {aboutMe, photos, fullName, lookingForAJob, lookingForAJobDescription, contacts} = profileInfo;
-
-    let srcData = photos.small !== null ? photos.small : avatar;
 
     const profileData = [
         {itemName: "Full name", itemData: fullName},
@@ -37,18 +34,20 @@ export const ProfileInfo = memo((props) => {
         <ProfileInfoWrapper>
             <PhotoBackground></PhotoBackground>
             <UserDataWrapper>
-                <UserAvatar>
-                    <img src={srcData} alt={`${fullName}`}/>
-                    { currentUserId === userId && <input onChange={onSavePhoto} type="file" name="avatar"/> }
-                </UserAvatar>
-
+                <PhotoSection isOwner
+                              height='100'
+                              width='100'
+                              brRadius='50'
+                              photos={photos}
+                              name={fullName}
+                              onChange={onSavePhoto} />
                 <UserInfo>
                     <ProfileInfoItem itemData={profileStatus || " - "}
                                      itemName={"My status"}
                                      isPointer
                                      updateProfileStatus={updateProfileStatus}
                                      currentUserId={currentUserId}
-                                     userId={userId}/>
+                                     userId={userId} />
                     {profileItems}
                 </UserInfo>
             </UserDataWrapper>
@@ -71,39 +70,6 @@ const UserDataWrapper = styled.div`
   margin: 20px 0 10px 0;
   grid-template-columns: 120px 1fr;
 `
-
-const UserAvatar = styled.div`
-  display: grid;
-  align-self: start;
-  justify-self: start;
-
-  & > img {
-    height: 100px;
-    width: 100px;
-    border-radius: 50px;
-  }
-
-  & input {
-    display: grid;
-    margin-top: 10px;
-  }
-`
-
-const FileInput = styled.input`
-  visibility: hidden;
-  display: grid;
-
-  width: ${({width = '25px'}) => width};
-  height: ${({height = '35px'}) => height};
-  background-color: ${({bgColor = 'white'}) => bgColor};
-  cursor: ${({cursor = 'pointer'}) => cursor};
-
-  &:hover {
-    opacity: ${({opacity = 0.8}) => opacity};
-    transition: 0.51s;
-  }
-`
-
 const UserInfo = styled.div`
   display: grid;
   grid-template-columns: 1fr;

@@ -1,14 +1,9 @@
 import React, {memo} from "react";
-import style from "./User.module.css"
-import {avatar} from "../../../assets";
-import {NavLink} from "react-router-dom";
-import {Button, Label} from "../../index";
+import {Label, PhotoSection} from "../../index";
+import styled from "styled-components";
 
 export const User = memo((props) => {
-    const {userWrapper, userAvatarWrapper, userData, itemData} = style
     const {photos, id, name, status, followInProgress, toggleFollow, followed, city} = props
-
-    let srcData = photos.small !== null ? photos.small : avatar;
 
     const userDataArray = [
         {itemName: "Full name", value: name},
@@ -18,34 +13,40 @@ export const User = memo((props) => {
     ]
 
     const userItems = userDataArray.map((item, index) => <div key={index}>
-                                                             <Label fontSize='10px'>{item.itemName}</Label>
-                                                             <div className={itemData}>
-                                                                 {item.value || " - "}
-                                                             </div>
-                                                         </div>)
+        <Label fontSize='10px'>{item.itemName}</Label>
+        <div>
+            {item.value || " - "}
+        </div>
+    </div>)
 
     return (
-        <div className={userWrapper}>
-            <div className={userAvatarWrapper}>
-                <div>
-                    <NavLink to={`/profile/${id}`}>
-                        <img src={srcData} alt={`${name}`}/>
-                    </NavLink>
-                </div>
-                <Button onClick={() => toggleFollow(id)}
-                        disabled={followInProgress.some(userId => userId === id)}
-                        height={'26px'}
-                        minWidth={'50%'}
-                        width={'70px'}
-                        fontSize='10px'
-                        color={'#282c34'}
-                >
-                    {followed ? "Follow" : "Unfollow"}
-                </Button>
-            </div>
-            <div className={userData}>
+        <UserWrapper>
+            <PhotoSection photos={photos}
+                          name={name}
+                          id={id}
+                          followed={followed}
+                          toggleFollow={toggleFollow}
+                          followInProgress={followInProgress} />
+            <UserData>
                 {userItems}
-            </div>
-        </div>
+            </UserData>
+        </UserWrapper>
     );
 })
+
+const UserWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  margin: 20px 0 10px 0;
+`
+
+const UserData = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  background-color: white;
+  border-radius: 8px;
+  padding: 8px;
+  font-weight: normal;
+  align-items: center;
+`
