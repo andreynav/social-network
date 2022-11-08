@@ -23,6 +23,7 @@ import App from "./app/App";
 import {Paginator} from "./paginator/Paginator";
 import {Label} from "./common/Label/Label";
 import {Button} from "./common/button/Button";
+import {PhotoSection} from "./photoSection/PhotoSection";
 
 export {
     Dialogs,
@@ -56,4 +57,5 @@ export {
     Paginator,
     Label,
     Button,
+    PhotoSection
 }
