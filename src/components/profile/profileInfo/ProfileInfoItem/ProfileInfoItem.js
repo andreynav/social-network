@@ -1,9 +1,8 @@
 import React, {memo, useEffect, useState} from "react"
-import style from "./ProfileInfoItem.module.css"
 import {Label} from "../../../index";
+import styled from "styled-components";
 
 export const ProfileInfoItem = memo((props) => {
-    const {itemWrapper, itemInput, itemText} = style;
     const {itemData, itemName, currentUserId, userId, updateProfileStatus} = props;
 
     const [editMode, setEditMode] = useState(false);
@@ -25,20 +24,36 @@ export const ProfileInfoItem = memo((props) => {
     }, [itemData]);
 
     return (
-        <div className={itemWrapper}>
+        <ItemWrapper>
             <Label fontSize='10px'>{itemName}</Label>
             {editMode ?
-                <div className={itemInput}>
+                <ItemInput>
                     <input type="text"
                            defaultValue={status}
                            onBlur={onEditMode}
                            onChange={updateStatusValue}
                            autoFocus/>
-                </div> :
-                <div className={itemText}
-                       onClick={onEditMode}>
+                </ItemInput> :
+                <ItemText onClick={onEditMode}>
                     {itemData}
-                </div>}
-        </div>
+                </ItemText>}
+        </ItemWrapper>
     )
 })
+
+const ItemWrapper = styled.div`
+  display: grid;
+  grid-template-rows: 12px auto;
+  align-items: center;
+`
+
+const ItemInput = styled.div`
+  cursor: pointer;
+  & > input {
+    min-width: 100%;
+  }
+`
+
+const ItemText = styled.div`
+  cursor: pointer;
+`

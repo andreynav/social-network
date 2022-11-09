@@ -5,7 +5,7 @@ import Music from "./music/Music"
 import Navbar from "./navbar/Navbar"
 import News from "./news/News"
 import NotFound from "./notFound/NotFound"
-import { Post, MyPosts, ProfileInfo, Profile, ProfileInfoItem } from "./profile/index"
+import { Post, MyPosts, ProfileInfo, Profile, ProfileInfoItem, FormProfileInfo } from "./profile/index"
 import Settings from "./settings/Settings"
 import FormPostMessage from "./formPostMessage/FormPostMessage";
 import MyPostsContainer from "./profile/myPosts/MyPostsContainer";
@@ -57,5 +57,6 @@ export {
     Paginator,
     Label,
     Button,
-    PhotoSection
+    PhotoSection,
+    FormProfileInfo
 }
