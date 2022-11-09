@@ -70,6 +70,20 @@ export const updateProfilePhoto = createAsyncThunk(
     }
 );
 
+export const updateProfileInfo = createAsyncThunk(
+    'profile/updateProfileInfo',
+    async (profile, {dispatch, getState, rejectWithValue}) => {
+        try {
+            const data = await profileAPI.updateProfileInfo(profile);
+            if (data.resultCode === 0) {
+                dispatch(getProfileInfo(getState().auth.id));
+            }
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
+
 const profileSlice = createSlice({
     name: 'profile',
     initialState,
@@ -91,7 +105,10 @@ const profileSlice = createSlice({
         },
         setProfilePhotoAC(state, action) {
             state.profileInfo.photos = action.payload.photos
-        }
+        },
+        // updateProfileInfoAC(state, action) {
+        //     state.profileInfo = action.payload.profileInfo;
+        // },
     },
     extraReducers: {
         [getProfileInfo.pending]: (state) => {
@@ -116,6 +133,9 @@ const profileSlice = createSlice({
         [updateProfilePhoto.pending]: (state) => {  },
         [updateProfilePhoto.fulfilled]: (state, action) => { },
         [updateProfilePhoto.rejected]: (state, action) => { },
+        [updateProfileInfo.pending]: (state) => {  },
+        [updateProfileInfo.fulfilled]: (state, action) => { },
+        [updateProfileInfo.rejected]: (state, action) => { },
     }
 });
 

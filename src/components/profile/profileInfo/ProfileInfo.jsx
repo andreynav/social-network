@@ -1,27 +1,49 @@
-import React, {memo} from "react";
-import {Loader, PhotoSection, ProfileInfoItem} from "../../index";
+import React, {memo, useState} from "react";
+import {Loader, PhotoSection, ProfileInfoItem, FormProfileInfo, Button} from "../../index";
 import styled from "styled-components";
+import {useForm} from "react-hook-form";
 
 export const ProfileInfo = memo((props) => {
-    const {profileInfo, profileStatus, updateProfileStatus, currentUserId, userId, onSavePhoto} = props;
+    const {
+        profileInfo,
+        profileStatus,
+        updateProfileStatus,
+        currentUserId,
+        userId,
+        onSavePhoto,
+        onSaveUpdateProfile
+    } = props;
+
+    const [editMode, setEditMode] = useState(false);
+
+    const {
+        register,
+        handleSubmit,
+        formState: {errors},
+    } = useForm();
 
     if (!profileInfo) return <Loader/>
 
-    const {aboutMe, photos, fullName, lookingForAJob, lookingForAJobDescription, contacts} = profileInfo;
-
     const profileData = [
-        {itemName: "Full name", itemData: fullName},
-        {itemName: "About me", itemData: aboutMe},
-        {itemName: "Looking for a job status", itemData: lookingForAJob ? 'Yes' : 'No'},
-        {itemName: "Looking for a job description", itemData: lookingForAJobDescription},
-        {itemName: "Website", itemData: contacts?.website},
-        {itemName: "Facebook", itemData: contacts?.facebook},
-        {itemName: "Vk", itemData: contacts?.vk},
-        {itemName: "Twitter", itemData: contacts?.twitter},
-        {itemName: "Instagram", itemData: contacts?.instagram},
-        {itemName: "Youtube", itemData: contacts?.youtube},
-        {itemName: "Github", itemData: contacts?.github},
-        {itemName: "MainLink", itemData: contacts?.mainLink},
+        {itemName: "Full name", itemData: profileInfo.fullName, inputName: 'fullName'},
+        {itemName: "About me", itemData: profileInfo.aboutMe, inputName: 'aboutMe'},
+        {
+            itemName: "Looking for a job status",
+            itemData: profileInfo.lookingForAJob ? 'Yes' : 'No',
+            inputName: 'lookingForAJob'
+        },
+        {
+            itemName: "Looking for a job description",
+            itemData: profileInfo.lookingForAJobDescription,
+            inputName: 'lookingForAJobDescription'
+        },
+        {itemName: "Website", itemData: profileInfo.contacts?.website, inputName: 'website'},
+        {itemName: "Facebook", itemData: profileInfo.contacts?.facebook, inputName: 'facebook'},
+        {itemName: "Vk", itemData: profileInfo.contacts?.vk, inputName: 'vk'},
+        {itemName: "Instagram", itemData: profileInfo.contacts?.instagram, inputName: 'instagram'},
+        {itemName: "Youtube", itemData: profileInfo.contacts?.youtube, inputName: 'youtube'},
+        {itemName: "Github", itemData: profileInfo.contacts?.github, inputName: 'github'},
+        {itemName: "MainLink", itemData: profileInfo.contacts?.mainLink, inputName: 'mainLink'},
     ]
 
     const profileItems = profileData.map((item, index) => <ProfileInfoItem key={index}
@@ -29,6 +51,32 @@ export const ProfileInfo = memo((props) => {
                                                                            itemName={item.itemName}
                                                                            currentUserId={currentUserId}
                                                                            userId={userId}/>);
+
+    const onEditMode = () => {
+        setEditMode(prevEditMode => !prevEditMode);
+    }
+
+    const onFormSubmit = (data) => {
+        //console.log(data)
+        onSaveUpdateProfile({
+            userId: userId,
+            fullName: data.fullName,
+            aboutMe: data.aboutMe,
+            lookingForAJob: data.lookingForAJob,
+            lookingForAJobDescription: data.lookingForAJobDescription,
+            contacts: {
+                facebook: data.facebook,
+                website: data.website,
+                vk: data.vk,
+                twitter: data.twitter,
+                instagram: data.instagram,
+                youtube: data.youtube,
+                github: data.github,
+                mainLink: data.facebook
+            }
+        })
+        setEditMode(prevEditMode => !prevEditMode);
+    }
 
     return (
         <ProfileInfoWrapper>
@@ -38,17 +86,28 @@ export const ProfileInfo = memo((props) => {
                               height='100'
                               width='100'
                               brRadius='50'
-                              photos={photos}
-                              name={fullName}
-                              onChange={onSavePhoto} />
+                              photos={profileInfo.photos}
+                              name={profileInfo.fullName}
+                              onChange={onSavePhoto}/>
                 <UserInfo>
                     <ProfileInfoItem itemData={profileStatus || " - "}
                                      itemName={"My status"}
                                      isPointer
                                      updateProfileStatus={updateProfileStatus}
                                      currentUserId={currentUserId}
-                                     userId={userId} />
-                    {profileItems}
+                                     userId={userId}/>
+                    {
+                        editMode ?
+                            <FormProfileInfo onSubmit={handleSubmit(onFormSubmit)}
+                                             register={register}
+                                             errors={errors}
+                                             profileData={profileData}
+                            /> :
+                            <div>
+                                {profileItems}
+                                <Button fontSize='14px' onClick={onEditMode}>Edit Profile</Button>
+                            </div>
+                    }
                 </UserInfo>
             </UserDataWrapper>
         </ProfileInfoWrapper>

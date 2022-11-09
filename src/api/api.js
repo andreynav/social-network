@@ -67,5 +67,9 @@ export const profileAPI = {
             }
         })
             .then(response => response.data);
+    },
+    updateProfileInfo: (profile) => {
+        return samuraiApi.put(`profile`, profile)
+            .then(response => response.data);
     }
 }
