@@ -36,9 +36,9 @@ export const PhotoSection = (props) => {
                                     toggleFollow={props.toggleFollow}
                                     onClick={() => props.toggleFollow(props.id)}
                                     disabled={props.followInProgress.some(userId => userId === props.id)}
-                                    height={'26px'}
-                                    minWidth={'50%'}
-                                    width={'70px'}
+                                    height='26px'
+                                    minWidth='50%'
+                                    width='70px'
                                     fontSize='10px'>
                                 {props.followed ? "Follow" : "Unfollow"}
                             </Button>
@@ -81,6 +81,7 @@ const FileInput = styled.input`
   display: grid;
 
   &::file-selector-button {
+    display: grid;
     background-color: ${({bgColor = 'transparent'}) => bgColor};
     border: 2px solid #ffc300;
     border-radius: 5px;

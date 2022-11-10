@@ -1,13 +1,10 @@
 import React, {memo, useEffect, useState} from "react"
-import {Label} from "../../../index";
+import {Label} from "../../index";
 import styled from "styled-components";
 
-export const ProfileInfoItem = memo((props) => {
-    const {itemData, itemName, currentUserId, userId, updateProfileStatus} = props;
-
+export const ProfileInfoStatus = memo(({itemData, itemName, currentUserId, userId, updateProfileStatus}) => {
     const [editMode, setEditMode] = useState(false);
     const [status, setStatus] = useState(itemData);
-
     const onEditMode = () => {
         if (currentUserId === userId) {
             setEditMode(prevEditMode => !prevEditMode);

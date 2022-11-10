@@ -11,7 +11,7 @@ export const Button = (props) => {
 
 const StyledButton = styled.button`
   display: grid;
-  grid-area: ${({areaName}) => areaName};;
+  grid-area: ${({areaName}) => areaName};
   align-content: ${({alignContent = 'center'}) => alignContent};
   min-width: ${({minWidth = '100%'}) => minWidth};
   width: ${({width = '25px'}) => width};

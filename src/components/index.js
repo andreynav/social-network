@@ -5,7 +5,7 @@ import Music from "./music/Music"
 import Navbar from "./navbar/Navbar"
 import News from "./news/News"
 import NotFound from "./notFound/NotFound"
-import { Post, MyPosts, ProfileInfo, Profile, ProfileInfoItem, FormProfileInfo } from "./profile/index"
+import { Post, MyPosts, ProfileInfo, Profile, ProfileInfoStatus, FormProfileInfo, ProfileInfoItem } from "./profile/index"
 import Settings from "./settings/Settings"
 import FormPostMessage from "./formPostMessage/FormPostMessage";
 import MyPostsContainer from "./profile/myPosts/MyPostsContainer";
@@ -49,7 +49,7 @@ export {
     Login,
     withAuthRedirect,
     withRouter,
-    ProfileInfoItem,
+    ProfileInfoStatus,
     InputField,
     FormLogin,
     TextAreaField,
@@ -58,5 +58,6 @@ export {
     Label,
     Button,
     PhotoSection,
-    FormProfileInfo
+    FormProfileInfo,
+    ProfileInfoItem,
 }
