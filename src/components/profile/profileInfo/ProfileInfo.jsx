@@ -1,5 +1,5 @@
-import React, {memo, useState} from "react";
-import {Loader, PhotoSection, ProfileInfoItem, FormProfileInfo, Button} from "../../index";
+import React, {memo, useState, useEffect} from "react";
+import {Loader, PhotoSection, ProfileInfoStatus, FormProfileInfo, Button, ProfileInfoItem} from "../../index";
 import styled from "styled-components";
 import {useForm} from "react-hook-form";
 
@@ -11,7 +11,9 @@ export const ProfileInfo = memo((props) => {
         currentUserId,
         userId,
         onSavePhoto,
-        onSaveUpdateProfile
+        onSaveUpdateProfile,
+        profileInfoUpdateError,
+        updateProfileInfo
     } = props;
 
     const [editMode, setEditMode] = useState(false);
@@ -20,45 +22,52 @@ export const ProfileInfo = memo((props) => {
         register,
         handleSubmit,
         formState: {errors},
+        setError,
+        clearErrors
     } = useForm();
+
+    useEffect(() => {
+        profileInfoUpdateError && setError('server', {message: profileInfoUpdateError});
+    }, [profileInfoUpdateError]);
 
     if (!profileInfo) return <Loader/>
 
     const profileData = [
-        {itemName: "Full name", itemData: profileInfo.fullName, inputName: 'fullName'},
-        {itemName: "About me", itemData: profileInfo.aboutMe, inputName: 'aboutMe'},
+        {itemName: "Full name", itemData: profileInfo.fullName, inputName: 'fullName', itemType: 'text'},
+        {itemName: "About me", itemData: profileInfo.aboutMe, inputName: 'aboutMe', itemType: 'text'},
         {
             itemName: "Looking for a job status",
-            itemData: profileInfo.lookingForAJob ? 'Yes' : 'No',
-            inputName: 'lookingForAJob'
+            itemData: profileInfo.lookingForAJob,
+            inputName: 'lookingForAJob',
+            itemType: 'checkbox'
         },
         {
             itemName: "Looking for a job description",
             itemData: profileInfo.lookingForAJobDescription,
-            inputName: 'lookingForAJobDescription'
+            inputName: 'lookingForAJobDescription',
+            itemType: 'text'
         },
-        {itemName: "Website", itemData: profileInfo.contacts?.website, inputName: 'website'},
-        {itemName: "Facebook", itemData: profileInfo.contacts?.facebook, inputName: 'facebook'},
-        {itemName: "Vk", itemData: profileInfo.contacts?.vk, inputName: 'vk'},
-        {itemName: "Instagram", itemData: profileInfo.contacts?.instagram, inputName: 'instagram'},
-        {itemName: "Youtube", itemData: profileInfo.contacts?.youtube, inputName: 'youtube'},
-        {itemName: "Github", itemData: profileInfo.contacts?.github, inputName: 'github'},
-        {itemName: "MainLink", itemData: profileInfo.contacts?.mainLink, inputName: 'mainLink'},
+        {itemName: "Website", itemData: profileInfo.contacts?.website, inputName: 'website', itemType: 'text'},
+        {itemName: "Facebook", itemData: profileInfo.contacts?.facebook, inputName: 'facebook', itemType: 'text'},
+        {itemName: "Vk", itemData: profileInfo.contacts?.vk, inputName: 'vk', itemType: 'text'},
+        {itemName: "Instagram", itemData: profileInfo.contacts?.instagram, inputName: 'instagram', itemType: 'text'},
+        {itemName: "Youtube", itemData: profileInfo.contacts?.youtube, inputName: 'youtube', itemType: 'text'},
+        {itemName: "Github", itemData: profileInfo.contacts?.github, inputName: 'github', itemType: 'text'},
+        {itemName: "MainLink", itemData: profileInfo.contacts?.mainLink, inputName: 'mainLink', itemType: 'text'},
     ]
 
     const profileItems = profileData.map((item, index) => <ProfileInfoItem key={index}
-                                                                           itemData={item.itemData || " - "}
+                                                                           itemData={item.itemData}
                                                                            itemName={item.itemName}
-                                                                           currentUserId={currentUserId}
-                                                                           userId={userId}/>);
+                                                                           itemType={item.itemType}
+    />);
 
     const onEditMode = () => {
         setEditMode(prevEditMode => !prevEditMode);
     }
 
     const onFormSubmit = (data) => {
-        //console.log(data)
-        onSaveUpdateProfile({
+        updateProfileInfo({
             userId: userId,
             fullName: data.fullName,
             aboutMe: data.aboutMe,
@@ -74,8 +83,15 @@ export const ProfileInfo = memo((props) => {
                 github: data.github,
                 mainLink: data.facebook
             }
+        }).then((response) => { // refactor
+            if (!response.error)  {
+                setEditMode(prevEditMode => !prevEditMode);
+            }
         })
-        setEditMode(prevEditMode => !prevEditMode);
+    }
+
+    const onClearErrors = () => {
+        errors.server && clearErrors();
     }
 
     return (
@@ -90,22 +106,27 @@ export const ProfileInfo = memo((props) => {
                               name={profileInfo.fullName}
                               onChange={onSavePhoto}/>
                 <UserInfo>
-                    <ProfileInfoItem itemData={profileStatus || " - "}
-                                     itemName={"My status"}
-                                     isPointer
-                                     updateProfileStatus={updateProfileStatus}
-                                     currentUserId={currentUserId}
-                                     userId={userId}/>
+                    <ProfileInfoStatus itemData={profileStatus || " - "}
+                                       itemName={"My status"}
+                                       isPointer
+                                       updateProfileStatus={updateProfileStatus}
+                                       currentUserId={currentUserId}
+                                       userId={userId}/>
                     {
                         editMode ?
                             <FormProfileInfo onSubmit={handleSubmit(onFormSubmit)}
                                              register={register}
                                              errors={errors}
+                                             onClearErrors={onClearErrors}
                                              profileData={profileData}
                             /> :
                             <div>
                                 {profileItems}
-                                <Button fontSize='14px' onClick={onEditMode}>Edit Profile</Button>
+                                <Button fontSize='12px'
+                                        onClick={onEditMode}
+                                        height='30px'>
+                                    Edit Profile
+                                </Button>
                             </div>
                     }
                 </UserInfo>

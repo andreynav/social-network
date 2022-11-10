@@ -3,7 +3,17 @@ import {MyPostsContainer, ProfileInfo} from "../index"
 import styled from "styled-components";
 
 export const Profile = (props) => {
-    const {profileInfo, profileStatus, updateProfileStatus, currentUserId, userId, onSavePhoto, onSaveUpdateProfile} = props
+    const {
+        profileInfo,
+        profileStatus,
+        updateProfileStatus,
+        currentUserId,
+        userId,
+        onSavePhoto,
+        onSaveUpdateProfile,
+        profileInfoUpdateError,
+        updateProfileInfo
+    } = props
 
     return (
         <ProfileWrapper>
@@ -13,7 +23,9 @@ export const Profile = (props) => {
                          currentUserId={currentUserId}
                          userId={userId}
                          onSavePhoto={onSavePhoto}
-                         onSaveUpdateProfile={onSaveUpdateProfile}/>
+                         onSaveUpdateProfile={onSaveUpdateProfile}
+                         profileInfoUpdateError={profileInfoUpdateError}
+                         updateProfileInfo={updateProfileInfo}/>
             <MyPostsContainer/>
         </ProfileWrapper>
     )

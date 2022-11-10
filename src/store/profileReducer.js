@@ -12,6 +12,8 @@ let initialState = {
     profileStatus: null,
     profileInfoLoadingStatus: null,
     profileInfoLoadingError: null,
+    profileInfoUpdateStatus: null,
+    profileInfoUpdateError: null
 };
 
 let getRandomLike = max => {
@@ -77,6 +79,9 @@ export const updateProfileInfo = createAsyncThunk(
             const data = await profileAPI.updateProfileInfo(profile);
             if (data.resultCode === 0) {
                 dispatch(getProfileInfo(getState().auth.id));
+            } else {
+                throw new Error(data.messages[0])
+                return Promise.reject()
             }
         } catch (error) {
             return rejectWithValue(error.message);
@@ -133,9 +138,18 @@ const profileSlice = createSlice({
         [updateProfilePhoto.pending]: (state) => {  },
         [updateProfilePhoto.fulfilled]: (state, action) => { },
         [updateProfilePhoto.rejected]: (state, action) => { },
-        [updateProfileInfo.pending]: (state) => {  },
-        [updateProfileInfo.fulfilled]: (state, action) => { },
-        [updateProfileInfo.rejected]: (state, action) => { },
+        [updateProfileInfo.pending]: (state) => {
+            state.profileInfoUpdateStatus = 'pending';
+            state.profileInfoUpdateError = null;
+        },
+        [updateProfileInfo.fulfilled]: (state) => {
+            state.profileInfoUpdateStatus = 'resolved';
+            state.profileInfoUpdateError = null;
+        },
+        [updateProfileInfo.rejected]: (state, action) => {
+            state.profileInfoUpdateStatus = 'rejected';
+            state.profileInfoUpdateError = action.payload;
+        },
     }
 });
 
@@ -148,6 +162,10 @@ export const selectProfileInfoLoadingStatus = state => state.profile.profileInfo
 export const selectProfileInfoLoadingError = state => state.profile.profileInfoLoadingError;
 
 export const selectProfileStatus = state => state.profile.profileStatus;
+
+export const selectProfileInfoUpdateStatus = state => state.profile.profileInfoUpdateStatus;
+
+export const selectProfileInfoUpdateError = state => state.profile.profileInfoUpdateError;
 
 export const { addNewPostAC, setProfileInfoAC, setProfileStatusAC, setProfilePhotoAC } = profileSlice.actions;
 

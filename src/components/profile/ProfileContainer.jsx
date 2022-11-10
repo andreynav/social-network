@@ -11,7 +11,9 @@ import {
     selectProfileStatus,
     updateProfileStatus,
     updateProfilePhoto,
-    updateProfileInfo
+    updateProfileInfo,
+    selectProfileInfoUpdateStatus,
+    selectProfileInfoUpdateError
 } from "../../store/profileReducer";
 import {withRouter} from "../hoc/withRouter"; // import from index.js doesn't work. Why?
 import {withAuthRedirect} from "../hoc/withAuthRedirect"; // import from index.js doesn't work. Why?
@@ -30,12 +32,15 @@ const ProfileContainer = (props) => {
         dispatch(updateProfilePhoto(e.target.files[0]))
     }
 
-    const onSaveUpdateProfile = (data) => {
-        console.log(data)
+    const onSaveUpdateProfile = (data) => { // redundant
         dispatch(updateProfileInfo(data))
     }
 
-    return <Profile {...props} onSavePhoto={onSavePhoto} onSaveUpdateProfile={onSaveUpdateProfile}/>
+    return <Profile onSavePhoto={onSavePhoto}
+                    onSaveUpdateProfile={onSaveUpdateProfile}
+                    updateProfileInfo={updateProfileInfo}
+                    {...props}
+    />
 }
 
 let mapStateToProps = (state) => ({
@@ -43,6 +48,8 @@ let mapStateToProps = (state) => ({
     profileInfoLoadingStatus: selectProfileInfoLoadingStatus(state),
     profileInfoLoadingError: selectProfileInfoLoadingError(state),
     profileStatus: selectProfileStatus(state),
+    profileInfoUpdateStatus: selectProfileInfoUpdateStatus(state),
+    profileInfoUpdateError: selectProfileInfoUpdateError(state),
 })
 
 export default compose(

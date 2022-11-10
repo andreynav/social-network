@@ -12,12 +12,21 @@ export default function InputField(props) {
         placeholder,
         errors,
         onClearErrors,
+        isPutError,
         ...inputProps
     } = props;
 
+    const isProfileFormError = isPutError && (name !== 'email' || name !== 'password')
+    const isLoginFormError = errors && (name === 'email' || name === 'password')
+    const labelError = (
+            <Label color={'error'}>
+                {errors[name] && errors[name]?.message || errors.server?.message}
+            </Label>
+        )
+
     return (
         <InputWrapper>
-            <Label htmlFor={name}>
+            <Label htmlFor={name} fontSize='10px'>
                 {label}
             </Label>
             <Input name={name}
@@ -27,12 +36,8 @@ export default function InputField(props) {
                    onClick={onClearErrors}
                    {...inputProps}
             />
-            {
-                errors &&
-                <Label color={'error'} >
-                    {errors[name] && errors[name]?.message || errors.server?.message}
-                </Label>
-            }
+            { isProfileFormError && labelError }
+            { isLoginFormError && labelError }
         </InputWrapper>
     )
 }
@@ -45,7 +50,7 @@ const InputWrapper = styled.div`
 const Input = styled.input`
   display: grid;
   min-width: 100%;
-  height: 35px;
+  height: ${({height = '35'}) => height}px;
   border: 1px solid darkgrey;
   border-radius: 4px;
   padding: 0 5px;
