@@ -6,15 +6,19 @@ import store from './store/store'
 import {Provider} from 'react-redux'
 import {GlobalStyles} from "../src/components/index";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-
-root.render(
-    // <React.StrictMode>
+const RootComponent = () => {
+    return (
+        // <React.StrictMode>
         <Provider store={store}>
-            <GlobalStyles />
+            <GlobalStyles/>
             <BrowserRouter>
                 <App/>
             </BrowserRouter>
         </Provider>
-    // </React.StrictMode>
-);
+        // </React.StrictMode>
+    )
+}
+
+const container = document.getElementById('root')
+const root = ReactDOM.createRoot(container)
+root.render(<RootComponent/>)
