@@ -1,6 +1,16 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {authAPI} from "../api/api";
+import {authAPI, securityAPI} from "../api/api";
 import {setProfileInfoAC} from "./profileReducer";
+
+const initialState = {
+    id: null,
+    login: null,
+    email: null,
+    isAuth: false,
+    captcha: null,
+    status: null,
+    error: null
+}
 
 export const getAuthUserData = createAsyncThunk(
     'auth/getAuthUserData',
@@ -14,16 +24,19 @@ export const getAuthUserData = createAsyncThunk(
             return rejectWithValue(error.message);
         }
     }
-);
+)
 
 export const loginUser = createAsyncThunk(
     'auth/login',
-    async ({email, password, rememberMe}, {dispatch, rejectWithValue}) => {
+    async ({email, password, rememberMe, captcha}, {dispatch, rejectWithValue}) => {
         try {
-            const data = await authAPI.login({email, password, rememberMe});
+            const data = await authAPI.login({email, password, rememberMe, captcha});
             if (data.resultCode === 0) {
-                dispatch(getAuthUserData());
+                dispatch(getAuthUserData())
             } else {
+                if (data.resultCode === 10) {
+                    dispatch(getCaptchaURL())
+                }
                 dispatch(setLoginDataAC({id: null, isAuth: false}))
                 throw new Error(data.messages[0])
             }
@@ -31,7 +44,7 @@ export const loginUser = createAsyncThunk(
             return rejectWithValue(error.message)
         }
     }
-);
+)
 
 export const logoutUser = createAsyncThunk(
     'auth/logout',
@@ -39,38 +52,45 @@ export const logoutUser = createAsyncThunk(
         try {
             const data = await authAPI.logout();
             if (data.resultCode === 0) {
-                dispatch(setAuthDataAC({data: {login: null, email: null, id: null}}));
+                dispatch(setAuthDataAC({data: {login: null, email: null, id: null, captcha: null}}));
                 dispatch(setProfileInfoAC({profileInfo: null}))
             }
         } catch (error) {
             return rejectWithValue(error.message);
         }
     }
-);
+)
 
-const initialState = {
-    id: null,
-    login: null,
-    email: null,
-    isAuth: false,
-    status: null,
-    error: null
-}
+export const getCaptchaURL = createAsyncThunk(
+    'auth/getCaptchaURL',
+    async (_, {dispatch, rejectWithValue}) => {
+        try {
+            const data = await securityAPI.getCaptchaURL()
+            dispatch(setCaptchaAC({url: data.url}))
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    }
+)
 
 const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
         setAuthDataAC(state, action) {
-            let {login, email, id} = action.payload.data;
+            let {login, email, id, captcha} = action.payload.data;
             state.login = login;
             state.email = email;
             state.id = id;
             state.isAuth = true;
+            state.captcha = captcha;
         },
         setLoginDataAC(state, action) {
             state.id = action.payload.id;
             state.isAuth = action.payload.isAuth;
+        },
+        setCaptchaAC(state, action) {
+            state.captcha = action.payload.url;
         }
     },
     extraReducers: {
@@ -112,6 +132,9 @@ const authSlice = createSlice({
             state.error = action.error.message;
             console.error(state.error);
         },
+        [getCaptchaURL.pending]: (state) => { },
+        [getCaptchaURL.fulfilled]: (state) => { },
+        [getCaptchaURL.rejected]: (state, action) => { },
     }
 });
 
@@ -121,6 +144,8 @@ export const selectIsAuth = state => state.auth.isAuth;
 
 export const selectError = state => state.auth.error;
 
-export const {setAuthDataAC, setLoginDataAC} = authSlice.actions;
+export const selectCaptcha = state => state.auth.captcha;
+
+export const {setAuthDataAC, setLoginDataAC, setCaptchaAC} = authSlice.actions;
 
 export default authSlice.reducer;

@@ -73,3 +73,10 @@ export const profileAPI = {
             .then(response => response.data);
     }
 }
+
+export const securityAPI = {
+    getCaptchaURL: () => {
+        return samuraiApi.get(`security/get-captcha-url`)
+            .then(response => response.data);
+    },
+}
