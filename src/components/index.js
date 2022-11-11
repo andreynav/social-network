@@ -17,7 +17,7 @@ import Login from "./login/Login";
 import {withAuthRedirect} from "./hoc/withAuthRedirect";
 import {withRouter} from "./hoc/withRouter"
 import InputField from "./inputField/InputField";
-import FormLogin from "./login/formLogin/FormLogin";
+import FormLogin from "./login/FormLogin";
 import TextAreaField from "./textAreaField/TextAreaField";
 import App from "./app/App";
 import {Paginator} from "./paginator/Paginator";

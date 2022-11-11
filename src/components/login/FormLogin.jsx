@@ -1,13 +1,12 @@
 import React from "react";
-import style from "./FormLogin.module.css";
-import {Button, InputField, Label} from "../../index";
+import {Button, InputField, Label} from "../index";
+import styled from "styled-components";
 
 export default function FormLogin(props) {
-    const {form, loginCheckbox, checkbox} = style;
     const {onSubmit, registerInput, errors, registerCheckbox, onClearErrors} = props;
 
     return (
-        <form className={form} onSubmit={onSubmit}>
+        <LoginForm onSubmit={onSubmit}>
             <InputField name={"email"}
                         label={"Email"}
                         type={"text"}
@@ -32,11 +31,10 @@ export default function FormLogin(props) {
                         errors={errors}
                         onClearErrors={onClearErrors}
             />
-            <div className={loginCheckbox}>
-                <input className={checkbox}
-                       name={"rememberMe"}
-                       type={"checkbox"}
-                       {...registerCheckbox}
+            <LoginCheckboxWrapper>
+                <LoginCheckbox name={"rememberMe"}
+                               type={"checkbox"}
+                               {...registerCheckbox}
                 />
                 <Label htmlFor={"rememberMe"}
                        color={'black'}
@@ -45,10 +43,35 @@ export default function FormLogin(props) {
                 >
                     Remember me
                 </Label>
-            </div>
+            </LoginCheckboxWrapper>
             <Button fontSize='16px'>
                 Log In
             </Button>
-        </form>
+        </LoginForm>
     )
 }
+
+const LoginForm = styled.form`
+  display: grid;
+  grid-template-rows: repeat(4, auto);
+  grid-row-gap: 5px;
+  align-content: start;
+`
+
+const LoginCheckboxWrapper = styled.div`
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 20px 120px;
+  height: 35px;
+  font-size: 16px;
+  text-transform: uppercase;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+`
+
+const LoginCheckbox = styled.input`
+  align-content: center;
+  height: 35px;
+  width: 20px;
+`

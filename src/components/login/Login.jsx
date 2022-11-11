@@ -1,16 +1,14 @@
 import React, {useEffect} from "react";
-import style from "./Login.module.css"
 import {useForm} from "react-hook-form";
 import {FormLogin} from "../index";
 import {loginUser, selectError, selectIsAuth} from "../../store/authReducer";
 import {connect, useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
+import styled from "styled-components";
 
 function Login(props) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
-    const {wrapper, title, formWrapper} = style;
 
     const {
         register,
@@ -40,16 +38,16 @@ function Login(props) {
     }, [props.isAuth, props.error]);
 
     return (
-        <div className={wrapper}>
-            <div className={title}>Login</div>
-            <div className={formWrapper}>
+        <LoginWrapper>
+            <LoginTitle>Login</LoginTitle>
+            <LoginFormWrapper>
                 <FormLogin onSubmit={handleSubmit(onFormSubmit)}
                            registerInput={register}
                            errors={errors}
                            onClearErrors={onClearErrors}
                            registerCheckbox={register("rememberMe")}/>
-            </div>
-        </div>
+            </LoginFormWrapper>
+        </LoginWrapper>
     )
 }
 
@@ -59,3 +57,22 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {loginUser})(Login);
+
+const LoginWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 0.25fr 1fr 0.25fr;
+  grid-template-rows: 35px auto;
+`
+
+const LoginTitle = styled.div`
+  display: grid;
+  font-weight: bold;
+  grid-row: 1/2;
+  grid-column: 1/2;
+`
+
+const LoginFormWrapper = styled.div`
+  display: grid;
+  grid-row: 2/3;
+  grid-column: 2/3;
+`
