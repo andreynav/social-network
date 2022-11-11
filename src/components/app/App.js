@@ -1,6 +1,5 @@
 import React, {useEffect, lazy, Suspense} from "react";
 import {Routes, Route} from "react-router-dom";
-import '../../styles/App.css';
 import {
     Navbar,
     Footer,
@@ -16,6 +15,7 @@ import {
 import {connect, useDispatch} from "react-redux";
 import {initializeApp, selectIsInitialized} from "../../store/appReducer";
 import {compose} from "@reduxjs/toolkit";
+import styled from "styled-components";
 
 const DialogsContainer = lazy(() => import ('../dialogs/DialogsContainer'));
 const ProfileContainer = lazy(() => import('../profile/ProfileContainer'));
@@ -33,10 +33,10 @@ function App(props) {
     }
 
     return (
-        <div className='appWrapper'>
+        <AppWrapper>
             <HeaderContainer/>
             <Navbar/>
-            <div className='contentWrapper'>
+            <ContentWrapper>
                 <Suspense fallback={<Loader/>}>
                     <Routes>
                         <Route path='/' element={<ProfileContainer/>}/>
@@ -53,9 +53,9 @@ function App(props) {
                         <Route path='/login' element={<Login/>}/>
                     </Routes>
                 </Suspense>
-            </div>
+            </ContentWrapper>
             <Footer/>
-        </div>
+        </AppWrapper>
     );
 }
 
@@ -67,3 +67,25 @@ export default compose(
     connect(mapStateToProps, {initializeApp}),
     withRouter
 )(App);
+
+const AppWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 220px 3fr;
+  grid-template-rows: 60px calc(100vh - 120px) 60px;
+  grid-template-areas:
+            "header header header header"
+            "nav main main main"
+            "footer footer footer footer";
+  font-family: sans-serif;
+  font-size: 16px;
+  background-color: #404040;
+`
+
+const ContentWrapper = styled.div`
+  display: grid;
+  margin: 20px 20px 20px 10px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #cdd9e5;
+  color: #000000e6;
+`
