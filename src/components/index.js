@@ -24,6 +24,7 @@ import {Paginator} from "./paginator/Paginator";
 import {Label} from "./common/Label/Label";
 import {Button} from "./common/button/Button";
 import {PhotoSection} from "./photoSection/PhotoSection";
+import {GlobalStyles} from "../styles/GlobalStyles";
 
 export {
     Dialogs,
@@ -60,4 +61,5 @@ export {
     PhotoSection,
     FormProfileInfo,
     ProfileInfoItem,
+    GlobalStyles
 }
