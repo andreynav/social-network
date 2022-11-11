@@ -1,12 +1,12 @@
 import React, {useEffect} from "react";
 import {useForm} from "react-hook-form";
 import {FormLogin} from "../index";
-import {loginUser, selectError, selectIsAuth} from "../../store/authReducer";
+import {loginUser, selectCaptcha, selectError, selectIsAuth} from "../../store/authReducer";
 import {connect, useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import styled from "styled-components";
 
-function Login(props) {
+function Login({ isAuth, error, captcha }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -23,7 +23,8 @@ function Login(props) {
         dispatch(loginUser({
             email: data.email,
             password: data.password,
-            rememberMe: data.rememberMe
+            rememberMe: data.rememberMe,
+            captcha: data.captcha
         }));
         !!errors.server && reset();
     }
@@ -33,9 +34,9 @@ function Login(props) {
     }
 
     useEffect(() => {
-        props.isAuth && navigate('/profile');
-        props.error && setError('server', {message: props.error});
-    }, [props.isAuth, props.error]);
+        isAuth && navigate('/profile');
+        error && setError('server', {message: error});
+    }, [isAuth, error]);
 
     return (
         <LoginWrapper>
@@ -45,7 +46,8 @@ function Login(props) {
                            registerInput={register}
                            errors={errors}
                            onClearErrors={onClearErrors}
-                           registerCheckbox={register("rememberMe")}/>
+                           registerCheckbox={register("rememberMe")}
+                           captcha={captcha} />
             </LoginFormWrapper>
         </LoginWrapper>
     )
@@ -53,6 +55,7 @@ function Login(props) {
 
 const mapStateToProps = (state) => ({
     isAuth: selectIsAuth(state),
+    captcha: selectCaptcha(state),
     error: selectError(state),
 });
 

@@ -3,7 +3,7 @@ import {Button, InputField, Label} from "../index";
 import styled from "styled-components";
 
 export default function FormLogin(props) {
-    const {onSubmit, registerInput, errors, registerCheckbox, onClearErrors} = props;
+    const {onSubmit, registerInput, errors, registerCheckbox, onClearErrors, captcha} = props;
 
     return (
         <LoginForm onSubmit={onSubmit}>
@@ -44,6 +44,25 @@ export default function FormLogin(props) {
                     Remember me
                 </Label>
             </LoginCheckboxWrapper>
+            {
+                captcha && <InputField name={"captcha"}
+                                    label={"Captcha"}
+                                    type={"text"}
+                                    register={registerInput}
+                                    validationSchema={{
+                                        required: "Captcha is required field"
+                                    }}
+                                    placeholder={"captcha"}
+                                    errors={errors}
+                                    onClearErrors={onClearErrors}
+                            />
+            }
+            {
+                captcha &&
+                <div>
+                    <img src={captcha} alt={captcha}/>
+                </div>
+            }
             <Button fontSize='16px'>
                 Log In
             </Button>
