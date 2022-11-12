@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, InputField, Label} from "../index";
+import {Button, Captcha, InputField, Label} from "../index";
 import styled from "styled-components";
 
 export default function FormLogin(props) {
@@ -17,8 +17,7 @@ export default function FormLogin(props) {
                         }}
                         placeholder={"example@gmail.com"}
                         errors={errors}
-                        onClearErrors={onClearErrors}
-            />
+                        onClearErrors={onClearErrors} />
             <InputField name={"password"}
                         label={"Password"}
                         type={"password"}
@@ -29,50 +28,34 @@ export default function FormLogin(props) {
                         }}
                         placeholder={"password"}
                         errors={errors}
-                        onClearErrors={onClearErrors}
-            />
+                        onClearErrors={onClearErrors} />
             <LoginCheckboxWrapper>
                 <LoginCheckbox name={"rememberMe"}
                                type={"checkbox"}
-                               {...registerCheckbox}
-                />
+                               {...registerCheckbox} />
                 <Label htmlFor={"rememberMe"}
                        color={'black'}
                        fontSize={'14px'}
-                       transform={'none'}
-                >
+                       transform={'none'} >
                     Remember me
                 </Label>
             </LoginCheckboxWrapper>
             {
-                captcha && <InputField name={"captcha"}
-                                    label={"Captcha"}
-                                    type={"text"}
+                captcha && <Captcha name="captcha"
+                                    label="Captcha"
                                     register={registerInput}
-                                    validationSchema={{
-                                        required: "Captcha is required field"
-                                    }}
-                                    placeholder={"captcha"}
                                     errors={errors}
                                     onClearErrors={onClearErrors}
-                            />
+                                    captcha={captcha}
+                                    height={85} />
             }
-            {
-                captcha &&
-                <div>
-                    <img src={captcha} alt={captcha}/>
-                </div>
-            }
-            <Button fontSize='16px'>
-                Log In
-            </Button>
+            <Button fontSize='16px'>Log In</Button>
         </LoginForm>
     )
 }
 
 const LoginForm = styled.form`
   display: grid;
-  grid-template-rows: repeat(4, auto);
   grid-row-gap: 5px;
   align-content: start;
 `

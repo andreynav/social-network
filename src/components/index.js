@@ -25,6 +25,7 @@ import {Label} from "./common/Label/Label";
 import {Button} from "./common/button/Button";
 import {PhotoSection} from "./photoSection/PhotoSection";
 import {GlobalStyles} from "../styles/GlobalStyles";
+import {Captcha} from "./captcha/Captcha";
 
 export {
     Dialogs,
@@ -61,5 +62,6 @@ export {
     PhotoSection,
     FormProfileInfo,
     ProfileInfoItem,
-    GlobalStyles
+    GlobalStyles,
+    Captcha,
 }
