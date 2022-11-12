@@ -24,16 +24,13 @@ export const FormProfileInfo = ({onSubmit, register, registerCheckbox, errors, p
                 {
                     item.itemType === 'checkbox' &&
                     <LoginCheckboxWrapper>
+                        <Label htmlFor={item.inputName} fontSize='10px'>
+                            {item.itemName}
+                        </Label>
                         <LoginCheckbox name={item.inputName}
                                        type={item.itemType}
                                        {...registerCheckbox}
                         />
-                        <Label htmlFor={item.inputName}
-                               color={'black'}
-                               fontSize={'14px'}
-                               transform={'none'} >
-                            {item.itemName}
-                        </Label>
                     </LoginCheckboxWrapper>
                 }
             </ItemWrapper>
@@ -58,18 +55,12 @@ const ItemWrapper = styled.div`
 
 const LoginCheckboxWrapper = styled.div`
   display: grid;
-  grid-template-rows: 1fr;
-  grid-template-columns: 20px 120px;
-  height: 35px;
-  font-size: 16px;
-  text-transform: uppercase;
-  align-items: center;
-  justify-items: center;
-  justify-content: center;
+  grid-template-rows: 16px auto 16px;
 `
 
 const LoginCheckbox = styled.input`
   align-content: center;
   height: 35px;
   width: 20px;
+  justify-self: center;
 `
