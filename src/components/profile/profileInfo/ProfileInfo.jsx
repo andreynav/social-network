@@ -116,6 +116,7 @@ export const ProfileInfo = memo((props) => {
                         editMode ?
                             <FormProfileInfo onSubmit={handleSubmit(onFormSubmit)}
                                              register={register}
+                                             registerCheckbox={register("lookingForAJob")}
                                              errors={errors}
                                              onClearErrors={onClearErrors}
                                              profileData={profileData}
