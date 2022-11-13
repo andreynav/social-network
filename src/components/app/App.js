@@ -13,7 +13,7 @@ import {
     Loader
 } from "../index"
 import {connect, useDispatch} from "react-redux";
-import {initializeApp, selectIsInitialized} from "../../store/appReducer";
+import {initializeApp, selectIsInitialized, selectTheme} from "../../store/appReducer";
 import {compose} from "@reduxjs/toolkit";
 import styled from "styled-components";
 
@@ -61,6 +61,7 @@ function App(props) {
 
 const mapStateToProps = (state) => ({
     isInitialized: selectIsInitialized(state),
+    theme: selectTheme(state)
 });
 
 export default compose(
@@ -78,14 +79,17 @@ const AppWrapper = styled.div`
             "footer footer footer footer";
   font-family: sans-serif;
   font-size: 16px;
-  background-color: #404040;
+  background-color: ${props => props.theme.bgColorPrimary};
 `
 
 const ContentWrapper = styled.div`
   display: grid;
   margin: 20px 20px 20px 10px;
   padding: 20px;
+  border-style: solid;
+  border-width: 1px;
   border-radius: 8px;
-  background-color: #cdd9e5;
-  color: #000000e6;
+  border-color: ${props => props.theme.bgColorSecondaryBorder};
+  background-color: ${props => props.theme.bgColorSecondary};
+  color: ${props => props.theme.textColorPrimary};
 `
