@@ -1,10 +1,9 @@
 import React from "react";
-import style from "./Dialogs.module.css";
 import {DialogMessage, DialogUser, FormPostMessage} from "../index"
 import {useForm} from "react-hook-form";
+import styled from "styled-components";
 
 export default function Dialogs(props) {
-    const {dialogWrapper, dialogMessagesWrapper, dialogUsersContainer, dialogMessages, dialogTextArea} = style;
     const {dialogUsers, messages, addMessageAC} = props;
 
     let dialogsUsers = dialogUsers.map(user => <DialogUser key={user.id} userName={user.name} userId={user.id}/>);
@@ -23,16 +22,16 @@ export default function Dialogs(props) {
     }
 
     return (
-        <div className={dialogWrapper}>
-            <div className={dialogMessagesWrapper}>
-                <div className={dialogUsersContainer}>
+        <DialogWrapper>
+            <DialogMessagesWrapper>
+                <DialogUsersContainer>
                     {dialogsUsers}
-                </div>
-                <div className={dialogMessages}>
+                </DialogUsersContainer>
+                <DialogMessages>
                     {userMessages}
-                </div>
-            </div>
-            <div className={dialogTextArea}>
+                </DialogMessages>
+            </DialogMessagesWrapper>
+            <DialogTextArea>
                 <FormPostMessage onSubmit={handleSubmit(onFormSubmit)}
                             register={register}
                             validationSchema={{
@@ -40,7 +39,43 @@ export default function Dialogs(props) {
                                 maxLength: {value: 100, message: "max length is 100 characters"}
                             }}
                             errors={errors} />
-            </div>
-        </div>
+            </DialogTextArea>
+        </DialogWrapper>
     );
 }
+
+const DialogWrapper = styled.div`
+  display: grid;
+  grid-template-rows: 1fr 170px;
+  grid-template-columns: 200px 1fr;
+  overflow: auto;
+`
+
+const DialogMessagesWrapper = styled.div`
+  display: grid;
+  grid-column: 1/3;
+  grid-template-columns: 200px 1fr;
+  overflow: auto;
+`
+
+const DialogUsersContainer = styled.div`
+  display: grid;
+  align-self: start;
+  background-color: transparent;
+  border: 1px solid ${props => props.theme.borderPrimary};
+  border-radius: 8px;
+  padding: 10px;
+`
+
+const DialogMessages = styled.div`
+  display: grid;
+  margin-left: 20px;
+  align-self: start;
+  overflow: visible ;
+`
+
+const DialogTextArea = styled.div`
+  display: grid;
+  grid-column: 2/3;
+  padding-top: 5px;
+`

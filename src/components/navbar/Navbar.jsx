@@ -1,29 +1,27 @@
 import React from "react";
 import {NavLink} from 'react-router-dom'
-import style from './Navbar.module.css'
-import {setActive} from "../../utils/utills";
 import styled from "styled-components";
 
 export default function Navbar() {
     return (
         <NavbarWrapper>
             <NavbarItem>
-                <NavLink to='/profile' className={setActive(style.activeLink)}>Profile</NavLink>
+                <NavLink to='/profile' active>Profile</NavLink>
             </NavbarItem>
             <NavbarItem>
-                <NavLink to='/massages' className={setActive(style.activeLink)}>Dialogs</NavLink>
+                <NavLink to='/massages' active>Dialogs</NavLink>
             </NavbarItem>
             <NavbarItem>
-                <NavLink to='/users' className={setActive(style.activeLink)}>Users</NavLink>
+                <NavLink to='/users' active>Users</NavLink>
             </NavbarItem>
             <NavbarItem>
-                <NavLink to='/news' className={setActive(style.activeLink)}>News</NavLink>
+                <NavLink to='/news' active>News</NavLink>
             </NavbarItem>
             <NavbarItem>
-                <NavLink to='/music' className={setActive(style.activeLink)}>Music</NavLink>
+                <NavLink to='/music' active>Music</NavLink>
             </NavbarItem>
             <NavbarItem>
-                <NavLink to='/settings' className={setActive(style.activeLink)}>Settings</NavLink>
+                <NavLink to='/settings' active>Settings</NavLink>
             </NavbarItem>
         </NavbarWrapper>
     );
@@ -45,12 +43,11 @@ const NavbarItem = styled.div`
   
   & a {
     font-size: 20px;
-    //color: #000000e6;
-    //  color: ${props => props.theme.textColorSecondary};
+    color: ${props => props.theme.colorPrimary};
     text-decoration: none;
   }
 
-  // & a.activeLink {
-  //   color: ${props => props.theme.textColorSecondary};
-  // }
+  & a.active {
+    color: ${props => props.theme.colorSecondary};
+  }
 `

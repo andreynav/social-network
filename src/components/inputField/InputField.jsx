@@ -49,9 +49,11 @@ const InputWrapper = styled.div`
 `
 const Input = styled.input`
   display: grid;
+  background-color: transparent;
+  color: ${props => props.theme.colorPrimary};
   min-width: 100%;
   height: ${({height = '35'}) => height}px;
-  border: 1px solid darkgrey;
+  border: 1px solid ${props => props.theme.borderPrimary};
   border-radius: 4px;
   padding: 0 5px;
   font-size: 16px;

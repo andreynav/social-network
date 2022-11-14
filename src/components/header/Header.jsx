@@ -42,11 +42,9 @@ const HeaderWrapper = styled.header`
   align-items: center;
   grid-area: header;
   background-color: ${props => props.theme.bgColorPrimary};
-  color: ${props => props.theme.textColorPrimary};
+  color: ${props => props.theme.colorPrimary};
   padding: 0 20px;
-  border-bottom: 1px solid ${props => props.theme.bgColorSecondaryBorder};
-  // border-style: solid;
-  // border-color: ${props => props.theme.bgColorSecondaryBorder};
+  border-bottom: 1px solid ${props => props.theme.borderPrimary};
 `
 
 const LogoWrapper = styled.div`
@@ -68,7 +66,7 @@ const HeaderTitle = styled.div`
   display: grid;
   grid-column: 2/3;
   grid-row: 1/2;
-  color: ${props => props.theme.textColorPrimary};
+  color: ${props => props.theme.colorPrimary};
   
   & > p {
     justify-self: start;
@@ -92,6 +90,6 @@ const HeaderLoginWrapper = styled.div`
   & p {
     display: grid;
     align-content: center;
-    color: ${props => props.theme.textColorSecondary};
+    color: ${props => props.theme.colorSecondary};
   }
 `
