@@ -67,7 +67,7 @@ export const ProfileInfo = memo((props) => {
     }
 
     const onFormSubmit = (data) => {
-        updateProfileInfo({
+        updateProfileInfo({ // dispatch?
             userId: userId,
             fullName: data.fullName,
             aboutMe: data.aboutMe,

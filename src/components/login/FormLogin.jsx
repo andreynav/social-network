@@ -17,7 +17,7 @@ export default function FormLogin(props) {
                         }}
                         placeholder={"example@gmail.com"}
                         errors={errors}
-                        onClearErrors={onClearErrors} />
+                        onClearErrors={onClearErrors}/>
             <InputField name={"password"}
                         label={"Password"}
                         type={"password"}
@@ -28,15 +28,15 @@ export default function FormLogin(props) {
                         }}
                         placeholder={"password"}
                         errors={errors}
-                        onClearErrors={onClearErrors} />
+                        onClearErrors={onClearErrors}/>
             <LoginCheckboxWrapper>
                 <LoginCheckbox name={"rememberMe"}
                                type={"checkbox"}
-                               {...registerCheckbox} />
+                               {...registerCheckbox} className='geekmark'/>
                 <Label htmlFor={"rememberMe"}
                        color={'black'}
                        fontSize={'14px'}
-                       transform={'none'} >
+                       transform={'none'}>
                     Remember me
                 </Label>
             </LoginCheckboxWrapper>
@@ -47,7 +47,7 @@ export default function FormLogin(props) {
                                     errors={errors}
                                     onClearErrors={onClearErrors}
                                     captcha={captcha}
-                                    height={85} />
+                                    height={85}/>
             }
             <Button fontSize='16px'>Log In</Button>
         </LoginForm>
@@ -76,4 +76,10 @@ const LoginCheckbox = styled.input`
   align-content: center;
   height: 35px;
   width: 20px;
+  border: 1px solid ${props => props.theme.borderPrimary};
+  color: ${props => props.theme.colorPrimary};
+  
+  &[type='checkbox'] {
+    accent-color: ${props => props.theme.colorSecondary};
+  }
 `

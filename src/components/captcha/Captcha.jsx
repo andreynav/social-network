@@ -35,6 +35,6 @@ const ImageWrapper = styled.div`
   
   & img {
     height: ${({height = 'auto'}) => height}px;
-    border: 1px solid darkgrey;
+    border: 1px solid ${props => props.theme.borderPrimary};
   }
 `

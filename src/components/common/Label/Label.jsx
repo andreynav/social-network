@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import {colorError} from "../../../styles/themes";
 
 export const Label = (props) => {
     return (
@@ -12,5 +13,5 @@ export const Label = (props) => {
 const StyledLabel = styled.div`
   font-size: ${({fontSize = '12px'}) => fontSize};
   text-transform: ${({transform = 'uppercase'}) => transform};
-  color: ${({color = '#7e7e7e'}) => color === 'error' ? '#E3242B' : color};
+  color: ${props => props.color === 'error' ? colorError : props.theme.bgColorSecondary};
 `

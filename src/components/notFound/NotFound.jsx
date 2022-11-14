@@ -1,13 +1,26 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import style from "./NotFound.module.css";
-import { setActive } from "../../utils/utills";
+import {NavLink} from "react-router-dom";
+import styled from "styled-components";
 
 export default function NotFound() {
     return (
-        <div>
+        <NotFoundWrapper>
             <p>404 page not found</p>
-            <p>Go <NavLink to='/profile' className={setActive(style.activeLink)} >Profile</NavLink></p>
-        </div>
+            <p>Go <NavLink to='/profile' active>Profile</NavLink></p>
+        </NotFoundWrapper>
     );
 }
+
+const NotFoundWrapper = styled.div`
+  background-color: ${props => props.theme.bgColorSecondary};
+  color: ${props => props.theme.colorPrimary};
+
+  & a {
+    color: ${props => props.theme.colorPrimary};
+    text-decoration: none;
+  }
+
+  & a.active {
+    color: ${props => props.theme.colorSecondary};
+  }
+`

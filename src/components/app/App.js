@@ -89,7 +89,7 @@ const ContentWrapper = styled.div`
   border-style: solid;
   border-width: 1px;
   border-radius: 8px;
-  border-color: ${props => props.theme.bgColorSecondaryBorder};
+  border-color: ${props => props.theme.borderPrimary};
   background-color: ${props => props.theme.bgColorSecondary};
-  color: ${props => props.theme.textColorPrimary};
+  color: ${props => props.theme.colorPrimary};
 `
