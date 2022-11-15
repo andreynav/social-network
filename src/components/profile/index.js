@@ -1,4 +1,4 @@
-import Post from "./myPosts/post/Post"
+import Post from "./myPosts/Post"
 import MyPosts from "./myPosts/MyPosts"
 import {ProfileInfo} from "./profileInfo/ProfileInfo"
 import {Profile} from "./Profile"

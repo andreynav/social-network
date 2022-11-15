@@ -1,14 +1,14 @@
-export const colorError = '#E3242B'
-export const colorLoader = '#25b09b'
-
 export const light = {
-    bgColorPrimary: '#fff',
-    bgColorSecondary: 'gray',
-    bgColorMessage: '',
-    borderPrimary: '',
-    borderSecondary: '',
-    colorPrimary: 'black',
-    colorSecondary: 'green',
+    bgColorPrimary: '#DCDCDC',
+    bgColorSecondary: '#fff',
+    bgColorMessage: '#4184e466',
+    borderPrimary: 'darkgray',
+    borderSecondary: '#25b09b',
+    colorPrimary: '#000000e6',
+    colorSecondary: '#25b09b',
+    colorLoader: '#25b09b',
+    colorLike: '#0009',
+    colorError: '#E3242B',
 }
 
 export const dark = {
@@ -18,12 +18,8 @@ export const dark = {
     borderPrimary: '#444c56',
     borderSecondary: '#ffc300',
     colorPrimary: '#adbac7',
-    colorSecondary: '#ffc300'
+    colorSecondary: '#ffc300',
+    colorLoader: '#ffc300',
+    colorLike: '#0009',
+    colorError: '#E3242B',
 }
-
-// app wrapper
-// background-color: #404040; //#404040
-// contentwrapper
-// background-color: #cdd9e5;
-// color
-//color: #000000e6;

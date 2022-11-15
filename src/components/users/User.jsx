@@ -1,5 +1,5 @@
 import React, {memo} from "react";
-import {Label, PhotoSection} from "../../index";
+import {Label, PhotoSection} from "../index";
 import styled from "styled-components";
 
 export const User = memo((props) => {
@@ -12,12 +12,14 @@ export const User = memo((props) => {
         {itemName: "City", value: city},
     ]
 
-    const userItems = userDataArray.map((item, index) => <div key={index}>
-        <Label fontSize='10px'>{item.itemName}</Label>
-        <div>
-            {item.value || " - "}
+    const userItems = userDataArray.map((item, index) =>
+        <div key={index}>
+            <Label fontSize='10px'>{item.itemName}</Label>
+            <div>
+                {item.value || " - "}
+            </div>
         </div>
-    </div>)
+    )
 
     return (
         <UserWrapper>
@@ -26,7 +28,7 @@ export const User = memo((props) => {
                           id={id}
                           followed={followed}
                           toggleFollow={toggleFollow}
-                          followInProgress={followInProgress} />
+                          followInProgress={followInProgress}/>
             <UserData>
                 {userItems}
             </UserData>
@@ -44,7 +46,8 @@ const UserData = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  background-color: white;
+  background-color: transparent;
+  border: 1px solid ${props => props.theme.borderPrimary};
   border-radius: 8px;
   padding: 8px;
   font-weight: normal;

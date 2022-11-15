@@ -48,6 +48,8 @@ const ItemInput = styled.div`
   cursor: pointer;
   & > input {
     min-width: 100%;
+    background-color: transparent;
+    color: ${props => props.theme.colorPrimary};
   }
 `
 

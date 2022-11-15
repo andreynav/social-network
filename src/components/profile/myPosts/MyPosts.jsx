@@ -6,7 +6,7 @@ import styled from "styled-components";
 export default function MyPosts(props) {
     const {myPosts, addNewPostAC} = props;
 
-    let posts = myPosts.map(post => <Post key={post.id} message={post.message} like={post.like}/>);
+    let posts = myPosts.map(post => <Post key={post.id} message={post.message} likeCount={post.like}/>);
 
     const {
         register,

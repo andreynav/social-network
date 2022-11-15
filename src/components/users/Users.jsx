@@ -1,23 +1,20 @@
 import React from "react";
-import style from "./Users.module.css"
 import {Loader, Paginator, User} from "../index";
+import styled from 'styled-components'
 
 export const Users = (props) => {
     const {totalCount, usersOnPage, users, selectPage, isFetching, onChangeToggle, followInProgress} = props
-    const {usersWrapper, loaderContainer} = style
 
     return (
-        <div className={usersWrapper}>
+        <UsersWrapper>
             <h3>Users</h3>
             <Paginator selectPage={selectPage}
                        totalCount={totalCount}
                        usersOnPage={usersOnPage}/>
             {
-                isFetching ?
-                    <div className={loaderContainer}>
-                        <Loader/>
-                    </div> :
-                    <div>
+                isFetching
+                    ? <Loader/>
+                    : <div>
                         {
                             users.map(user => <User key={user.id}
                                                     id={user.id}
@@ -32,6 +29,12 @@ export const Users = (props) => {
                         }
                     </div>
             }
-        </div>
+        </UsersWrapper>
     );
 }
+
+const UsersWrapper = styled.div`
+  overflow: auto;
+  display: grid;
+  grid-template-rows: 30px 30px auto;
+`

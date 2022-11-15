@@ -59,7 +59,7 @@ const StyledUserSection = styled.div`
   justify-self: start;
 
   & img {
-    border: 2px solid #ffc300;
+    border: 1px solid ${props => props.theme.borderSecondary};
     height: ${({height = '70'}) => height}px;
     width: ${({width = '70'}) => width}px;
     border-radius: ${({brRadius = '35'}) => brRadius}px;
@@ -83,9 +83,9 @@ const FileInput = styled.input`
   &::file-selector-button {
     display: grid;
     background-color: ${({bgColor = 'transparent'}) => bgColor};
-    border: 2px solid #ffc300;
+    border: 1px solid ${props => props.theme.borderPrimary};
     border-radius: 5px;
-    color: black;
+    color: ${props => props.theme.colorPrimary};;
     font-size: 10px;
     outline: none;
     padding: 10px;
@@ -99,8 +99,10 @@ const FileInput = styled.input`
     color: transparent
   }
 
-  &:hover {
+  &::file-selector-button:hover {
     opacity: ${({opacity = 0.8}) => opacity};
+    color: ${props => props.theme.colorSecondary};
+    border-color: ${props => props.theme.borderSecondary};
     transition: 0.51s;
   }
 `
