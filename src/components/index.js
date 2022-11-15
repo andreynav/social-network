@@ -10,7 +10,7 @@ import Settings from "./settings/Settings"
 import FormPostMessage from "./formPostMessage/FormPostMessage";
 import MyPostsContainer from "./profile/myPosts/MyPostsContainer";
 import {Users} from "./users/Users"
-import {User} from "./users/user/User";
+import {User} from "./users/User";
 import {Loader} from "./common/loader/Loader";
 import HeaderContainer from "./header/HeaderContainer";
 import Login from "./login/Login";

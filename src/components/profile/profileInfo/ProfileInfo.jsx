@@ -142,7 +142,7 @@ const ProfileInfoWrapper = styled.div`
 `
 
 const PhotoBackground = styled.div`
-  background-color: #ffc300;
+  background-color: ${props => props.bgColor || props.theme.borderSecondary};
   border-radius: 8px 8px 0 0;
 `
 
@@ -154,7 +154,8 @@ const UserDataWrapper = styled.div`
 const UserInfo = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  background-color: white;
+  background-color: transparent;
+  border: 1px solid ${props => props.theme.borderPrimary};
   border-radius: 8px;
   padding: 10px;
   grid-row-gap: 8px;

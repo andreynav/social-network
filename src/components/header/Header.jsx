@@ -41,7 +41,7 @@ const HeaderWrapper = styled.header`
   grid-template-rows: 1fr;
   align-items: center;
   grid-area: header;
-  background-color: ${props => props.theme.bgColorPrimary};
+  background-color: ${props => props.theme.bgColorSecondary};
   color: ${props => props.theme.colorPrimary};
   padding: 0 20px;
   border-bottom: 1px solid ${props => props.theme.borderPrimary};
@@ -66,7 +66,8 @@ const HeaderTitle = styled.div`
   display: grid;
   grid-column: 2/3;
   grid-row: 1/2;
-  color: ${props => props.theme.colorPrimary};
+  color: ${props => props.theme.colorSecondary};
+  font-weight: bold;
   
   & > p {
     justify-self: start;

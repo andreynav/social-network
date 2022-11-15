@@ -19,7 +19,7 @@ const FooterWrapper = styled.footer`
   grid-area: footer;
   grid-column: 1/5;
   padding: 5px 20px;
-  background-color: ${props => props.theme.bgColorPrimary};
+  background-color: ${props => props.theme.bgColorSecondary};
   border-top: 1px solid ${props => props.theme.borderPrimary};
 `
 

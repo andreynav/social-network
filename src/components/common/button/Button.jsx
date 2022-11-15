@@ -29,6 +29,8 @@ const StyledButton = styled.button`
   
   &:hover {
     opacity: ${({opacity = 0.8}) => opacity};
+    color: ${props => props.theme.colorSecondary};
+    border-color: ${props => props.theme.borderSecondary};
     transition: 0.51s;
   }
   
