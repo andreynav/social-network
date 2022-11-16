@@ -6,7 +6,7 @@ export default function NotFound() {
     return (
         <NotFoundWrapper>
             <p>404 page not found</p>
-            <p>Go <NavLink to='/profile' active>Profile</NavLink></p>
+            <p>Go <NavLink to='/profile'>Profile</NavLink></p>
         </NotFoundWrapper>
     );
 }

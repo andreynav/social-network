@@ -5,7 +5,7 @@ import styled from "styled-components";
 export default function DialogUser({ userName, userId }) {
     return (
         <DialogUserWrapper>
-            <NavLink to={`/massages/${userId}`} active>{userName}</NavLink>
+            <NavLink to={`/massages/${userId}`}>{userName}</NavLink>
         </DialogUserWrapper>
     );
 }
