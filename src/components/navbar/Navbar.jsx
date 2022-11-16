@@ -1,27 +1,27 @@
-import React from "react";
+import React, {useState} from "react"
 import {NavLink} from 'react-router-dom'
-import styled from "styled-components";
+import styled from "styled-components"
 
 export default function Navbar() {
     return (
         <NavbarWrapper>
             <NavbarItem>
-                <NavLink to='/profile' active>Profile</NavLink>
+                <NavLink to='/profile'>Profile</NavLink>
             </NavbarItem>
             <NavbarItem>
-                <NavLink to='/massages' active>Dialogs</NavLink>
+                <NavLink to='/massages'>Dialogs</NavLink>
             </NavbarItem>
             <NavbarItem>
-                <NavLink to='/users' active>Users</NavLink>
+                <NavLink to='/users'>Users</NavLink>
             </NavbarItem>
             <NavbarItem>
-                <NavLink to='/news' active>News</NavLink>
+                <NavLink to='/news'>News</NavLink>
             </NavbarItem>
             <NavbarItem>
-                <NavLink to='/music' active>Music</NavLink>
+                <NavLink to='/music'>Music</NavLink>
             </NavbarItem>
             <NavbarItem>
-                <NavLink to='/settings' active>Settings</NavLink>
+                <NavLink to='/settings'>Settings</NavLink>
             </NavbarItem>
         </NavbarWrapper>
     );
