@@ -11,7 +11,7 @@ import {light, dark} from "./styles/themes";
 export const ThemeContext = createContext();
 
 const RootComponent = () => {
-    const [currentTheme, setCurrentTheme] = useState("light")
+    const [currentTheme, setCurrentTheme] = useState("light") // initial value from local storage
     const theme = currentTheme === "light" ? light : dark
 
     return (

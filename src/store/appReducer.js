@@ -5,7 +5,8 @@ const initialState = {
     isInitialized: false,
     status: null,
     error: null,
-    theme: 'dark'
+    theme: null,
+    themeToggle: null
 }
 
 export const initializeApp = createAsyncThunk(
@@ -29,10 +30,17 @@ const appSlice = createSlice({
     reducers: {
         initializeAppAC(state) {
             state.isInitialized = true;
-            state.theme = 'dark' // get from localstorage
+            // state.theme = 'light'// get from localstorage
         },
         setThemeAC(state, action) {
+            // console.log('setThemeAC')
+            // console.log(action.payload.theme)
             state.theme = action.payload.theme
+        },
+        setThemeToggle(state, action) {
+            // console.log('setThemeToggle')
+            // console.log(action.payload.themeToggle)
+            state.themeToggle = action.payload.themeToggle
         }
     },
     extraReducers: {
@@ -56,6 +64,8 @@ export const selectIsInitialized = state => state.app.isInitialized;
 
 export const selectTheme = state => state.app.theme;
 
-export const {initializeAppAC, setThemeAC} = appSlice.actions;
+export const selectThemeToggle = state => state.app.themeToggle;
+
+export const {initializeAppAC, setThemeAC, setThemeToggle} = appSlice.actions;
 
 export default appSlice.reducer;
