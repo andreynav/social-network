@@ -26,6 +26,7 @@ import {Button} from "./common/button/Button";
 import {PhotoSection} from "./photoSection/PhotoSection";
 import {GlobalStyles} from "../styles/GlobalStyles";
 import {Captcha} from "./captcha/Captcha";
+import {Toggle} from "./common/Toggle/Toggle";
 
 export {
     Dialogs,
@@ -64,4 +65,5 @@ export {
     ProfileInfoItem,
     GlobalStyles,
     Captcha,
+    Toggle,
 }
