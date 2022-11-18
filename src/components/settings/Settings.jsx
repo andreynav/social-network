@@ -5,7 +5,7 @@ import {light, dark} from "../../styles/themes";
 import {selectTheme, selectThemeToggle, setThemeAC, setThemeToggle} from "../../store/appReducer";
 import {connect, useDispatch} from "react-redux";
 import styled from "styled-components";
-import {ThemeContext} from "../../index";
+import {ThemeContext} from "../hoc/AppThemeProvider";
 import {Toggle} from "../common/Toggle/Toggle";
 
 const Settings = (props) => {

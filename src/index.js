@@ -1,30 +1,23 @@
-import React, {createContext, useState} from "react";
-import ReactDOM from "react-dom/client";
-import {BrowserRouter} from "react-router-dom";
-import {App} from "../src/components/index";
-import store from './store/store'
-import {Provider} from 'react-redux'
-import {GlobalStyles} from "../src/components/index";
-import {ThemeProvider} from 'styled-components'
-import {light, dark} from "./styles/themes";
-
-export const ThemeContext = createContext();
+import React from "react";
+import ReactDOM from "react-dom/client"
+import {Provider} from "react-redux"
+import store from "./store/store"
+import {AppThemeProvider} from "./components/hoc/AppThemeProvider"
+import {GlobalStyles} from "../src/components/index"
+import {BrowserRouter} from "react-router-dom"
+import {App} from "../src/components/index"
 
 const RootComponent = () => {
-    const [currentTheme, setCurrentTheme] = useState("light") // initial value from local storage
-    const theme = currentTheme === "light" ? light : dark
 
     return (
         // <React.StrictMode>
         <Provider store={store}>
-            <ThemeContext.Provider value={{ currentTheme, setCurrentTheme }}>
-            <ThemeProvider theme={theme}>
+            <AppThemeProvider>
                 <GlobalStyles/>
                 <BrowserRouter>
-                    <App />
+                    <App/>
                 </BrowserRouter>
-            </ThemeProvider>
-            </ThemeContext.Provider>
+            </AppThemeProvider>
         </Provider>
         // </React.StrictMode>
     )
