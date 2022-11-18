@@ -9,8 +9,8 @@ export const AppThemeProvider = ({ children }) => {
     const theme = currentTheme === "light" ? light : dark
 
     return (
-        <ThemeContext.Provider value={{ currentTheme, setCurrentTheme }}>
-            <ThemeProvider theme={ theme }>
+        <ThemeContext.Provider value={ {currentTheme, setCurrentTheme} }>
+            <ThemeProvider theme={theme}>
                 { children }
             </ThemeProvider>
         </ThemeContext.Provider>
