@@ -1,25 +1,28 @@
+const colorGoldDark = '#ffc300';
+const colorGoldLight = '#25b09b';
+const colorError = '#E3242B';
+const colorLike = '#0009';
+
 export const light = {
     bgColorPrimary: '#DCDCDC',
     bgColorSecondary: '#fff',
-    bgColorMessage: '#4184e466',
     borderPrimary: 'darkgray',
-    borderSecondary: '#25b09b',
+    borderSecondary: colorGoldLight,
     colorPrimary: '#000000e6',
-    colorSecondary: '#25b09b',
-    colorLoader: '#25b09b',
-    colorLike: '#0009',
-    colorError: '#E3242B',
+    colorSecondary: colorGoldLight,
+    colorLoader: colorGoldLight,
+    colorLike: colorLike,
+    colorError: colorError,
 }
 
 export const dark = {
     bgColorPrimary: '#22272e',
     bgColorSecondary: '#2d333b',
-    bgColorMessage: '#4184e466',
     borderPrimary: '#444c56',
-    borderSecondary: '#ffc300',
+    borderSecondary: colorGoldDark,
     colorPrimary: '#adbac7',
-    colorSecondary: '#ffc300',
-    colorLoader: '#ffc300',
-    colorLike: '#0009',
-    colorError: '#E3242B',
+    colorSecondary: colorGoldDark,
+    colorLoader: colorGoldDark,
+    colorLike: colorLike,
+    colorError: colorError,
 }
