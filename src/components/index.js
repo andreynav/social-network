@@ -27,6 +27,7 @@ import {PhotoSection} from "./photoSection/PhotoSection";
 import {GlobalStyles} from "../styles/GlobalStyles";
 import {Captcha} from "./captcha/Captcha";
 import {Toggle} from "./common/Toggle/Toggle";
+import {Logo} from "./common/Logo/Logo";
 
 export {
     Dialogs,
@@ -66,4 +67,5 @@ export {
     GlobalStyles,
     Captcha,
     Toggle,
+    Logo,
 }

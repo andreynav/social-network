@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 
 export const Toggle = ({labelLeft, labelRight, onChange, isChecked}) => {
-    console.log(isChecked || false)
     return (
         <ToggleWrapper>
             <ToggleLabel>
