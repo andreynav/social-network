@@ -5,8 +5,8 @@ import styled from "styled-components";
 
 export const FormProfileInfo = ({onSubmit, register, registerCheckbox, errors, profileData, onClearErrors}) => {
     const profileItems = profileData.map((item) => {
-
         const isPutError = errors.server?.message.split('>')[1].split(')')[0] === item.itemName ? true : false // refactor
+
         return (
             <ItemWrapper key={item.inputName}>
                 {
@@ -15,6 +15,7 @@ export const FormProfileInfo = ({onSubmit, register, registerCheckbox, errors, p
                                 label={item.itemName}
                                 type={item.itemType}
                                 register={register}
+                                defaultValue={item.itemData}
                                 errors={errors}
                                 isPutError={isPutError}
                                 onClearErrors={onClearErrors}
