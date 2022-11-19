@@ -1,5 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {profileAPI} from "../api/api";
+import {getRandomLike} from "../utils/getRandomLike";
 
 let initialState = {
     myPosts: [
@@ -15,10 +16,6 @@ let initialState = {
     profileInfoUpdateStatus: null,
     profileInfoUpdateError: null
 };
-
-let getRandomLike = max => {
-    return Math.floor(Math.random() * max)
-}
 
 export const getProfileInfo = createAsyncThunk(
     'profile/getProfileInfo',
