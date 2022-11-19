@@ -1,5 +1,17 @@
-import {createAsyncThunk, createSelector, createSlice} from "@reduxjs/toolkit";
-import {userAPI} from "../api/api";
+import {createAsyncThunk, createSelector, createSlice} from "@reduxjs/toolkit"
+import {userAPI} from "../api/api"
+import {getRandomCity} from "../utils/getRandomCity";
+
+let initialState = {
+    users: [],
+    currentPage: 1,
+    totalCount: 0,
+    usersOnPage: 5,
+    isFetching: false,
+    followInProgress: [],
+    error: null,
+    status: null,
+}
 
 export const getUsers = createAsyncThunk(
     'users/getUsers',
@@ -14,7 +26,7 @@ export const getUsers = createAsyncThunk(
             return rejectWithValue(error.message);
         }
     }
-);
+)
 
 export const toggleFollowUnfollow = createAsyncThunk(
     'users/toggleFollowUnfollow',
@@ -31,21 +43,7 @@ export const toggleFollowUnfollow = createAsyncThunk(
             return rejectWithValue(error.message);
         }
     }
-);
-
-const cities = ['Minsk', 'New York', 'Paris', 'Berlin', 'London', 'Praga', 'Sidney', 'Vena', 'Brno', 'Vilnus']
-let getRandomCity = items => items[Math.floor(Math.random() * items.length)]
-
-let initialState = {
-    users: [],
-    currentPage: 1,
-    totalCount: 0,
-    usersOnPage: 5,
-    isFetching: false,
-    followInProgress: [],
-    error: null,
-    status: null,
-};
+)
 
 const setError = (state, action) => {
     state.status = 'rejected';
@@ -66,7 +64,7 @@ const usersReducer = createSlice({
         },
         setUsersAC(state, action) {
             state.users = [...action.payload.users]
-            state.users.forEach(user => {user.city = getRandomCity(cities)})
+            state.users.forEach(user => {user.city = getRandomCity()})
         },
         setCurrentPageAC(state, action) {
             state.currentPage = action.payload.page;
@@ -98,14 +96,14 @@ const usersReducer = createSlice({
         },
         [toggleFollowUnfollow.rejected]: setError,
     }
-});
+})
 
 
 export const selectUsers = createSelector(
     // fake selector for demonstrating cashing of createSelector functionality
     state => state.users.users,
     users => users.filter(user => true)
-);
+)
 
 export const selectCurrentPage = state => state.users.currentPage;
 
