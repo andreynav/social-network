@@ -1,10 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import {NavLink} from "react-router-dom";
+import {NavLink, useParams} from "react-router-dom";
 import {avatar} from "../../assets/";
 import {Button} from "../common/button/Button";
 
 export const PhotoSection = (props) => {
+    const params = useParams();
+    const isNotUserProfilePage = params.id ? false : true
     const srcData = props.photos.small !== null ? props.photos.small : avatar;
 
     return (
@@ -19,8 +21,8 @@ export const PhotoSection = (props) => {
                             </NavLink>
                         )
                 }
-
             </ImageWrapper>
+
             <ButtonWrapper {...props}>
                 {
                     props.isOwner
@@ -30,17 +32,18 @@ export const PhotoSection = (props) => {
                                        name="avatar"
                                        onChange={props.onChange}/>
                         ) : (
-                            <Button id={props.id}
-                                    followInProgress={props.followInProgress}
-                                    followed={props.followed}
-                                    toggleFollow={props.toggleFollow}
-                                    onClick={() => props.toggleFollow(props.id)}
-                                    disabled={props.followInProgress.some(userId => userId === props.id)}
+                            isNotUserProfilePage &&
+                            <Button id={props?.id}
+                                    followInProgress={props?.followInProgress}
+                                    followed={props?.followed}
+                                    toggleFollow={props?.toggleFollow}
+                                    onClick={() => props?.toggleFollow(props?.id)}
+                                    disabled={props?.followInProgress?.some(userId => userId === props?.id)}
                                     height='26px'
                                     minWidth='50%'
                                     width='70px'
                                     fontSize='10px'>
-                                {props.followed ? "Follow" : "Unfollow"}
+                                {props?.followed ? "Follow" : "Unfollow"}
                             </Button>
                         )
                 }
