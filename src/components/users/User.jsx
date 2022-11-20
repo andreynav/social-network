@@ -28,7 +28,7 @@ export const User = memo((props) => {
                           id={id}
                           followed={followed}
                           toggleFollow={toggleFollow}
-                          followInProgress={followInProgress}/>
+                          followInProgress={followInProgress} />
             <UserData>
                 {userItems}
             </UserData>

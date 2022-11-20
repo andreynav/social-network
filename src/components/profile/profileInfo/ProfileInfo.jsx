@@ -16,6 +16,8 @@ export const ProfileInfo = memo((props) => {
         updateProfileInfo
     } = props;
 
+    const isOwner = currentUserId === userId ? true : false
+
     const [editMode, setEditMode] = useState(false);
 
     const {
@@ -59,8 +61,7 @@ export const ProfileInfo = memo((props) => {
     const profileItems = profileData.map((item, index) => <ProfileInfoItem key={index}
                                                                            itemData={item.itemData}
                                                                            itemName={item.itemName}
-                                                                           itemType={item.itemType}
-    />);
+                                                                           itemType={item.itemType} />)
 
     const onEditMode = () => {
         setEditMode(prevEditMode => !prevEditMode);
@@ -91,27 +92,27 @@ export const ProfileInfo = memo((props) => {
     }
 
     const onClearErrors = () => {
-        errors.server && clearErrors();
+        errors.server && clearErrors()
     }
 
     return (
         <ProfileInfoWrapper>
             <PhotoBackground></PhotoBackground>
             <UserDataWrapper>
-                <PhotoSection isOwner
+                <PhotoSection isOwner={isOwner}
                               height='100'
                               width='100'
                               brRadius='50'
                               photos={profileInfo.photos}
                               name={profileInfo.fullName}
-                              onChange={onSavePhoto}/>
+                              onChange={onSavePhoto} />
                 <UserInfo>
                     <ProfileInfoStatus itemData={profileStatus || " - "}
                                        itemName={"My status"}
                                        isPointer
                                        updateProfileStatus={updateProfileStatus}
                                        currentUserId={currentUserId}
-                                       userId={userId}/>
+                                       userId={userId} />
                     {
                         editMode ?
                             <FormProfileInfo onSubmit={handleSubmit(onFormSubmit)}
@@ -123,11 +124,15 @@ export const ProfileInfo = memo((props) => {
                             /> :
                             <div>
                                 {profileItems}
-                                <Button fontSize='12px'
-                                        onClick={onEditMode}
-                                        height='30px'>
-                                    Edit Profile
-                                </Button>
+                                {
+                                    isOwner &&
+                                    <Button fontSize='12px'
+                                            onClick={onEditMode}
+                                            height='30px'>
+                                        Edit Profile
+                                    </Button>
+                                }
+
                             </div>
                     }
                 </UserInfo>
