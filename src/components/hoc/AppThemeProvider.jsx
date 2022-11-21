@@ -1,12 +1,21 @@
-import React, {createContext, useState} from "react"
+import React, {createContext, useEffect} from "react"
 import {ThemeProvider} from 'styled-components'
 import {dark, light} from "../../styles/themes"
+import {useLocalStorage} from "../hook/useLocalStorage";
+import {setThemeAC, setThemeToggle} from "../../store/appReducer";
+import {useDispatch} from "react-redux";
 
 export const ThemeContext = createContext()
 
 export const AppThemeProvider = ({ children }) => {
-    const [currentTheme, setCurrentTheme] = useState("light") // initial value from local storage
+    const dispatch = useDispatch()
+    const [currentTheme, setCurrentTheme] = useLocalStorage('theme', 'light')
     const theme = currentTheme === "light" ? light : dark
+
+    useEffect(() => {
+        dispatch(setThemeAC({theme: theme}))
+        dispatch(theme === light ? setThemeToggle({themeToggle: false}) : setThemeToggle({themeToggle: true}))
+    }, [theme])
 
     return (
         <ThemeContext.Provider value={ {currentTheme, setCurrentTheme} }>
