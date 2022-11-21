@@ -30,16 +30,11 @@ const appSlice = createSlice({
     reducers: {
         initializeAppAC(state) {
             state.isInitialized = true;
-            // state.theme = 'light'// get from localstorage
         },
         setThemeAC(state, action) {
-            // console.log('setThemeAC')
-            // console.log(action.payload.theme)
             state.theme = action.payload.theme
         },
         setThemeToggle(state, action) {
-            // console.log('setThemeToggle')
-            // console.log(action.payload.themeToggle)
             state.themeToggle = action.payload.themeToggle
         }
     },
