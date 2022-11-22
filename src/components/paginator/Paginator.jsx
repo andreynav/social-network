@@ -1,22 +1,76 @@
 import React from "react";
-import style from "./Paginator.module.css"
-import ReactPaginate from "react-paginate";
+import ReactPaginate from "react-paginate"
+import styled from "styled-components"
 
 export const Paginator = ({selectPage, totalCount, usersOnPage}) => {
-    const {pages, active} = style
     const pagesCount = Math.ceil(Number(totalCount) / usersOnPage);
 
     return (
-        <ReactPaginate
-            className={pages}
-            breakLabel="..."
-            nextLabel="next"
-            onPageChange={(event) => selectPage(event.selected + 1)}
-            pageRangeDisplayed={3}
-            pageCount={pagesCount}
-            previousLabel="prev"
-            renderOnZeroPageCount={null}
-            activeClassName={active}
-        />
+        <StyledPaginate>
+            <ReactPaginate
+                breakLabel="..."
+                nextLabel="next"
+                onPageChange={(event) => selectPage(event.selected + 1)}
+                pageRangeDisplayed={3}
+                pageCount={pagesCount}
+                previousLabel="prev"
+                renderOnZeroPageCount={null}
+                containerClassName='pagination'
+                activeClassName='active'
+            />
+        </StyledPaginate>
     )
 }
+
+const StyledPaginate = styled.div`
+  .pagination {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+    align-items: center;
+  }
+  
+  .pagination li {
+    display: grid;
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    justify-items: center;
+    align-items: center;
+    height: 25px;
+  }
+
+  .pagination li:first-child {
+    border-left: 1px solid black;
+    border-radius: 4px 0 0 4px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  .pagination li:last-child {
+    border-right: 1px solid black;
+    border-radius: 0 4px 4px 0;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  .pagination li a {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .pagination li:hover {
+    cursor: pointer;
+  }
+
+  .active {
+    background-color: #282c34;
+    font-weight: bold;
+  }
+
+  .active a {
+    color: #cdd9e5;
+  }
+`
