@@ -1,0 +1,13 @@
+{
+  "appTitle": "4GEEK",
+  "settings": {
+    "toggleTheme": {
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "toggleLanguage": {
+      "eng": "English",
+      "rus": "Russian"
+    }
+  }
+}

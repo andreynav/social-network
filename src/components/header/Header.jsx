@@ -1,6 +1,7 @@
 import React from "react";
 import {Button, Logo} from "../index";
 import styled from "styled-components";
+import {useTranslation} from "react-i18next";
 
 export default function Header({isAuth, login, logout}) {
     const loginButtonProps = {
@@ -10,10 +11,12 @@ export default function Header({isAuth, login, logout}) {
         brWidth: '0'
     }
 
+    const { t } = useTranslation();
+
     return (
         <HeaderWrapper>
             <Logo/>
-            <HeaderTitle>4GEEKS</HeaderTitle>
+            <HeaderTitle>{t("appTitle")}</HeaderTitle>
             <HeaderLoginWrapper>
                 {
                     isAuth ?

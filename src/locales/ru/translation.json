@@ -1,0 +1,13 @@
+{
+  "appTitle": "Для гиков",
+  "settings": {
+    "toggleTheme": {
+      "light": "Светлая",
+      "dark": "Темная"
+    },
+    "toggleLanguage": {
+      "eng": "Английский",
+      "rus": "Русский"
+    }
+  }
+}
