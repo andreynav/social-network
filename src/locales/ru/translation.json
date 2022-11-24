@@ -1,5 +1,21 @@
 {
-  "appTitle": "Для гиков",
+  "auth": {
+    "login": "Войти",
+    "logout": "Выйти",
+    "email": "Почта",
+    "password": "Пароль",
+    "rememberMe": "Запомнить меня",
+    "captcha": "Капча",
+    "errors": {
+      "emailIsRequired": "Почта обязательное поле",
+      "passwordIsRequired": "Пароль обязательное поле",
+      "minLength": "Минимальная длина символов - {{count}}"
+    }
+  },
+  "header": {
+    "login": "Войти",
+    "logout": "Выйти"
+  },
   "settings": {
     "toggleTheme": {
       "light": "Светлая",

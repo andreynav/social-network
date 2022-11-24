@@ -5,6 +5,7 @@ import {loginUser, selectCaptcha, selectError, selectIsAuth} from "../../store/a
 import {connect, useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import styled from "styled-components";
+import {useTranslation} from "react-i18next";
 
 function Login({ isAuth, error, captcha }) {
     const dispatch = useDispatch();
@@ -38,9 +39,11 @@ function Login({ isAuth, error, captcha }) {
         error && setError('server', {message: error});
     }, [isAuth, error]);
 
+    const { t } = useTranslation();
+
     return (
         <LoginWrapper>
-            <LoginTitle>Login</LoginTitle>
+            <LoginTitle>{t('auth.login')}</LoginTitle>
             <LoginFormWrapper>
                 <FormLogin onSubmit={handleSubmit(onFormSubmit)}
                            registerInput={register}

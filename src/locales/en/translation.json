@@ -1,5 +1,21 @@
 {
-  "appTitle": "4GEEK",
+  "auth": {
+    "login": "Login",
+    "logout": "Logout",
+    "email": "Email",
+    "password": "Password",
+    "rememberMe": "Remember me",
+    "captcha": "captcha",
+    "errors": {
+      "emailIsRequired": "Email is required field",
+      "passwordIsRequired": "Password is required field",
+      "minLength": "Min length characters is - {{count}}"
+    }
+  },
+  "header": {
+    "login": "Login",
+    "logout": "Logout"
+  },
   "settings": {
     "toggleTheme": {
       "light": "Light",

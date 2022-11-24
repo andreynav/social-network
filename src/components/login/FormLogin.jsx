@@ -1,30 +1,34 @@
 import React from "react";
 import {Button, Captcha, InputField, Label} from "../index";
 import styled from "styled-components";
+import {useTranslation} from "react-i18next";
 
 export default function FormLogin(props) {
-    const {onSubmit, registerInput, errors, registerCheckbox, onClearErrors, captcha} = props;
+    const {onSubmit, registerInput, errors, registerCheckbox, onClearErrors, captcha} = props
+    const { t } = useTranslation()
+    const minLength = 5
+    const minLengthError = t('auth.errors.minLength', {count: minLength})
 
     return (
         <LoginForm onSubmit={onSubmit}>
             <InputField name={"email"}
-                        label={"Email"}
+                        label={t('auth.email')}
                         type={"text"}
                         register={registerInput}
                         validationSchema={{
-                            required: "Email is required field",
-                            minLength: {value: 5, message: "min length is 5 characters"}
+                            required: t('auth.errors.emailIsRequired'),
+                            minLength: {value: minLength, message: minLengthError}
                         }}
                         placeholder={"example@gmail.com"}
                         errors={errors}
                         onClearErrors={onClearErrors}/>
             <InputField name={"password"}
-                        label={"Password"}
+                        label={t('auth.password')}
                         type={"password"}
                         register={registerInput}
                         validationSchema={{
-                            required: "Password is required field",
-                            minLength: {value: 5, message: "min length is 5 characters"}
+                            required: t('auth.errors.passwordIsRequired'),
+                            minLength: {value: minLength, message: minLengthError}
                         }}
                         placeholder={"password"}
                         errors={errors}
@@ -37,19 +41,19 @@ export default function FormLogin(props) {
                        color={'black'}
                        fontSize={'14px'}
                        transform={'none'}>
-                    Remember me
+                    {t('auth.rememberMe')}
                 </Label>
             </LoginCheckboxWrapper>
             {
                 captcha && <Captcha name="captcha"
-                                    label="Captcha"
+                                    label={t('auth.captcha')}
                                     register={registerInput}
                                     errors={errors}
                                     onClearErrors={onClearErrors}
                                     captcha={captcha}
                                     height={85}/>
             }
-            <Button fontSize='16px'>Log In</Button>
+            <Button fontSize='16px'>{t('auth.login')}</Button>
         </LoginForm>
     )
 }

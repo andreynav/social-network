@@ -6,7 +6,9 @@ const initialState = {
     status: null,
     error: null,
     theme: null,
-    themeToggle: null
+    themeToggle: null,
+    language: null,
+    languageToggle: null,
 }
 
 export const initializeApp = createAsyncThunk(
@@ -36,6 +38,12 @@ const appSlice = createSlice({
         },
         setThemeToggle(state, action) {
             state.themeToggle = action.payload.themeToggle
+        },
+        setLanguageAC(state, action) {
+            state.language = action.payload.language
+        },
+        setLanguageToggle(state, action) {
+            state.languageToggle = action.payload.languageToggle
         }
     },
     extraReducers: {
@@ -56,11 +64,11 @@ const appSlice = createSlice({
 });
 
 export const selectIsInitialized = state => state.app.isInitialized;
-
 export const selectTheme = state => state.app.theme;
-
 export const selectThemeToggle = state => state.app.themeToggle;
+export const selectLanguage = state => state.app.language;
+export const selectLanguageToggle = state => state.app.languageToggle;
 
-export const {initializeAppAC, setThemeAC, setThemeToggle} = appSlice.actions;
+export const {initializeAppAC, setThemeAC, setThemeToggle, setLanguageAC, setLanguageToggle} = appSlice.actions;
 
 export default appSlice.reducer;
