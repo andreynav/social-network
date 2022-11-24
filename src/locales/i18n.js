@@ -1,39 +1,46 @@
 import i18n from 'i18next'
-import LanguageDetector from 'i18next-browser-languagedetector'
-import {I18nextProvider, initReactI18next} from 'react-i18next'
+import {initReactI18next, useTranslation} from 'react-i18next'
 import translationEN from './en/translation.json'
 import translationRU from './ru/translation.json'
-import React from 'react'
+import React, {createContext, useEffect} from "react"
+import {useLocalStorage} from "../components/hook/useLocalStorage"
+import {useDispatch} from "react-redux";
+import {setLanguageAC, setLanguageToggle} from "../store/appReducer"
 
 const resources = {
-    en: { translation: translationEN },
-    ru: { translation: translationRU }
+    en: {translation: translationEN},
+    ru: {translation: translationRU}
 }
 
 i18n
-    .use(LanguageDetector)
-    .use (initReactI18next)
+    .use(initReactI18next)
     .init({
         fallbackLng: 'en',
         lng: "en",
-        debug: true,
-        detection: {
-            order: ['queryString', 'cookie', 'localStorage'],
-            cache: ['cookie']
-        },
+        debug: false,
         interpolation: {
             escapeValue: false
         },
         resources
     })
 
-export default i18n;
+export const LocaleContext = createContext()
 
 export const AppLocaleProvider = ({children}) => {
+    const dispatch = useDispatch()
+    const [language, setLanguage] = useLocalStorage('lang', 'en')
+    const {i18n} = useTranslation();
+
+    useEffect(() => {
+        dispatch(setLanguageAC({language: language}))
+        i18n.changeLanguage(language);
+        dispatch(language === 'en' ? setLanguageToggle({languageToggle: false}) : setLanguageToggle({languageToggle: true}))
+    }, [language])
+
     return (
-        <I18nextProvider i18n={i18n}>
-           { children }
-        </I18nextProvider>
+        <LocaleContext.Provider value={{language, setLanguage}}>
+            { children }
+        </LocaleContext.Provider>
     )
 }
 

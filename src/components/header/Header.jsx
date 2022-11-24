@@ -10,21 +10,20 @@ export default function Header({isAuth, login, logout}) {
         bgColor: 'transparent',
         brWidth: '0'
     }
-
     const { t } = useTranslation();
 
     return (
         <HeaderWrapper>
             <Logo/>
-            <HeaderTitle>{t("appTitle")}</HeaderTitle>
+            <HeaderTitle>4GEEKS</HeaderTitle>
             <HeaderLoginWrapper>
                 {
                     isAuth ?
                         <div>
                             <p>{login}</p>
-                            <Button onClick={logout} {...loginButtonProps}>Logout</Button>
+                            <Button onClick={logout} {...loginButtonProps}>{t('header.logout')}</Button>
                         </div> :
-                        <Button {...loginButtonProps}>Login</Button>
+                        <Button {...loginButtonProps}>{t('header.login')}</Button>
                 }
             </HeaderLoginWrapper>
         </HeaderWrapper>
@@ -52,7 +51,7 @@ const HeaderTitle = styled.div`
 
 const HeaderLoginWrapper = styled.div`
   display: grid;
-  justify-self: end;
+  justify-items: end;
 
   & div {
     display: grid;
@@ -64,5 +63,10 @@ const HeaderLoginWrapper = styled.div`
     display: grid;
     align-content: center;
     color: ${props => props.theme.colorSecondary};
+  }
+  
+  & button {
+    display: grid;
+    justify-content: end;
   }
 `
