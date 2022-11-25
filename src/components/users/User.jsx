@@ -1,15 +1,17 @@
 import React, {memo} from "react";
 import {Label, PhotoSection} from "../index";
 import styled from "styled-components";
+import {useTranslation} from "react-i18next";
 
 export const User = memo((props) => {
     const {photos, id, name, status, followInProgress, toggleFollow, followed, city} = props
+    const {t} = useTranslation()
 
     const userDataArray = [
-        {itemName: "Full name", value: name},
-        {itemName: "Status", value: status},
-        {itemName: "Id", value: id},
-        {itemName: "City", value: city},
+        {itemName: t("users.fullName"), value: name},
+        {itemName: t("users.status"), value: status},
+        {itemName: t("users.id"), value: id},
+        {itemName: t("users.city"), value: city},
     ]
 
     const userItems = userDataArray.map((item, index) =>

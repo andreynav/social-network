@@ -1,27 +1,30 @@
-import React, {useState} from "react"
+import React from "react"
 import {NavLink} from 'react-router-dom'
 import styled from "styled-components"
+import {useTranslation} from "react-i18next";
 
 export default function Navbar() {
+    const {t} = useTranslation()
+
     return (
         <NavbarWrapper>
             <NavbarItem>
-                <NavLink to='/profile'>Profile</NavLink>
+                <NavLink to='/profile'>{t("navbar.profile")}</NavLink>
             </NavbarItem>
             <NavbarItem>
-                <NavLink to='/massages'>Dialogs</NavLink>
+                <NavLink to='/massages'>{t("navbar.dialogs")}</NavLink>
             </NavbarItem>
             <NavbarItem>
-                <NavLink to='/users'>Users</NavLink>
+                <NavLink to='/users'>{t("navbar.users")}</NavLink>
             </NavbarItem>
             <NavbarItem>
-                <NavLink to='/news'>News</NavLink>
+                <NavLink to='/news'>{t("navbar.news")}</NavLink>
             </NavbarItem>
             <NavbarItem>
-                <NavLink to='/music'>Music</NavLink>
+                <NavLink to='/music'>{t("navbar.music")}</NavLink>
             </NavbarItem>
             <NavbarItem>
-                <NavLink to='/settings'>Settings</NavLink>
+                <NavLink to='/settings'>{t("navbar.settings")}</NavLink>
             </NavbarItem>
         </NavbarWrapper>
     );

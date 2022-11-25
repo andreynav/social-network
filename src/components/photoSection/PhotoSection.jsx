@@ -3,11 +3,13 @@ import styled from "styled-components";
 import {NavLink, useParams} from "react-router-dom";
 import {avatar} from "../../assets/";
 import {Button} from "../common/button/Button";
+import {useTranslation} from "react-i18next";
 
 export const PhotoSection = (props) => {
-    const params = useParams();
-    const isNotUserProfilePage = params.id ? false : true
-    const srcData = props.photos.small !== null ? props.photos.small : avatar;
+    const params = useParams()
+    const isNotUserProfilePage = !params.id
+    const srcData = props.photos.small !== null ? props.photos.small : avatar
+    const {t} = useTranslation()
 
     return (
         <StyledUserSection {...props}>
@@ -42,8 +44,8 @@ export const PhotoSection = (props) => {
                                     height='26px'
                                     minWidth='50%'
                                     width='70px'
-                                    fontSize='10px'>
-                                {props?.followed ? "Follow" : "Unfollow"}
+                                    fontSize='9px'>
+                                {props?.followed ? t("users.follow") : t("users.unfollow")}
                             </Button>
                         )
                 }

@@ -1,14 +1,17 @@
 import React from "react";
 import styled from "styled-components";
+import {useTranslation} from "react-i18next";
 
 export default function Footer() {
+    const {t} = useTranslation()
+
     return (
         <FooterWrapper>
             <FooterAddress>
-                <a>Email: nav.testsw@gmail.com</a>
+                <a>{t("footer.email")}: nav.testsw@gmail.com</a>
             </FooterAddress>
             <FooterAddress>
-                <a>Phone: +375 29 6066602</a>
+                <a>{t("footer.phone")}: +375 29 6066602</a>
             </FooterAddress>
         </FooterWrapper>
     );

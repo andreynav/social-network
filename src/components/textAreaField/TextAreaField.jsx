@@ -28,7 +28,7 @@ export default function TextAreaField(props) {
 const InputWrapper = styled.div`
   display: grid;
   grid-template-rows: auto 20px;
-  grid-template-columns: auto 250px;
+  grid-template-columns: auto 300px;
 `
 
 const Textarea = styled.textarea`

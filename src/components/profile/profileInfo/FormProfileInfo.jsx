@@ -2,10 +2,11 @@ import React from "react";
 import {Button} from "../../common/button/Button";
 import {InputField, Label} from "../../index";
 import styled from "styled-components";
+import {useTranslation} from "react-i18next";
 
 export const FormProfileInfo = ({onSubmit, register, registerCheckbox, errors, profileData, onClearErrors}) => {
     const profileItems = profileData.map((item) => {
-        const isPutError = errors.server?.message.split('>')[1].split(')')[0] === item.itemName ? true : false // refactor
+        const isPutError = errors.server?.message.split('>')[1].split(')')[0] === item.itemName // refactor
 
         return (
             <ItemWrapper key={item.inputName}>
@@ -38,11 +39,13 @@ export const FormProfileInfo = ({onSubmit, register, registerCheckbox, errors, p
         )
     })
 
+    const {t} = useTranslation()
+
     return (
         <form onSubmit={onSubmit}>
             {profileItems}
             <Button fontSize='16px'>
-                Save
+                {t("profile.save")}
             </Button>
         </form>
     );

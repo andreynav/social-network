@@ -1,8 +1,11 @@
 import React from "react";
 import {InputField} from "../index";
 import styled from "styled-components";
+import {useTranslation} from "react-i18next";
 
 export const Captcha = ({name, label, register, errors, onClearErrors, captcha, height }) => {
+    const { t } = useTranslation()
+
     return (
         <CaptchaWrapper>
             <InputField name={name}
@@ -10,7 +13,7 @@ export const Captcha = ({name, label, register, errors, onClearErrors, captcha, 
                         type="text"
                         register={register}
                         validationSchema={{
-                            required: "Captcha is required field"
+                            required: t('auth.errors.captchaIsRequired')
                         }}
                         placeholder="captcha"
                         errors={errors}

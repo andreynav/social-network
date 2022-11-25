@@ -2,9 +2,13 @@ import React from "react";
 import {DialogMessage, DialogUser, FormPostMessage} from "../index"
 import {useForm} from "react-hook-form";
 import styled from "styled-components";
+import {useTranslation} from "react-i18next";
 
 export default function Dialogs(props) {
-    const {dialogUsers, messages, addMessageAC} = props;
+    const {dialogUsers, messages, addMessageAC} = props
+    const {t} = useTranslation()
+    const maxLength = 100
+    const maxLengthError = t('profile.myPosts.errors.maxLength', {count: maxLength})
 
     let dialogsUsers = dialogUsers.map(user => <DialogUser key={user.id} userName={user.name} userId={user.id}/>);
     let userMessages = messages.map((message, item) => <DialogMessage key={item} message={message.message}/>);
@@ -35,8 +39,8 @@ export default function Dialogs(props) {
                 <FormPostMessage onSubmit={handleSubmit(onFormSubmit)}
                             register={register}
                             validationSchema={{
-                                required: "Required field",
-                                maxLength: {value: 100, message: "max length is 100 characters"}
+                                required: t('profile.myPosts.errors.fieldRequired'),
+                                maxLength: {value: maxLength, message: maxLengthError}
                             }}
                             errors={errors} />
             </DialogTextArea>

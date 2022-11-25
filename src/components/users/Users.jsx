@@ -1,13 +1,16 @@
 import React from "react";
 import {Loader, Paginator, User} from "../index";
 import styled from 'styled-components'
+import {useTranslation} from "react-i18next";
 
 export const Users = (props) => {
     const {totalCount, usersOnPage, users, selectPage, isFetching, onChangeToggle, followInProgress} = props
+    const {t} = useTranslation()
+    const dynamicTitle = t("users.title", {count: totalCount})
 
     return (
         <UsersWrapper>
-            <h3>Users</h3>
+            <h3>{dynamicTitle}</h3>
             <Paginator selectPage={selectPage}
                        totalCount={totalCount}
                        usersOnPage={usersOnPage}/>

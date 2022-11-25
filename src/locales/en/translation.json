@@ -1,4 +1,12 @@
 {
+  "navbar": {
+    "profile": "Profile",
+    "dialogs": "Dialogs",
+    "users": "Users",
+    "news": "News",
+    "music": "Music",
+    "settings": "Settings"
+  },
   "auth": {
     "login": "Login",
     "logout": "Logout",
@@ -9,12 +17,58 @@
     "errors": {
       "emailIsRequired": "Email is required field",
       "passwordIsRequired": "Password is required field",
+      "captchaIsRequired": "Captcha is required field",
       "minLength": "Min length characters is - {{count}}"
     }
   },
   "header": {
     "login": "Login",
     "logout": "Logout"
+  },
+  "footer": {
+    "email": "Email",
+    "phone": "Phone"
+  },
+  "profile": {
+    "status": "My status",
+    "fullName": "Full name",
+    "aboutMe": "About me",
+    "lookingForAJobStatus": "Looking for a job status",
+    "lookingForAJobDescription": "Looking for a job description",
+    "website": "Website",
+    "facebook": "Facebook",
+    "vk": "Vk",
+    "instagram": "Instagram",
+    "youtube": "Youtube",
+    "github": "Github",
+    "mainLink": "MainLink",
+    "editProfileBtn": "Edit Profile",
+    "save": "Save",
+    "myPosts": {
+      "title": "My Posts",
+      "send": "Send",
+      "errors": {
+        "fieldRequired": "Required field",
+        "maxLength": "Max length characters is - {{count}}"
+      }
+    }
+  },
+  "users": {
+    "title": "Users - {{count}}",
+    "prevPage": "prev",
+    "nextPage": "next",
+    "follow": "follow",
+    "unfollow": "unfollow",
+    "fullName": "Full name",
+    "status": "Status",
+    "id": "Id",
+    "city": "City"
+  },
+  "news": {
+    "title": "News"
+  },
+  "music": {
+    "title": "Music"
   },
   "settings": {
     "toggleTheme": {
@@ -25,5 +79,9 @@
       "eng": "English",
       "rus": "Russian"
     }
+  },
+  "notFound": {
+    "description": "404 page not found",
+    "goTo": "Go to "
   }
 }

@@ -2,11 +2,15 @@ import React from "react";
 import {Post, FormPostMessage} from "../../index";
 import {useForm} from "react-hook-form";
 import styled from "styled-components";
+import {useTranslation} from "react-i18next";
 
 export default function MyPosts(props) {
-    const {myPosts, addNewPostAC} = props;
+    const {myPosts, addNewPostAC} = props
+    const {t} = useTranslation()
+    const maxLength = 100
+    const maxLengthError = t('profile.myPosts.errors.maxLength', {count: maxLength})
 
-    let posts = myPosts.map(post => <Post key={post.id} message={post.message} likeCount={post.like}/>);
+    let posts = myPosts.map(post => <Post key={post.id} message={post.message} likeCount={post.like}/>)
 
     const {
         register,
@@ -22,13 +26,13 @@ export default function MyPosts(props) {
 
     return (
         <UserPostsWrapper>
-            <PostsTitle>My Posts</PostsTitle>
+            <PostsTitle>{t("profile.myPosts.title")}</PostsTitle>
             <ProfileTextArea>
                 <FormPostMessage onSubmit={handleSubmit(onFormSubmit)}
                                  register={register}
                                  validationSchema={{
-                                     required: "Required field",
-                                     maxLength: {value: 100, message: "max length is 100 characters"}
+                                     required: t('profile.myPosts.errors.fieldRequired'),
+                                     maxLength: {value: maxLength, message: maxLengthError}
                                  }}
                                  errors={errors}/>
             </ProfileTextArea>

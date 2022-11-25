@@ -1,12 +1,15 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 import styled from "styled-components";
+import {useTranslation} from "react-i18next";
 
 export default function NotFound() {
+    const {t} = useTranslation()
+
     return (
         <NotFoundWrapper>
-            <div>404 page not found</div>
-            <div>Go to <NavLink to='/profile'>Profile</NavLink></div>
+            <div>{t("notFound.description")}</div>
+            <div>{t("notFound.goTo")}<NavLink to='/profile'>Profile</NavLink></div>
         </NotFoundWrapper>
     );
 }

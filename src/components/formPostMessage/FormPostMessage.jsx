@@ -1,9 +1,11 @@
 import React from "react";
 import {Button, TextAreaField} from "../index";
 import styled from "styled-components";
+import {useTranslation} from "react-i18next";
 
 export default function FormPostMessage(props) {
-    const {onSubmit, register, validationSchema, errors} = props;
+    const {onSubmit, register, validationSchema, errors} = props
+    const {t} = useTranslation()
 
     return (
         <FormProfilePost onSubmit={onSubmit}>
@@ -13,10 +15,8 @@ export default function FormPostMessage(props) {
                                validationSchema={validationSchema}
                                errors={errors?.postMessage} />
             </ProfilePostAreaWrapper>
-            <Button fontSize='16px'
-                    areaName={'profilePostButton'}
-            >
-                Send
+            <Button fontSize='14px' areaName={'profilePostButton'}>
+                {t("profile.myPosts.send")}
             </Button>
         </FormProfilePost>
     );
