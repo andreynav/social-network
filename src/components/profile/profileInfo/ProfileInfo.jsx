@@ -2,6 +2,7 @@ import React, {memo, useState, useEffect} from "react";
 import {Loader, PhotoSection, ProfileInfoStatus, FormProfileInfo, Button, ProfileInfoItem} from "../../index";
 import styled from "styled-components";
 import {useForm} from "react-hook-form";
+import {useTranslation} from "react-i18next";
 
 export const ProfileInfo = memo((props) => {
     const {
@@ -16,9 +17,11 @@ export const ProfileInfo = memo((props) => {
         updateProfileInfo
     } = props;
 
-    const isOwner = currentUserId === userId ? true : false
+    const isOwner = currentUserId === userId
 
-    const [editMode, setEditMode] = useState(false);
+    const [editMode, setEditMode] = useState(false)
+
+    const {t} = useTranslation()
 
     const {
         register,
@@ -35,27 +38,27 @@ export const ProfileInfo = memo((props) => {
     if (!profileInfo) return <Loader/>
 
     const profileData = [
-        {itemName: "Full name", itemData: profileInfo.fullName, inputName: 'fullName', itemType: 'text'},
-        {itemName: "About me", itemData: profileInfo.aboutMe, inputName: 'aboutMe', itemType: 'text'},
+        {itemName: t("profile.fullName"), itemData: profileInfo.fullName, inputName: 'fullName', itemType: 'text'},
+        {itemName: t("profile.aboutMe"), itemData: profileInfo.aboutMe, inputName: 'aboutMe', itemType: 'text'},
         {
-            itemName: "Looking for a job status",
+            itemName: t("profile.lookingForAJobStatus"),
             itemData: profileInfo.lookingForAJob,
             inputName: 'lookingForAJob',
             itemType: 'checkbox'
         },
         {
-            itemName: "Looking for a job description",
+            itemName: t("profile.lookingForAJobDescription"),
             itemData: profileInfo.lookingForAJobDescription,
             inputName: 'lookingForAJobDescription',
             itemType: 'text'
         },
-        {itemName: "Website", itemData: profileInfo.contacts?.website, inputName: 'website', itemType: 'text'},
-        {itemName: "Facebook", itemData: profileInfo.contacts?.facebook, inputName: 'facebook', itemType: 'text'},
-        {itemName: "Vk", itemData: profileInfo.contacts?.vk, inputName: 'vk', itemType: 'text'},
-        {itemName: "Instagram", itemData: profileInfo.contacts?.instagram, inputName: 'instagram', itemType: 'text'},
-        {itemName: "Youtube", itemData: profileInfo.contacts?.youtube, inputName: 'youtube', itemType: 'text'},
-        {itemName: "Github", itemData: profileInfo.contacts?.github, inputName: 'github', itemType: 'text'},
-        {itemName: "MainLink", itemData: profileInfo.contacts?.mainLink, inputName: 'mainLink', itemType: 'text'},
+        {itemName: t("profile.website"), itemData: profileInfo.contacts?.website, inputName: 'website', itemType: 'text'},
+        {itemName: t("profile.facebook"), itemData: profileInfo.contacts?.facebook, inputName: 'facebook', itemType: 'text'},
+        {itemName: t("profile.vk"), itemData: profileInfo.contacts?.vk, inputName: 'vk', itemType: 'text'},
+        {itemName: t("profile.instagram"), itemData: profileInfo.contacts?.instagram, inputName: 'instagram', itemType: 'text'},
+        {itemName: t("profile.youtube"), itemData: profileInfo.contacts?.youtube, inputName: 'youtube', itemType: 'text'},
+        {itemName: t("profile.github"), itemData: profileInfo.contacts?.github, inputName: 'github', itemType: 'text'},
+        {itemName: t("profile.mainLink"), itemData: profileInfo.contacts?.mainLink, inputName: 'mainLink', itemType: 'text'},
     ]
 
     const profileItems = profileData.map((item, index) => <ProfileInfoItem key={index}
@@ -108,7 +111,7 @@ export const ProfileInfo = memo((props) => {
                               onChange={onSavePhoto} />
                 <UserInfo>
                     <ProfileInfoStatus itemData={profileStatus || " - "}
-                                       itemName={"My status"}
+                                       itemName={t("profile.status")}
                                        isPointer
                                        updateProfileStatus={updateProfileStatus}
                                        currentUserId={currentUserId}
@@ -129,7 +132,7 @@ export const ProfileInfo = memo((props) => {
                                     <Button fontSize='12px'
                                             onClick={onEditMode}
                                             height='30px'>
-                                        Edit Profile
+                                        {t("profile.editProfileBtn")}
                                     </Button>
                                 }
 

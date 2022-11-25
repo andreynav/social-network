@@ -35,7 +35,7 @@ const Settings = (props) => {
     const {language, setLanguage} = useContext(LocaleContext)
     const [isLanguageToggled, setLanguageToggled] = useState(props.languageToggle || false)
 
-    const {t, i18n} = useTranslation();
+    const {t, i18n} = useTranslation()
 
     const onChangeLanguage = () => {
         language === "en"

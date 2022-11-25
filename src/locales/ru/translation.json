@@ -1,4 +1,12 @@
 {
+  "navbar": {
+    "profile": "Профиль",
+    "dialogs": "Диалоги",
+    "users": "Пользователи",
+    "news": "Новости",
+    "music": "Музыка",
+    "settings": "Настройки"
+  },
   "auth": {
     "login": "Войти",
     "logout": "Выйти",
@@ -9,12 +17,58 @@
     "errors": {
       "emailIsRequired": "Почта обязательное поле",
       "passwordIsRequired": "Пароль обязательное поле",
+      "captchaIsRequired": "Капча обязательное поле",
       "minLength": "Минимальная длина символов - {{count}}"
     }
   },
   "header": {
     "login": "Войти",
     "logout": "Выйти"
+  },
+  "footer": {
+    "email": "Почта",
+    "phone": "Телефон"
+  },
+  "profile": {
+    "status": "Мой статус",
+    "fullName": "Имя",
+    "aboutMe": "Обо мне",
+    "lookingForAJobStatus": "Ищу работу: статус",
+    "lookingForAJobDescription": "Ищу работу: описание",
+    "website": "Вебсайт",
+    "facebook": "Фейсбук",
+    "vk": "Вконтакте",
+    "instagram": "Инстаграм",
+    "youtube": "Ютуб",
+    "github": "Гитхаб",
+    "mainLink": "Основной канал",
+    "editProfileBtn": "Редактировать профиль",
+    "save": "Сохранить",
+    "myPosts": {
+      "title": "Мои посты",
+      "send": "Отправить",
+      "errors": {
+        "fieldRequired": "Обязательное поле",
+        "maxLength": "Максимальная длина символов - {{count}}"
+      }
+    }
+  },
+  "users": {
+    "title": "Пользователи - {{count}}",
+    "prevPage": "назад",
+    "nextPage": "вперед",
+    "follow": "подписан",
+    "unfollow": "отписан",
+    "fullName": "Имя",
+    "status": "Статус",
+    "id": "Номер",
+    "city": "Город"
+  },
+  "news": {
+    "title": "Новости"
+  },
+  "music": {
+    "title": "Музыка"
   },
   "settings": {
     "toggleTheme": {
@@ -25,5 +79,9 @@
       "eng": "Английский",
       "rus": "Русский"
     }
+  },
+  "notFound": {
+    "description": "404 страница не найдена",
+    "goTo": "Перейти на "
   }
 }

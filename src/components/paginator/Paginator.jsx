@@ -1,19 +1,21 @@
 import React from "react";
 import ReactPaginate from "react-paginate"
 import styled from "styled-components"
+import {useTranslation} from "react-i18next";
 
 export const Paginator = ({selectPage, totalCount, usersOnPage}) => {
-    const pagesCount = Math.ceil(Number(totalCount) / usersOnPage);
+    const pagesCount = Math.ceil(Number(totalCount) / usersOnPage)
+    const {t} = useTranslation()
 
     return (
         <StyledPaginate>
             <ReactPaginate
                 breakLabel="..."
-                nextLabel="next"
+                nextLabel={t("users.nextPage")}
                 onPageChange={(event) => selectPage(event.selected + 1)}
                 pageRangeDisplayed={3}
                 pageCount={pagesCount}
-                previousLabel="prev"
+                previousLabel={t("users.prevPage")}
                 renderOnZeroPageCount={null}
                 containerClassName='pagination'
                 activeClassName='active'
@@ -31,23 +33,23 @@ const StyledPaginate = styled.div`
   
   .pagination li {
     display: grid;
-    border-left: 1px solid black;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    border-left: 1px solid ${props => props.theme.borderPrimary};
+    border-top: 1px solid ${props => props.theme.borderPrimary};
+    border-bottom: 1px solid ${props => props.theme.borderPrimary};
     justify-items: center;
     align-items: center;
     height: 25px;
   }
 
   .pagination li:first-child {
-    border-left: 1px solid black;
+    border-left: 1px solid ${props => props.theme.borderPrimary};
     border-radius: 4px 0 0 4px;
     font-size: 12px;
     font-weight: bold;
   }
 
   .pagination li:last-child {
-    border-right: 1px solid black;
+    border-right: 1px solid ${props => props.theme.borderPrimary};
     border-radius: 0 4px 4px 0;
     font-size: 12px;
     font-weight: bold;
@@ -66,11 +68,11 @@ const StyledPaginate = styled.div`
   }
 
   .active {
-    background-color: #282c34;
+    background-color: ${props => props.theme.bgColorPrimary};
     font-weight: bold;
   }
 
   .active a {
-    color: #cdd9e5;
+    color: ${props => props.theme.colorSecondary};
   }
 `
