@@ -3,8 +3,8 @@ import ReactDOM from "react-dom/client"
 import {Provider} from "react-redux"
 import store from "./store/store"
 import {AppLocaleProvider} from "./locales/i18n";
-import {AppThemeProvider} from "./components/hoc/AppThemeProvider"
-import {AppStylesProvider} from "./components/hoc/AppStylesProvider"
+import {AppThemeProvider} from "./hoc/AppThemeProvider"
+import {AppStylesProvider} from "./hoc/AppStylesProvider"
 import {BrowserRouter} from "react-router-dom"
 import {App} from "../src/components/index"
 

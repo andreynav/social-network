@@ -1,8 +1,8 @@
 import React, {createContext, useEffect} from "react"
 import {ThemeProvider} from 'styled-components'
-import {dark, light} from "../../styles/themes"
+import {dark, light} from "../styles/themes"
 import {useLocalStorage} from "../hook/useLocalStorage";
-import {setThemeAC, setThemeToggle} from "../../store/appReducer";
+import {setThemeAC, setThemeToggle} from "../store/appReducer";
 import {useDispatch} from "react-redux";
 
 export const ThemeContext = createContext()
