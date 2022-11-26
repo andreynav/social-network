@@ -1,27 +1,15 @@
 import React, {memo} from "react";
-import {Label, PhotoSection} from "../index";
+import {PhotoSection, ProfileInfoItem} from "../index";
 import styled from "styled-components";
-import {useTranslation} from "react-i18next";
+import {useUserData} from "../hook/useUserData";
 
 export const User = memo((props) => {
     const {photos, id, name, status, followInProgress, toggleFollow, followed, city} = props
-    const {t} = useTranslation()
+    const userData = useUserData({name, status, id, city})
 
-    const userDataArray = [
-        {itemName: t("users.fullName"), value: name},
-        {itemName: t("users.status"), value: status},
-        {itemName: t("users.id"), value: id},
-        {itemName: t("users.city"), value: city},
-    ]
-
-    const userItems = userDataArray.map((item, index) =>
-        <div key={index}>
-            <Label fontSize='10px'>{item.itemName}</Label>
-            <div>
-                {item.value || " - "}
-            </div>
-        </div>
-    )
+    const userItems = userData.map((item, index) => <ProfileInfoItem key={index}
+                                                                     itemData={item.itemData}
+                                                                     itemName={item.itemName} />)
 
     return (
         <UserWrapper>
