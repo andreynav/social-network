@@ -15,8 +15,8 @@ import {
     selectProfileInfoUpdateStatus,
     selectProfileInfoUpdateError
 } from "../../store/profileReducer";
-import {withRouter} from "../../hoc/withRouter"; // import from index.js doesn't work. Why?
-import {withAuthRedirect} from "../../hoc/withAuthRedirect"; // import from index.js doesn't work. Why?
+import {withRouter} from "../../hoc/withRouter"
+import {withAuthRedirect} from "../../hoc/withAuthRedirect"
 
 const ProfileContainer = (props) => {
     const {currentUserId, userId, getProfileInfo, getProfileStatus} = props

@@ -2,7 +2,7 @@ import React from "react";
 import {Label} from "../../index";
 import styled from "styled-components";
 
-export const ProfileInfoItem = ({itemData, itemName, itemType}) => {
+export const UserInfoItem = ({itemData, itemName, itemType}) => {
     return (
         <ItemWrapper>
             <Label fontSize='10px'>{itemName}</Label>

@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {compose} from "@reduxjs/toolkit";
 import {Dialogs} from "../index";
 import {addMessageAC, selectDialogUsers, selectMessages} from "../../store/dialogReducer";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect" // import from index.js doesn't work. Why?
+import {withAuthRedirect} from "../../hoc/withAuthRedirect"
 
 
 let mapStateToProps = (state) => ({
