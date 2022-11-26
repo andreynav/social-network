@@ -27,18 +27,14 @@ export default function MyPosts(props) {
     return (
         <UserPostsWrapper>
             <PostsTitle>{t("profile.myPosts.title")}</PostsTitle>
-            <ProfileTextArea>
-                <FormPostMessage onSubmit={handleSubmit(onFormSubmit)}
-                                 register={register}
-                                 validationSchema={{
-                                     required: t('profile.myPosts.errors.fieldRequired'),
-                                     maxLength: {value: maxLength, message: maxLengthError}
-                                 }}
-                                 errors={errors}/>
-            </ProfileTextArea>
-            <AllPostsWrapper>
-                {posts}
-            </AllPostsWrapper>
+            <FormPostMessage onSubmit={handleSubmit(onFormSubmit)}
+                             register={register}
+                             validationSchema={{
+                                 required: t('profile.myPosts.errors.fieldRequired'),
+                                 maxLength: {value: maxLength, message: maxLengthError}
+                             }}
+                             errors={errors}/>
+            <AllPostsWrapper>{ posts }</AllPostsWrapper>
         </UserPostsWrapper>
     );
 }
@@ -50,10 +46,6 @@ const UserPostsWrapper = styled.div`
 
 const PostsTitle = styled.h3`
   padding: 5px;
-`
-
-const ProfileTextArea = styled.div`
-  display: grid;
 `
 
 const AllPostsWrapper = styled.div`
