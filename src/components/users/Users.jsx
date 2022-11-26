@@ -7,6 +7,15 @@ export const Users = (props) => {
     const {totalCount, usersOnPage, users, selectPage, isFetching, onChangeToggle, followInProgress} = props
     const {t} = useTranslation()
     const dynamicTitle = t("users.title", {count: totalCount})
+    const usersItems = users.map(user => <User key={user.id}
+                                               id={user.id}
+                                               name={user.name}
+                                               status={user.status}
+                                               city={user.city}
+                                               followed={user.followed}
+                                               photos={user.photos}
+                                               toggleFollow={onChangeToggle}
+                                               followInProgress={followInProgress} />)
 
     return (
         <UsersWrapper>
@@ -17,19 +26,7 @@ export const Users = (props) => {
             {
                 isFetching
                     ? <Loader/>
-                    : <div>
-                        {
-                            users.map(user => <User key={user.id}
-                                                    id={user.id}
-                                                    name={user.name}
-                                                    status={user.status}
-                                                    city={user.city}
-                                                    followed={user.followed}
-                                                    photos={user.photos}
-                                                    toggleFollow={onChangeToggle}
-                                                    followInProgress={followInProgress} />)
-                        }
-                    </div>
+                    : <div>{usersItems}</div>
             }
         </UsersWrapper>
     );

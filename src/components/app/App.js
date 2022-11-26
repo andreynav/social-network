@@ -9,9 +9,9 @@ import {
     NotFound,
     HeaderContainer,
     Login,
-    withRouter,
     Loader
 } from "../index"
+import {withRouter} from "../../hoc/withRouter"
 import {connect, useDispatch} from "react-redux";
 import {initializeApp, selectIsInitialized, selectTheme} from "../../store/appReducer";
 import {compose} from "@reduxjs/toolkit";

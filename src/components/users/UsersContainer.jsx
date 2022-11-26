@@ -13,8 +13,8 @@ import {
     toggleFollowUnfollow
 } from "../../store/usersReducer";
 import {connect} from "react-redux";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
-import {compose} from "@reduxjs/toolkit"; // import from index.js doesn't work. Why?
+import {withAuthRedirect} from "../../hoc/withAuthRedirect"
+import {compose} from "@reduxjs/toolkit"
 
 const UsersContainer = (props) => {
     const {setCurrentPageAC, getUsers, usersOnPage, users, toggleFollowUnfollow,

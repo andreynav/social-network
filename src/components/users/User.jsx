@@ -1,15 +1,14 @@
 import React, {memo} from "react";
-import {PhotoSection, ProfileInfoItem} from "../index";
+import {PhotoSection, UserInfoItem} from "../index";
 import styled from "styled-components";
 import {useUserData} from "../../hook/useUserData";
 
 export const User = memo((props) => {
     const {photos, id, name, status, followInProgress, toggleFollow, followed, city} = props
     const userData = useUserData({name, status, id, city})
-
-    const userItems = userData.map((item, index) => <ProfileInfoItem key={index}
-                                                                     itemData={item.itemData}
-                                                                     itemName={item.itemName} />)
+    const userItems = userData.map((item, index) => <UserInfoItem key={index}
+                                                                  itemData={item.itemData}
+                                                                  itemName={item.itemName} />)
 
     return (
         <UserWrapper>
@@ -19,9 +18,7 @@ export const User = memo((props) => {
                           followed={followed}
                           toggleFollow={toggleFollow}
                           followInProgress={followInProgress} />
-            <UserData>
-                {userItems}
-            </UserData>
+            <UserData>{userItems}</UserData>
         </UserWrapper>
     );
 })

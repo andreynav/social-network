@@ -5,7 +5,13 @@ import Music from "./music/Music"
 import Navbar from "./navbar/Navbar"
 import News from "./news/News"
 import NotFound from "./notFound/NotFound"
-import { Post, MyPosts, ProfileInfo, Profile, ProfileInfoStatus, FormProfileInfo, ProfileInfoItem } from "./profile/index"
+import {Profile} from "./profile/Profile"
+import {ProfileInfo} from "./profile/profileInfo/ProfileInfo"
+import {ProfileInfoStatus} from "./profile/profileInfo/ProfileInfoStatus"
+import {UserInfoItem} from "./profile/profileInfo/UserInfoItem"
+import {FormProfileInfo} from "./profile/profileInfo/FormProfileInfo"
+import MyPosts from "./profile/myPosts/MyPosts"
+import Post from "./profile/myPosts/Post"
 import Settings from "./settings/Settings"
 import FormPostMessage from "./formPostMessage/FormPostMessage";
 import MyPostsContainer from "./profile/myPosts/MyPostsContainer";
@@ -14,8 +20,6 @@ import {User} from "./users/User";
 import {Loader} from "./common/loader/Loader";
 import HeaderContainer from "./header/HeaderContainer";
 import Login from "./login/Login";
-import {withAuthRedirect} from "../hoc/withAuthRedirect";
-import {withRouter} from "../hoc/withRouter"
 import InputField from "./inputField/InputField";
 import FormLogin from "./login/FormLogin";
 import TextAreaField from "./textAreaField/TextAreaField";
@@ -51,8 +55,6 @@ export {
     Loader,
     HeaderContainer,
     Login,
-    withAuthRedirect,
-    withRouter,
     ProfileInfoStatus,
     InputField,
     FormLogin,
@@ -63,7 +65,7 @@ export {
     Button,
     PhotoSection,
     FormProfileInfo,
-    ProfileInfoItem,
+    UserInfoItem,
     GlobalStyles,
     Captcha,
     Toggle,

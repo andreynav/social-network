@@ -1,5 +1,5 @@
 import React, {memo, useState, useEffect} from "react";
-import {Loader, PhotoSection, ProfileInfoStatus, FormProfileInfo, Button, ProfileInfoItem} from "../../index";
+import {Loader, PhotoSection, ProfileInfoStatus, FormProfileInfo, Button, UserInfoItem} from "../../index";
 import styled from "styled-components";
 import {useForm} from "react-hook-form";
 import {useTranslation} from "react-i18next";
@@ -61,7 +61,7 @@ export const ProfileInfo = memo((props) => {
         {itemName: t("profile.mainLink"), itemData: profileInfo.contacts?.mainLink, inputName: 'mainLink', itemType: 'text'},
     ]
 
-    const profileItems = profileData.map((item, index) => <ProfileInfoItem key={index}
+    const profileItems = profileData.map((item, index) => <UserInfoItem key={index}
                                                                            itemData={item.itemData}
                                                                            itemName={item.itemName}
                                                                            itemType={item.itemType} />)
