@@ -14,8 +14,8 @@ import {User} from "./users/User";
 import {Loader} from "./common/loader/Loader";
 import HeaderContainer from "./header/HeaderContainer";
 import Login from "./login/Login";
-import {withAuthRedirect} from "./hoc/withAuthRedirect";
-import {withRouter} from "./hoc/withRouter"
+import {withAuthRedirect} from "../hoc/withAuthRedirect";
+import {withRouter} from "../hoc/withRouter"
 import InputField from "./inputField/InputField";
 import FormLogin from "./login/FormLogin";
 import TextAreaField from "./textAreaField/TextAreaField";

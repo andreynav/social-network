@@ -3,7 +3,7 @@ import {initReactI18next, useTranslation} from 'react-i18next'
 import translationEN from './en/translation.json'
 import translationRU from './ru/translation.json'
 import React, {createContext, useEffect} from "react"
-import {useLocalStorage} from "../components/hook/useLocalStorage"
+import {useLocalStorage} from "../hook/useLocalStorage"
 import {useDispatch} from "react-redux";
 import {setLanguageAC, setLanguageToggle} from "../store/appReducer"
 

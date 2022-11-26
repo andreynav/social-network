@@ -1,6 +1,6 @@
 import React, {useContext, useState} from "react";
 import {compose} from "@reduxjs/toolkit";
-import {withAuthRedirect} from "../hoc/withAuthRedirect";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {
     selectLanguage,
     selectLanguageToggle,
@@ -13,7 +13,7 @@ import {
 } from "../../store/appReducer";
 import {connect, useDispatch} from "react-redux";
 import styled from "styled-components";
-import {ThemeContext} from "../hoc/AppThemeProvider";
+import {ThemeContext} from "../../hoc/AppThemeProvider";
 import {Toggle} from "../common/Toggle/Toggle";
 import {useTranslation} from "react-i18next";
 import {LocaleContext} from "../../locales/i18n";

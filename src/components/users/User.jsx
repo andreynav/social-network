@@ -1,7 +1,7 @@
 import React, {memo} from "react";
 import {PhotoSection, ProfileInfoItem} from "../index";
 import styled from "styled-components";
-import {useUserData} from "../hook/useUserData";
+import {useUserData} from "../../hook/useUserData";
 
 export const User = memo((props) => {
     const {photos, id, name, status, followInProgress, toggleFollow, followed, city} = props
