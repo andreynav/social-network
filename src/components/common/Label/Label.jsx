@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const Label = (props) => {
     return (
         <StyledLabel {...props}>
-            {props.children}
+            { props.children }
         </StyledLabel>
     )
 }

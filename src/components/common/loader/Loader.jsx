@@ -2,9 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 export const Loader = (props) => {
-    return (
-        <StyledLoader {...props}/>
-    )
+    return <StyledLoader {...props} />
 }
 
 const StyledLoader = styled.div`

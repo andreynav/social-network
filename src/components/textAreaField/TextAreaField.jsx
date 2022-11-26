@@ -18,9 +18,12 @@ export default function TextAreaField(props) {
                       {...register(name, validationSchema)}
                       placeholder={placeholder}
                       {...areaProps} />
-            {errors && <Error>
-                {errors?.message}
-            </Error>}
+            {
+                errors &&
+                <Error>
+                    {errors?.message}
+                </Error>
+            }
         </InputWrapper>
     )
 }

@@ -1,13 +1,12 @@
 import React from "react";
-import { avatar, like } from "../../../assets"
+import { like } from "../../../assets"
 import styled from "styled-components";
+import {Avatar} from "../../index";
 
 export default function Post({message, likeCount}) {
     return (
         <PostWrapper>
-            <Avatar>
-                <img src={avatar} alt='avatar'/>
-            </Avatar>
+            <Avatar />
             <PostSection>{message}</PostSection>
             <PostLike>
                 <img src={like} alt='like'/>
@@ -19,30 +18,15 @@ export default function Post({message, likeCount}) {
 
 const PostWrapper = styled.div`
   display: grid;
-  margin: 20px 0;
   grid-template-columns: 80px 1fr 70px;
   grid-template-rows: minmax(100px, auto) auto;
-  grid-template-areas:
-        "avatar myPost myPost"
-        ". . myPostLike";
-`
-
-const Avatar = styled.div`
-  grid-area: avatar;
-  border-radius: 35px;
-  height: 70px;
-  width: 70px;
-  align-self: start;
-  align-items: start;
-
-  & img {
-    height: 70px;
-    width: 70px;
-  }
+  margin: 20px 0;
 `
 
 const PostSection = styled.div`
-  grid-area: myPost;
+  display: grid;
+  grid-column: 2/4;
+  grid-row: 1/2;
   background-color: transparent;
   border: 1px solid ${props => props.theme.borderPrimary};
   border-radius: 8px;
@@ -50,12 +34,13 @@ const PostSection = styled.div`
 `
 
 const PostLike = styled.div`
-  grid-area: myPostLike;
+  display: grid;
+  grid-column: 3/4;
+  grid-row: 2/3;
   justify-self: end;
   margin: 5px 0;
   color: ${props => props.theme.colorLike};
   font-size: 14px;
-  display: grid;
 
   & img {
     grid-row: 1/1;

@@ -15,7 +15,8 @@ export const Users = (props) => {
                                                followed={user.followed}
                                                photos={user.photos}
                                                toggleFollow={onChangeToggle}
-                                               followInProgress={followInProgress} />)
+                                               followInProgress={followInProgress}
+                                               isNavLink />)
 
     return (
         <UsersWrapper>

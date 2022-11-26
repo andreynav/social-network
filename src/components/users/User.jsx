@@ -4,7 +4,7 @@ import styled from "styled-components";
 import {useUserData} from "../../hook/useUserData";
 
 export const User = memo((props) => {
-    const {photos, id, name, status, followInProgress, toggleFollow, followed, city} = props
+    const {photos, id, name, status, followInProgress, toggleFollow, followed, city, isNavLink} = props
     const userData = useUserData({name, status, id, city})
     const userItems = userData.map((item, index) => <UserInfoItem key={index}
                                                                   itemData={item.itemData}
@@ -17,7 +17,8 @@ export const User = memo((props) => {
                           id={id}
                           followed={followed}
                           toggleFollow={toggleFollow}
-                          followInProgress={followInProgress} />
+                          followInProgress={followInProgress}
+                          isNavLink={isNavLink} />
             <UserData>{userItems}</UserData>
         </UserWrapper>
     );

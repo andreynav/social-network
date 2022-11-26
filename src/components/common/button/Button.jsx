@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const Button = (props) => {
     return (
         <StyledButton {...props}>
-            {props.children}
+            { props.children }
         </StyledButton>
     )
 }

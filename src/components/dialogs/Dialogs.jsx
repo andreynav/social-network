@@ -10,39 +10,35 @@ export default function Dialogs(props) {
     const maxLength = 100
     const maxLengthError = t('profile.myPosts.errors.maxLength', {count: maxLength})
 
-    let dialogsUsers = dialogUsers.map(user => <DialogUser key={user.id} userName={user.name} userId={user.id}/>);
-    let userMessages = messages.map((message, item) => <DialogMessage key={item} message={message.message}/>);
+    const dialogsUsers = dialogUsers.map(user => <DialogUser key={user.id} userName={user.name} userId={user.id}/>)
+    const userMessages = messages.map((message, item) => <DialogMessage key={item} message={message.message}/>)
 
     const {
         register,
         handleSubmit,
         formState: {errors},
         reset,
-    } = useForm({mode: "onBlur"});
+    } = useForm({mode: "onBlur"})
 
     const onFormSubmit = (data) => {
         addMessageAC({message: data.postMessage})
-        reset();
+        reset()
     }
 
     return (
         <DialogWrapper>
             <DialogMessagesWrapper>
-                <DialogUsersContainer>
-                    {dialogsUsers}
-                </DialogUsersContainer>
-                <DialogMessages>
-                    {userMessages}
-                </DialogMessages>
+                <DialogUsersContainer>{dialogsUsers}</DialogUsersContainer>
+                <DialogMessages>{userMessages}</DialogMessages>
             </DialogMessagesWrapper>
             <DialogTextArea>
                 <FormPostMessage onSubmit={handleSubmit(onFormSubmit)}
-                            register={register}
-                            validationSchema={{
-                                required: t('profile.myPosts.errors.fieldRequired'),
-                                maxLength: {value: maxLength, message: maxLengthError}
-                            }}
-                            errors={errors} />
+                                 register={register}
+                                 validationSchema={{
+                                     required: t('profile.myPosts.errors.fieldRequired'),
+                                     maxLength: {value: maxLength, message: maxLengthError}
+                                 }}
+                                 errors={errors} />
             </DialogTextArea>
         </DialogWrapper>
     );

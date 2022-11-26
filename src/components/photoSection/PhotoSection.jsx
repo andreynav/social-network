@@ -1,51 +1,40 @@
 import React from "react";
 import styled from "styled-components";
-import {NavLink, useParams} from "react-router-dom";
-import {avatar} from "../../assets/";
+import {useParams} from "react-router-dom";
 import {Button} from "../common/button/Button";
 import {useTranslation} from "react-i18next";
+import {Avatar} from "../common/Avatar/Avatar";
 
 export const PhotoSection = (props) => {
+    const {photos, name, id, isOwner, onChange, followInProgress, followed, toggleFollow, isNavLink} = props
     const params = useParams()
     const isNotUserProfilePage = !params.id
-    const srcData = props.photos.small !== null ? props.photos.small : avatar
     const {t} = useTranslation()
 
     return (
         <StyledUserSection {...props}>
-            <ImageWrapper {...props}>
-                {
-                    props.isOwner
-                        ? <img src={srcData} alt={`${props.name}`}/>
-                        : (
-                            <NavLink to={`/profile/${props.id}`}>
-                                <img src={srcData} alt={`${props.name}`}/>
-                            </NavLink>
-                        )
-                }
-            </ImageWrapper>
-
+            <Avatar src={photos?.small} alt={name} id={id} isOwner={isOwner} isNavLink={isNavLink} />
             <ButtonWrapper {...props}>
                 {
-                    props.isOwner
+                    isOwner
                         ? (
                             <FileInput type="file"
                                        title=" "
                                        name="avatar"
-                                       onChange={props.onChange}/>
+                                       onChange={onChange}/>
                         ) : (
                             isNotUserProfilePage &&
-                            <Button id={props?.id}
-                                    followInProgress={props?.followInProgress}
-                                    followed={props?.followed}
-                                    toggleFollow={props?.toggleFollow}
-                                    onClick={() => props?.toggleFollow(props?.id)}
-                                    disabled={props?.followInProgress?.some(userId => userId === props?.id)}
+                            <Button id={id}
+                                    followInProgress={followInProgress}
+                                    followed={followed}
+                                    toggleFollow={toggleFollow}
+                                    onClick={() => toggleFollow(id)}
+                                    disabled={followInProgress?.some(userId => userId === id)}
                                     height='26px'
                                     minWidth='50%'
                                     width='70px'
                                     fontSize='9px'>
-                                {props?.followed ? t("users.follow") : t("users.unfollow")}
+                                {followed ? t("users.follow") : t("users.unfollow")}
                             </Button>
                         )
                 }
@@ -70,11 +59,6 @@ const StyledUserSection = styled.div`
     border-radius: ${({brRadius = '35'}) => brRadius}px;
 
   }
-`
-
-const ImageWrapper = styled.div`
-  display: grid;
-  grid-area: ImageWrapper;
 `
 
 const ButtonWrapper = styled.div`
