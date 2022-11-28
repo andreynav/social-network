@@ -26,7 +26,7 @@ import TextAreaField from "./textAreaField/TextAreaField";
 import App from "./app/App";
 import {Paginator} from "./paginator/Paginator";
 import {Label} from "./common/Label/Label";
-import {Button} from "./common/button/Button";
+import {Button} from "./common/Button/Button";
 import {PhotoSection} from "./photoSection/PhotoSection";
 import {GlobalStyles} from "../styles/GlobalStyles";
 import {Captcha} from "./captcha/Captcha";
@@ -73,5 +73,5 @@ export {
     Toggle,
     Logo,
     Avatar,
-    Like
+    Like,
 }

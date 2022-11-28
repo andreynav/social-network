@@ -1,5 +1,5 @@
 import React from "react";
-import {Button} from "../../common/button/Button";
+import {Button} from "../../common/Button/Button";
 import {InputField, Label} from "../../index";
 import styled from "styled-components";
 import {useTranslation} from "react-i18next";
