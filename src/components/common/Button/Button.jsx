@@ -31,7 +31,7 @@ export const Button = (props) => {
 
     return (
         props.isOwner && UserDownloadPhotoButton ||
-        props.isNotUserProfilePage && FollowUnfollowButton ||
+        props.isFollowButton && FollowUnfollowButton ||
         SimpleButton
     )
 }
