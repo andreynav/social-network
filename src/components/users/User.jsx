@@ -18,7 +18,9 @@ export const User = memo((props) => {
                           followed={followed}
                           toggleFollow={toggleFollow}
                           followInProgress={followInProgress}
-                          isNavLink={isNavLink} />
+                          isNavLink={isNavLink}
+                          isFollowButton={true} />
+
             <UserData>{userItems}</UserData>
         </UserWrapper>
     );
