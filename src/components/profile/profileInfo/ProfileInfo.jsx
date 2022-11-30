@@ -3,6 +3,7 @@ import {Loader, PhotoSection, ProfileInfoStatus, FormProfileInfo, Button, UserIn
 import styled from "styled-components";
 import {useForm} from "react-hook-form";
 import {useTranslation} from "react-i18next";
+import {getProfileSchemeData} from "../../../utils/getProfileSchemeData";
 
 export const ProfileInfo = memo((props) => {
     const {
@@ -18,9 +19,7 @@ export const ProfileInfo = memo((props) => {
     } = props;
 
     const isOwner = currentUserId === userId
-
     const [editMode, setEditMode] = useState(false)
-
     const {t} = useTranslation()
 
     const {
@@ -37,34 +36,12 @@ export const ProfileInfo = memo((props) => {
 
     if (!profileInfo) return <Loader/>
 
-    const profileData = [
-        {itemName: t("profile.fullName"), itemData: profileInfo.fullName, inputName: 'fullName', itemType: 'text'},
-        {itemName: t("profile.aboutMe"), itemData: profileInfo.aboutMe, inputName: 'aboutMe', itemType: 'text'},
-        {
-            itemName: t("profile.lookingForAJobStatus"),
-            itemData: profileInfo.lookingForAJob,
-            inputName: 'lookingForAJob',
-            itemType: 'checkbox'
-        },
-        {
-            itemName: t("profile.lookingForAJobDescription"),
-            itemData: profileInfo.lookingForAJobDescription,
-            inputName: 'lookingForAJobDescription',
-            itemType: 'text'
-        },
-        {itemName: t("profile.website"), itemData: profileInfo.contacts?.website, inputName: 'website', itemType: 'text'},
-        {itemName: t("profile.facebook"), itemData: profileInfo.contacts?.facebook, inputName: 'facebook', itemType: 'text'},
-        {itemName: t("profile.vk"), itemData: profileInfo.contacts?.vk, inputName: 'vk', itemType: 'text'},
-        {itemName: t("profile.instagram"), itemData: profileInfo.contacts?.instagram, inputName: 'instagram', itemType: 'text'},
-        {itemName: t("profile.youtube"), itemData: profileInfo.contacts?.youtube, inputName: 'youtube', itemType: 'text'},
-        {itemName: t("profile.github"), itemData: profileInfo.contacts?.github, inputName: 'github', itemType: 'text'},
-        {itemName: t("profile.mainLink"), itemData: profileInfo.contacts?.mainLink, inputName: 'mainLink', itemType: 'text'},
-    ]
+    const profileData = getProfileSchemeData(profileInfo).map(item => ({...item, itemName: t(item["itemName"])}))
 
     const profileItems = profileData.map((item, index) => <UserInfoItem key={index}
-                                                                           itemData={item.itemData}
-                                                                           itemName={item.itemName}
-                                                                           itemType={item.itemType} />)
+                                                                        itemData={item.itemData}
+                                                                        itemName={item.itemName}
+                                                                        itemType={item.itemType}/>)
 
     const onEditMode = () => {
         setEditMode(prevEditMode => !prevEditMode);
@@ -88,7 +65,7 @@ export const ProfileInfo = memo((props) => {
                 mainLink: data.facebook
             }
         }).then((response) => { // refactor
-            if (!response.error)  {
+            if (!response.error) {
                 setEditMode(prevEditMode => !prevEditMode);
             }
         })
@@ -108,14 +85,14 @@ export const ProfileInfo = memo((props) => {
                               brRadius={50}
                               photos={profileInfo.photos}
                               name={profileInfo.fullName}
-                              onChange={onSavePhoto} />
+                              onChange={onSavePhoto}/>
                 <UserInfo>
                     <ProfileInfoStatus itemData={profileStatus || " - "}
                                        itemName={t("profile.status")}
                                        isPointer
                                        updateProfileStatus={updateProfileStatus}
                                        currentUserId={currentUserId}
-                                       userId={userId} />
+                                       userId={userId}/>
                     {
                         editMode ?
                             <FormProfileInfo onSubmit={handleSubmit(onFormSubmit)}
