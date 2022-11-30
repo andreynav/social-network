@@ -1,11 +1,13 @@
 import React, {memo} from "react";
 import {PhotoSection, UserInfoItem} from "../index";
 import styled from "styled-components";
-import {useUserData} from "../../hook/useUserData";
+import {getUserSchemeData} from "../../utils/getUserSchemeData";
+import {useTranslation} from "react-i18next";
 
 export const User = memo((props) => {
     const {photos, id, name, status, followInProgress, toggleFollow, followed, city, isNavLink} = props
-    const userData = useUserData({name, status, id, city})
+    const {t} = useTranslation()
+    const userData = getUserSchemeData({name, status, id, city}).map(item => ({...item, itemName: t(item["itemName"])}))
     const userItems = userData.map((item, index) => <UserInfoItem key={index}
                                                                   itemData={item.itemData}
                                                                   itemName={item.itemName} />)
