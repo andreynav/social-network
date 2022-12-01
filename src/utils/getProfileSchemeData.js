@@ -1,7 +1,17 @@
 export const getProfileSchemeData = (profileInfo) => {
     return [
-        {itemName: "profile.fullName", itemData: profileInfo.fullName, inputName: 'fullName', itemType: 'text'},
-        {itemName: "profile.aboutMe", itemData: profileInfo.aboutMe, inputName: 'aboutMe', itemType: 'text'},
+        {
+            itemName: "profile.fullName",
+            itemData: profileInfo.fullName,
+            inputName: 'fullName',
+            itemType: 'text'
+        },
+        {
+            itemName: "profile.aboutMe",
+            itemData: profileInfo.aboutMe,
+            inputName: 'aboutMe',
+            itemType: 'text'
+        },
         {
             itemName: "profile.lookingForAJobStatus",
             itemData: profileInfo.lookingForAJob,
@@ -26,7 +36,12 @@ export const getProfileSchemeData = (profileInfo) => {
             inputName: 'facebook',
             itemType: 'text'
         },
-        {itemName: "profile.vk", itemData: profileInfo.contacts?.vk, inputName: 'vk', itemType: 'text'},
+        {
+            itemName: "profile.vk",
+            itemData: profileInfo.contacts?.vk,
+            inputName: 'vk',
+            itemType: 'text'
+        },
         {
             itemName: "profile.instagram",
             itemData: profileInfo.contacts?.instagram,
@@ -39,12 +54,16 @@ export const getProfileSchemeData = (profileInfo) => {
             inputName: 'youtube',
             itemType: 'text'
         },
-        {itemName: "profile.github", itemData: profileInfo.contacts?.github, inputName: 'github', itemType: 'text'},
+        {   itemName: "profile.github",
+            itemData: profileInfo.contacts?.github,
+            inputName: 'github',
+            itemType: 'text'
+        },
         {
             itemName: "profile.mainLink",
             itemData: profileInfo.contacts?.mainLink,
             inputName: 'mainLink',
             itemType: 'text'
-        },
+        }
     ]
 }

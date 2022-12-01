@@ -4,6 +4,7 @@ import styled from "styled-components";
 import {useForm} from "react-hook-form";
 import {useTranslation} from "react-i18next";
 import {getProfileSchemeData} from "../../../utils/getProfileSchemeData";
+import {getProfileInfoSchemeData} from "../../../utils/getProfileInfoSchemeData";
 
 export const ProfileInfo = memo((props) => {
     const {
@@ -48,23 +49,8 @@ export const ProfileInfo = memo((props) => {
     }
 
     const onFormSubmit = (data) => {
-        updateProfileInfo({ // dispatch?
-            userId: userId,
-            fullName: data.fullName,
-            aboutMe: data.aboutMe,
-            lookingForAJob: data.lookingForAJob,
-            lookingForAJobDescription: data.lookingForAJobDescription,
-            contacts: {
-                facebook: data.facebook,
-                website: data.website,
-                vk: data.vk,
-                twitter: data.twitter,
-                instagram: data.instagram,
-                youtube: data.youtube,
-                github: data.github,
-                mainLink: data.facebook
-            }
-        }).then((response) => { // refactor
+        const updatedInfo = getProfileInfoSchemeData(data)
+        updateProfileInfo(updatedInfo).then((response) => { // dispatch? // refactor then
             if (!response.error) {
                 setEditMode(prevEditMode => !prevEditMode);
             }
