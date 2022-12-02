@@ -82,6 +82,7 @@
   },
   "notFound": {
     "description": "404 page not found",
-    "goTo": "Go to "
+    "goTo": "Go to ",
+    "profile": "Profile"
   }
 }
