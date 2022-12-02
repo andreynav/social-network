@@ -1,5 +1,5 @@
 import React, {memo, useState, useEffect} from "react";
-import {Loader, PhotoSection, ProfileInfoStatus, FormProfileInfo, Button, UserInfoItem} from "../../index";
+import {PhotoSection, ProfileInfoStatus, FormProfileInfo, Button, UserInfoItem} from "../../index";
 import styled from "styled-components";
 import {useForm} from "react-hook-form";
 import {useTranslation} from "react-i18next";
@@ -35,14 +35,22 @@ export const ProfileInfo = memo((props) => {
         profileInfoUpdateError && setError('server', {message: profileInfoUpdateError});
     }, [profileInfoUpdateError]);
 
-    if (!profileInfo) return <Loader/>
-
     const profileData = getProfileSchemeData(profileInfo).map(item => ({...item, itemName: t(item["itemName"])}))
 
-    const profileItems = profileData.map((item, index) => <UserInfoItem key={index}
-                                                                        itemData={item.itemData}
-                                                                        itemName={item.itemName}
-                                                                        itemType={item.itemType}/>)
+    const profileInfoItems = profileData.map((item, index) => <UserInfoItem key={index}
+                                                                            itemData={item.itemData}
+                                                                            itemName={item.itemName}
+                                                                            itemType={item.itemType}/>)
+
+    const showEditButtonIfOwner = () => {
+        if (isOwner) {
+            return (
+                <Button fontSize='12px' height='30px' onClick={onEditMode}>
+                    {t("profile.editProfileBtn")}
+                </Button>
+            )
+        }
+    }
 
     const onEditMode = () => {
         setEditMode(prevEditMode => !prevEditMode);
@@ -80,25 +88,16 @@ export const ProfileInfo = memo((props) => {
                                        currentUserId={currentUserId}
                                        userId={userId}/>
                     {
-                        editMode ?
-                            <FormProfileInfo onSubmit={handleSubmit(onFormSubmit)}
-                                             register={register}
-                                             registerCheckbox={register("lookingForAJob")}
-                                             errors={errors}
-                                             onClearErrors={onClearErrors}
-                                             profileData={profileData}
-                            /> :
-                            <div>
-                                {profileItems}
-                                {
-                                    isOwner &&
-                                    <Button fontSize='12px'
-                                            onClick={onEditMode}
-                                            height='30px'>
-                                        {t("profile.editProfileBtn")}
-                                    </Button>
-                                }
-
+                        editMode
+                            ? <FormProfileInfo onSubmit={handleSubmit(onFormSubmit)}
+                                               register={register}
+                                               registerCheckbox={register("lookingForAJob")}
+                                               errors={errors}
+                                               onClearErrors={onClearErrors}
+                                               profileData={profileData} />
+                            : <div>
+                                {profileInfoItems}
+                                {showEditButtonIfOwner()}
                             </div>
                     }
                 </UserInfo>
