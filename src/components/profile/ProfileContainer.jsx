@@ -39,8 +39,7 @@ const ProfileContainer = (props) => {
     return <Profile onSavePhoto={onSavePhoto}
                     onSaveUpdateProfile={onSaveUpdateProfile}
                     updateProfileInfo={updateProfileInfo}
-                    {...props}
-    />
+                    {...props} />
 }
 
 let mapStateToProps = (state) => ({

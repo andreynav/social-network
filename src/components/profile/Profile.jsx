@@ -1,5 +1,5 @@
 import React from "react"
-import {MyPostsContainer, ProfileInfo} from "../index"
+import {Loader, MyPostsContainer, ProfileInfo} from "../index"
 import styled from "styled-components";
 
 export const Profile = (props) => {
@@ -14,6 +14,8 @@ export const Profile = (props) => {
         profileInfoUpdateError,
         updateProfileInfo
     } = props
+
+    if (!profileInfo) return <Loader/>
 
     return (
         <ProfileWrapper>
