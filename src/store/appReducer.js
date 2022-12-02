@@ -12,7 +12,7 @@ const initialState = {
 }
 
 export const initializeApp = createAsyncThunk(
-    'app/initializeApp',
+    'App/initializeApp',
     async (_, {dispatch, rejectWithValue}) => {
         try {
             let promise = dispatch(getAuthUserData());

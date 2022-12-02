@@ -17,9 +17,9 @@ import {initializeApp, selectIsInitialized, selectTheme} from "../../store/appRe
 import {compose} from "@reduxjs/toolkit";
 import styled from "styled-components";
 
-const DialogsContainer = lazy(() => import ('../dialogs/DialogsContainer'));
-const ProfileContainer = lazy(() => import('../profile/ProfileContainer'));
-const UsersContainer = lazy(() => import('../users/UsersContainer'));
+const DialogsContainer = lazy(() => import ('../Dialogs/DialogsContainer'));
+const ProfileContainer = lazy(() => import('../Profile/ProfileContainer'));
+const UsersContainer = lazy(() => import('../Users/UsersContainer'));
 
 function App(props) {
     const dispatch = useDispatch();
