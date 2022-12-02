@@ -1,4 +1,6 @@
-import { Dialogs, DialogUser, DialogMessage } from "./Dialogs/index"
+import Dialogs from "./Dialogs/Dialogs"
+import DialogUser from "./Dialogs/DialogUser"
+import DialogMessage from "./Dialogs/DialogMessage"
 import Footer from "./Footer/Footer"
 import Header from "./Header/Header"
 import Music from "./Music/Music"
