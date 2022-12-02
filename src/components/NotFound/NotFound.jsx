@@ -9,7 +9,7 @@ export default function NotFound() {
     return (
         <NotFoundWrapper>
             <div>{t("notFound.description")}</div>
-            <div>{t("notFound.goTo")}<NavLink to='/profile'>Profile</NavLink></div>
+            <div>{t("notFound.goTo")}<NavLink to='/profile'>{t("notFound.profile")}</NavLink></div>
         </NotFoundWrapper>
     );
 }
