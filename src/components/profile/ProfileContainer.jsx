@@ -26,7 +26,7 @@ const ProfileContainer = (props) => {
         let id = currentUserId || userId;
         getProfileInfo(id);
         getProfileStatus(id);
-    }, [])
+    }, [currentUserId])
 
     const onSavePhoto = (e) => {
         dispatch(updateProfilePhoto(e.target.files[0]))
