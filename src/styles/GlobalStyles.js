@@ -1,8 +1,19 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components'
+import MontserratRegular from "../fonts/Montserrat-Regular.ttf"
+import MontserratMedium from "../fonts/Montserrat-Medium.ttf"
+import MontserratLight from "../fonts/Montserrat-Light.ttf"
 
 export const GlobalStyles = createGlobalStyle`
   :root {
     --color-gold: #ffc300;
+  }
+
+  @font-face {
+    font-family: "Montserrat";
+    src: local("Montserrat"),
+    url(${MontserratLight}) format("truetype"),
+    url(${MontserratRegular}) format("truetype"),
+    url(${MontserratMedium}) format("truetype");
   }
   
   html, body {
@@ -10,9 +21,7 @@ export const GlobalStyles = createGlobalStyle`
     padding: 0;
     line-height: 1.15;
     height: 100%;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    font-family: 'Montserrat', sans-serif;
     -webkit-text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

@@ -67,7 +67,7 @@ const LoginForm = styled.form`
 const LoginCheckboxWrapper = styled.div`
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: 20px 120px;
+  grid-template-columns: 20px 150px;
   height: 35px;
   font-size: 16px;
   text-transform: uppercase;
