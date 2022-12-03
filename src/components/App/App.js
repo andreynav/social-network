@@ -77,7 +77,6 @@ const AppWrapper = styled.div`
             "header header header header"
             "nav main main main"
             "footer footer footer footer";
-  font-family: sans-serif;
   font-size: 16px;
   background-color: ${props => props.theme.bgColorPrimary};
 `
