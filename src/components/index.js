@@ -36,6 +36,7 @@ import {Toggle} from "./common/Toggle/Toggle";
 import {Logo} from "./common/Logo/Logo";
 import {Avatar} from "./common/Avatar/Avatar";
 import {Like} from "./common/Like/Like";
+import {Radio} from "./common/Radio/Radio";
 
 export {
     Dialogs,
@@ -76,4 +77,5 @@ export {
     Logo,
     Avatar,
     Like,
+    Radio,
 }
