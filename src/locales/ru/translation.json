@@ -72,10 +72,12 @@
   },
   "settings": {
     "toggleTheme": {
+      "title": "Тема",
       "light": "Светлая",
       "dark": "Темная"
     },
     "toggleLanguage": {
+      "title": "Язык",
       "eng": "Английский",
       "rus": "Русский"
     }

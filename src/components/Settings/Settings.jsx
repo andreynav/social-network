@@ -5,11 +5,9 @@ import {
     selectLanguage,
     selectLanguageToggle,
     selectTheme,
-    selectThemeToggle,
     setLanguageAC,
     setLanguageToggle,
     setThemeAC,
-    setThemeToggle
 } from "../../store/appReducer";
 import {connect, useDispatch} from "react-redux";
 import styled from "styled-components";
@@ -17,19 +15,15 @@ import {ThemeContext} from "../../hoc/AppThemeProvider";
 import {Toggle} from "../common/Toggle/Toggle";
 import {useTranslation} from "react-i18next";
 import {LocaleContext} from "../../locales/i18n";
+import {Radio} from "../index";
 
 const Settings = (props) => {
     const dispatch = useDispatch()
     const {currentTheme, setCurrentTheme} = useContext(ThemeContext)
-    const [isToggled, setIsToggled] = useState(props.themeToggle || false)
 
-    const onChangeTheme = () => {
-        currentTheme === "light"
-            ? (setCurrentTheme("dark") && setIsToggled(true))
-            : (setCurrentTheme("light") && setIsToggled(false))
-
+    const onChangeTheme = (event) => {
+        setCurrentTheme(event.target.value);
         dispatch(setThemeAC({theme: !props.theme}))
-        dispatch(setThemeToggle({themeToggle: !props.themeToggle}))
     }
 
     const {language, setLanguage} = useContext(LocaleContext)
@@ -46,41 +40,62 @@ const Settings = (props) => {
 
         dispatch(language === 'en' ? setLanguageAC({language: 'ru'}) : setLanguageAC({language: 'en'}))
         dispatch(setLanguageToggle({languageToggle: !props.languageToggle}))
-    };
+    }
 
     return (
         <SettingsWrapper>
-            <Toggle labelLeft={t("settings.toggleTheme.light")}
-                    labelRight={t("settings.toggleTheme.dark")}
-                    isChecked={isToggled}
-                    onChange={onChangeTheme}/>
-            <Toggle labelLeft={t("settings.toggleLanguage.eng")}
-                    labelRight={t("settings.toggleLanguage.rus")}
-                    isChecked={isLanguageToggled}
-                    onChange={onChangeLanguage}/>
+            <ThemeWrapper onChange={onChangeTheme}>
+                <h2>{t("settings.toggleTheme.title")}</h2>
+                <Radio name="themeRadio"
+                       value="light"
+                       label={t("settings.toggleTheme.light")}
+                       isChecked={currentTheme === "light"} />
+                <Radio name="themeRadio"
+                       value="dark"
+                       label={t("settings.toggleTheme.dark")}
+                       isChecked={currentTheme === "dark"} />
+            </ThemeWrapper>
+            <LanguageWrapper>
+                <h2>{t("settings.toggleLanguage.title")}</h2>
+                <Toggle labelLeft={t("settings.toggleLanguage.eng")}
+                        labelRight={t("settings.toggleLanguage.rus")}
+                        isChecked={isLanguageToggled}
+                        onChange={onChangeLanguage}/>
+            </LanguageWrapper>
         </SettingsWrapper>
     )
 }
 
 let mapStateToProps = (state) => ({
     theme: selectTheme(state),
-    themeToggle: selectThemeToggle(state),
     language: selectLanguage(state),
     languageToggle: selectLanguageToggle(state)
 });
 
 export default compose(
     connect(mapStateToProps, {
-        setThemeAC, setThemeToggle, setLanguageAC, setLanguageToggle
+        setThemeAC, setLanguageAC, setLanguageToggle
     }),
     withAuthRedirect,
 )(Settings)
 
 const SettingsWrapper = styled.div`
   display: grid;
-  justify-content: center;
   align-content: start;
   grid-gap: 20px;
   color: ${props => props.theme.textColor};
   background-color: ${props => props.theme.bgColor};
+`
+
+const ThemeWrapper = styled.div`
+  display: grid;
+  grid-template-rows: 26px 36px 36px;
+`
+
+const LanguageWrapper = styled.div`
+  display: grid;
+  
+  & div:nth-child(2) {
+    justify-content: center;
+  }
 `
