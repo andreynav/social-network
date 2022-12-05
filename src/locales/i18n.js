@@ -5,7 +5,7 @@ import translationRU from './ru/translation.json'
 import React, {createContext, useEffect} from "react"
 import {useLocalStorage} from "../hook/useLocalStorage"
 import {useDispatch} from "react-redux";
-import {setLanguageAC, setLanguageToggle} from "../store/appReducer"
+import {setLanguageAC} from "../store/appReducer"
 
 const resources = {
     en: {translation: translationEN},
@@ -34,7 +34,6 @@ export const AppLocaleProvider = ({children}) => {
     useEffect(() => {
         dispatch(setLanguageAC({language: language}))
         i18n.changeLanguage(language);
-        dispatch(language === 'en' ? setLanguageToggle({languageToggle: false}) : setLanguageToggle({languageToggle: true}))
     }, [language])
 
     return (

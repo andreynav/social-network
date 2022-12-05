@@ -13,7 +13,7 @@ import {
 } from "../index"
 import {withRouter} from "../../hoc/withRouter"
 import {connect, useDispatch} from "react-redux";
-import {initializeApp, selectIsInitialized, selectTheme} from "../../store/appReducer";
+import {initializeApp, selectIsInitialized} from "../../store/appReducer";
 import {compose} from "@reduxjs/toolkit";
 import styled from "styled-components";
 
@@ -61,13 +61,12 @@ function App(props) {
 
 const mapStateToProps = (state) => ({
     isInitialized: selectIsInitialized(state),
-    theme: selectTheme(state)
-});
+})
 
 export default compose(
     connect(mapStateToProps, {initializeApp}),
     withRouter
-)(App);
+)(App)
 
 const AppWrapper = styled.div`
   display: grid;

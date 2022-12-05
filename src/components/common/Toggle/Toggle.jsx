@@ -31,7 +31,8 @@ const ToggleInput = styled.input`
   display: none;
 
   &:checked + span {
-    background-color: ${props => props.theme.colorSecondary};
+    // background-color: ${props => props.theme.colorSecondary};
+    background-color: transparent;
   }
 
   &:checked + span:before {
@@ -46,18 +47,19 @@ const ToggleSpan = styled.span`
   left: 0;
   right: 0;
   bottom: 0;
-  background: ${props => props.theme.colorSecondary};
+  background: transparent;
+  border: 1px solid ${props => props.theme.colorPrimary};
   transition: 0.3s;
   border-radius: 30px;
 
   &:before {
     position: absolute;
     content: "";
-    height: 25px;
-    width: 25px;
+    height: 22px;
+    width: 22px;
     left: 3px;
-    bottom: 2.6px;
-    background-color: #fff;
+    bottom: 3px;
+    background-color: ${props => props.theme.colorSecondary};
     border-radius: 50%;
     transition: 0.3s;
   }

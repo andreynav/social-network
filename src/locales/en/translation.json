@@ -80,6 +80,10 @@
       "title": "Language",
       "eng": "English",
       "rus": "Russian"
+    },
+    "general": {
+      "title": "General",
+      "notifications": "Show notifications"
     }
   },
   "notFound": {
