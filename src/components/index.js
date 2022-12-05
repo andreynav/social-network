@@ -37,6 +37,7 @@ import {Logo} from "./common/Logo/Logo";
 import {Avatar} from "./common/Avatar/Avatar";
 import {Like} from "./common/Like/Like";
 import {Radio} from "./common/Radio/Radio";
+import {Select} from "./common/Select/Select";
 
 export {
     Dialogs,
@@ -78,4 +79,5 @@ export {
     Avatar,
     Like,
     Radio,
+    Select
 }

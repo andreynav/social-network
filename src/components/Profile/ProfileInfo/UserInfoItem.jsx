@@ -11,7 +11,6 @@ export const UserInfoItem = ({itemData, itemName, itemType}) => {
                 ? <div>{itemData ? 'Yes' : 'No'}</div>
                 : <div>{itemData || " - "}</div>
             }
-
         </ItemWrapper>
     )
 }
