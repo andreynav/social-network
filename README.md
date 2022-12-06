@@ -1,70 +1,108 @@
-# Getting Started with Create React App
+# General Notes
+The current project is a project of social network executed due to the React, Redux, Styled components.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The project used the API calls to back-end, possibility to set up your own user profile, set up the languages and themes.
 
-## Available Scripts
+## Project structure
 
-In the project directory, you can run:
+The project has multilayer structure:
+- `public` - used to keep static content for builds
+- `api` - used to keep API calls functionality
+- `assets` - used to keep static content
+- `components` - used to keep react components
+    - `App` - used to keep main App component
+    - `...` - rest of components
+    - `common` - used to keep common for whole app components
+- `fonts` - used to keep fonts
+- `hoc` - used to keep hocs
+- `hook` - used to keep hooks
+- `locales` - used to keep locales for translations
+- `store` - used to keep store
+- `styles` - used to keep styles
+- `tests` - used to keep tests
+- `utils` - used to keep utils for helping
+```
 
-### `npm start`
+├── public
+├── src
+│   ├── api
+│   ├── assets
+│   ├── components
+│   │   ├── App
+│   │   ├── Captcha
+│   │   ├── Dialogs
+│   │   ├── Footer
+│   │   ├── FormPostMessage
+│   │   ├── Header
+│   │   ├── InputField
+│   │   ├── Login
+│   │   ├── Music
+│   │   ├── Navbar
+│   │   ├── News
+│   │   ├── NotFound
+│   │   ├── Paginator
+│   │   ├── PhotoSection
+│   │   ├── Profile
+│   │   ├── Settings
+│   │   ├── TextAreaField
+│   │   ├── Users
+│   │   ├── common
+│   ├── fonts
+│   ├── hoc
+│   ├── hook
+│   ├── locales
+│   ├── store
+│   ├── styles
+│   ├── tests
+│   └── utils
+```
 
-Runs the app in the development mode.\
+## Dependencies
+
+The project has the next dependencies in the [package.json](package.json) file
+
+## Installation
+
+1. Clone project to your PC by the following command:
+```bash
+  git clone https://github.com/andreynav/social-network.git
+```
+
+2. Open the root directory and enter the following command:
+```bash
+  npm install
+```
+
+## Running project
+To run project, open the root directory and enter the following command:
+```bash
+  npm start 
+```
+The command runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Running tests
+To run the tests, open the root directory and enter the following command:
+```bash
+  npm test 
+```
+Launches the test runner in the interactive watch mode.
+See the folder [tests](src/tests) for information about existing tests.
 
-### `npm test`
+## Running build
+To run build, open the root directory and enter the following command:
+```bash
+  npm build 
+```
+Builds the app for production to the `build` folder.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
+The build is minified and the filenames include the hashes.
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## License
+The project is open source software provided under the [Apache License 2.0](LICENSE.md).
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
