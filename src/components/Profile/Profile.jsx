@@ -10,7 +10,6 @@ export const Profile = (props) => {
         currentUserId,
         userId,
         onSavePhoto,
-        onSaveUpdateProfile,
         profileInfoUpdateError,
         updateProfileInfo
     } = props
@@ -25,7 +24,6 @@ export const Profile = (props) => {
                          currentUserId={currentUserId}
                          userId={userId}
                          onSavePhoto={onSavePhoto}
-                         onSaveUpdateProfile={onSaveUpdateProfile}
                          profileInfoUpdateError={profileInfoUpdateError}
                          updateProfileInfo={updateProfileInfo}/>
             <MyPostsContainer/>

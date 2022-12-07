@@ -14,7 +14,6 @@ export const ProfileInfo = memo((props) => {
         currentUserId,
         userId,
         onSavePhoto,
-        onSaveUpdateProfile,
         profileInfoUpdateError,
         updateProfileInfo
     } = props;
@@ -58,8 +57,8 @@ export const ProfileInfo = memo((props) => {
 
     const onFormSubmit = (data) => {
         const updatedInfo = getProfileInfoSchemeData(data)
-        updateProfileInfo(updatedInfo).then((response) => { // dispatch? // refactor then
-            if (!response.error) {
+        updateProfileInfo(updatedInfo).then((response) => { //already wrapped to dispatch in mapDispatchToProps
+            if (!response.error) {                          // refactor then
                 setEditMode(prevEditMode => !prevEditMode);
             }
         })

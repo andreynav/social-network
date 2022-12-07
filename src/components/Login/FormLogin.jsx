@@ -4,6 +4,7 @@ import styled from "styled-components";
 import {useTranslation} from "react-i18next";
 
 export default function FormLogin(props) {
+    console.log(props)
     const {onSubmit, registerInput, errors, registerCheckbox, onClearErrors, captcha} = props
     const { t } = useTranslation()
     const minLength = 5
@@ -36,6 +37,7 @@ export default function FormLogin(props) {
             <LoginCheckboxWrapper>
                 <LoginCheckbox name={"rememberMe"}
                                type={"checkbox"}
+                               defaultChecked={true}
                                {...registerCheckbox} className='geekmark'/>
                 <Label htmlFor={"rememberMe"}
                        color={'black'}

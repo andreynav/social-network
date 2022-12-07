@@ -31,6 +31,7 @@ export const FormProfileInfo = ({onSubmit, register, registerCheckbox, errors, p
                         </Label>
                         <LoginCheckbox name={item.inputName}
                                        type={item.itemType}
+                                       defaultChecked={item.itemData}
                                        {...registerCheckbox}
                         />
                     </LoginCheckboxWrapper>
@@ -67,4 +68,5 @@ const LoginCheckbox = styled.input`
   height: 35px;
   width: 20px;
   justify-self: center;
+  cursor: pointer;
 `
