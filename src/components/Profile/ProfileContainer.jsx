@@ -32,12 +32,7 @@ const ProfileContainer = (props) => {
         dispatch(updateProfilePhoto(e.target.files[0]))
     }
 
-    const onSaveUpdateProfile = (data) => { // redundant
-        dispatch(updateProfileInfo(data))
-    }
-
     return <Profile onSavePhoto={onSavePhoto}
-                    onSaveUpdateProfile={onSaveUpdateProfile}
                     updateProfileInfo={updateProfileInfo}
                     {...props} />
 }
