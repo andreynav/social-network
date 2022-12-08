@@ -1,15 +1,14 @@
-import React, {useEffect} from "react";
-import {useForm} from "react-hook-form";
-import {FormLogin} from "../index";
-import {loginUser, selectCaptcha, selectError, selectIsAuth} from "../../store/authReducer";
-import {connect, useDispatch} from "react-redux";
-import {useNavigate} from "react-router-dom";
-import styled from "styled-components";
-import {useTranslation} from "react-i18next";
+import React, {useEffect} from "react"
+import {useForm} from "react-hook-form"
+import {FormLogin} from "../index"
+import {loginUser, selectCaptcha, selectError, selectIsAuth} from "../../store/authReducer"
+import {connect} from "react-redux"
+import {useNavigate} from "react-router-dom"
+import styled from "styled-components"
+import {useTranslation} from "react-i18next"
 
-function Login({ isAuth, error, captcha }) {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+function Login({ isAuth, error, captcha, loginUser }) {
+    const navigate = useNavigate()
 
     const {
         register,
@@ -18,28 +17,23 @@ function Login({ isAuth, error, captcha }) {
         reset,
         setError,
         clearErrors
-    } = useForm({mode: "onBlur"});
+    } = useForm({mode: "onBlur"})
 
     const onFormSubmit = (data) => {
-        dispatch(loginUser({
-            email: data.email,
-            password: data.password,
-            rememberMe: data.rememberMe,
-            captcha: data.captcha
-        }));
-        !!errors.server && reset();
+        loginUser(data)
+        !!errors.server && reset()
     }
 
     const onClearErrors = () => {
-        errors.server && clearErrors();
+        errors.server && clearErrors()
     }
 
     useEffect(() => {
         isAuth && navigate('/profile');
         error && setError('server', {message: error});
-    }, [isAuth, error]);
+    }, [isAuth, error])
 
-    const { t } = useTranslation();
+    const { t } = useTranslation()
 
     return (
         <LoginWrapper>
@@ -60,7 +54,7 @@ const mapStateToProps = (state) => ({
     isAuth: selectIsAuth(state),
     captcha: selectCaptcha(state),
     error: selectError(state),
-});
+})
 
 export default connect(mapStateToProps, {loginUser})(Login);
 
