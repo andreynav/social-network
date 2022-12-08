@@ -4,7 +4,6 @@ import styled from "styled-components";
 import {useTranslation} from "react-i18next";
 
 export default function FormLogin(props) {
-    console.log(props)
     const {onSubmit, registerInput, errors, registerCheckbox, onClearErrors, captcha} = props
     const { t } = useTranslation()
     const minLength = 5
