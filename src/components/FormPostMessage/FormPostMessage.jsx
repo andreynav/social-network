@@ -3,7 +3,7 @@ import {Button, TextAreaField} from "../index";
 import styled from "styled-components";
 import {useTranslation} from "react-i18next";
 
-export default function FormPostMessage(props) {
+export const FormPostMessage = (props) => {
     const {onSubmit, register, validationSchema, errors} = props
     const {t} = useTranslation()
 

@@ -4,7 +4,7 @@ import {useForm} from "react-hook-form";
 import styled from "styled-components";
 import {useTranslation} from "react-i18next";
 
-export default function MyPosts(props) {
+export const MyPosts = (props) => {
     const {myPosts, addNewPostAC} = props
     const {t} = useTranslation()
     const maxLength = 100

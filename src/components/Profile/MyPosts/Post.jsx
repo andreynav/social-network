@@ -2,7 +2,7 @@ import React from "react"
 import {Avatar, Like} from "../../index"
 import styled from "styled-components"
 
-export default function Post({message, likeCount}) {
+export const Post = ({message, likeCount}) => {
     return (
         <PostWrapper>
             <Avatar />

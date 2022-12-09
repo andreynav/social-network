@@ -4,7 +4,7 @@ import {useForm} from "react-hook-form";
 import styled from "styled-components";
 import {useTranslation} from "react-i18next";
 
-export default function Dialogs(props) {
+export const Dialogs = (props) => {
     const {dialogUsers, messages, addMessageAC} = props
     const {t} = useTranslation()
     const maxLength = 100

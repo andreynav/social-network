@@ -7,7 +7,7 @@ import {useNavigate} from "react-router-dom"
 import styled from "styled-components"
 import {useTranslation} from "react-i18next"
 
-function Login({ isAuth, error, captcha, loginUser }) {
+const Login = ({ isAuth, error, captcha, loginUser }) => {
     const navigate = useNavigate()
 
     const {

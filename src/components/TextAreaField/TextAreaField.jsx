@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function TextAreaField(props) {
+export const TextAreaField = (props) => {
     const {
         name,
         type,

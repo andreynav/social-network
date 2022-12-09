@@ -3,7 +3,7 @@ import {Button, Logo} from "../index";
 import styled from "styled-components";
 import {useTranslation} from "react-i18next";
 
-export default function Header({isAuth, login, logout}) {
+export const Header = ({isAuth, login, logout}) => {
     const loginButtonProps = {
         fontSize: '1rem',
         transform: 'none',
