@@ -3,7 +3,7 @@ import {NavLink} from "react-router-dom";
 import styled from "styled-components";
 import {useTranslation} from "react-i18next";
 
-export default function NotFound() {
+export const NotFound = () => {
     const {t} = useTranslation()
 
     return (

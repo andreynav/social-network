@@ -21,7 +21,7 @@ const DialogsContainer = lazy(() => import ('../Dialogs/DialogsContainer'));
 const ProfileContainer = lazy(() => import('../Profile/ProfileContainer'));
 const UsersContainer = lazy(() => import('../Users/UsersContainer'));
 
-function App(props) {
+const App = (props) => {
     const dispatch = useDispatch();
 
     useEffect(() => {

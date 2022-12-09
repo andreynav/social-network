@@ -3,7 +3,7 @@ import {Button, Captcha, InputField, Label} from "../index";
 import styled from "styled-components";
 import {useTranslation} from "react-i18next";
 
-export default function FormLogin(props) {
+export const FormLogin = (props) => {
     const {onSubmit, registerInput, errors, registerCheckbox, onClearErrors, captcha} = props
     const { t } = useTranslation()
     const minLength = 5

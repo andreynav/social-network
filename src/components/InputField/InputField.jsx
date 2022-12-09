@@ -2,7 +2,7 @@ import React from "react";
 import styled from 'styled-components';
 import {Label} from "../index";
 
-export default function InputField(props) {
+export const InputField = (props) => {
     const {
         name,
         label,

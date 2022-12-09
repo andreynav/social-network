@@ -7,7 +7,7 @@ import {
     selectLogin,
 } from "../../store/authReducer";
 
-function HeaderContainer(props) {
+const HeaderContainer = (props) => {
     const dispatch = useDispatch();
 
     const logout = () => {
