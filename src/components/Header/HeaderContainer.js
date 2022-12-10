@@ -1,21 +1,16 @@
 import React from "react";
 import {Header} from "../index";
-import {connect, useDispatch} from "react-redux";
-import {
-    logoutUser,
-    selectIsAuth,
-    selectLogin,
-} from "../../store/authReducer";
+import {connect} from "react-redux";
+import {logoutUser, selectIsAuth, selectLogin} from "../../store/authReducer";
 
-const HeaderContainer = (props) => {
-    const dispatch = useDispatch();
+const HeaderContainer = ({ isAuth, login, logoutUser }) => {
 
     const logout = () => {
-        dispatch(logoutUser());
+        logoutUser()
     }
 
     return (
-        <Header logout={logout} {...props} />
+        <Header logout={logout} isAuth={isAuth} login={login} />
     )
 }
 
