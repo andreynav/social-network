@@ -4,6 +4,7 @@ import styled from "styled-components";
 import {useTranslation} from "react-i18next";
 
 export const Header = ({isAuth, login, logout}) => {
+
     const loginButtonProps = {
         fontSize: '1rem',
         transform: 'none',
