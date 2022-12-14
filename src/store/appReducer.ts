@@ -2,7 +2,7 @@ import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit"
 import {getAuthUserData} from "./authReducer"
 import {RootState} from "./store";
 
-type InitialState = {
+type InitialStateT = {
     isInitialized: boolean,
     status: string | null,
     error: any | null,
@@ -18,7 +18,7 @@ export type Language = {
     language: string
 }
 
-const initialState: InitialState = {
+const initialState: InitialStateT = {
     isInitialized: false,
     status: null,
     error: null,
@@ -45,13 +45,13 @@ const appSlice = createSlice({
     name: 'app',
     initialState,
     reducers: {
-        initializeAppAC(state: InitialState) {
+        initializeAppAC(state: InitialStateT) {
             state.isInitialized = true
         },
-        setThemeAC(state: InitialState, action: PayloadAction<Theme>) {
+        setThemeAC(state: InitialStateT, action: PayloadAction<Theme>) {
             state.theme = action.payload.theme
         },
-        setLanguageAC(state: InitialState, action: PayloadAction<Language>) {
+        setLanguageAC(state: InitialStateT, action: PayloadAction<Language>) {
             state.language = action.payload.language
         },
     },
