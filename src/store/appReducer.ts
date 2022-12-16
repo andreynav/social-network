@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit"
 import {getAuthUserData} from "./authReducer"
-import {RootState} from "./store";
+import {RootState} from "./store"
 
 type InitialStateT = {
     isInitialized: boolean,

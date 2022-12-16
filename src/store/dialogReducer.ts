@@ -23,7 +23,7 @@ const initialState = {
         { id: 2, message: 'How are you?' },
         { id: 3, message: 'Per Aspera ad Astra' },
         { id: 4, message: 'Just do it!!!' }
-    ] as Array<MessagesT>,
+    ] as Array<MessagesT>
 }
 
 type InitialStateT = typeof initialState;
@@ -41,12 +41,12 @@ const dialogsReducer = createSlice({
             state.messages = [...state.messages, message]
         },
     }
-});
+})
 
-export const selectDialogUsers = (state: RootState) => state.dialogs.dialogUsers;
+export const selectDialogUsers = (state: RootState) => state.dialogs.dialogUsers
 
-export const selectMessages = (state: RootState) => state.dialogs.messages;
+export const selectMessages = (state: RootState) => state.dialogs.messages
 
-export const { addMessageAC } = dialogsReducer.actions;
+export const { addMessageAC } = dialogsReducer.actions
 
-export default dialogsReducer.reducer;
+export default dialogsReducer.reducer

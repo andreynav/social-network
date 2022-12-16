@@ -38,13 +38,13 @@ export const getUsers = createAsyncThunk(
     'users/getUsers',
     async ({usersOnPage, page}: { usersOnPage: number, page: number }, {dispatch, rejectWithValue}) => {
         try {
-            const data = await userAPI.getUsers(usersOnPage, page);
+            const data = await userAPI.getUsers(usersOnPage, page)
             if (data.error === null) {
-                dispatch(setUsersAC({users: data.items}));
-                dispatch(setTotalCountAC({totalCount: data.totalCount}));
+                dispatch(setUsersAC({users: data.items}))
+                dispatch(setTotalCountAC({totalCount: data.totalCount}))
             }
         } catch (error: any) {
-            return rejectWithValue(error.message);
+            return rejectWithValue(error.message)
         }
     }
 )
@@ -53,23 +53,23 @@ export const toggleFollowUnfollow = createAsyncThunk(
     'users/toggleFollowUnfollow',
     async ({user, id}: { user: UserT, id: number }, {dispatch, rejectWithValue}) => {
         try {
-            dispatch(setFollowInProgressAC({isInProgress: true, id}));
-            const promise = user?.followed ? await userAPI.unfollowUser(id) : await userAPI.followUser(id);
-            const data = await promise;
+            dispatch(setFollowInProgressAC({isInProgress: true, id}))
+            const promise = user?.followed ? await userAPI.unfollowUser(id) : await userAPI.followUser(id)
+            const data = await promise
             if (data.resultCode === 0) {
                 dispatch(changeToggleAC({userId: id}));
-                dispatch(setFollowInProgressAC({isInProgress: false, id}));
+                dispatch(setFollowInProgressAC({isInProgress: false, id}))
             }
         } catch (error: any) {
-            return rejectWithValue(error.message);
+            return rejectWithValue(error.message)
         }
     }
 )
 
 const setError = (state: InitialStateT, action: any): void => {
-    state.status = 'rejected';
-    state.error = action.error.message;
-    console.error(state.error);
+    state.status = 'rejected'
+    state.error = action.error.message
+    console.error(state.error)
 }
 
 const usersReducer = createSlice({
@@ -90,15 +90,15 @@ const usersReducer = createSlice({
             })
         },
         setCurrentPageAC(state: InitialStateT, action) {
-            state.currentPage = action.payload.page;
+            state.currentPage = action.payload.page
         },
         setTotalCountAC(state: InitialStateT, action) {
-            state.totalCount = action.payload.totalCount;
+            state.totalCount = action.payload.totalCount
         },
         setFollowInProgressAC(state: InitialStateT, action) {
             state.followInProgress = action.payload.isInProgress
                 ? [...state.followInProgress, action.payload.id]
-                : state.followInProgress.filter(id => id !== action.payload.id);
+                : state.followInProgress.filter(id => id !== action.payload.id)
         }
     },
     extraReducers: (builder) => {
@@ -133,17 +133,17 @@ export const selectUsers = createSelector(
     users => users.filter(user => true)
 )
 
-export const selectCurrentPage = (state: RootState) => state.users.currentPage;
+export const selectCurrentPage = (state: RootState) => state.users.currentPage
 
-export const selectTotalCount = (state: RootState) => state.users.totalCount;
+export const selectTotalCount = (state: RootState) => state.users.totalCount
 
-export const selectUsersOnPage = (state: RootState) => state.users.usersOnPage;
+export const selectUsersOnPage = (state: RootState) => state.users.usersOnPage
 
-export const selectIsFetching = (state: RootState) => state.users.isFetching;
+export const selectIsFetching = (state: RootState) => state.users.isFetching
 
-export const selectFollowInProgress = (state: RootState) => state.users.followInProgress;
+export const selectFollowInProgress = (state: RootState) => state.users.followInProgress
 
-export const selectError = (state: RootState) => state.users.error;
+export const selectError = (state: RootState) => state.users.error
 
 export const {
     changeToggleAC,
@@ -151,6 +151,6 @@ export const {
     setCurrentPageAC,
     setTotalCountAC,
     setFollowInProgressAC
-} = usersReducer.actions;
+} = usersReducer.actions
 
-export default usersReducer.reducer;
+export default usersReducer.reducer

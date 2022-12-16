@@ -58,7 +58,7 @@ let initialState: InitialStateT = {
     profileInfoLoadingError: null,
     profileInfoUpdateStatus: null,
     profileInfoUpdateError: null
-};
+}
 
 export const getProfileInfo = createAsyncThunk(
     'profile/getProfileInfo',
@@ -70,7 +70,7 @@ export const getProfileInfo = createAsyncThunk(
             return rejectWithValue(error.message);
         }
     }
-);
+)
 
 export const getProfileStatus = createAsyncThunk(
     'profile/getProfileStatus',
@@ -82,7 +82,7 @@ export const getProfileStatus = createAsyncThunk(
             return rejectWithValue(error.message);
         }
     }
-);
+)
 
 export const updateProfileStatus = createAsyncThunk(
     'profile/updateProfileStatus',
@@ -96,7 +96,7 @@ export const updateProfileStatus = createAsyncThunk(
             return rejectWithValue(error.message);
         }
     }
-);
+)
 
 export const updateProfilePhoto = createAsyncThunk(
     'profile/updateProfilePhoto',
@@ -110,7 +110,7 @@ export const updateProfilePhoto = createAsyncThunk(
             return rejectWithValue(error.message);
         }
     }
-);
+)
 
 export const updateProfileInfo = createAsyncThunk<object, ProfileInfoT, {state: RootState}>(
     'profile/updateProfileInfo',
@@ -127,7 +127,7 @@ export const updateProfileInfo = createAsyncThunk<object, ProfileInfoT, {state: 
             return rejectWithValue(error.message);
         }
     }
-);
+)
 
 const profileSlice = createSlice({
     name: 'profile',
@@ -143,17 +143,14 @@ const profileSlice = createSlice({
             state.myPosts = [...state.myPosts, post]
         },
         setProfileInfoAC(state, action) {
-            state.profileInfo = action.payload.profileInfo;
+            state.profileInfo = action.payload.profileInfo
         },
         setProfileStatusAC(state, action) {
-            state.profileStatus = action.payload.profileStatus;
+            state.profileStatus = action.payload.profileStatus
         },
         setProfilePhotoAC(state, action) {
             state.profileInfo!.photos = action.payload.photos
         },
-        // updateProfileInfoAC(state, action) {
-        //     state.profileInfo = action.payload.profileInfo;
-        // },
     },
     extraReducers: (builder) => {
         builder
@@ -191,59 +188,23 @@ const profileSlice = createSlice({
                 state.profileInfoUpdateStatus = 'rejected'
                 state.profileInfoUpdateError = action.payload
             })
-
-        // {
-        // [getProfileInfo.pending]: (state) => {
-        //     state.profileInfoLoadingStatus = 'pending';
-        //     state.profileInfoLoadingError = null;
-        // },
-        // [getProfileInfo.fulfilled]: (state) => {
-        //     state.profileInfoLoadingStatus = 'resolved';
-        //     state.profileInfoLoadingError = null;
-        // },
-        // [getProfileInfo.rejected]: (state, action) => {
-        //     state.profileInfoLoadingStatus = 'rejected';
-        //     state.profileInfoLoadingError = action.error.message;
-        //     console.error(state.error);
-        // },
-        // [getProfileStatus.pending]: (state) => {  },
-        // [getProfileStatus.fulfilled]: (state, action) => { },
-        // [getProfileStatus.rejected]: (state, action) => { },
-        // [updateProfileStatus.pending]: (state) => {  },
-        // [updateProfileStatus.fulfilled]: (state, action) => { },
-        // [updateProfileStatus.rejected]: (state, action) => { },
-        // [updateProfilePhoto.pending]: (state) => {  },
-        // [updateProfilePhoto.fulfilled]: (state, action) => { },
-        // [updateProfilePhoto.rejected]: (state, action) => { },
-        // [updateProfileInfo.pending]: (state) => {
-        //     state.profileInfoUpdateStatus = 'pending';
-        //     state.profileInfoUpdateError = null;
-        // },
-        // [updateProfileInfo.fulfilled]: (state) => {
-        //     state.profileInfoUpdateStatus = 'resolved';
-        //     state.profileInfoUpdateError = null;
-        // },
-        // [updateProfileInfo.rejected]: (state, action) => {
-        //     state.profileInfoUpdateStatus = 'rejected';
-        //     state.profileInfoUpdateError = action.payload;
-        // },
     }
-});
+})
 
-export const selectMyPosts = (state: RootState) => state.profile.myPosts;
+export const selectMyPosts = (state: RootState) => state.profile.myPosts
 
-export const selectProfileInfo = (state: RootState) => state.profile.profileInfo;
+export const selectProfileInfo = (state: RootState) => state.profile.profileInfo
 
-export const selectProfileInfoLoadingStatus = (state: RootState) => state.profile.profileInfoLoadingStatus;
+export const selectProfileInfoLoadingStatus = (state: RootState) => state.profile.profileInfoLoadingStatus
 
-export const selectProfileInfoLoadingError = (state: RootState) => state.profile.profileInfoLoadingError;
+export const selectProfileInfoLoadingError = (state: RootState) => state.profile.profileInfoLoadingError
 
-export const selectProfileStatus = (state: RootState) => state.profile.profileStatus;
+export const selectProfileStatus = (state: RootState) => state.profile.profileStatus
 
-export const selectProfileInfoUpdateStatus = (state: RootState) => state.profile.profileInfoUpdateStatus;
+export const selectProfileInfoUpdateStatus = (state: RootState) => state.profile.profileInfoUpdateStatus
 
-export const selectProfileInfoUpdateError = (state: RootState) => state.profile.profileInfoUpdateError;
+export const selectProfileInfoUpdateError = (state: RootState) => state.profile.profileInfoUpdateError
 
-export const { addNewPostAC, setProfileInfoAC, setProfileStatusAC, setProfilePhotoAC } = profileSlice.actions;
+export const { addNewPostAC, setProfileInfoAC, setProfileStatusAC, setProfilePhotoAC } = profileSlice.actions
 
-export default profileSlice.reducer;
+export default profileSlice.reducer
