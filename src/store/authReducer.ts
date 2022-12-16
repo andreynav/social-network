@@ -164,14 +164,14 @@ const authSlice = createSlice({
     })
 
 
-        export const selectLogin = (state: RootState) => state.auth.login;
+        export const selectLogin = (state: RootState) => state.auth.login
 
-        export const selectIsAuth = (state: RootState) => state.auth.isAuth;
+        export const selectIsAuth = (state: RootState) => state.auth.isAuth
 
-        export const selectError = (state: RootState) => state.auth.error;
+        export const selectError = (state: RootState) => state.auth.error
 
-        export const selectCaptcha = (state: RootState) => state.auth.captcha;
+        export const selectCaptcha = (state: RootState) => state.auth.captcha
 
-        export const {setAuthDataAC, setLoginDataAC, setCaptchaAC} = authSlice.actions;
+        export const {setAuthDataAC, setLoginDataAC, setCaptchaAC} = authSlice.actions
 
-        export default authSlice.reducer;
+        export default authSlice.reducer
