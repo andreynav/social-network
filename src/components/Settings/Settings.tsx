@@ -1,4 +1,4 @@
-import React, {useContext} from "react"
+import React, {ChangeEvent, useContext} from "react"
 import {compose} from "@reduxjs/toolkit"
 import {withAuthRedirect} from "../../hoc/withAuthRedirect"
 import {useTranslation} from "react-i18next"
@@ -13,11 +13,11 @@ const Settings = () => {
     const {currentTheme, setCurrentTheme} = useContext(ThemeContext)
     const {language, setLanguage} = useContext(LocaleContext)
 
-    const onChangeTheme = (event) => {
+    const onChangeTheme = (event: ChangeEvent<HTMLInputElement>): void => {
         setCurrentTheme(event.target.value)
     }
 
-    const onChangeLanguage = (event) => {
+    const onChangeLanguage = (event: ChangeEvent<HTMLInputElement>): void => {
         setLanguage(event.target.value)
     }
 
@@ -42,6 +42,7 @@ const Settings = () => {
             </LanguageWrapper>
             <ShowNotifications>
                 <h2>{t("settings.general.title")}</h2>
+                {/* @ts-ignore */}
                 <Toggle labelRight={t("settings.general.notifications")} /> {/*will be implemented further*/}
             </ShowNotifications>
         </SettingsWrapper>
