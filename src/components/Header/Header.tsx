@@ -1,17 +1,22 @@
-import React from "react";
-import {Button, Logo} from "../index";
-import styled from "styled-components";
-import {useTranslation} from "react-i18next";
+import React from "react"
+import {Button, Logo} from "../index"
+import styled from "styled-components"
+import {useTranslation} from "react-i18next"
 
-export const Header = ({isAuth, login, logout}) => {
+type OwnPropsT = {
+    isAuth: boolean
+    userName: string | null
+    logoutUser: () => void
+}
 
+export const Header = ({isAuth, userName, logoutUser}: OwnPropsT) => {
     const loginButtonProps = {
         fontSize: '1rem',
         transform: 'none',
         bgColor: 'transparent',
         brWidth: '0'
     }
-    const { t } = useTranslation();
+    const { t } = useTranslation()
 
     return (
         <HeaderWrapper>
@@ -21,14 +26,14 @@ export const Header = ({isAuth, login, logout}) => {
                 {
                     isAuth ?
                         <div>
-                            <p>{login}</p>
-                            <Button onClick={logout} {...loginButtonProps}>{t('header.logout')}</Button>
+                            <p>{userName}</p>
+                            <Button onClick={logoutUser} {...loginButtonProps}>{t('header.logout')}</Button>
                         </div> :
                         <Button {...loginButtonProps}>{t('header.login')}</Button>
                 }
             </HeaderLoginWrapper>
         </HeaderWrapper>
-    );
+    )
 }
 
 const HeaderWrapper = styled.header`
