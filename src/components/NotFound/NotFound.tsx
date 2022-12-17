@@ -1,7 +1,7 @@
-import React from "react";
-import {NavLink} from "react-router-dom";
-import styled from "styled-components";
-import {useTranslation} from "react-i18next";
+import React from "react"
+import {NavLink} from "react-router-dom"
+import styled from "styled-components"
+import {useTranslation} from "react-i18next"
 
 export const NotFound = () => {
     const {t} = useTranslation()
@@ -11,7 +11,7 @@ export const NotFound = () => {
             <div>{t("notFound.description")}</div>
             <div>{t("notFound.goTo")}<NavLink to='/profile'>{t("notFound.profile")}</NavLink></div>
         </NotFoundWrapper>
-    );
+    )
 }
 
 const NotFoundWrapper = styled.div`

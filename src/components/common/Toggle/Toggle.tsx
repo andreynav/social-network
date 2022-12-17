@@ -1,7 +1,14 @@
-import React from "react";
-import styled from "styled-components";
+import React from "react"
+import styled from "styled-components"
 
-export const Toggle = ({labelLeft, labelRight, onChange, isChecked}) => {
+type OwnPropsT = {
+    labelLeft?: string
+    labelRight?: string
+    isChecked: boolean
+    onChange: () => void
+}
+
+export const Toggle = ({labelLeft, labelRight, onChange, isChecked}: OwnPropsT): JSX.Element => {
     return (
         <ToggleWrapper>
             <ToggleLabel>
