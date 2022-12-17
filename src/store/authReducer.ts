@@ -5,7 +5,7 @@ import {RootState} from "./store";
 
 type InitialStateT = {
     id: number | null,
-    login: string | null,
+    userName: string | null,
     email: string | null,
     isAuth: boolean,
     captcha: string | null,
@@ -22,7 +22,7 @@ type AuthDataT = {
 
 const initialState: InitialStateT = {
     id: null,
-    login: null,
+    userName: null,
     email: null,
     isAuth: false,
     captcha: null,
@@ -70,7 +70,7 @@ export const logoutUser = createAsyncThunk(
         try {
             const data = await authAPI.logout()
             if (data.resultCode === 0) {
-                dispatch(setAuthDataAC({data: {login: null, email: null, id: null, captcha: null}}))
+                dispatch(setAuthDataAC({data: {userName: null, email: null, id: null, captcha: null}}))
                 dispatch(setProfileInfoAC({profileInfo: null}))
             }
         } catch (error: any) {
@@ -96,8 +96,8 @@ const authSlice = createSlice({
     initialState,
     reducers: {
         setAuthDataAC(state, action) {
-            let {login, email, id, captcha} = action.payload.data
-            state.login = login
+            let {userName, email, id, captcha} = action.payload.data
+            state.userName = userName
             state.email = email
             state.id = id
             state.isAuth = true
@@ -151,20 +151,14 @@ const authSlice = createSlice({
                 state.error = action.error.message
                 console.error(state.error)
             })
-            .addCase(getCaptchaURL.pending, (state) => {
-
-            })
-            .addCase(getCaptchaURL.fulfilled, (state) => {
-
-            })
-            .addCase(getCaptchaURL.rejected, (state, action) => {
-
-            })
+            .addCase(getCaptchaURL.pending, (state) => { })
+            .addCase(getCaptchaURL.fulfilled, (state) => { })
+            .addCase(getCaptchaURL.rejected, (state, action) => { })
         }
     })
 
 
-        export const selectLogin = (state: RootState) => state.auth.login
+        export const selectLogin = (state: RootState) => state.auth.userName
 
         export const selectIsAuth = (state: RootState) => state.auth.isAuth
 
