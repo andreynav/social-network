@@ -68,11 +68,7 @@ export const logoutUser = createAsyncThunk(
     'auth/logout',
     async (_, {dispatch, rejectWithValue}) => {
         try {
-            const data = await authAPI.logout()
-            if (data.resultCode === 0) {
-                dispatch(setAuthDataAC({data: {userName: null, email: null, id: null, captcha: null}}))
-                dispatch(setProfileInfoAC({profileInfo: null}))
-            }
+            await authAPI.logout()
         } catch (error: any) {
             return rejectWithValue(error.message)
         }
