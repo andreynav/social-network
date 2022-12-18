@@ -1,23 +1,33 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {authAPI, securityAPI} from "../api/api";
-import {setProfileInfoAC} from "./profileReducer";
-import {RootState} from "./store";
-
-type InitialStateT = {
-    id: number | null,
-    userName: string | null,
-    email: string | null,
-    isAuth: boolean,
-    captcha: string | null,
-    status: string | null,
-    error: any | null
-}
+import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit"
+import {authAPI, securityAPI} from "../api/api"
+import {RootState} from "./store"
 
 type AuthDataT = {
-    email: string,
-    password: string,
-    rememberMe: boolean,
+    email: string
+    password: string
+    rememberMe: boolean
     captcha: string
+}
+
+type SetAuthDataT = {
+    id: number | null
+    userName: string | null
+    email: string | null
+}
+
+type SetLoginDataT = {
+    id: number | null
+    isAuth: boolean
+}
+
+type InitialStateT = {
+    id: number | null
+    userName: string | null
+    email: string | null
+    isAuth: boolean
+    captcha: string | null
+    status: string | null
+    error: any | null
 }
 
 const initialState: InitialStateT = {
@@ -35,8 +45,9 @@ export const getAuthUserData = createAsyncThunk(
     async (_, {dispatch, rejectWithValue}) => {
         try {
             const data = await authAPI.me()
+            const {id, login: userName, email} = data.data
             if (data.resultCode === 0) {
-                dispatch(setAuthDataAC({data: data.data}))
+                dispatch(setAuthDataAC({id, userName, email}))
             }
         } catch (error: any) {
             return rejectWithValue(error.message)
@@ -66,7 +77,7 @@ export const loginUser = createAsyncThunk(
 
 export const logoutUser = createAsyncThunk(
     'auth/logout',
-    async (_, {dispatch, rejectWithValue}) => {
+    async (_, {rejectWithValue}) => {
         try {
             await authAPI.logout()
         } catch (error: any) {
@@ -91,19 +102,19 @@ const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        setAuthDataAC(state, action) {
-            let {userName, email, id, captcha} = action.payload.data
+        setAuthDataAC(state, action: PayloadAction<SetAuthDataT>) {
+            const {userName, email, id} = action.payload
             state.userName = userName
             state.email = email
             state.id = id
             state.isAuth = true
-            state.captcha = captcha
         },
-        setLoginDataAC(state, action) {
-            state.id = action.payload.id
-            state.isAuth = action.payload.isAuth
+        setLoginDataAC(state, action: PayloadAction<SetLoginDataT>) {
+            const {id, isAuth} = action.payload
+            state.id = id
+            state.isAuth = isAuth
         },
-        setCaptchaAC(state, action) {
+        setCaptchaAC(state, action: PayloadAction<{url: string}>) {
             state.captcha = action.payload.url
         }
     },
