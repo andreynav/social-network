@@ -1,13 +1,13 @@
-import {createSlice} from '@reduxjs/toolkit';
-import {RootState} from "./store";
+import {createSlice, PayloadAction} from '@reduxjs/toolkit'
+import {RootState} from "./store"
 
 type DialogUsersT = {
-    id: number,
+    id: number
     name: string
 }
 
 type MessagesT = {
-    id: number,
+    id: number
     message: string
 }
 
@@ -26,13 +26,13 @@ const initialState = {
     ] as Array<MessagesT>
 }
 
-type InitialStateT = typeof initialState;
+type InitialStateT = typeof initialState
 
 const dialogsReducer = createSlice({
     name: 'dialogs',
     initialState,
     reducers: {
-        addMessageAC(state: InitialStateT, action) {
+        addMessageAC(state: InitialStateT, action: PayloadAction<MessagesT>) {
             let messageId =  state.messages.length
             let message = {
                 id: ++messageId,

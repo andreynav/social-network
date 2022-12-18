@@ -10,11 +10,11 @@ type InitialStateT = {
     language: string | null,
 }
 
-export type Theme = {
+export type ThemeT = {
     theme: string
 }
 
-export type Language = {
+export type LanguageT = {
     language: string
 }
 
@@ -48,10 +48,10 @@ const appSlice = createSlice({
         initializeAppAC(state: InitialStateT) {
             state.isInitialized = true
         },
-        setThemeAC(state: InitialStateT, action: PayloadAction<Theme>) {
+        setThemeAC(state: InitialStateT, action: PayloadAction<ThemeT>) {
             state.theme = action.payload.theme
         },
-        setLanguageAC(state: InitialStateT, action: PayloadAction<Language>) {
+        setLanguageAC(state: InitialStateT, action: PayloadAction<LanguageT>) {
             state.language = action.payload.language
         },
     },
