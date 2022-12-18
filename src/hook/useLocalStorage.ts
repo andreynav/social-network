@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"
 
-export const useLocalStorage = (key, initialValue) => {
+export const useLocalStorage = (key: string, initialValue: string) => {
     const [value, setValue] = useState(() => {
         if (typeof window === "undefined") {
             return initialValue
