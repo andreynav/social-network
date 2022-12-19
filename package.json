@@ -37,7 +37,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "fix:codestyle": "find src/ -type f \\( -name \"*.ts\" -o -name \"*.tsx\" \\) -not -name \"*.d.ts\" | xargs prettier --write --plugin=./node_modules/@trivago/prettier-plugin-sort-imports/"
   },
   "eslintConfig": {
     "extends": [
@@ -53,7 +54,18 @@
     "tabWidth": 2,
     "useTabs": true,
     "trailingComma": "none",
-    "bracketSpacing": true
+    "bracketSpacing": true,
+    "pluginSearchDirs": [
+      "."
+    ],
+    "importOrder": [
+      "./publicPath",
+      "^@/(.*)$",
+      "^[../]",
+      "^[./]"
+    ],
+    "importOrderSeparation": true,
+    "importOrderSortSpecifiers": true
   },
   "browserslist": {
     "production": [
@@ -68,6 +80,7 @@
     ]
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.0.0",
     "eslint-config-react-app": "^7.0.1",
     "gh-pages": "^4.0.0",
     "prettier": "2.8.1"
