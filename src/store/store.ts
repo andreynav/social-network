@@ -1,20 +1,21 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit'
-import dialogsReducer from "./dialogReducer";
-import profileReducer from "./profileReducer";
-import usersReducer from "./usersReducer";
-import authReducer from "./authReducer";
-import appReducer from "./appReducer"
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
+
+import appReducer from './appReducer'
+import authReducer from './authReducer'
+import dialogsReducer from './dialogReducer'
+import profileReducer from './profileReducer'
+import usersReducer from './usersReducer'
 
 const rootReducer = combineReducers({
-    dialogs: dialogsReducer,
-    profile: profileReducer,
-    users: usersReducer,
-    auth: authReducer,
-    app: appReducer,
+	dialogs: dialogsReducer,
+	profile: profileReducer,
+	users: usersReducer,
+	auth: authReducer,
+	app: appReducer
 })
 
 const store = configureStore({
-    reducer:  rootReducer
+	reducer: rootReducer
 })
 
 export default store

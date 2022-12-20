@@ -1,18 +1,13 @@
-import React from "react"
-import {compose} from "@reduxjs/toolkit"
-import {withAuthRedirect} from "../../hoc/withAuthRedirect"
-import {useTranslation} from "react-i18next"
+import { compose } from '@reduxjs/toolkit'
+import React from 'react'
+import { useTranslation } from 'react-i18next'
+
+import { withAuthRedirect } from '../../hoc/withAuthRedirect'
 
 const Music = () => {
-    const {t} = useTranslation()
+	const { t } = useTranslation()
 
-    return (
-        <div>
-            {t("music.title")}
-        </div>
-    )
+	return <div>{t('music.title')}</div>
 }
 
-export default compose(
-    withAuthRedirect,
-)(Music)
+export default compose(withAuthRedirect)(Music)
