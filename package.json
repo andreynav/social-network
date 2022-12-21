@@ -38,7 +38,8 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "fix:codestyle": "find src/ -type f \\( -name \"*.ts\" -o -name \"*.tsx\" \\) -not -name \"*.d.ts\" | xargs prettier --write --plugin=./node_modules/@trivago/prettier-plugin-sort-imports/"
+    "fix:codestyle": "find src/ -type f \\( -name \"*.ts\" -o -name \"*.tsx\" \\) -not -name \"*.d.ts\" | xargs prettier --write --plugin=./node_modules/@trivago/prettier-plugin-sort-imports/",
+    "lint": "tsc --noEmit && eslint src/**/*.ts{,x}"
   },
   "eslintConfig": {
     "extends": [
@@ -81,7 +82,20 @@
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.47.0",
+    "@typescript-eslint/parser": "^5.47.0",
+    "eslint": "^8.2.0",
+    "eslint-config-airbnb": "19.0.4",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jest": "^27.1.7",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-plugin-styled-components-a11y": "^1.0.0",
     "gh-pages": "^4.0.0",
     "prettier": "2.8.1"
   }

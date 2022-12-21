@@ -4,7 +4,6 @@ import styled from 'styled-components'
 
 export const Footer = () => {
 	const { t } = useTranslation()
-
 	return (
 		<FooterWrapper>
 			<FooterAddress>
