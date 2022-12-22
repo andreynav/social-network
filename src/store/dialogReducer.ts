@@ -35,7 +35,7 @@ const dialogsReducer = createSlice({
 	reducers: {
 		addMessageAC(state: InitialStateT, action: PayloadAction<MessagesT>) {
 			let messageId = state.messages.length
-			let message = {
+			const message = {
 				id: ++messageId,
 				message: action.payload.message
 			}

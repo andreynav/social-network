@@ -41,16 +41,6 @@ module.exports = {
 		'template-curly-spacing': 'error',
 		'space-unary-ops': 'error',
 		'@typescript-eslint/default-param-last': ['error'],
-		'@typescript-eslint/padding-line-between-statements:': [
-			'error',
-			{ blankLine: 'always', prev: '*', next: 'return' },
-			{ blankLine: 'always', prev: 'export', next: '*' },
-			{ blankLine: 'always', prev: 'import', next: '*' },
-			{ blankLine: 'always', prev: '*', next: 'block' },
-			{ blankLine: 'always', prev: 'block', next: '*' },
-			{ blankLine: 'always', prev: '*', next: 'block-like' },
-			{ blankLine: 'always', prev: 'block-like', next: '*' }
-		],
 		'@typescript-eslint/no-use-before-define': [1, { variables: false }],
 		'react/jsx-key': [2, { checkFragmentShorthand: true }],
 		'prettier/prettier': ['error', { endOfLine: 'auto' }]

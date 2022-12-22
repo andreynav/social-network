@@ -31,7 +31,7 @@ export const initializeApp = createAsyncThunk(
 	'App/initializeApp',
 	async (_, { dispatch, rejectWithValue }) => {
 		try {
-			let promise = dispatch(getAuthUserData())
+			const promise = dispatch(getAuthUserData())
 			Promise.all([promise]).then(() => {
 				dispatch(initializeAppAC())
 			})
