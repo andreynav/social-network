@@ -31,4 +31,4 @@ const mapDispatchToProps: MapDispatchToPropsT = {
 const connector = connect(mapStateToProps, mapDispatchToProps)
 export type PropsFromRedux = ConnectedProps<typeof connector>
 
-export default connector(HeaderContainer)
+export const HeaderContainerWithMapProps = connector(HeaderContainer)

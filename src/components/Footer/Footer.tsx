@@ -4,13 +4,20 @@ import styled from 'styled-components'
 
 export const Footer = () => {
 	const { t } = useTranslation()
+	const email = 'nav.testsw@gmail.com'
+	const phone = '+375 29 6066602'
+
 	return (
 		<FooterWrapper>
 			<FooterAddress>
-				<a>{t('footer.email')}: nav.testsw@gmail.com</a>
+				<a href={`mailto:${email}`}>
+					{t('footer.email')}: {email}
+				</a>
 			</FooterAddress>
 			<FooterAddress>
-				<a>{t('footer.phone')}: +375 29 6066602</a>
+				<a href={`tel:${phone}`}>
+					{t('footer.phone')}: {phone}
+				</a>
 			</FooterAddress>
 		</FooterWrapper>
 	)
@@ -23,6 +30,10 @@ const FooterWrapper = styled.footer`
 	padding: 5px 20px;
 	background-color: ${(props) => props.theme.bgColorSecondary};
 	border-top: 1px solid ${(props) => props.theme.borderPrimary};
+
+	& a:link {
+		text-decoration: none;
+	}
 `
 
 const FooterAddress = styled.div`

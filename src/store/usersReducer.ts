@@ -24,7 +24,7 @@ type InitialStateT = {
 	status: string | null
 }
 
-let initialState = {
+const initialState = {
 	users: [],
 	currentPage: 1,
 	totalCount: 0,

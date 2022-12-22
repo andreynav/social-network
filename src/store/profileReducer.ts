@@ -46,7 +46,7 @@ type InitialStateT = {
 	profileInfoUpdateError: any
 }
 
-let initialState: InitialStateT = {
+const initialState: InitialStateT = {
 	myPosts: [
 		{ id: 1, message: 'Hey, how are you?', like: 105 },
 		{ id: 2, message: 'You shell not pass, fellow!', like: 304 },
@@ -126,7 +126,7 @@ export const updateProfileInfo = createAsyncThunk<
 				dispatch(getProfileInfo(getState().auth.id!))
 			} else {
 				throw new Error(data.messages[0])
-				return Promise.reject()
+				return await Promise.reject()
 			}
 		} catch (error: any) {
 			return rejectWithValue(error.message)
@@ -140,7 +140,7 @@ const profileSlice = createSlice({
 	reducers: {
 		addNewPostAC(state, action) {
 			let postId = state.myPosts.length
-			let post = {
+			const post = {
 				id: ++postId,
 				message: action.payload.message,
 				like: getRandomLike(400)
