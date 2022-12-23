@@ -50,4 +50,4 @@ export const selectMessages = (state: RootState) => state.dialogs.messages
 
 export const { addMessageAC } = dialogsReducer.actions
 
-export default dialogsReducer.reducer
+export const dialogReducers = dialogsReducer.reducer

@@ -10,4 +10,4 @@ const News = () => {
 	return <div>{t('news.title')}</div>
 }
 
-export default compose(withAuthRedirect)(News)
+export const NewsContainer = compose(withAuthRedirect)(News)

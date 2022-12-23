@@ -17,7 +17,7 @@ export const useLocalStorage = (key: string, initialValue: string) => {
 	useEffect(() => {
 		const item = JSON.stringify(value)
 		window.localStorage.setItem(key, item)
-	}, [value])
+	}, [value, key])
 
 	return [value, setValue]
 }

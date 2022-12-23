@@ -11,9 +11,9 @@ import { HeaderContainerWithMapProps } from './Header/HeaderContainer'
 import { InputField } from './InputField/InputField'
 import { FormLogin } from './Login/FormLogin'
 import Login from './Login/Login'
-import Music from './Music/Music'
+import { MusicContainer } from './Music/Music'
 import { Navbar } from './Navbar/Navbar'
-import News from './News/News'
+import { NewsContainer } from './News/News'
 import { NotFound } from './NotFound/NotFound'
 import { Paginator } from './Paginator/Paginator'
 import { PhotoSection } from './PhotoSection/PhotoSection'
@@ -25,7 +25,7 @@ import { FormProfileInfo } from './Profile/ProfileInfo/FormProfileInfo'
 import { ProfileInfo } from './Profile/ProfileInfo/ProfileInfo'
 import { ProfileInfoStatus } from './Profile/ProfileInfo/ProfileInfoStatus'
 import { UserInfoItem } from './Profile/ProfileInfo/UserInfoItem'
-import Settings from './Settings/Settings'
+import { SettingsContainer } from './Settings/Settings'
 import { TextAreaField } from './TextAreaField/TextAreaField'
 import { User } from './Users/User'
 import { Users } from './Users/Users'
@@ -45,15 +45,15 @@ export {
 	DialogMessage,
 	Footer,
 	Header,
-	Music,
+	MusicContainer,
 	Navbar,
-	News,
+	NewsContainer,
 	NotFound,
 	Post,
 	MyPosts,
 	ProfileInfo,
 	Profile,
-	Settings,
+	SettingsContainer,
 	FormPostMessage,
 	MyPostsContainer,
 	Users,

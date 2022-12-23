@@ -20,7 +20,7 @@ type InitialStateT = {
 	usersOnPage: number
 	isFetching: boolean
 	followInProgress: Array<number>
-	error: string | null
+	error: string | undefined
 	status: string | null
 }
 
@@ -31,7 +31,7 @@ const initialState = {
 	usersOnPage: 5,
 	isFetching: false,
 	followInProgress: [],
-	error: null,
+	error: '',
 	status: null
 }
 
@@ -48,7 +48,7 @@ export const getUsers = createAsyncThunk(
 				dispatch(setTotalCountAC({ totalCount: data.totalCount }))
 			}
 		} catch (error: any) {
-			return rejectWithValue(error.message)
+			return rejectWithValue(error.response.data)
 		}
 	}
 )
@@ -70,14 +70,14 @@ export const toggleFollowUnfollow = createAsyncThunk(
 				dispatch(setFollowInProgressAC({ isInProgress: false, id }))
 			}
 		} catch (error: any) {
-			return rejectWithValue(error.message)
+			return rejectWithValue(error.response.data)
 		}
 	}
 )
 
 const setError = (state: InitialStateT, action: any): void => {
 	state.status = 'rejected'
-	state.error = action.error.message
+	state.error = action.response.data
 	console.error(state.error)
 }
 
@@ -114,20 +114,20 @@ const usersReducer = createSlice({
 		builder
 			.addCase(getUsers.pending, (state) => {
 				state.isFetching = true
-				state.error = null
+				state.error = ''
 			})
 			.addCase(getUsers.fulfilled, (state) => {
 				state.isFetching = false
-				state.error = null
+				state.error = ''
 			})
 			.addCase(getUsers.rejected, (state, action) => {
 				setError(state, action)
 			})
 			.addCase(toggleFollowUnfollow.pending, (state) => {
-				state.error = null
+				state.error = ''
 			})
 			.addCase(toggleFollowUnfollow.fulfilled, (state) => {
-				state.error = null
+				state.error = ''
 			})
 			.addCase(toggleFollowUnfollow.rejected, (state, action) => {
 				setError(state, action)
@@ -162,4 +162,4 @@ export const {
 	setFollowInProgressAC
 } = usersReducer.actions
 
-export default usersReducer.reducer
+export const userReducers = usersReducer.reducer
