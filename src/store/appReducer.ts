@@ -77,4 +77,4 @@ export const selectIsInitialized = (state: RootState) => state.app.isInitialized
 
 export const { initializeAppAC, setThemeAC, setLanguageAC } = appSlice.actions
 
-export default appSlice.reducer
+export const appReducers = appSlice.reducer

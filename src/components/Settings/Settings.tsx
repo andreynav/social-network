@@ -52,7 +52,7 @@ const Settings = () => {
 			</LanguageWrapper>
 			<ShowNotifications>
 				<h2>{t('settings.general.title')}</h2>
-				{/* @ts-ignore */}
+				{/* @ts-expect-error: will be implemented further */}
 				<Toggle labelRight={t('settings.general.notifications')} />{' '}
 				{/*will be implemented further*/}
 			</ShowNotifications>
@@ -60,7 +60,8 @@ const Settings = () => {
 	)
 }
 
-export default compose(withAuthRedirect)(Settings)
+// export default compose(withAuthRedirect)(Settings)
+export const SettingsContainer = compose(withAuthRedirect)(Settings)
 
 const SettingsWrapper = styled.div`
 	display: grid;

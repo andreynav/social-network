@@ -10,4 +10,4 @@ const Music = () => {
 	return <div>{t('music.title')}</div>
 }
 
-export default compose(withAuthRedirect)(Music)
+export const MusicContainer = compose(withAuthRedirect)(Music)

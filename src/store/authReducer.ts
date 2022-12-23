@@ -178,4 +178,4 @@ export const selectCaptcha = (state: RootState) => state.auth.captcha
 
 export const { setAuthDataAC, setLoginDataAC, setCaptchaAC } = authSlice.actions
 
-export default authSlice.reducer
+export const authReducers = authSlice.reducer

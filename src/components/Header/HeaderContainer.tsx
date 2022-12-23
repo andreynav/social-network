@@ -13,9 +13,11 @@ type MapDispatchToPropsT = {
 	logoutUser: () => void
 }
 
-const HeaderContainer = ({ isAuth, userName, logoutUser }: PropsFromRedux) => {
-	const logout = () => logoutUser()
-
+const HeaderContainer = ({
+	isAuth,
+	userName,
+	logoutUser: logout
+}: PropsFromRedux) => {
 	return <Header logoutUser={logout} isAuth={isAuth} userName={userName} />
 }
 

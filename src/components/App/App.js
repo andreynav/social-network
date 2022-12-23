@@ -11,11 +11,11 @@ import {
 	HeaderContainerWithMapProps,
 	Loader,
 	Login,
-	Music,
+	MusicContainer,
 	Navbar,
-	News,
+	NewsContainer,
 	NotFound,
-	Settings
+	SettingsContainer
 } from '../index'
 
 const DialogsContainer = lazy(() => import('../Dialogs/DialogsContainer'))
@@ -47,9 +47,9 @@ const App = (props) => {
 						<Route path="/massages/:id" element={<DialogsContainer />} />
 						<Route path="/users" element={<UsersContainer />} />
 						<Route path="/users/:id" element={<UsersContainer />} />
-						<Route path="/news" element={<News />} />
-						<Route path="/music" element={<Music />} />
-						<Route path="/settings" element={<Settings />} />
+						<Route path="/news" element={<NewsContainer />} />
+						<Route path="/music" element={<MusicContainer />} />
+						<Route path="/settings" element={<SettingsContainer />} />
 						<Route path="/login" element={<Login />} />
 						<Route path="/*" element={<NotFound />} />
 					</Routes>

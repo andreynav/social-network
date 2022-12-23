@@ -222,4 +222,4 @@ export const {
 	setProfilePhotoAC
 } = profileSlice.actions
 
-export default profileSlice.reducer
+export const profileReducers = profileSlice.reducer
