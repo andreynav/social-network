@@ -6,7 +6,8 @@ module.exports = {
 		'plugin:styled-components-a11y/recommended',
 		'plugin:@typescript-eslint/recommended',
 		'plugin:jest/recommended',
-		'plugin:prettier/recommended'
+		'plugin:prettier/recommended',
+		'prettier'
 	],
 	plugins: [
 		'import',

@@ -1,12 +1,13 @@
-import React from "react";
-import {MyPosts} from "../../index";
-import {addNewPostAC, selectMyPosts} from "../../../store/profileReducer";
-import {connect} from "react-redux";
+import React from 'react'
+import { connect } from 'react-redux'
+
+import { addNewPostAC, selectMyPosts } from '../../../store/profileReducer'
+import { MyPosts } from '../../index'
 
 let mapStateToProps = (state) => ({
-    myPosts: selectMyPosts(state),
-});
+	myPosts: selectMyPosts(state)
+})
 
-const MyPostsContainer = connect(mapStateToProps, {addNewPostAC})(MyPosts);
+const MyPostsContainer = connect(mapStateToProps, { addNewPostAC })(MyPosts)
 
-export default MyPostsContainer;
+export default MyPostsContainer
