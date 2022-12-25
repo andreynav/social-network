@@ -1,3 +1,3 @@
-export const getRandomLike = max => {
-    return Math.floor(Math.random() * max)
+export const getRandomLike = (max) => {
+	return Math.floor(Math.random() * max)
 }

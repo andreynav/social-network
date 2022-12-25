@@ -38,7 +38,7 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "fix:codestyle": "find src/ -type f \\( -name \"*.ts\" -o -name \"*.tsx\" \\) -not -name \"*.d.ts\" | xargs prettier --write --plugin=./node_modules/@trivago/prettier-plugin-sort-imports/",
+    "fix:codestyle": "find src/ -type f \\( -name \"*.ts\" -o -name \"*.tsx\" -o -name \"*.js\" -o -name \"*.jsx\" \\) -not -name \"*.d.ts\" | xargs prettier --write --plugin=./node_modules/@trivago/prettier-plugin-sort-imports/",
     "lint": "tsc --noEmit && eslint src/**/*.ts{,x}",
     "fix:lint": "tsc --noEmit && eslint --fix src/**/*.ts{,x}"
   },
@@ -83,6 +83,7 @@
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.0.0",
+    "@types/styled-components": "^5.1.26",
     "@typescript-eslint/eslint-plugin": "^5.47.0",
     "@typescript-eslint/parser": "^5.47.0",
     "eslint": "^8.2.0",

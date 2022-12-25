@@ -1,11 +1,12 @@
-import React from "react";
-import {GlobalStyles} from "../styles/GlobalStyles";
+import React from 'react'
 
-export const AppStylesProvider = ({children}) => {
-    return (
-        <>
-            <GlobalStyles />
-            { children }
-        </>
-    )
+import { GlobalStyles } from '../styles/GlobalStyles'
+
+export const AppStylesProvider = ({ children }) => {
+	return (
+		<>
+			<GlobalStyles />
+			{children}
+		</>
+	)
 }
