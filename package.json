@@ -39,7 +39,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "fix:codestyle": "find src/ -type f \\( -name \"*.ts\" -o -name \"*.tsx\" -o -name \"*.js\" -o -name \"*.jsx\" \\) -not -name \"*.d.ts\" | xargs prettier --write --plugin=./node_modules/@trivago/prettier-plugin-sort-imports/",
-    "lint": "tsc --noEmit && eslint src/**/*.ts{,x}",
+    "lint": "tsc --noEmit && eslint src/**/*.{js,jsx,ts,tsx}",
     "fix:lint": "tsc --noEmit && eslint --fix src/**/*.ts{,x}"
   },
   "eslintConfig": {
