@@ -11,12 +11,20 @@ type PhotosT = {
 
 type PhotoSectionPropsT = {
 	photos: Partial<PhotosT>
-	alt?: string
+	alt: string
 	name: string
 	id: number
 	isOwner: boolean
 	isNavLink: boolean
 	isFollowButton: boolean
+	height: string
+	width: string
+	brRadius: string
+	followInProgress: Array<number>
+	followed: boolean
+	onChange: () => void
+	toggleFollow: () => void
+	onClick: () => void
 }
 
 type StyledUserSectionT = {
