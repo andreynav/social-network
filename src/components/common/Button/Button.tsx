@@ -2,9 +2,54 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
-export const Button = (props) => {
-	const { t } = useTranslation()
+type ButtonPropsT = {
+	id: number
+	brRadius: string
+	height: string
+	width: string
+	name: string
+	isOwner: boolean
+	followInProgress: Array<number>
+	followed: boolean
+	isFollowButton: boolean
+	onChange: () => void
+	toggleFollow: (a: number) => void
+	onClick: () => void
+	fontSize: string
+	transform: string
+	bgColor: string
+	brWidth: string
+}
 
+export type StyledButtonT = {
+	areaName: string
+	alignContent: string
+	minWidth: string
+	width: string
+	height: string
+	fontSize: string
+	brWidth: string
+	brStyle: string
+	padding: string
+	brRadius: string
+	bgColor: string
+	transform: string
+	cursor: string
+	opacity: number
+	id: number
+}
+
+type FileInputT = {
+	bgColor: string
+	cursor: string
+	opacity: number
+}
+
+export const Button = (
+	props: React.PropsWithChildren<Partial<ButtonPropsT>>
+): JSX.Element => {
+	const { t } = useTranslation()
+	// @ts-ignore
 	const SimpleButton = <StyledButton {...props}>{props.children}</StyledButton>
 
 	const UserDownloadPhotoButton = (
@@ -13,10 +58,11 @@ export const Button = (props) => {
 
 	const FollowUnfollowButton = (
 		<StyledButton
+			// @ts-ignore
 			id={props.id}
 			followInProgress={props.followInProgress}
 			followed={props.followed}
-			onClick={() => props.toggleFollow(props.id)}
+			onClick={() => props.toggleFollow!(props.id!)}
 			disabled={props.followInProgress?.some((userId) => userId === props.id)}
 			height="26px"
 			minWidth="50%"
@@ -34,7 +80,7 @@ export const Button = (props) => {
 	)
 }
 
-const StyledButton = styled.button`
+const StyledButton = styled.button<React.PropsWithChildren<StyledButtonT>>`
 	display: grid;
 	grid-area: ${({ areaName }) => areaName};
 	align-content: ${({ alignContent = 'center' }) => alignContent};
@@ -65,7 +111,7 @@ const StyledButton = styled.button`
 	}
 `
 
-const FileInput = styled.input`
+const FileInput = styled.input<Partial<FileInputT>>`
 	display: grid;
 
 	&::file-selector-button {

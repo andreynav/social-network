@@ -10,7 +10,11 @@ type OwnPropsT = {
 	logoutUser: () => void
 }
 
-export const Header = ({ isAuth, userName, logoutUser }: OwnPropsT) => {
+export const Header = ({
+	isAuth,
+	userName,
+	logoutUser
+}: OwnPropsT): JSX.Element => {
 	const loginButtonProps = {
 		fontSize: '1rem',
 		transform: 'none',
