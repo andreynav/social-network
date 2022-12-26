@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import { like } from '../../../assets'
 
-export const Like = ({ likeCount }) => {
+export const Like = ({ likeCount }: { likeCount: number }): JSX.Element => {
 	return (
 		<PostLike>
 			<img src={like} alt="like" />

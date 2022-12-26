@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
@@ -46,7 +46,7 @@ type FileInputT = {
 }
 
 export const Button = (
-	props: React.PropsWithChildren<Partial<ButtonPropsT>>
+	props: PropsWithChildren<Partial<ButtonPropsT>>
 ): JSX.Element => {
 	const { t } = useTranslation()
 	// @ts-ignore
@@ -80,7 +80,7 @@ export const Button = (
 	)
 }
 
-const StyledButton = styled.button<React.PropsWithChildren<StyledButtonT>>`
+const StyledButton = styled.button<PropsWithChildren<StyledButtonT>>`
 	display: grid;
 	grid-area: ${({ areaName }) => areaName};
 	align-content: ${({ alignContent = 'center' }) => alignContent};

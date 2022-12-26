@@ -18,9 +18,7 @@ export type StyledAvatarT = {
 	brRadius: string
 }
 
-export type AvatarOptionalT = Partial<StyledAvatarT>
-
-export const Avatar = (props: AvatarPropsT) => {
+export const Avatar = (props: AvatarPropsT): JSX.Element => {
 	const SimpleAvatar = (
 		<img src={props.src || avatar} alt={props.alt || 'avatar'} />
 	)
@@ -35,7 +33,7 @@ export const Avatar = (props: AvatarPropsT) => {
 	)
 }
 
-const StyledAvatar = styled.div<AvatarOptionalT>`
+const StyledAvatar = styled.div<Partial<StyledAvatarT>>`
 	display: grid;
 	align-self: start;
 	align-items: start;
