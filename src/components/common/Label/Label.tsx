@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 import styled from 'styled-components'
 
 type StyledLabelT = {
@@ -6,7 +6,7 @@ type StyledLabelT = {
 	transform: string
 }
 
-export const Label = (props: React.PropsWithChildren<StyledLabelT>) => {
+export const Label = (props: PropsWithChildren<StyledLabelT>): JSX.Element => {
 	return <StyledLabel {...props}>{props.children}</StyledLabel>
 }
 
