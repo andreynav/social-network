@@ -1,11 +1,18 @@
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 import styled from 'styled-components'
 
-export const Loader = (props) => {
+type StyledLoaderT = {
+	alignSelf: string
+	justifySelf: string
+}
+
+export const Loader = (
+	props: PropsWithChildren<StyledLoaderT>
+): JSX.Element => {
 	return <StyledLoader {...props} />
 }
 
-const StyledLoader = styled.div`
+const StyledLoader = styled.div<StyledLoaderT>`
 	display: grid;
 	align-self: ${({ alignSelf = 'center' }) => alignSelf};
 	justify-self: ${({ justifySelf = 'center' }) => justifySelf};
