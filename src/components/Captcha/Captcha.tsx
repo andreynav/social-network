@@ -1,8 +1,30 @@
 import React from 'react'
+import { FieldValues, UseFormRegister } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
 import { InputField } from '../index'
+
+type ImageWrapperT = {
+	height: string
+}
+
+type ErrorT = {
+	server: {
+		message: string
+		ref: unknown
+	}
+}
+
+type CaptchaPropsT = {
+	name: string
+	label: string
+	register: UseFormRegister<FieldValues>
+	errors: ErrorT
+	onClearErrors: () => void
+	captcha: string
+	height: string
+}
 
 export const Captcha = ({
 	name,
@@ -12,8 +34,10 @@ export const Captcha = ({
 	onClearErrors,
 	captcha,
 	height
-}) => {
+}: CaptchaPropsT): JSX.Element => {
 	const { t } = useTranslation()
+	// console.log('captcha file')
+	// console.log(errors)
 
 	return (
 		<CaptchaWrapper>
@@ -42,7 +66,7 @@ const CaptchaWrapper = styled.div`
 	margin-bottom: 15px;
 `
 
-const ImageWrapper = styled.div`
+const ImageWrapper = styled.div<ImageWrapperT>`
 	display: grid;
 	justify-content: center;
 
