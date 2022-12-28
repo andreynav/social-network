@@ -36,8 +36,6 @@ export const Captcha = ({
 	height
 }: CaptchaPropsT): JSX.Element => {
 	const { t } = useTranslation()
-	// console.log('captcha file')
-	// console.log(errors)
 
 	return (
 		<CaptchaWrapper>
