@@ -10,7 +10,7 @@ import { Header } from './Header/Header'
 import { HeaderContainerWithMapProps } from './Header/HeaderContainer'
 import { InputField } from './InputField/InputField'
 import { FormLogin } from './Login/FormLogin'
-import Login from './Login/Login'
+import { LoginWithMapProps } from './Login/Login'
 import { MusicContainer } from './Music/Music'
 import { Navbar } from './Navbar/Navbar'
 import { NewsContainer } from './News/News'
@@ -60,7 +60,7 @@ export {
 	User,
 	Loader,
 	HeaderContainerWithMapProps,
-	Login,
+	LoginWithMapProps,
 	ProfileInfoStatus,
 	InputField,
 	FormLogin,

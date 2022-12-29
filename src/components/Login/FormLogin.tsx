@@ -4,19 +4,19 @@ import styled from 'styled-components'
 
 import { Button, Captcha, InputField, Label } from '../index'
 
-export const FormLogin = (props) => {
-	const {
-		onSubmit,
-		registerInput,
-		errors,
-		registerCheckbox,
-		onClearErrors,
-		captcha
-	} = props
+export const FormLogin = ({
+	onSubmit,
+	registerInput,
+	errors,
+	registerCheckbox,
+	onClearErrors,
+	captcha
+}: any) => {
 	const { t } = useTranslation()
 	const minLength = 5
 	const minLengthError = t('auth.errors.minLength', { count: minLength })
 
+	// console.log(errors)
 	return (
 		<LoginForm onSubmit={onSubmit}>
 			<InputField
@@ -70,7 +70,7 @@ export const FormLogin = (props) => {
 					errors={errors}
 					onClearErrors={onClearErrors}
 					captcha={captcha}
-					height={85}
+					height={'85'}
 				/>
 			)}
 			<Button fontSize="16px">{t('auth.login')}</Button>

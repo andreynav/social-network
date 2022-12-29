@@ -1,19 +1,32 @@
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { connect } from 'react-redux'
+import { ConnectedProps, connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 import {
+	AuthDataT,
 	loginUser,
 	selectCaptcha,
 	selectError,
 	selectIsAuth
 } from '../../store/authReducer'
+import { RootState } from '../../store/store'
 import { FormLogin } from '../index'
 
-const Login = ({ isAuth, error, captcha, loginUser }) => {
+type MapStateToPropsT = {
+	isAuth: boolean
+	captcha: string | null
+	error: string
+}
+
+const Login = ({
+	isAuth,
+	error,
+	captcha,
+	loginUser
+}: PropsFromRedux): JSX.Element => {
 	const navigate = useNavigate()
 
 	const {
@@ -23,20 +36,27 @@ const Login = ({ isAuth, error, captcha, loginUser }) => {
 		reset,
 		setError,
 		clearErrors
-	} = useForm({ mode: 'onBlur' })
+	} = useForm<AuthDataT>({ mode: 'onBlur' })
 
-	const onFormSubmit = (data) => {
+	const onFormSubmit = (data: AuthDataT) => {
 		loginUser(data)
-		!!errors.server && reset()
+		if (errors && Object.keys(errors).length !== 0) {
+			reset()
+		}
 	}
 
 	const onClearErrors = () => {
-		errors.server && clearErrors()
+		errors && clearErrors()
 	}
 
 	useEffect(() => {
 		isAuth && navigate('/profile')
-		error && setError('server', { message: error })
+		if (error == 'Incorrect Email or Password') {
+			setError('email', { message: error })
+			setError('password', { message: error })
+		} else if (error == 'Incorrect anti-bot symbols') {
+			setError('captcha', { message: error })
+		}
 	}, [isAuth, error])
 
 	const { t } = useTranslation()
@@ -58,13 +78,16 @@ const Login = ({ isAuth, error, captcha, loginUser }) => {
 	)
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: RootState): MapStateToPropsT => ({
 	isAuth: selectIsAuth(state),
 	captcha: selectCaptcha(state),
 	error: selectError(state)
 })
 
-export default connect(mapStateToProps, { loginUser })(Login)
+const connector = connect(mapStateToProps, { loginUser })
+export type PropsFromRedux = ConnectedProps<typeof connector>
+
+export const LoginWithMapProps = connector(Login)
 
 const LoginWrapper = styled.div`
 	display: grid;

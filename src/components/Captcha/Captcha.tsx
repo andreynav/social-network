@@ -9,18 +9,15 @@ type ImageWrapperT = {
 	height: string
 }
 
-type ErrorT = {
-	server: {
-		message: string
-		ref: unknown
-	}
+type FieldErrorT = {
+	message?: string
 }
 
 type CaptchaPropsT = {
 	name: string
 	label: string
 	register: UseFormRegister<FieldValues>
-	errors: ErrorT
+	errors: FieldErrorT
 	onClearErrors: () => void
 	captcha: string
 	height: string

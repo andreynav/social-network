@@ -4,6 +4,8 @@ import styled from 'styled-components'
 type StyledLabelT = {
 	fontSize: string
 	transform: string
+	htmlFor?: string
+	color?: string
 }
 
 export const Label = (props: PropsWithChildren<StyledLabelT>): JSX.Element => {
