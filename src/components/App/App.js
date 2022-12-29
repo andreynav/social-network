@@ -10,7 +10,7 @@ import {
 	Footer,
 	HeaderContainerWithMapProps,
 	Loader,
-	Login,
+	LoginWithMapProps,
 	MusicContainer,
 	Navbar,
 	NewsContainer,
@@ -50,7 +50,7 @@ const App = (props) => {
 						<Route path="/news" element={<NewsContainer />} />
 						<Route path="/music" element={<MusicContainer />} />
 						<Route path="/settings" element={<SettingsContainer />} />
-						<Route path="/login" element={<Login />} />
+						<Route path="/login" element={<LoginWithMapProps />} />
 						<Route path="/*" element={<NotFound />} />
 					</Routes>
 				</Suspense>

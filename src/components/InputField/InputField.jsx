@@ -3,6 +3,8 @@ import styled from 'styled-components'
 
 import { Label } from '../index'
 
+// TODO type name: 'email' | 'password' | 'captcha'
+
 export const InputField = (props) => {
 	const {
 		name,
@@ -19,11 +21,12 @@ export const InputField = (props) => {
 
 	const isProfileFormError =
 		isPutError && (name !== 'email' || name !== 'password')
-	const isLoginFormError = errors && (name === 'email' || name === 'password')
+	const isLoginFormError =
+		errors && (name === 'email' || name === 'password' || name === 'captcha')
+	console.log(errors)
+	console.log(errors[name]?.message)
 	const labelError = (
-		<Label color={'error'}>
-			{(errors[name] && errors[name]?.message) || errors.server?.message}
-		</Label>
+		<Label color={'error'}>{errors[name] && errors[name]?.message}</Label>
 	)
 
 	return (

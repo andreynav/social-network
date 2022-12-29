@@ -3,11 +3,11 @@ import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { authAPI, securityAPI } from '../api/api'
 import { RootState } from './store'
 
-type AuthDataT = {
+export type AuthDataT = {
 	email: string
 	password: string
 	rememberMe: boolean
-	captcha: string
+	captcha?: string
 }
 
 type SetAuthDataT = {
@@ -28,7 +28,7 @@ type InitialStateT = {
 	isAuth: boolean
 	captcha: string | null
 	status: string | null
-	error: any | null
+	error: string | null
 }
 
 const initialState: InitialStateT = {
@@ -71,6 +71,7 @@ export const loginUser = createAsyncThunk(
 					dispatch(getCaptchaURL())
 				}
 				dispatch(setLoginDataAC({ id: null, isAuth: false }))
+				dispatch(setCaptchaAC({ url: null }))
 				throw new Error(data.messages[0])
 			}
 		} catch (error: any) {
@@ -81,9 +82,10 @@ export const loginUser = createAsyncThunk(
 
 export const logoutUser = createAsyncThunk(
 	'auth/logout',
-	async (_, { rejectWithValue }) => {
+	async (_, { dispatch, rejectWithValue }) => {
 		try {
 			await authAPI.logout()
+			dispatch(setCaptchaAC({ url: null }))
 		} catch (error: any) {
 			return rejectWithValue(error.message)
 		}
@@ -118,7 +120,7 @@ const authSlice = createSlice({
 			state.id = id
 			state.isAuth = isAuth
 		},
-		setCaptchaAC(state, action: PayloadAction<{ url: string }>) {
+		setCaptchaAC(state, action: PayloadAction<{ url: string | null }>) {
 			state.captcha = action.payload.url
 		}
 	},
@@ -134,7 +136,7 @@ const authSlice = createSlice({
 			})
 			.addCase(getAuthUserData.rejected, (state, action) => {
 				state.status = 'rejected'
-				state.error = action.error.message
+				state.error = action.error.message!
 			})
 			.addCase(loginUser.pending, (state) => {
 				state.status = 'pending'
@@ -146,7 +148,7 @@ const authSlice = createSlice({
 			})
 			.addCase(loginUser.rejected, (state, action) => {
 				state.status = 'rejected'
-				state.error = action.payload
+				state.error = action.payload as string
 			})
 			.addCase(logoutUser.pending, (state) => {
 				state.status = 'pending'
@@ -159,8 +161,7 @@ const authSlice = createSlice({
 			})
 			.addCase(logoutUser.rejected, (state, action) => {
 				state.status = 'rejected'
-				state.error = action.error.message
-				console.error(state.error)
+				state.error = action.error.message!
 			})
 			.addCase(getCaptchaURL.pending, (state) => {})
 			.addCase(getCaptchaURL.fulfilled, (state) => {})
@@ -172,7 +173,7 @@ export const selectLogin = (state: RootState) => state.auth.userName
 
 export const selectIsAuth = (state: RootState) => state.auth.isAuth
 
-export const selectError = (state: RootState) => state.auth.error
+export const selectError = (state: RootState) => state.auth.error!
 
 export const selectCaptcha = (state: RootState) => state.auth.captcha
 
