@@ -51,13 +51,13 @@ const Login = ({
 
 	useEffect(() => {
 		isAuth && navigate('/profile')
-		if (error == 'Incorrect Email or Password') {
+		if (error === 'Incorrect Email or Password') {
 			setError('email', { message: error })
 			setError('password', { message: error })
-		} else if (error == 'Incorrect anti-bot symbols') {
+		} else if (error === 'Incorrect anti-bot symbols') {
 			setError('captcha', { message: error })
 		}
-	}, [isAuth, error])
+	}, [isAuth, error, navigate, setError])
 
 	const { t } = useTranslation()
 

@@ -37,7 +37,7 @@ export const PhotoSection = (props: PhotoSectionPropsT) => {
 	const { photos, name, id, isOwner, isNavLink, isFollowButton } = props
 
 	return (
-		// @ts-ignore
+		// @ts-expect-error: will be implemented further
 		<StyledUserSection {...props}>
 			<Avatar
 				src={photos?.small}
