@@ -23,8 +23,6 @@ export const InputField = (props) => {
 		isPutError && (name !== 'email' || name !== 'password')
 	const isLoginFormError =
 		errors && (name === 'email' || name === 'password' || name === 'captcha')
-	console.log(errors)
-	console.log(errors[name]?.message)
 	const labelError = (
 		<Label color={'error'}>{errors[name] && errors[name]?.message}</Label>
 	)

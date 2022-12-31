@@ -3,7 +3,8 @@
     "browser": true,
     "es6": true,
     "jest": true,
-    "jest/globals": true
+    "commonjs": true,
+    "node": true
   },
   "globals": {
     "Atomics": "readonly",
@@ -16,16 +17,25 @@
     },
     "ecmaVersion": 2018,
     "sourceType": "module",
-    "project": "./tsconfig.json"
+    "project": "./tsconfig.json",
+    "requireConfigFile": false,
+    "babelOptions": {
+      "presets": [
+        "/Users/andreinalivaika/Documents/social-network/node_modules/babel-preset-react-app/prod.js"
+      ]
+    }
   },
   "plugins": [
+    "flowtype",
+    "testing-library",
+    "jest",
     "react-hooks",
     "prettier",
     "styled-components-a11y",
     "jsx-a11y",
-    "jest",
     "@typescript-eslint",
-    "react"
+    "react",
+    "import"
   ],
   "rules": {
     "import/no-default-export": [
@@ -35,9 +45,17 @@
       "off"
     ],
     "no-use-before-define": [
-      "off"
+      "off",
+      {
+        "functions": false,
+        "classes": false,
+        "variables": false
+      }
     ],
     "template-curly-spacing": [
+      "error"
+    ],
+    "space-unary-ops": [
       "error"
     ],
     "@typescript-eslint/default-param-last": [
@@ -63,11 +81,20 @@
         "endOfLine": "auto"
       }
     ],
-    "arrow-body-style": [
-      "off"
+    "@typescript-eslint/no-shadow": [
+      "warn"
     ],
-    "prefer-arrow-callback": [
-      "off"
+    "@typescript-eslint/no-unused-expressions": [
+      "warn",
+      {
+        "allowShortCircuit": true,
+        "allowTernary": false,
+        "allowTaggedTemplates": false,
+        "enforceForJSX": false
+      }
+    ],
+    "no-console": [
+      "warn"
     ],
     "curly": [
       0
@@ -82,7 +109,39 @@
       0
     ],
     "no-mixed-operators": [
-      0
+      0,
+      {
+        "groups": [
+          [
+            "&",
+            "|",
+            "^",
+            "~",
+            "<<",
+            ">>",
+            ">>>"
+          ],
+          [
+            "==",
+            "!=",
+            "===",
+            "!==",
+            ">",
+            ">=",
+            "<",
+            "<="
+          ],
+          [
+            "&&",
+            "||"
+          ],
+          [
+            "in",
+            "instanceof"
+          ]
+        ],
+        "allowSamePrecedence": false
+      }
     ],
     "no-tabs": [
       0
@@ -143,7 +202,8 @@
       "off"
     ],
     "dot-location": [
-      "off"
+      "off",
+      "property"
     ],
     "eol-last": [
       "off"
@@ -251,7 +311,8 @@
       "off"
     ],
     "rest-spread-spacing": [
-      "off"
+      "off",
+      "never"
     ],
     "semi": [
       "off"
@@ -292,9 +353,6 @@
     "space-return-throw-case": [
       "off"
     ],
-    "space-unary-ops": [
-      "off"
-    ],
     "space-unary-word-ops": [
       "off"
     ],
@@ -305,7 +363,8 @@
       "off"
     ],
     "unicode-bom": [
-      "off"
+      "off",
+      "never"
     ],
     "wrap-iife": [
       "off"
@@ -673,62 +732,11 @@
     "react/jsx-space-before-closing": [
       "off"
     ],
-    "jest/expect-expect": [
-      "warn"
+    "arrow-body-style": [
+      "off"
     ],
-    "jest/no-alias-methods": [
-      "error"
-    ],
-    "jest/no-commented-out-tests": [
-      "warn"
-    ],
-    "jest/no-conditional-expect": [
-      "error"
-    ],
-    "jest/no-deprecated-functions": [
-      "error"
-    ],
-    "jest/no-disabled-tests": [
-      "warn"
-    ],
-    "jest/no-done-callback": [
-      "error"
-    ],
-    "jest/no-export": [
-      "error"
-    ],
-    "jest/no-focused-tests": [
-      "error"
-    ],
-    "jest/no-identical-title": [
-      "error"
-    ],
-    "jest/no-interpolation-in-snapshots": [
-      "error"
-    ],
-    "jest/no-jasmine-globals": [
-      "error"
-    ],
-    "jest/no-mocks-import": [
-      "error"
-    ],
-    "jest/no-standalone-expect": [
-      "error"
-    ],
-    "jest/no-test-prefixes": [
-      "error"
-    ],
-    "jest/valid-describe-callback": [
-      "error"
-    ],
-    "jest/valid-expect-in-promise": [
-      "error"
-    ],
-    "jest/valid-expect": [
-      "error"
-    ],
-    "jest/valid-title": [
-      "error"
+    "prefer-arrow-callback": [
+      "off"
     ],
     "@typescript-eslint/adjacent-overload-signatures": [
       "error"
@@ -795,7 +803,11 @@
       "error"
     ],
     "no-unused-vars": [
-      "off"
+      "off",
+      {
+        "args": "none",
+        "ignoreRestSiblings": true
+      }
     ],
     "@typescript-eslint/no-unused-vars": [
       "warn",
@@ -1437,9 +1449,6 @@
     "no-shadow": [
       "off"
     ],
-    "@typescript-eslint/no-shadow": [
-      "error"
-    ],
     "no-throw-literal": [
       "off"
     ],
@@ -1447,14 +1456,11 @@
       "error"
     ],
     "no-unused-expressions": [
-      "off"
-    ],
-    "@typescript-eslint/no-unused-expressions": [
-      "error",
+      "off",
       {
-        "allowShortCircuit": false,
-        "allowTernary": false,
-        "allowTaggedTemplates": false,
+        "allowShortCircuit": true,
+        "allowTernary": true,
+        "allowTaggedTemplates": true,
         "enforceForJSX": false
       }
     ],
@@ -1534,6 +1540,337 @@
         ],
         "optionalDependencies": false
       }
+    ],
+    "array-callback-return": [
+      "warn"
+    ],
+    "default-case": [
+      "warn",
+      {
+        "commentPattern": "^no default$"
+      }
+    ],
+    "eqeqeq": [
+      "warn",
+      "smart"
+    ],
+    "no-caller": [
+      "warn"
+    ],
+    "no-cond-assign": [
+      "warn",
+      "except-parens"
+    ],
+    "no-const-assign": [
+      "warn"
+    ],
+    "no-control-regex": [
+      "warn"
+    ],
+    "no-delete-var": [
+      "warn"
+    ],
+    "no-dupe-args": [
+      "warn"
+    ],
+    "no-dupe-keys": [
+      "warn"
+    ],
+    "no-duplicate-case": [
+      "warn"
+    ],
+    "no-empty-character-class": [
+      "warn"
+    ],
+    "no-empty-pattern": [
+      "warn"
+    ],
+    "no-eval": [
+      "warn"
+    ],
+    "no-ex-assign": [
+      "warn"
+    ],
+    "no-extend-native": [
+      "warn"
+    ],
+    "no-extra-bind": [
+      "warn"
+    ],
+    "no-extra-label": [
+      "warn"
+    ],
+    "no-fallthrough": [
+      "warn"
+    ],
+    "no-func-assign": [
+      "warn"
+    ],
+    "no-invalid-regexp": [
+      "warn"
+    ],
+    "no-iterator": [
+      "warn"
+    ],
+    "no-label-var": [
+      "warn"
+    ],
+    "no-labels": [
+      "warn",
+      {
+        "allowLoop": true,
+        "allowSwitch": false
+      }
+    ],
+    "no-lone-blocks": [
+      "warn"
+    ],
+    "no-multi-str": [
+      "warn"
+    ],
+    "no-global-assign": [
+      "warn"
+    ],
+    "no-unsafe-negation": [
+      "warn"
+    ],
+    "no-new-object": [
+      "warn"
+    ],
+    "no-new-symbol": [
+      "warn"
+    ],
+    "no-new-wrappers": [
+      "warn"
+    ],
+    "no-obj-calls": [
+      "warn"
+    ],
+    "no-octal": [
+      "warn"
+    ],
+    "no-octal-escape": [
+      "warn"
+    ],
+    "no-regex-spaces": [
+      "warn"
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      "WithStatement"
+    ],
+    "no-script-url": [
+      "warn"
+    ],
+    "no-self-assign": [
+      "warn"
+    ],
+    "no-self-compare": [
+      "warn"
+    ],
+    "no-sequences": [
+      "warn"
+    ],
+    "no-shadow-restricted-names": [
+      "warn"
+    ],
+    "no-sparse-arrays": [
+      "warn"
+    ],
+    "no-template-curly-in-string": [
+      "warn"
+    ],
+    "no-this-before-super": [
+      "warn"
+    ],
+    "no-undef": [
+      "error"
+    ],
+    "no-restricted-globals": [
+      "error",
+      "addEventListener",
+      "blur",
+      "close",
+      "closed",
+      "confirm",
+      "defaultStatus",
+      "defaultstatus",
+      "event",
+      "external",
+      "find",
+      "focus",
+      "frameElement",
+      "frames",
+      "history",
+      "innerHeight",
+      "innerWidth",
+      "length",
+      "location",
+      "locationbar",
+      "menubar",
+      "moveBy",
+      "moveTo",
+      "name",
+      "onblur",
+      "onerror",
+      "onfocus",
+      "onload",
+      "onresize",
+      "onunload",
+      "open",
+      "opener",
+      "opera",
+      "outerHeight",
+      "outerWidth",
+      "pageXOffset",
+      "pageYOffset",
+      "parent",
+      "print",
+      "removeEventListener",
+      "resizeBy",
+      "resizeTo",
+      "screen",
+      "screenLeft",
+      "screenTop",
+      "screenX",
+      "screenY",
+      "scroll",
+      "scrollbars",
+      "scrollBy",
+      "scrollTo",
+      "scrollX",
+      "scrollY",
+      "self",
+      "status",
+      "statusbar",
+      "stop",
+      "toolbar",
+      "top"
+    ],
+    "no-unreachable": [
+      "warn"
+    ],
+    "no-unused-labels": [
+      "warn"
+    ],
+    "no-useless-computed-key": [
+      "warn"
+    ],
+    "no-useless-concat": [
+      "warn"
+    ],
+    "no-useless-escape": [
+      "warn"
+    ],
+    "no-useless-rename": [
+      "warn",
+      {
+        "ignoreDestructuring": false,
+        "ignoreImport": false,
+        "ignoreExport": false
+      }
+    ],
+    "no-with": [
+      "warn"
+    ],
+    "require-yield": [
+      "warn"
+    ],
+    "strict": [
+      "warn",
+      "never"
+    ],
+    "use-isnan": [
+      "warn"
+    ],
+    "valid-typeof": [
+      "warn"
+    ],
+    "no-restricted-properties": [
+      "error",
+      {
+        "object": "require",
+        "property": "ensure",
+        "message": "Please use import() instead. More info: https://facebook.github.io/create-react-app/docs/code-splitting"
+      },
+      {
+        "object": "System",
+        "property": "import",
+        "message": "Please use import() instead. More info: https://facebook.github.io/create-react-app/docs/code-splitting"
+      }
+    ],
+    "getter-return": [
+      "warn"
+    ],
+    "import/first": [
+      "error"
+    ],
+    "import/no-amd": [
+      "error"
+    ],
+    "import/no-anonymous-default-export": [
+      "warn"
+    ],
+    "import/no-webpack-loader-syntax": [
+      "error"
+    ],
+    "react/forbid-foreign-prop-types": [
+      "warn",
+      {
+        "allowInPropTypes": true
+      }
+    ],
+    "react/jsx-no-comment-textnodes": [
+      "warn"
+    ],
+    "react/jsx-no-duplicate-props": [
+      "warn"
+    ],
+    "react/jsx-no-target-blank": [
+      "warn"
+    ],
+    "react/jsx-no-undef": [
+      "error"
+    ],
+    "react/jsx-pascal-case": [
+      "warn",
+      {
+        "allowAllCaps": true,
+        "ignore": []
+      }
+    ],
+    "react/no-danger-with-children": [
+      "warn"
+    ],
+    "react/no-direct-mutation-state": [
+      "warn"
+    ],
+    "react/no-is-mounted": [
+      "warn"
+    ],
+    "react/no-typos": [
+      "error"
+    ],
+    "react/require-render-return": [
+      "error"
+    ],
+    "react/style-prop-object": [
+      "warn"
+    ],
+    "flowtype/define-flow-type": [
+      "warn"
+    ],
+    "flowtype/require-valid-file-annotation": [
+      "warn"
+    ],
+    "flowtype/use-flow-type": [
+      "warn"
+    ],
+    "react/jsx-uses-vars": [
+      "warn"
+    ],
+    "react/jsx-uses-react": [
+      "warn"
     ]
   },
   "settings": {
@@ -1568,9 +1905,13 @@
     "import/external-module-folders": [
       "node_modules",
       "node_modules/@types"
-    ]
+    ],
+    "react": {
+      "version": "detect"
+    }
   },
   "ignorePatterns": [
+    "src/types/*",
     "node_modules/",
     "public/",
     "fonts/",

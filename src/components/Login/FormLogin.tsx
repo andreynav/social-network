@@ -16,7 +16,6 @@ export const FormLogin = ({
 	const minLength = 5
 	const minLengthError = t('auth.errors.minLength', { count: minLength })
 
-	// console.log(errors)
 	return (
 		<LoginForm onSubmit={onSubmit}>
 			<InputField

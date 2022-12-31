@@ -49,7 +49,7 @@ export const Button = (
 	props: PropsWithChildren<Partial<ButtonPropsT>>
 ): JSX.Element => {
 	const { t } = useTranslation()
-	// @ts-ignore
+	// @ts-expect-error: will be implemented further
 	const SimpleButton = <StyledButton {...props}>{props.children}</StyledButton>
 
 	const UserDownloadPhotoButton = (
@@ -58,7 +58,7 @@ export const Button = (
 
 	const FollowUnfollowButton = (
 		<StyledButton
-			// @ts-ignore
+			// @ts-expect-error: will be implemented further
 			id={props.id}
 			followInProgress={props.followInProgress}
 			followed={props.followed}

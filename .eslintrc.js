@@ -1,11 +1,12 @@
 module.exports = {
 	extends: [
+		'react-app',
+		'react-app/jest',
 		'airbnb-typescript',
 		'airbnb/hooks',
 		'plugin:jsx-a11y/recommended',
 		'plugin:styled-components-a11y/recommended',
 		'plugin:@typescript-eslint/recommended',
-		'plugin:jest/recommended',
 		'plugin:prettier/recommended',
 		'prettier'
 	],
@@ -13,7 +14,6 @@ module.exports = {
 		'import',
 		'react',
 		'@typescript-eslint',
-		'jest',
 		'jsx-a11y',
 		'styled-components-a11y'
 	],
@@ -35,6 +35,7 @@ module.exports = {
 		sourceType: 'module',
 		project: './tsconfig.json'
 	},
+	ignorePatterns: ['src/types/*'],
 	rules: {
 		'import/no-default-export': 'error',
 		'linebreak-style': 'off',
@@ -44,6 +45,16 @@ module.exports = {
 		'@typescript-eslint/default-param-last': ['error'],
 		'@typescript-eslint/no-use-before-define': [1, { variables: false }],
 		'react/jsx-key': [2, { checkFragmentShorthand: true }],
-		'prettier/prettier': ['error', { endOfLine: 'auto' }]
+		'prettier/prettier': ['error', { endOfLine: 'auto' }],
+		'@typescript-eslint/no-shadow': 'warn',
+		'@typescript-eslint/no-unused-expressions': [
+			'warn',
+			{
+				allowShortCircuit: true,
+				allowTernary: false,
+				allowTaggedTemplates: false,
+				enforceForJSX: false
+			}
+		]
 	}
 }
