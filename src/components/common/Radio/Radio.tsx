@@ -1,7 +1,18 @@
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 import styled from 'styled-components'
 
-export const Radio = (props) => {
+type RadioT = {
+	type: string
+	name: string
+	id: string
+	isChecked: boolean
+	defaultChecked: boolean
+	value: string
+	label: string
+	htmlFor: string | undefined
+}
+
+export const Radio = (props: PropsWithChildren<RadioT>): JSX.Element => {
 	return (
 		<RadioButton>
 			<input
