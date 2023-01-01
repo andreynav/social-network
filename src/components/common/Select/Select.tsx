@@ -1,8 +1,19 @@
-import React from 'react'
+import React, { ChangeEventHandler } from 'react'
 import styled from 'styled-components'
 
-export const Select = ({ options, value, onChange }) => {
-	const optionItems = options.map((option, index) => (
+type SelectT = {
+	options: any
+	value: string
+	onChange: ChangeEventHandler<HTMLSelectElement>
+}
+
+type OptionT = {
+	value: string
+	name: string
+}
+
+export const Select = ({ options, value, onChange }: SelectT): JSX.Element => {
+	const optionItems = options.map((option: OptionT, index: number) => (
 		<option value={option.value} key={index}>
 			{option.name}
 		</option>

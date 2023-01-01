@@ -18,7 +18,7 @@ const Settings = () => {
 		setCurrentTheme(event.target.value)
 	}
 
-	const onChangeLanguage = (event: ChangeEvent<HTMLInputElement>): void => {
+	const onChangeLanguage = (event: ChangeEvent<HTMLSelectElement>): void => {
 		setLanguage(event.target.value)
 	}
 
