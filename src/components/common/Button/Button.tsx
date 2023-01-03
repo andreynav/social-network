@@ -19,6 +19,7 @@ type ButtonPropsT = {
 	transform: string
 	bgColor: string
 	brWidth: string
+	areaName: string
 }
 
 export type StyledButtonT = {
