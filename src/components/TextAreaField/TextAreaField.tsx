@@ -1,7 +1,23 @@
 import React from 'react'
+import { FieldValues, UseFormRegister } from 'react-hook-form'
 import styled from 'styled-components'
 
-export const TextAreaField = (props) => {
+type TextAreaFieldT = {
+	name: string
+	type?: string
+	register: UseFormRegister<FieldValues>
+	validationSchema: {
+		required?: string
+		maxLength?: {
+			value: number
+			message: string
+		}
+	}
+	placeholder?: string
+	errors: FieldValues
+}
+
+export const TextAreaField = (props: TextAreaFieldT): JSX.Element => {
 	const {
 		name,
 		type,
@@ -15,8 +31,8 @@ export const TextAreaField = (props) => {
 	return (
 		<InputWrapper>
 			<Textarea
-				name={name}
 				{...register(name, validationSchema)}
+				name={name}
 				placeholder={placeholder}
 				{...areaProps}
 			/>

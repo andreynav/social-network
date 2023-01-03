@@ -15,9 +15,7 @@ type FormPostMessageT = {
 			message: string
 		}
 	}
-	errors: {
-		postMessage?: string
-	}
+	errors: FieldValues
 }
 
 export const FormPostMessage = (props: FormPostMessageT): JSX.Element => {
