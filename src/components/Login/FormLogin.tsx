@@ -24,6 +24,7 @@ export const FormLogin = ({
 				type={'text'}
 				register={registerInput}
 				validationSchema={{
+					// @ts-expect-error: https://www.i18next.com/overview/typescript#argument-of-type-defaulttfuncreturn-is-not-assignable-to-parameter-of-type-xyz
 					required: t('auth.errors.emailIsRequired'),
 					minLength: { value: minLength, message: minLengthError }
 				}}
@@ -37,6 +38,7 @@ export const FormLogin = ({
 				type={'password'}
 				register={registerInput}
 				validationSchema={{
+					// @ts-expect-error: https://www.i18next.com/overview/typescript#argument-of-type-defaulttfuncreturn-is-not-assignable-to-parameter-of-type-xyz
 					required: t('auth.errors.passwordIsRequired'),
 					minLength: { value: minLength, message: minLengthError }
 				}}
