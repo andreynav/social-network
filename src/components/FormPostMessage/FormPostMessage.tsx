@@ -1,10 +1,26 @@
-import React from 'react'
+import React, { FormEventHandler } from 'react'
+import { FieldValues, UseFormRegister } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
 import { Button, TextAreaField } from '../index'
 
-export const FormPostMessage = (props) => {
+type FormPostMessageT = {
+	onSubmit: FormEventHandler<HTMLFormElement>
+	register: UseFormRegister<FieldValues>
+	validationSchema: {
+		required?: string
+		maxLength?: {
+			value: number
+			message: string
+		}
+	}
+	errors: {
+		postMessage?: string
+	}
+}
+
+export const FormPostMessage = (props: FormPostMessageT): JSX.Element => {
 	const { onSubmit, register, validationSchema, errors } = props
 	const { t } = useTranslation()
 
