@@ -3,7 +3,15 @@ import { useTranslation } from 'react-i18next'
 import ReactPaginate from 'react-paginate'
 import styled from 'styled-components'
 
-export const Paginator = ({ selectPage, totalCount, usersOnPage }) => {
+export const Paginator = ({
+	selectPage,
+	totalCount,
+	usersOnPage
+}: {
+	selectPage: (page: number) => void
+	totalCount: number
+	usersOnPage: number
+}) => {
 	const pagesCount = Math.ceil(Number(totalCount) / usersOnPage)
 	const { t } = useTranslation()
 
@@ -16,7 +24,7 @@ export const Paginator = ({ selectPage, totalCount, usersOnPage }) => {
 				pageRangeDisplayed={3}
 				pageCount={pagesCount}
 				previousLabel={t('users.prevPage')}
-				renderOnZeroPageCount={null}
+				renderOnZeroPageCount={() => null}
 				containerClassName="pagination"
 				activeClassName="active"
 			/>
