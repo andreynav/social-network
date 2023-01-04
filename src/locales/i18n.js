@@ -14,7 +14,6 @@ const resources = {
 }
 
 i18n.use(initReactI18next).init({
-	returnNull: false,
 	fallbackLng: 'en',
 	lng: 'en',
 	debug: false,
