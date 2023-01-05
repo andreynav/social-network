@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 
-import { App } from '../src/components/index'
+import { App } from './components'
 import { AppStylesProvider } from './hoc/AppStylesProvider'
 import { AppThemeProvider } from './hoc/AppThemeProvider'
 import { AppLocaleProvider } from './locales/i18n'
