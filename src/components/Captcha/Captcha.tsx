@@ -5,19 +5,13 @@ import styled from 'styled-components'
 
 import { InputField } from '../index'
 
-type ImageWrapperT = {
-	height: string
-}
-
-type FieldErrorT = {
-	message?: string
-}
-
 type CaptchaPropsT = {
-	name: string
+	name: 'captcha'
 	label: string
 	register: UseFormRegister<FieldValues>
-	errors: FieldErrorT
+	errors: {
+		message?: string
+	}
 	onClearErrors: () => void
 	captcha: string
 	height: string
@@ -42,6 +36,7 @@ export const Captcha = ({
 				type="text"
 				register={register}
 				validationSchema={{
+					// @ts-expect-error: https://www.i18next.com/overview/typescript#argument-of-type-defaulttfuncreturn-is-not-assignable-to-parameter-of-type-xyz
 					required: t('auth.errors.captchaIsRequired')
 				}}
 				placeholder="captcha"
@@ -61,7 +56,7 @@ const CaptchaWrapper = styled.div`
 	margin-bottom: 15px;
 `
 
-const ImageWrapper = styled.div<ImageWrapperT>`
+const ImageWrapper = styled.div<{ height: string }>`
 	display: grid;
 	justify-content: center;
 

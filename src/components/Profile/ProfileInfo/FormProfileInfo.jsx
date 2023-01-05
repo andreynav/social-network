@@ -14,8 +14,11 @@ export const FormProfileInfo = ({
 	onClearErrors
 }) => {
 	const profileItems = profileData.map((item) => {
-		const isPutError =
-			errors.server?.message.split('>')[1].split(')')[0] === item.itemName // refactor
+		let error = errors?.server?.message
+			.split(' ')[1]
+			.split(')')[0]
+			.toLowerCase()
+		const isPutError = error === item.inputName.toLowerCase()
 
 		return (
 			<ItemWrapper key={item.inputName}>

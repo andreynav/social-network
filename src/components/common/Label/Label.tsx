@@ -2,8 +2,8 @@ import React, { PropsWithChildren } from 'react'
 import styled from 'styled-components'
 
 type StyledLabelT = {
-	fontSize: string
-	transform: string
+	fontSize?: string
+	transform?: string
 	htmlFor?: string
 	color?: string
 }

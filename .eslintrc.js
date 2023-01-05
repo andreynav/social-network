@@ -47,6 +47,7 @@ module.exports = {
 		'react/jsx-key': [2, { checkFragmentShorthand: true }],
 		'prettier/prettier': ['error', { endOfLine: 'auto' }],
 		'@typescript-eslint/no-shadow': 'warn',
+		'@typescript-eslint/dot-notation': 'off',
 		'@typescript-eslint/no-unused-expressions': [
 			'warn',
 			{

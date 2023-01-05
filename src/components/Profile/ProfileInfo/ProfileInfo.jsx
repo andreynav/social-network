@@ -40,7 +40,7 @@ export const ProfileInfo = memo((props) => {
 	useEffect(() => {
 		profileInfoUpdateError &&
 			setError('server', { message: profileInfoUpdateError })
-	}, [profileInfoUpdateError])
+	}, [profileInfoUpdateError, setError])
 
 	const profileData = getProfileSchemeData(profileInfo).map((item) => ({
 		...item,
@@ -82,7 +82,7 @@ export const ProfileInfo = memo((props) => {
 	}
 
 	const onClearErrors = () => {
-		errors.server && clearErrors()
+		errors && clearErrors()
 	}
 
 	return (
