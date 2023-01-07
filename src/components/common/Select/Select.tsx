@@ -20,7 +20,7 @@ export const Select = ({ options, value, onChange }: SelectT): JSX.Element => {
 	))
 
 	return (
-		<StyledSelect value={value} onBlur={onChange}>
+		<StyledSelect value={value} onChange={onChange}>
 			{optionItems}
 		</StyledSelect>
 	)
