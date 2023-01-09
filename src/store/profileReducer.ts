@@ -15,7 +15,7 @@ type PhotosT = {
 	small: string | null
 }
 
-type ContactsT = {
+export type ContactsT = {
 	facebook: string | null
 	github: string | null
 	instagram: string | null
@@ -26,7 +26,7 @@ type ContactsT = {
 	youtube: string | null
 }
 
-type ProfileInfoT = {
+export type ProfileInfoT = {
 	aboutMe: string | null
 	fullName: string
 	lookingForAJob: boolean

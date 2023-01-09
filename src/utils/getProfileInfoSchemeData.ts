@@ -1,4 +1,6 @@
-export const getProfileInfoSchemeData = (data) => {
+import { ContactsT, ProfileInfoT } from '../store/profileReducer'
+
+export const getProfileInfoSchemeData = (data: ProfileInfoT & ContactsT) => {
 	return {
 		fullName: data.fullName,
 		aboutMe: data.aboutMe,

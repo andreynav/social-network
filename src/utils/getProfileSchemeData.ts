@@ -1,4 +1,6 @@
-export const getProfileSchemeData = (profileInfo) => {
+import { ProfileInfoT } from '../store/profileReducer'
+
+export const getProfileSchemeData = (profileInfo: ProfileInfoT) => {
 	return [
 		{
 			itemName: 'profile.fullName',
