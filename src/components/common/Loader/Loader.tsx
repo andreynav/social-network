@@ -2,8 +2,8 @@ import React, { PropsWithChildren } from 'react'
 import styled from 'styled-components'
 
 type StyledLoaderT = {
-	alignSelf: string
-	justifySelf: string
+	alignSelf?: string
+	justifySelf?: string
 }
 
 export const Loader = (

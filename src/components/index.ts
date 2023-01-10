@@ -1,5 +1,5 @@
 import { GlobalStyles } from '../styles/GlobalStyles'
-import App from './App/App'
+import { AppContainer } from './App/App'
 import { Captcha } from './Captcha/Captcha'
 import { DialogMessage } from './Dialogs/DialogMessage'
 import { DialogUser } from './Dialogs/DialogUser'
@@ -65,7 +65,7 @@ export {
 	InputField,
 	FormLogin,
 	TextAreaField,
-	App,
+	AppContainer,
 	Paginator,
 	Label,
 	Button,

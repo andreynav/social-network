@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 
-import { App } from './components'
+import { AppContainer } from './components'
 import { AppStylesProvider } from './hoc/AppStylesProvider'
 import { AppThemeProvider } from './hoc/AppThemeProvider'
 import { AppLocaleProvider } from './locales/i18n'
 import { store } from './store/store'
 
-const RootComponent = () => {
+const RootComponent = (): JSX.Element => {
 	return (
 		<React.StrictMode>
 			<Provider store={store}>
@@ -17,7 +17,7 @@ const RootComponent = () => {
 					<AppStylesProvider>
 						<AppThemeProvider>
 							<BrowserRouter>
-								<App />
+								<AppContainer />
 							</BrowserRouter>
 						</AppThemeProvider>
 					</AppStylesProvider>
@@ -28,5 +28,5 @@ const RootComponent = () => {
 }
 
 const container = document.getElementById('root')
-const root = ReactDOM.createRoot(container)
+const root = ReactDOM.createRoot(container as Element)
 root.render(<RootComponent />)
