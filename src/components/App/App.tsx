@@ -6,6 +6,7 @@ import styled from 'styled-components'
 
 import { withRouter } from '../../hoc/withRouter'
 import { initializeApp, selectIsInitialized } from '../../store/appReducer'
+import { AppDispatch } from '../../store/store'
 import {
 	Footer,
 	HeaderContainerWithMapProps,
@@ -22,12 +23,19 @@ const DialogsContainer = lazy(() => import('../Dialogs/DialogsContainer'))
 const ProfileContainer = lazy(() => import('../Profile/ProfileContainer'))
 const UsersContainer = lazy(() => import('../Users/UsersContainer'))
 
-const App = (props) => {
-	const dispatch = useDispatch()
+type AppPropsT = {
+	currentUserId: number | null
+	isInitialized: boolean
+	userId: number | null
+	initializeApp: () => void
+}
+
+const App = (props: AppPropsT) => {
+	const dispatch = useDispatch<AppDispatch>()
 
 	useEffect(() => {
 		dispatch(initializeApp())
-	}, [])
+	}, [dispatch])
 
 	if (!props.isInitialized) {
 		return <Loader />
@@ -60,11 +68,11 @@ const App = (props) => {
 	)
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
 	isInitialized: selectIsInitialized(state)
 })
 
-export default compose(
+export const AppContainer = compose<React.FunctionComponent>(
 	connect(mapStateToProps, { initializeApp }),
 	withRouter
 )(App)
