@@ -1,5 +1,5 @@
 import { compose } from '@reduxjs/toolkit'
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 import { connect } from 'react-redux'
 
 import { withAuthRedirect } from '../../hoc/withAuthRedirect'
@@ -8,14 +8,17 @@ import {
 	selectDialogUsers,
 	selectMessages
 } from '../../store/dialogReducer'
+import { RootState } from '../../store/store'
 import { Dialogs } from '../index'
 
-let mapStateToProps = (state) => ({
+const mapStateToProps = (state: RootState) => ({
 	dialogUsers: selectDialogUsers(state),
 	messages: selectMessages(state)
 })
 
-export default compose(
+const DialogContainer = compose(
 	connect(mapStateToProps, { addMessageAC }),
 	withAuthRedirect
 )(Dialogs)
+
+export default DialogContainer as FunctionComponent

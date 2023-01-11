@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import { Avatar } from '../common/Avatar/Avatar'
 
-export const DialogMessage = ({ message }) => {
+export const DialogMessage = ({ message }: { message: string }) => {
 	return (
 		<MessageWrapper>
 			<Avatar />

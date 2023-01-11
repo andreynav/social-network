@@ -13,7 +13,7 @@ export const FormLogin = ({
 	captcha
 }: any) => {
 	const { t } = useTranslation()
-	const minLength = 5
+	const minLength = 4
 	const minLengthError = t('auth.errors.minLength', { count: minLength })
 
 	return (

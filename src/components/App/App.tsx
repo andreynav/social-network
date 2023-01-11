@@ -6,7 +6,7 @@ import styled from 'styled-components'
 
 import { withRouter } from '../../hoc/withRouter'
 import { initializeApp, selectIsInitialized } from '../../store/appReducer'
-import { AppDispatch } from '../../store/store'
+import { AppDispatch, RootState } from '../../store/store'
 import {
 	Footer,
 	HeaderContainerWithMapProps,
@@ -23,9 +23,13 @@ const DialogsContainer = lazy(() => import('../Dialogs/DialogsContainer'))
 const ProfileContainer = lazy(() => import('../Profile/ProfileContainer'))
 const UsersContainer = lazy(() => import('../Users/UsersContainer'))
 
+type MapStateToPropsT = {
+	isInitialized: boolean
+}
+
 type AppPropsT = {
 	currentUserId: number | null
-	isInitialized: boolean
+	isInitialized: MapStateToPropsT
 	userId: number | null
 	initializeApp: () => void
 }
@@ -68,7 +72,7 @@ const App = (props: AppPropsT) => {
 	)
 }
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: RootState): MapStateToPropsT => ({
 	isInitialized: selectIsInitialized(state)
 })
 

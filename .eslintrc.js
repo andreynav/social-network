@@ -37,7 +37,7 @@ module.exports = {
 	},
 	ignorePatterns: ['src/types/*'],
 	rules: {
-		'import/no-default-export': 'error',
+		'import/no-default-export': 'off',
 		'linebreak-style': 'off',
 		'no-use-before-define': 'off',
 		'template-curly-spacing': 'error',
