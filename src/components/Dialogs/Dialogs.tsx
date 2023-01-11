@@ -3,9 +3,20 @@ import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
+import { DialogUsersT, MessagesT } from '../../store/dialogReducer'
 import { DialogMessage, DialogUser, FormPostMessage } from '../index'
 
-export const Dialogs = (props) => {
+type PropsT = {
+	dialogUsers: Array<DialogUsersT>
+	messages: Array<MessagesT>
+	addMessageAC: (message: string) => void
+}
+
+export type DialogDataT = {
+	postMessage?: string
+}
+
+export const Dialogs = (props: PropsT): JSX.Element => {
 	const { dialogUsers, messages, addMessageAC } = props
 	const { t } = useTranslation()
 	const maxLength = 100
@@ -16,19 +27,22 @@ export const Dialogs = (props) => {
 	const dialogsUsers = dialogUsers.map((user) => (
 		<DialogUser key={user.id} userName={user.name} userId={user.id} />
 	))
-	const userMessages = messages.map((message, item) => (
-		<DialogMessage key={item} message={message.message} />
-	))
+	const userMessages = messages.map(
+		(message: { message: string }, item: number) => (
+			<DialogMessage key={item} message={message.message} />
+		)
+	)
 
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 		reset
-	} = useForm({ mode: 'onBlur' })
+	} = useForm<DialogDataT>({ mode: 'onBlur' })
 
-	const onFormSubmit = (data) => {
-		addMessageAC({ message: data.postMessage })
+	const onFormSubmit = (data: DialogDataT) => {
+		const message = data.postMessage
+		addMessageAC(message as string)
 		reset()
 	}
 
@@ -43,6 +57,7 @@ export const Dialogs = (props) => {
 					onSubmit={handleSubmit(onFormSubmit)}
 					register={register}
 					validationSchema={{
+						// @ts-expect-error: https://www.i18next.com/overview/typescript#argument-of-type-defaulttfuncreturn-is-not-assignable-to-parameter-of-type-xyz
 						required: t('profile.myPosts.errors.fieldRequired'),
 						maxLength: { value: maxLength, message: maxLengthError }
 					}}

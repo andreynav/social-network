@@ -69,13 +69,20 @@ const HeaderLoginWrapper = styled.div`
 	& div {
 		display: grid;
 		grid-gap: 10px;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: auto auto;
 	}
 
-	& p {
+	& div p {
 		display: grid;
+		width: auto;
 		align-content: center;
 		color: ${(props) => props.theme.colorSecondary};
+	}
+
+	& div button {
+		display: grid;
+		width: auto;
+		justify-content: end;
 	}
 
 	& button {

@@ -18,7 +18,7 @@ export type StyledAvatarT = {
 	brRadius: string
 }
 
-export const Avatar = (props: AvatarPropsT): JSX.Element => {
+export const Avatar = (props: Partial<AvatarPropsT>): JSX.Element => {
 	const SimpleAvatar = (
 		<img src={props.src || avatar} alt={props.alt || 'avatar'} />
 	)

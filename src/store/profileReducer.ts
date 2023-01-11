@@ -140,9 +140,10 @@ const profileSlice = createSlice({
 	reducers: {
 		addNewPostAC(state, action) {
 			let postId = state.myPosts.length
+
 			const post = {
 				id: ++postId,
-				message: action.payload.message,
+				message: action.payload,
 				like: getRandomLike(400)
 			}
 			state.myPosts = [...state.myPosts, post]

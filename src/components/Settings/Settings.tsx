@@ -19,7 +19,6 @@ const Settings = () => {
 	}
 
 	const onChangeLanguage = (event: ChangeEvent<HTMLSelectElement>): void => {
-		console.log(event.target.value)
 		setLanguage(event.target.value)
 	}
 

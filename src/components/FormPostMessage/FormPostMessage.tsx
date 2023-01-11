@@ -3,11 +3,12 @@ import { FieldValues, UseFormRegister } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
+import { DialogDataT } from '../Dialogs/Dialogs'
 import { Button, TextAreaField } from '../index'
 
 type FormPostMessageT = {
 	onSubmit: FormEventHandler<HTMLFormElement>
-	register: UseFormRegister<FieldValues>
+	register: UseFormRegister<FieldValues | DialogDataT>
 	validationSchema: {
 		required?: string
 		maxLength?: {
