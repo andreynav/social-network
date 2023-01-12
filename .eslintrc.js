@@ -48,6 +48,7 @@ module.exports = {
 		'prettier/prettier': ['error', { endOfLine: 'auto' }],
 		'@typescript-eslint/no-shadow': 'warn',
 		'@typescript-eslint/dot-notation': 'off',
+		'@typescript-eslint/ban-ts-comment': 'warn',
 		'styled-components-a11y/no-onchange': 'off',
 		'jsx-a11y/label-has-for': 'off',
 		'jsx-a11y/label-has-associated-control': [2, { assert: 'either' }],

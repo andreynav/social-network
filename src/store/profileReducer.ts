@@ -4,13 +4,13 @@ import { profileAPI } from '../api/api'
 import { getRandomLike } from '../utils/getRandomLike'
 import { RootState } from './store'
 
-type PostT = {
+export type PostT = {
 	id: number
 	message: string
 	like: number
 }
 
-type PhotosT = {
+export type PhotosT = {
 	large: string | null
 	small: string | null
 }

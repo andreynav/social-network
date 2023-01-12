@@ -1,5 +1,6 @@
 import { ProfileInfoT } from '../store/profileReducer'
 
+export type ProfileSchemeDataT = ReturnType<typeof getProfileSchemeData>
 export const getProfileSchemeData = (profileInfo: ProfileInfoT) => {
 	return [
 		{

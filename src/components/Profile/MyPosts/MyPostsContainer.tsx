@@ -2,9 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import { addNewPostAC, selectMyPosts } from '../../../store/profileReducer'
+import { RootState } from '../../../store/store'
 import { MyPosts } from '../../index'
 
-let mapStateToProps = (state) => ({
+const mapStateToProps = (state: RootState) => ({
 	myPosts: selectMyPosts(state)
 })
 

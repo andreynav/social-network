@@ -3,7 +3,17 @@ import styled from 'styled-components'
 
 import { Label } from '../../index'
 
-export const UserInfoItem = ({ itemData, itemName, itemType }) => {
+export type UserInfoItemT = {
+	itemData: string | boolean | null
+	itemName: string | null
+	itemType: string
+}
+
+export const UserInfoItem = ({
+	itemData,
+	itemName,
+	itemType
+}: UserInfoItemT) => {
 	return (
 		<ItemWrapper>
 			<Label fontSize="10px">{itemName}</Label>

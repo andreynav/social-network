@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { ChangeEvent } from 'react'
 import styled from 'styled-components'
 
+import { ProfileInfoT } from '../../store/profileReducer'
 import { Loader, MyPostsContainer, ProfileInfo } from '../index'
+import { ProfileContainerT } from './ProfileContainer'
 
-export const Profile = (props) => {
+export type ProfileT = {
+	onSavePhoto: (e: ChangeEvent<HTMLInputElement>) => void
+	updateProfileInfo: (profile: ProfileInfoT) => void
+} & Partial<ProfileContainerT>
+
+export const Profile = (props: ProfileT) => {
 	const {
 		profileInfo,
 		profileStatus,

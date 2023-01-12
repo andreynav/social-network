@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react'
+import React, { ChangeEvent, PropsWithChildren } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
@@ -12,7 +12,7 @@ type ButtonPropsT = {
 	followInProgress: Array<number>
 	followed: boolean
 	isFollowButton: boolean
-	onChange: () => void
+	onChange: (e: ChangeEvent<HTMLInputElement>) => void
 	toggleFollow: (a: number) => void
 	onClick: () => void
 	fontSize: string
@@ -81,7 +81,7 @@ export const Button = (
 	)
 }
 
-const StyledButton = styled.button<PropsWithChildren<StyledButtonT>>`
+const StyledButton = styled.button<Partial<PropsWithChildren<StyledButtonT>>>`
 	display: grid;
 	grid-area: ${({ areaName }) => areaName};
 	align-content: ${({ alignContent = 'center' }) => alignContent};

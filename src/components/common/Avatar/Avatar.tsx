@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { avatar } from '../../../assets'
 
 export type AvatarPropsT = {
-	src: string | undefined
+	src: null | string | undefined
 	alt: string
 	id: number
 	isOwner: boolean
