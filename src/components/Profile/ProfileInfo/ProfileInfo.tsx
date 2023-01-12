@@ -1,8 +1,9 @@
-import React, { memo, useEffect, useState } from 'react'
+import React, { PropsWithChildren, memo, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
+import { ContactsT, ProfileInfoT } from '../../../store/profileReducer'
 import { getProfileInfoSchemeData } from '../../../utils/getProfileInfoSchemeData'
 import { getProfileSchemeData } from '../../../utils/getProfileSchemeData'
 import {
@@ -12,8 +13,13 @@ import {
 	ProfileInfoStatus,
 	UserInfoItem
 } from '../../index'
+import { ProfileT } from '../Profile'
 
-export const ProfileInfo = memo((props) => {
+type PhotoBackgroundT = {
+	bgColor?: string
+}
+
+export const ProfileInfo = memo((props: ProfileT) => {
 	const {
 		profileInfo,
 		profileStatus,
@@ -42,7 +48,7 @@ export const ProfileInfo = memo((props) => {
 			setError('server', { message: profileInfoUpdateError })
 	}, [profileInfoUpdateError, setError])
 
-	const profileData = getProfileSchemeData(profileInfo).map((item) => ({
+	const profileData = getProfileSchemeData(profileInfo!).map((item) => ({
 		...item,
 		itemName: t(item['itemName'])
 	}))
@@ -70,8 +76,9 @@ export const ProfileInfo = memo((props) => {
 		setEditMode((prevEditMode) => !prevEditMode)
 	}
 
-	const onFormSubmit = (data) => {
+	const onFormSubmit = (data: ProfileInfoT & ContactsT) => {
 		const updatedInfo = getProfileInfoSchemeData(data)
+		// @ts-expect-error: will be implemented further
 		updateProfileInfo(updatedInfo).then((response) => {
 			//already wrapped to dispatch in mapDispatchToProps
 			if (!response.error) {
@@ -91,11 +98,11 @@ export const ProfileInfo = memo((props) => {
 			<UserDataWrapper>
 				<PhotoSection
 					isOwner={isOwner}
-					height={100}
-					width={100}
-					brRadius={50}
-					photos={profileInfo.photos}
-					name={profileInfo.fullName}
+					height={'100'}
+					width={'100'}
+					brRadius={'50'}
+					photos={profileInfo!.photos}
+					name={profileInfo!.fullName}
 					onChange={onSavePhoto}
 				/>
 				<UserInfo>
@@ -109,6 +116,7 @@ export const ProfileInfo = memo((props) => {
 					/>
 					{editMode ? (
 						<FormProfileInfo
+							// @ts-ignore
 							onSubmit={handleSubmit(onFormSubmit)}
 							register={register}
 							registerCheckbox={register('lookingForAJob')}
@@ -133,7 +141,7 @@ const ProfileInfoWrapper = styled.div`
 	grid-template-rows: 120px auto;
 `
 
-const PhotoBackground = styled.div`
+const PhotoBackground = styled.div<PropsWithChildren<PhotoBackgroundT>>`
 	background-color: ${(props) => props.bgColor || props.theme.borderSecondary};
 	border-radius: 8px 8px 0 0;
 `

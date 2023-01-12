@@ -5,11 +5,11 @@ import styled from 'styled-components'
 import { Label } from '../index'
 
 type InputFieldT = {
-	name: 'email' | 'password' | 'captcha' | 'server'
+	name: string
 	type?: string
 	label: string
 	register: UseFormRegister<FieldValues>
-	validationSchema: {
+	validationSchema?: {
 		required?: string
 		maxLength?: {
 			value: number

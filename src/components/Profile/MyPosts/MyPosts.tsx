@@ -3,17 +3,26 @@ import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
+import { PostT } from '../../../store/profileReducer'
+import { DialogDataT } from '../../Dialogs/Dialogs'
 import { FormPostMessage, Post } from '../../index'
 
-export const MyPosts = (props) => {
-	const { myPosts, addNewPostAC } = props
+type MyPostsPropsT = {
+	myPosts: Array<PostT>
+	addNewPostAC: (message: string) => void
+}
+
+export const MyPosts = ({
+	myPosts,
+	addNewPostAC
+}: MyPostsPropsT): JSX.Element => {
 	const { t } = useTranslation()
 	const maxLength = 100
 	const maxLengthError = t('profile.myPosts.errors.maxLength', {
 		count: maxLength
 	})
 
-	let posts = myPosts.map((post) => (
+	const posts = myPosts.map((post) => (
 		<Post key={post.id} message={post.message} likeCount={post.like} />
 	))
 
@@ -22,12 +31,11 @@ export const MyPosts = (props) => {
 		handleSubmit,
 		formState: { errors },
 		reset
-	} = useForm({ mode: 'onBlur' })
+	} = useForm<DialogDataT>({ mode: 'onBlur' })
 
-	const onFormSubmit = (data) => {
-		console.log(data)
+	const onFormSubmit = (data: DialogDataT) => {
 		const message = data.postMessage
-		addNewPostAC(message)
+		addNewPostAC(message as string)
 		reset()
 	}
 
@@ -38,6 +46,7 @@ export const MyPosts = (props) => {
 				onSubmit={handleSubmit(onFormSubmit)}
 				register={register}
 				validationSchema={{
+					// @ts-expect-error: https://www.i18next.com/overview/typescript#argument-of-type-defaulttfuncreturn-is-not-assignable-to-parameter-of-type-xyz
 					required: t('profile.myPosts.errors.fieldRequired'),
 					maxLength: { value: maxLength, message: maxLengthError }
 				}}

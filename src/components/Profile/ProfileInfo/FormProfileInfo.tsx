@@ -1,9 +1,28 @@
-import React from 'react'
+import React, { FormEventHandler } from 'react'
+import {
+	FieldValues,
+	UseFormRegister,
+	UseFormRegisterReturn
+} from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
+import { ProfileSchemeDataT } from '../../../utils/getProfileSchemeData'
 import { Button } from '../../common/Button/Button'
 import { InputField, Label } from '../../index'
+
+type FormProfileInfoT = {
+	onSubmit: FormEventHandler<HTMLFormElement>
+	register: UseFormRegister<FieldValues>
+	registerCheckbox: UseFormRegisterReturn<'lookingForAJob'>
+	errors: {
+		server?: {
+			message?: string
+		}
+	}
+	profileData: ProfileSchemeDataT
+	onClearErrors: () => void
+}
 
 export const FormProfileInfo = ({
 	onSubmit,
@@ -12,10 +31,10 @@ export const FormProfileInfo = ({
 	errors,
 	profileData,
 	onClearErrors
-}) => {
+}: FormProfileInfoT): JSX.Element => {
 	const profileItems = profileData.map((item) => {
-		let error = errors?.server?.message
-			.split(' ')[1]
+		const error = errors?.server
+			?.message!.split(' ')[1]
 			.split(')')[0]
 			.toLowerCase()
 		const isPutError = error === item.inputName.toLowerCase()
@@ -28,6 +47,7 @@ export const FormProfileInfo = ({
 						label={item.itemName}
 						type={item.itemType}
 						register={register}
+						// @ts-ignore
 						defaultValue={item.itemData}
 						errors={errors}
 						isPutError={isPutError}
@@ -41,10 +61,11 @@ export const FormProfileInfo = ({
 							{item.itemName}
 						</Label>
 						<LoginCheckbox
-							name={item.inputName}
 							type={item.itemType}
+							// @ts-ignore
 							defaultChecked={item.itemData}
 							{...registerCheckbox}
+							name={item.inputName}
 						/>
 					</LoginCheckboxWrapper>
 				)}

@@ -3,7 +3,12 @@ import styled from 'styled-components'
 
 import { Avatar, Like } from '../../index'
 
-export const Post = ({ message, likeCount }) => {
+type PostPropsT = {
+	message: string
+	likeCount: number
+}
+
+export const Post = ({ message, likeCount }: PostPropsT) => {
 	return (
 		<PostWrapper>
 			<Avatar />

@@ -1,30 +1,26 @@
-import React from 'react'
+import React, { ChangeEvent } from 'react'
 import styled from 'styled-components'
 
+import { PhotosT } from '../../store/profileReducer'
 import { Avatar } from '../common/Avatar/Avatar'
 import { Button } from '../common/Button/Button'
 
-type PhotosT = {
-	small: string
-	large: string
-}
-
 type PhotoSectionPropsT = {
 	photos: Partial<PhotosT>
-	alt: string
+	alt?: string
 	name: string
-	id: number
+	id?: number
 	isOwner: boolean
-	isNavLink: boolean
-	isFollowButton: boolean
+	isNavLink?: boolean
+	isFollowButton?: boolean
 	height: string
 	width: string
 	brRadius: string
-	followInProgress: Array<number>
-	followed: boolean
-	onChange: () => void
-	toggleFollow: () => void
-	onClick: () => void
+	followInProgress?: Array<number>
+	followed?: boolean
+	onChange: (e: ChangeEvent<HTMLInputElement>) => void
+	toggleFollow?: () => void
+	onClick?: () => void
 }
 
 type StyledUserSectionT = {

@@ -1,20 +1,33 @@
-import React, { memo, useEffect, useState } from 'react'
+import React, { ChangeEvent, memo, useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 import { Label } from '../../index'
+import { ProfileT } from '../Profile'
+
+export type ProfileInfoStatusT = {
+	itemData: string | boolean
+	itemName: string | null
+	isPointer: boolean
+} & Partial<ProfileT>
 
 export const ProfileInfoStatus = memo(
-	({ itemData, itemName, currentUserId, userId, updateProfileStatus }) => {
+	({
+		itemData,
+		itemName,
+		currentUserId,
+		userId,
+		updateProfileStatus
+	}: ProfileInfoStatusT) => {
 		const [editMode, setEditMode] = useState(false)
 		const [status, setStatus] = useState(itemData)
 		const onEditMode = () => {
 			if (currentUserId === userId) {
 				setEditMode((prevEditMode) => !prevEditMode)
-				if (editMode) updateProfileStatus(status)
+				if (editMode) updateProfileStatus!(status)
 			}
 		}
 
-		const updateStatusValue = (event) => {
+		const updateStatusValue = (event: ChangeEvent<HTMLInputElement>): void => {
 			setStatus(event.target.value)
 		}
 
@@ -29,14 +42,20 @@ export const ProfileInfoStatus = memo(
 					<ItemInput>
 						<input
 							type="text"
+							// @ts-ignore
 							defaultValue={status}
 							onBlur={onEditMode}
 							onChange={updateStatusValue}
-							autoFocus
 						/>
 					</ItemInput>
 				) : (
-					<ItemText onClick={onEditMode}>{itemData}</ItemText>
+					<ItemText
+						onClick={onEditMode}
+						onKeyDown={onEditMode}
+						role="presentation"
+					>
+						{itemData}
+					</ItemText>
 				)}
 			</ItemWrapper>
 		)

@@ -1,10 +1,11 @@
 import { compose } from '@reduxjs/toolkit'
-import React, { useEffect } from 'react'
+import React, { ChangeEvent, FunctionComponent, useEffect } from 'react'
 import { connect, useDispatch } from 'react-redux'
 
 import { withAuthRedirect } from '../../hoc/withAuthRedirect'
 import { withRouter } from '../../hoc/withRouter'
 import {
+	ProfileInfoT,
 	getProfileInfo,
 	getProfileStatus,
 	selectProfileInfo,
@@ -17,20 +18,32 @@ import {
 	updateProfilePhoto,
 	updateProfileStatus
 } from '../../store/profileReducer'
+import { AppDispatch, RootState } from '../../store/store'
 import { Profile } from '../index'
 
-const ProfileContainer = (props) => {
+export type ProfileContainerT = {
+	currentUserId: number
+	userId: number
+	getProfileInfo: (userId: number) => void
+	getProfileStatus: (userId: number) => void
+	profileInfo: ProfileInfoT
+	profileStatus: string
+	updateProfileStatus: (status: string | boolean) => void
+	profileInfoUpdateError: string
+}
+
+const ProfileContainer = (props: ProfileContainerT): JSX.Element => {
 	const { currentUserId, userId, getProfileInfo, getProfileStatus } = props
-	const dispatch = useDispatch()
+	const dispatch = useDispatch<AppDispatch>()
 
 	useEffect(() => {
-		let id = currentUserId || userId
+		const id = currentUserId || userId
 		getProfileInfo(id)
 		getProfileStatus(id)
-	}, [currentUserId])
+	}, [currentUserId, userId, getProfileInfo, getProfileStatus])
 
-	const onSavePhoto = (e) => {
-		dispatch(updateProfilePhoto(e.target.files[0]))
+	const onSavePhoto = (e: ChangeEvent<HTMLInputElement>): void => {
+		dispatch(updateProfilePhoto(e.target.files![0]))
 	}
 
 	return (
@@ -42,7 +55,7 @@ const ProfileContainer = (props) => {
 	)
 }
 
-let mapStateToProps = (state) => ({
+const mapStateToProps = (state: RootState) => ({
 	profileInfo: selectProfileInfo(state),
 	profileInfoLoadingStatus: selectProfileInfoLoadingStatus(state),
 	profileInfoLoadingError: selectProfileInfoLoadingError(state),
@@ -51,7 +64,7 @@ let mapStateToProps = (state) => ({
 	profileInfoUpdateError: selectProfileInfoUpdateError(state)
 })
 
-export default compose(
+const ProfileContainerWithProps = compose(
 	connect(mapStateToProps, {
 		getProfileInfo,
 		getProfileStatus,
@@ -62,3 +75,5 @@ export default compose(
 	withAuthRedirect,
 	withRouter
 )(ProfileContainer)
+
+export default ProfileContainerWithProps as FunctionComponent
