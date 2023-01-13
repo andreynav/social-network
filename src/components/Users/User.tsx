@@ -2,10 +2,19 @@ import React, { memo } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
+import { PhotosT } from '../../store/profileReducer'
+import { UserT } from '../../store/usersReducer'
 import { getUserSchemeData } from '../../utils/getUserSchemeData'
 import { PhotoSection, UserInfoItem } from '../index'
 
-export const User = memo((props) => {
+export type UserPropsT = {
+	followInProgress?: Array<number>
+	toggleFollow: (id: number) => void
+	isNavLink?: boolean
+	photos: Partial<PhotosT>
+} & UserT
+
+export const User = memo((props: UserPropsT) => {
 	const {
 		photos,
 		id,

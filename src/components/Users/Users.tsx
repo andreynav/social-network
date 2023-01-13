@@ -2,9 +2,21 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
+import { PhotosT } from '../../store/profileReducer'
+import { UserT } from '../../store/usersReducer'
 import { Loader, Paginator, User } from '../index'
 
-export const Users = (props) => {
+type UsersPropsT = {
+	totalCount: number
+	usersOnPage: number
+	isFetching: boolean
+	followInProgress?: Array<number>
+	users: Array<UserT & { photos: Partial<PhotosT> }>
+	selectPage: (page: number) => void
+	onChangeToggle: (id: number) => void
+}
+
+export const Users = (props: UsersPropsT) => {
 	const {
 		totalCount,
 		usersOnPage,

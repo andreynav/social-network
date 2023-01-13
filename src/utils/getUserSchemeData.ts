@@ -1,6 +1,6 @@
 type DataT = {
 	name: string
-	status: string
+	status: string | ''
 	id: number
 	city: string
 }
