@@ -4,13 +4,13 @@ import { userAPI } from '../api/api'
 import { getRandomCity } from '../utils/getRandomCity'
 import { RootState } from './store'
 
-type UserT = {
+export type UserT = {
 	followed: boolean
 	id: number
 	city: string
 	name: string
-	status: string | null
-	uniqueUrlName: string | null
+	status: string | ''
+	uniqueUrlName?: string | null
 }
 
 type InitialStateT = {

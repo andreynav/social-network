@@ -4,9 +4,9 @@ import styled from 'styled-components'
 import { Label } from '../../index'
 
 export type UserInfoItemT = {
-	itemData: string | boolean | null
+	itemData: string | number | boolean | null
 	itemName: string | null
-	itemType: string
+	itemType?: string
 }
 
 export const UserInfoItem = ({

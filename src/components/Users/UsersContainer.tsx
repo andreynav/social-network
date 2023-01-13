@@ -1,9 +1,12 @@
 import { compose } from '@reduxjs/toolkit'
-import React, { useEffect } from 'react'
+import React, { FunctionComponent, useEffect } from 'react'
 import { connect } from 'react-redux'
 
 import { withAuthRedirect } from '../../hoc/withAuthRedirect'
+import { PhotosT } from '../../store/profileReducer'
+import { RootState } from '../../store/store'
 import {
+	UserT,
 	getUsers,
 	selectCurrentPage,
 	selectError,
@@ -17,7 +20,25 @@ import {
 } from '../../store/usersReducer'
 import { Users } from '../index'
 
-const UsersContainer = (props) => {
+type UsersContainerT = {
+	totalCount: number
+	usersOnPage: number
+	isFetching: boolean
+	followInProgress?: Array<number>
+	users: Array<UserT & { photos: Partial<PhotosT> }>
+	setCurrentPageAC: (page: number) => void
+	getUsers: ({
+		usersOnPage,
+		page
+	}: {
+		usersOnPage: number
+		page: number
+	}) => void
+	toggleFollowUnfollow: ({ user, id }: { user: UserT; id: number }) => void
+	currentPage: number
+}
+
+const UsersContainer = (props: UsersContainerT) => {
 	const {
 		setCurrentPageAC,
 		getUsers,
@@ -25,31 +46,31 @@ const UsersContainer = (props) => {
 		users,
 		toggleFollowUnfollow,
 		totalCount,
-		currentPage,
 		isFetching,
 		followInProgress
 	} = props
 
-	const selectPage = (page) => {
-		setCurrentPageAC({ page })
+	const selectPage = (page: number) => {
+		setCurrentPageAC(page)
 		getUsers({ usersOnPage: usersOnPage, page })
 	}
 
-	const onChangeFollow = (id) => {
-		let currentUser = users.find((user) => user.id === id)
-		toggleFollowUnfollow({ user: currentUser, id })
+	const onChangeFollow = (id: number) => {
+		const currentUser = users.find((user) => user.id === id)
+		if (currentUser) {
+			toggleFollowUnfollow({ user: currentUser, id })
+		}
 	}
 
 	useEffect(() => {
-		setCurrentPageAC({ page: 1 })
+		setCurrentPageAC(1)
 		getUsers({ usersOnPage: usersOnPage, page: 1 })
-	}, [])
+	}, [setCurrentPageAC, getUsers, usersOnPage])
 
 	return (
 		<Users
 			totalCount={totalCount}
 			usersOnPage={usersOnPage}
-			currentPage={currentPage}
 			users={users}
 			selectPage={selectPage}
 			onChangeToggle={onChangeFollow}
@@ -59,7 +80,7 @@ const UsersContainer = (props) => {
 	)
 }
 
-let mapStateToProps = (state) => ({
+const mapStateToProps = (state: RootState) => ({
 	users: selectUsers(state),
 	currentPage: selectCurrentPage(state),
 	totalCount: selectTotalCount(state),
@@ -69,7 +90,7 @@ let mapStateToProps = (state) => ({
 	error: selectError(state)
 })
 
-export default compose(
+const UsersContainerWithProps = compose(
 	connect(mapStateToProps, {
 		setCurrentPageAC,
 		getUsers,
@@ -77,3 +98,5 @@ export default compose(
 	}),
 	withAuthRedirect
 )(UsersContainer)
+
+export default UsersContainerWithProps as FunctionComponent

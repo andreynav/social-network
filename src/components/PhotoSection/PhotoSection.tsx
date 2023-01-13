@@ -7,19 +7,19 @@ import { Button } from '../common/Button/Button'
 
 type PhotoSectionPropsT = {
 	photos: Partial<PhotosT>
-	alt?: string
-	name: string
 	id?: number
-	isOwner: boolean
+	name: string
+	alt?: string
+	isOwner?: boolean
 	isNavLink?: boolean
 	isFollowButton?: boolean
-	height: string
-	width: string
-	brRadius: string
+	height?: string
+	width?: string
+	brRadius?: string
 	followInProgress?: Array<number>
 	followed?: boolean
-	onChange: (e: ChangeEvent<HTMLInputElement>) => void
-	toggleFollow?: () => void
+	onChange?: (e: ChangeEvent<HTMLInputElement>) => void
+	toggleFollow?: (id: number) => void
 	onClick?: () => void
 }
 
