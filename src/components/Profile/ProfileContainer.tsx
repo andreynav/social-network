@@ -9,8 +9,8 @@ import {
 	getProfileInfo,
 	getProfileStatus,
 	selectProfileInfo,
-	selectProfileInfoLoadingError,
-	selectProfileInfoLoadingStatus,
+	selectProfileInfoError,
+	selectProfileInfoStatus,
 	selectProfileInfoUpdateError,
 	selectProfileInfoUpdateStatus,
 	selectProfileStatus,
@@ -57,8 +57,8 @@ const ProfileContainer = (props: ProfileContainerT): JSX.Element => {
 
 const mapStateToProps = (state: RootState) => ({
 	profileInfo: selectProfileInfo(state),
-	profileInfoLoadingStatus: selectProfileInfoLoadingStatus(state),
-	profileInfoLoadingError: selectProfileInfoLoadingError(state),
+	profileInfoStatus: selectProfileInfoStatus(state),
+	profileInfoError: selectProfileInfoError(state),
 	profileStatus: selectProfileStatus(state),
 	profileInfoUpdateStatus: selectProfileInfoUpdateStatus(state),
 	profileInfoUpdateError: selectProfileInfoUpdateError(state)
