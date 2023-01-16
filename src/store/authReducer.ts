@@ -1,6 +1,7 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 import { authAPI, securityAPI } from '../api/api'
+import { isActionError } from '../utils/isActionError'
 import { RootState } from './store'
 
 export type AuthDataT = {
@@ -134,10 +135,6 @@ const authSlice = createSlice({
 				state.status = 'resolved'
 				state.error = null
 			})
-			.addCase(getAuthUserData.rejected, (state, action) => {
-				state.status = 'rejected'
-				state.error = action.error.message!
-			})
 			.addCase(loginUser.pending, (state) => {
 				state.status = 'pending'
 				state.error = null
@@ -145,10 +142,6 @@ const authSlice = createSlice({
 			.addCase(loginUser.fulfilled, (state) => {
 				state.status = 'resolved'
 				state.error = null
-			})
-			.addCase(loginUser.rejected, (state, action) => {
-				state.status = 'rejected'
-				state.error = action.payload as string
 			})
 			.addCase(logoutUser.pending, (state) => {
 				state.status = 'pending'
@@ -159,13 +152,18 @@ const authSlice = createSlice({
 				state.error = null
 				state.isAuth = false
 			})
-			.addCase(logoutUser.rejected, (state, action) => {
-				state.status = 'rejected'
-				state.error = action.error.message!
+			.addCase(getCaptchaURL.pending, (state) => {
+				state.status = 'pending'
+				state.error = null
 			})
-			.addCase(getCaptchaURL.pending, (state) => {})
-			.addCase(getCaptchaURL.fulfilled, (state) => {})
-			.addCase(getCaptchaURL.rejected, (state, action) => {})
+			.addCase(getCaptchaURL.fulfilled, (state) => {
+				state.status = 'resolved'
+				state.error = null
+			})
+			.addMatcher(isActionError, (state, action: PayloadAction<string>) => {
+				state.error = action.payload
+				console.error(state.error)
+			})
 	}
 })
 

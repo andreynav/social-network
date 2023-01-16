@@ -1,7 +1,13 @@
-import { createAsyncThunk, createSelector, createSlice } from '@reduxjs/toolkit'
+import {
+	PayloadAction,
+	createAsyncThunk,
+	createSelector,
+	createSlice
+} from '@reduxjs/toolkit'
 
 import { userAPI } from '../api/api'
 import { getRandomCity } from '../utils/getRandomCity'
+import { isActionError } from '../utils/isActionError'
 import { RootState } from './store'
 
 export type UserT = {
@@ -75,12 +81,6 @@ export const toggleFollowUnfollow = createAsyncThunk(
 	}
 )
 
-const setError = (state: InitialStateT, action: any): void => {
-	state.status = 'rejected'
-	state.error = action.response.data
-	console.error(state.error)
-}
-
 const usersReducer = createSlice({
 	name: 'users',
 	initialState,
@@ -120,17 +120,15 @@ const usersReducer = createSlice({
 				state.isFetching = false
 				state.error = ''
 			})
-			.addCase(getUsers.rejected, (state, action) => {
-				setError(state, action)
-			})
 			.addCase(toggleFollowUnfollow.pending, (state) => {
 				state.error = ''
 			})
 			.addCase(toggleFollowUnfollow.fulfilled, (state) => {
 				state.error = ''
 			})
-			.addCase(toggleFollowUnfollow.rejected, (state, action) => {
-				setError(state, action)
+			.addMatcher(isActionError, (state, action: PayloadAction<string>) => {
+				state.error = action.payload
+				console.error(state.error)
 			})
 	}
 })

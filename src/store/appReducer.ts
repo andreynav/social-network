@@ -1,5 +1,6 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
+import { isActionError } from '../utils/isActionError'
 import { getAuthUserData } from './authReducer'
 import { RootState } from './store'
 
@@ -65,9 +66,9 @@ const appSlice = createSlice({
 				state.status = 'resolved'
 				state.error = null
 			})
-			.addCase(initializeApp.rejected, (state, action) => {
+			.addMatcher(isActionError, (state, action: PayloadAction<string>) => {
 				state.status = 'rejected'
-				state.error = action.error.message
+				state.error = action.payload
 				console.error(state.error)
 			})
 	}

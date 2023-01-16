@@ -1,7 +1,13 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import {
+	AnyAction,
+	PayloadAction,
+	createAsyncThunk,
+	createSlice
+} from '@reduxjs/toolkit'
 
 import { profileAPI } from '../api/api'
 import { getRandomLike } from '../utils/getRandomLike'
+import { isActionError } from '../utils/isActionError'
 import { RootState } from './store'
 
 export type PostT = {
@@ -40,10 +46,10 @@ type InitialStateT = {
 	myPosts: Array<PostT>
 	profileInfo: ProfileInfoT | null
 	profileStatus: string | null
-	profileInfoLoadingStatus: string | null
-	profileInfoLoadingError: any
+	profileInfoStatus: 'pending' | 'resolved' | 'rejected' | null
+	profileInfoError: string | null
 	profileInfoUpdateStatus: string | null
-	profileInfoUpdateError: any
+	profileInfoUpdateError: string | null
 }
 
 const initialState: InitialStateT = {
@@ -55,8 +61,8 @@ const initialState: InitialStateT = {
 	],
 	profileInfo: null,
 	profileStatus: null,
-	profileInfoLoadingStatus: null,
-	profileInfoLoadingError: null,
+	profileInfoStatus: null,
+	profileInfoError: null,
 	profileInfoUpdateStatus: null,
 	profileInfoUpdateError: null
 }
@@ -161,27 +167,24 @@ const profileSlice = createSlice({
 	extraReducers: (builder) => {
 		builder
 			.addCase(getProfileInfo.pending, (state) => {
-				state.profileInfoLoadingStatus = 'pending'
-				state.profileInfoLoadingError = null
+				state.profileInfoStatus = 'pending'
+				state.profileInfoError = null
 			})
 			.addCase(getProfileInfo.fulfilled, (state) => {
-				state.profileInfoLoadingStatus = 'resolved'
-				state.profileInfoLoadingError = null
+				state.profileInfoStatus = 'resolved'
+				state.profileInfoError = null
 			})
-			.addCase(getProfileInfo.rejected, (state, action) => {
-				state.profileInfoLoadingStatus = 'rejected'
-				state.profileInfoLoadingError = action.error.message
-				console.error(state.profileInfoLoadingError)
+			.addCase(getProfileInfo.rejected, (state, action: AnyAction) => {
+				state.profileInfoStatus = 'rejected'
+				state.profileInfoError = action.error.message
+				console.error(state.profileInfoError)
 			})
 			.addCase(getProfileStatus.pending, (state) => {})
 			.addCase(getProfileStatus.fulfilled, (state, action) => {})
-			.addCase(getProfileStatus.rejected, (state, action) => {})
 			.addCase(updateProfileStatus.pending, (state) => {})
 			.addCase(updateProfileStatus.fulfilled, (state, action) => {})
-			.addCase(updateProfileStatus.rejected, (state, action) => {})
 			.addCase(updateProfilePhoto.pending, (state) => {})
 			.addCase(updateProfilePhoto.fulfilled, (state, action) => {})
-			.addCase(updateProfilePhoto.rejected, (state, action) => {})
 			.addCase(updateProfileInfo.pending, (state) => {
 				state.profileInfoUpdateStatus = 'pending'
 				state.profileInfoUpdateError = null
@@ -190,9 +193,13 @@ const profileSlice = createSlice({
 				state.profileInfoUpdateStatus = 'resolved'
 				state.profileInfoUpdateError = null
 			})
-			.addCase(updateProfileInfo.rejected, (state, action) => {
+			.addCase(updateProfileInfo.rejected, (state, action: AnyAction) => {
 				state.profileInfoUpdateStatus = 'rejected'
 				state.profileInfoUpdateError = action.payload
+			})
+			.addMatcher(isActionError, (state, action: PayloadAction<string>) => {
+				state.profileInfoError = action.payload
+				console.error(state.profileInfoError)
 			})
 	}
 })
@@ -201,11 +208,11 @@ export const selectMyPosts = (state: RootState) => state.profile.myPosts
 
 export const selectProfileInfo = (state: RootState) => state.profile.profileInfo
 
-export const selectProfileInfoLoadingStatus = (state: RootState) =>
-	state.profile.profileInfoLoadingStatus
+export const selectProfileInfoStatus = (state: RootState) =>
+	state.profile.profileInfoStatus
 
-export const selectProfileInfoLoadingError = (state: RootState) =>
-	state.profile.profileInfoLoadingError
+export const selectProfileInfoError = (state: RootState) =>
+	state.profile.profileInfoError
 
 export const selectProfileStatus = (state: RootState) =>
 	state.profile.profileStatus
