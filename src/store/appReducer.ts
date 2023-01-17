@@ -1,5 +1,6 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
+import { ThunkAPI } from '../types/reducers'
 import { isActionError } from '../utils/isActionError'
 import { getAuthUserData } from './authReducer'
 import { RootState } from './store'
@@ -28,17 +29,17 @@ const initialState: InitialStateT = {
 	language: null
 }
 
-export const initializeApp = createAsyncThunk(
+export const initializeApp = createAsyncThunk<void, undefined, ThunkAPI>(
 	'App/initializeApp',
 	async (_, { dispatch, rejectWithValue }) => {
-		try {
-			const promise = dispatch(getAuthUserData())
-			Promise.all([promise]).then(() => {
+		const promise = dispatch(getAuthUserData())
+		Promise.all([promise])
+			.then(() => {
 				dispatch(initializeAppAC())
 			})
-		} catch (error: any) {
-			return rejectWithValue(error.message)
-		}
+			.catch((error) => {
+				return rejectWithValue(error.message)
+			})
 	}
 )
 

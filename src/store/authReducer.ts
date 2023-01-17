@@ -1,6 +1,7 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 import { authAPI, securityAPI } from '../api/api'
+import { ThunkAPI } from '../types/reducers'
 import { isActionError } from '../utils/isActionError'
 import { RootState } from './store'
 
@@ -42,66 +43,54 @@ const initialState: InitialStateT = {
 	error: null
 }
 
-export const getAuthUserData = createAsyncThunk(
+export const getAuthUserData = createAsyncThunk<void, undefined, ThunkAPI>(
 	'auth/getAuthUserData',
 	async (_, { dispatch, rejectWithValue }) => {
-		try {
-			const data = await authAPI.me()
-			const { id, login: userName, email } = data.data
-			if (data.resultCode === 0) {
-				dispatch(setAuthDataAC({ id, userName, email }))
-			}
-		} catch (error: any) {
-			return rejectWithValue(error.message)
+		const data = await authAPI.me()
+		const { id, login: userName, email } = data.data
+		if (data.resultCode === 0) {
+			dispatch(setAuthDataAC({ id, userName, email }))
+		} else {
+			return rejectWithValue(data.error)
 		}
 	}
 )
 
-export const loginUser = createAsyncThunk(
+export const loginUser = createAsyncThunk<void, AuthDataT, ThunkAPI>(
 	'auth/login',
 	async (
-		{ email, password, rememberMe, captcha }: AuthDataT,
+		{ email, password, rememberMe, captcha },
 		{ dispatch, rejectWithValue }
 	) => {
-		try {
-			const data = await authAPI.login({ email, password, rememberMe, captcha })
-			if (data.resultCode === 0) {
-				dispatch(getAuthUserData())
-			} else {
-				if (data.resultCode === 10) {
-					dispatch(getCaptchaURL())
-				}
-				dispatch(setLoginDataAC({ id: null, isAuth: false }))
-				dispatch(setCaptchaAC({ url: null }))
-				throw new Error(data.messages[0])
+		const data = await authAPI.login({ email, password, rememberMe, captcha })
+		if (data.resultCode === 0) {
+			dispatch(getAuthUserData())
+		} else {
+			if (data.resultCode === 10) {
+				dispatch(getCaptchaURL())
 			}
-		} catch (error: any) {
-			return rejectWithValue(error.message)
-		}
-	}
-)
-
-export const logoutUser = createAsyncThunk(
-	'auth/logout',
-	async (_, { dispatch, rejectWithValue }) => {
-		try {
-			await authAPI.logout()
+			dispatch(setLoginDataAC({ id: null, isAuth: false }))
 			dispatch(setCaptchaAC({ url: null }))
-		} catch (error: any) {
-			return rejectWithValue(error.message)
+		}
+		if (data.resultCode !== 0 && data.resultCode !== 10) {
+			return rejectWithValue(data.messages[0])
 		}
 	}
 )
 
-export const getCaptchaURL = createAsyncThunk(
+export const logoutUser = createAsyncThunk<void, undefined, ThunkAPI>(
+	'auth/logout',
+	async (_, { dispatch }) => {
+		await authAPI.logout()
+		dispatch(setCaptchaAC({ url: null }))
+	}
+)
+
+export const getCaptchaURL = createAsyncThunk<void, undefined, ThunkAPI>(
 	'auth/getCaptchaURL',
-	async (_, { dispatch, rejectWithValue }) => {
-		try {
-			const data = await securityAPI.getCaptchaURL()
-			dispatch(setCaptchaAC({ url: data.url }))
-		} catch (error: any) {
-			return rejectWithValue(error.message)
-		}
+	async (_, { dispatch }) => {
+		const data = await securityAPI.getCaptchaURL()
+		dispatch(setCaptchaAC({ url: data.url }))
 	}
 )
 

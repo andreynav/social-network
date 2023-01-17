@@ -27,13 +27,11 @@ const initialState = {
 	] as Array<MessagesT>
 }
 
-type InitialStateT = typeof initialState
-
 const dialogsReducer = createSlice({
 	name: 'dialogs',
 	initialState,
 	reducers: {
-		addMessageAC(state: InitialStateT, action: PayloadAction<string>) {
+		addMessageAC(state, action: PayloadAction<string>) {
 			let messageId = state.messages.length
 			const message = {
 				id: ++messageId,

@@ -6,6 +6,7 @@ import {
 } from '@reduxjs/toolkit'
 
 import { profileAPI } from '../api/api'
+import { ThunkAPI } from '../types/reducers'
 import { getRandomLike } from '../utils/getRandomLike'
 import { isActionError } from '../utils/isActionError'
 import { RootState } from './store'
@@ -67,75 +68,54 @@ const initialState: InitialStateT = {
 	profileInfoUpdateError: null
 }
 
-export const getProfileInfo = createAsyncThunk(
+export const getProfileInfo = createAsyncThunk<void, number, ThunkAPI>(
 	'profile/getProfileInfo',
-	async (userId: number, { dispatch, rejectWithValue }) => {
-		try {
-			const data = await profileAPI.getProfileInfo(userId)
-			dispatch(setProfileInfoAC({ profileInfo: data }))
-		} catch (error: any) {
-			return rejectWithValue(error.message)
-		}
+	async (userId, { dispatch }) => {
+		const data = await profileAPI.getProfileInfo(userId)
+		dispatch(setProfileInfoAC({ profileInfo: data }))
 	}
 )
 
-export const getProfileStatus = createAsyncThunk(
+export const getProfileStatus = createAsyncThunk<void, number, ThunkAPI>(
 	'profile/getProfileStatus',
-	async (userId: number, { dispatch, rejectWithValue }) => {
-		try {
-			const data = await profileAPI.getProfileStatus(userId)
-			dispatch(setProfileStatusAC({ profileStatus: data }))
-		} catch (error: any) {
-			return rejectWithValue(error.message)
-		}
+	async (userId, { dispatch }) => {
+		const data = await profileAPI.getProfileStatus(userId)
+		dispatch(setProfileStatusAC({ profileStatus: data }))
 	}
 )
 
-export const updateProfileStatus = createAsyncThunk(
+export const updateProfileStatus = createAsyncThunk<void, string, ThunkAPI>(
 	'profile/updateProfileStatus',
-	async (status: string, { dispatch, rejectWithValue }) => {
-		try {
-			const data = await profileAPI.updateProfileStatus(status)
-			if (data.resultCode === 0) {
-				dispatch(setProfileStatusAC({ profileStatus: status }))
-			}
-		} catch (error: any) {
-			return rejectWithValue(error.message)
+	async (status, { dispatch, rejectWithValue }) => {
+		const data = await profileAPI.updateProfileStatus(status)
+		if (data.resultCode === 0) {
+			dispatch(setProfileStatusAC({ profileStatus: status }))
+		} else {
+			return rejectWithValue(data.error)
 		}
 	}
 )
 
-export const updateProfilePhoto = createAsyncThunk(
+export const updateProfilePhoto = createAsyncThunk<void, unknown, ThunkAPI>(
 	'profile/updateProfilePhoto',
-	async (file: any, { dispatch, rejectWithValue }) => {
-		try {
-			const data = await profileAPI.updateProfilePhoto(file)
-			if (data.resultCode === 0) {
-				dispatch(setProfilePhotoAC({ photos: data.data.photos }))
-			}
-		} catch (error: any) {
-			return rejectWithValue(error.message)
+	async (file, { dispatch, rejectWithValue }) => {
+		const data = await profileAPI.updateProfilePhoto(file)
+		if (data.resultCode === 0) {
+			dispatch(setProfilePhotoAC({ photos: data.data.photos }))
+		} else {
+			return rejectWithValue(data.error)
 		}
 	}
 )
 
-export const updateProfileInfo = createAsyncThunk<
-	object,
-	ProfileInfoT,
-	{ state: RootState }
->(
+export const updateProfileInfo = createAsyncThunk<void, ProfileInfoT, ThunkAPI>(
 	'profile/updateProfileInfo',
-	async (profile: ProfileInfoT, { dispatch, getState, rejectWithValue }) => {
-		try {
-			const data = await profileAPI.updateProfileInfo(profile)
-			if (data.resultCode === 0) {
-				dispatch(getProfileInfo(getState().auth.id!))
-			} else {
-				throw new Error(data.messages[0])
-				return await Promise.reject()
-			}
-		} catch (error: any) {
-			return rejectWithValue(error.message)
+	async (profile, { dispatch, getState, rejectWithValue }) => {
+		const data = await profileAPI.updateProfileInfo(profile)
+		if (data.resultCode === 0) {
+			dispatch(getProfileInfo(getState().auth.id!))
+		} else {
+			return rejectWithValue(data.error)
 		}
 	}
 )
