@@ -6,6 +6,8 @@ import { withAuthRedirect } from '../../hoc/withAuthRedirect'
 import { PhotosT } from '../../store/profileReducer'
 import { RootState } from '../../store/store'
 import {
+	GetUsersT,
+	ToggleFollowUnfollowT,
 	UserT,
 	getUsers,
 	selectCurrentPage,
@@ -27,14 +29,8 @@ type UsersContainerT = {
 	followInProgress?: Array<number>
 	users: Array<UserT & { photos: Partial<PhotosT> }>
 	setCurrentPageAC: (page: number) => void
-	getUsers: ({
-		usersOnPage,
-		page
-	}: {
-		usersOnPage: number
-		page: number
-	}) => void
-	toggleFollowUnfollow: ({ user, id }: { user: UserT; id: number }) => void
+	getUsers: ({ usersOnPage, page }: GetUsersT) => void
+	toggleFollowUnfollow: ({ user, id }: ToggleFollowUnfollowT) => void
 	currentPage: number
 }
 
