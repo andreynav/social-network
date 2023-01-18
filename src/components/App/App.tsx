@@ -1,12 +1,13 @@
 import { compose } from '@reduxjs/toolkit'
 import React, { Suspense, lazy, useEffect } from 'react'
-import { connect, useDispatch } from 'react-redux'
+import { connect } from 'react-redux'
 import { Route, Routes } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { withRouter } from '../../hoc/withRouter'
+import { useAppDispatch } from '../../hook/hooks'
 import { initializeApp, selectIsInitialized } from '../../store/appReducer'
-import { AppDispatch, RootState } from '../../store/store'
+import { RootState } from '../../store/store'
 import {
 	Footer,
 	HeaderContainerWithMapProps,
@@ -35,7 +36,7 @@ type AppPropsT = {
 }
 
 const App = (props: AppPropsT) => {
-	const dispatch = useDispatch<AppDispatch>()
+	const dispatch = useAppDispatch()
 
 	useEffect(() => {
 		dispatch(initializeApp())

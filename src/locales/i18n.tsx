@@ -1,14 +1,9 @@
 import i18n from 'i18next'
-import React, {
-	ChangeEvent,
-	PropsWithChildren,
-	createContext,
-	useEffect
-} from 'react'
+import React, { createContext, useEffect } from 'react'
 import { initReactI18next, useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
 
 import { AppStylesProvider } from '../hoc/AppStylesProvider'
+import { useAppDispatch } from '../hook/hooks'
 import { useLocalStorage } from '../hook/useLocalStorage'
 import { setLanguageAC } from '../store/appReducer'
 import translationEN from './en/translation.json'
@@ -41,7 +36,7 @@ export const AppLocaleProvider = ({
 }: {
 	children: ReturnType<typeof AppStylesProvider>
 }) => {
-	const dispatch = useDispatch()
+	const dispatch = useAppDispatch()
 	const [language, setLanguage] = useLocalStorage('lang', 'en')
 	const { i18n } = useTranslation()
 

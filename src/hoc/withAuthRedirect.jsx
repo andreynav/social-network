@@ -1,10 +1,11 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
+
+import { useAppSelector } from '../hook/hooks'
 
 export const withAuthRedirect = (Component) => {
 	const ContainerWithAuthRedirect = (props) => {
-		const isAuth = useSelector((state) => state.auth.isAuth)
+		const isAuth = useAppSelector((state) => state.auth.isAuth)
 		if (!isAuth) return <Navigate to="/login" />
 		return <Component {...props} />
 	}

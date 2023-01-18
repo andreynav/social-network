@@ -1,7 +1,7 @@
 import React, { createContext, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
 
+import { useAppDispatch } from '../hook/hooks'
 import { useLocalStorage } from '../hook/useLocalStorage'
 import { setThemeAC } from '../store/appReducer'
 import { dark, light } from '../styles/themes'
@@ -9,13 +9,13 @@ import { dark, light } from '../styles/themes'
 export const ThemeContext = createContext()
 
 export const AppThemeProvider = ({ children }) => {
-	const dispatch = useDispatch()
+	const dispatch = useAppDispatch()
 	const [currentTheme, setCurrentTheme] = useLocalStorage('theme', 'light')
 	const theme = currentTheme === 'light' ? light : dark
 
 	useEffect(() => {
 		dispatch(setThemeAC({ theme: theme }))
-	}, [theme])
+	}, [theme, dispatch])
 
 	return (
 		<ThemeContext.Provider value={{ currentTheme, setCurrentTheme }}>

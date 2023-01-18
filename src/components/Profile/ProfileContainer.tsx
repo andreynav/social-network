@@ -1,9 +1,10 @@
 import { compose } from '@reduxjs/toolkit'
 import React, { ChangeEvent, FunctionComponent, useEffect } from 'react'
-import { connect, useDispatch } from 'react-redux'
+import { connect } from 'react-redux'
 
 import { withAuthRedirect } from '../../hoc/withAuthRedirect'
 import { withRouter } from '../../hoc/withRouter'
+import { useAppDispatch } from '../../hook/hooks'
 import {
 	ProfileInfoT,
 	getProfileInfo,
@@ -18,7 +19,7 @@ import {
 	updateProfilePhoto,
 	updateProfileStatus
 } from '../../store/profileReducer'
-import { AppDispatch, RootState } from '../../store/store'
+import { RootState } from '../../store/store'
 import { Profile } from '../index'
 
 export type ProfileContainerT = {
@@ -34,7 +35,7 @@ export type ProfileContainerT = {
 
 const ProfileContainer = (props: ProfileContainerT): JSX.Element => {
 	const { currentUserId, userId, getProfileInfo, getProfileStatus } = props
-	const dispatch = useDispatch<AppDispatch>()
+	const dispatch = useAppDispatch()
 
 	useEffect(() => {
 		const id = currentUserId || userId
