@@ -8,7 +8,7 @@ export type DialogUsersT = {
 }
 
 export type MessagesT = {
-	id?: number
+	id: number
 	message: string
 }
 
@@ -31,13 +31,20 @@ const dialogsReducer = createSlice({
 	name: 'dialogs',
 	initialState,
 	reducers: {
-		addMessageAC(state, action: PayloadAction<string>) {
-			let messageId = state.messages.length
-			const message = {
-				id: ++messageId,
-				message: action.payload
+		addMessageAC: {
+			reducer: (state, action: PayloadAction<MessagesT>) => {
+				state.messages = [...state.messages, action.payload]
+			},
+			prepare: (message) => {
+				let messageId = initialState.messages.length
+
+				return {
+					payload: {
+						id: ++messageId,
+						message: message
+					}
+				}
 			}
-			state.messages = [...state.messages, message]
 		}
 	}
 })

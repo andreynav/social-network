@@ -42,7 +42,7 @@ export const Dialogs = (props: PropsT): JSX.Element => {
 
 	const onFormSubmit = (data: DialogDataT) => {
 		const message = data.postMessage
-		addMessageAC(message as string)
+		addMessageAC(message!)
 		reset()
 	}
 

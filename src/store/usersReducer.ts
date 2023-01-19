@@ -30,6 +30,11 @@ export type ToggleFollowUnfollowT = {
 	id: number
 }
 
+type SetFollowInProgressT = {
+	isInProgress: boolean
+	id: number
+}
+
 type InitialStateT = {
 	users: Array<UserT>
 	currentPage: number
@@ -41,7 +46,7 @@ type InitialStateT = {
 	status: string | null
 }
 
-const initialState = {
+const initialState: InitialStateT = {
 	users: [],
 	currentPage: 1,
 	totalCount: 0,
@@ -57,8 +62,8 @@ export const getUsers = createAsyncThunk<void, GetUsersT, ThunkAPI>(
 	async ({ usersOnPage, page }, { dispatch, rejectWithValue }) => {
 		const data = await userAPI.getUsers(usersOnPage, page)
 		if (data.error === null) {
-			dispatch(setUsersAC({ users: data.items }))
-			dispatch(setTotalCountAC({ totalCount: data.totalCount }))
+			dispatch(setUsersAC(data.items))
+			dispatch(setTotalCountAC(data.totalCount))
 		} else {
 			return rejectWithValue(data.error)
 		}
@@ -78,7 +83,7 @@ export const toggleFollowUnfollow = createAsyncThunk<
 			: await userAPI.followUser(id)
 		const data = await promise
 		if (data.resultCode === 0) {
-			dispatch(changeToggleAC({ userId: id }))
+			dispatch(changeToggleAC(id))
 			dispatch(setFollowInProgressAC({ isInProgress: false, id }))
 		} else {
 			return rejectWithValue(data.error)
@@ -90,26 +95,26 @@ const usersReducer = createSlice({
 	name: 'users',
 	initialState,
 	reducers: {
-		changeToggleAC(state: InitialStateT, action) {
+		changeToggleAC(state, action: PayloadAction<number>) {
 			state.users.map((user) => {
-				if (user.id === action.payload.userId) {
+				if (user.id === action.payload) {
 					user.followed = !user.followed
 				}
 			})
 		},
-		setUsersAC(state: InitialStateT, action) {
-			state.users = [...action.payload.users]
+		setUsersAC(state, action: PayloadAction<Array<UserT>>) {
+			state.users = [...action.payload]
 			state.users.forEach((user) => {
 				user.city = getRandomCity()
 			})
 		},
-		setCurrentPageAC(state: InitialStateT, action) {
-			state.currentPage = action.payload.page
+		setCurrentPageAC(state, action: PayloadAction<number>) {
+			state.currentPage = action.payload
 		},
-		setTotalCountAC(state: InitialStateT, action) {
-			state.totalCount = action.payload.totalCount
+		setTotalCountAC(state, action: PayloadAction<number>) {
+			state.totalCount = action.payload
 		},
-		setFollowInProgressAC(state: InitialStateT, action) {
+		setFollowInProgressAC(state, action: PayloadAction<SetFollowInProgressT>) {
 			state.followInProgress = action.payload.isInProgress
 				? [...state.followInProgress, action.payload.id]
 				: state.followInProgress.filter((id) => id !== action.payload.id)

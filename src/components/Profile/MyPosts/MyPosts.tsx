@@ -35,7 +35,7 @@ export const MyPosts = ({
 
 	const onFormSubmit = (data: DialogDataT) => {
 		const message = data.postMessage
-		addNewPostAC(message as string)
+		addNewPostAC(message!)
 		reset()
 	}
 
