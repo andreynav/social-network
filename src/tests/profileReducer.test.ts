@@ -38,8 +38,8 @@ const infoData = {
 	}
 }
 
-const newPostAction = addNewPostAC({ message: 'New post test message' })
-const profileStatus = setProfileStatusAC({ profileStatus: 'Test status' })
+// const newPostAction = addNewPostAC({ message: 'New post test message' })
+// const profileStatus = setProfileStatusAC({ profileStatus: 'Test status' })
 
 describe('Profile reducer tests', () => {
 	// test('New post should be added', () => {

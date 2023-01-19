@@ -72,7 +72,7 @@ export const getProfileInfo = createAsyncThunk<void, number, ThunkAPI>(
 	'profile/getProfileInfo',
 	async (userId, { dispatch }) => {
 		const data = await profileAPI.getProfileInfo(userId)
-		dispatch(setProfileInfoAC({ profileInfo: data }))
+		dispatch(setProfileInfoAC(data))
 	}
 )
 
@@ -80,7 +80,7 @@ export const getProfileStatus = createAsyncThunk<void, number, ThunkAPI>(
 	'profile/getProfileStatus',
 	async (userId, { dispatch }) => {
 		const data = await profileAPI.getProfileStatus(userId)
-		dispatch(setProfileStatusAC({ profileStatus: data }))
+		dispatch(setProfileStatusAC(data))
 	}
 )
 
@@ -89,7 +89,7 @@ export const updateProfileStatus = createAsyncThunk<void, string, ThunkAPI>(
 	async (status, { dispatch, rejectWithValue }) => {
 		const data = await profileAPI.updateProfileStatus(status)
 		if (data.resultCode === 0) {
-			dispatch(setProfileStatusAC({ profileStatus: status }))
+			dispatch(setProfileStatusAC(status))
 		} else {
 			return rejectWithValue(data.error)
 		}
@@ -101,7 +101,7 @@ export const updateProfilePhoto = createAsyncThunk<void, unknown, ThunkAPI>(
 	async (file, { dispatch, rejectWithValue }) => {
 		const data = await profileAPI.updateProfilePhoto(file)
 		if (data.resultCode === 0) {
-			dispatch(setProfilePhotoAC({ photos: data.data.photos }))
+			dispatch(setProfilePhotoAC(data.data.photos))
 		} else {
 			return rejectWithValue(data.error)
 		}
@@ -124,24 +124,30 @@ const profileSlice = createSlice({
 	name: 'profile',
 	initialState,
 	reducers: {
-		addNewPostAC(state, action) {
-			let postId = state.myPosts.length
+		addNewPostAC: {
+			reducer: (state, action: PayloadAction<PostT>) => {
+				state.myPosts = [...state.myPosts, action.payload]
+			},
+			prepare: (message) => {
+				let postId = initialState.myPosts.length
 
-			const post = {
-				id: ++postId,
-				message: action.payload,
-				like: getRandomLike(400)
+				return {
+					payload: {
+						id: ++postId,
+						message: message,
+						like: getRandomLike(400)
+					}
+				}
 			}
-			state.myPosts = [...state.myPosts, post]
 		},
-		setProfileInfoAC(state, action) {
-			state.profileInfo = action.payload.profileInfo
+		setProfileInfoAC(state, action: PayloadAction<ProfileInfoT>) {
+			state.profileInfo = action.payload
 		},
-		setProfileStatusAC(state, action) {
-			state.profileStatus = action.payload.profileStatus
+		setProfileStatusAC(state, action: PayloadAction<string>) {
+			state.profileStatus = action.payload
 		},
-		setProfilePhotoAC(state, action) {
-			state.profileInfo!.photos = action.payload.photos
+		setProfilePhotoAC(state, action: PayloadAction<PhotosT>) {
+			state.profileInfo!.photos = action.payload
 		}
 	},
 	extraReducers: (builder) => {
