@@ -1,6 +1,13 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
-import { authAPI, securityAPI } from '../api/api'
+import {
+	GetCaptchaURL,
+	LoginLogoutAPI,
+	MeAPI,
+	ResultCodes,
+	authAPI,
+	securityAPI
+} from '../api/api'
 import { ThunkAPI } from '../types/reducers'
 import { isActionError } from '../utils/isActionError'
 import { RootState } from './store'
@@ -46,12 +53,13 @@ const initialState: InitialStateT = {
 export const getAuthUserData = createAsyncThunk<void, undefined, ThunkAPI>(
 	'auth/getAuthUserData',
 	async (_, { dispatch, rejectWithValue }) => {
-		const data = await authAPI.me()
+		const data: MeAPI = await authAPI.me()
 		const { id, login: userName, email } = data.data
-		if (data.resultCode === 0) {
+		if (data.resultCode === ResultCodes.SUCCESS) {
 			dispatch(setAuthDataAC({ id, userName, email }))
-		} else {
-			return rejectWithValue(data.error)
+		}
+		if (data.resultCode === ResultCodes.ERROR) {
+			return rejectWithValue(data.messages[0])
 		}
 	}
 )
@@ -62,17 +70,21 @@ export const loginUser = createAsyncThunk<void, AuthDataT, ThunkAPI>(
 		{ email, password, rememberMe, captcha },
 		{ dispatch, rejectWithValue }
 	) => {
-		const data = await authAPI.login({ email, password, rememberMe, captcha })
-		if (data.resultCode === 0) {
+		const data: LoginLogoutAPI = await authAPI.login({
+			email,
+			password,
+			rememberMe,
+			captcha
+		})
+		if (data.resultCode === ResultCodes.SUCCESS) {
 			dispatch(getAuthUserData())
-		} else {
-			if (data.resultCode === 10) {
-				dispatch(getCaptchaURL())
-			}
+		}
+		if (data.resultCode === ResultCodes.CAPTCHA_REQUIRED) {
+			dispatch(getCaptchaURL())
 			dispatch(setLoginDataAC({ id: null, isAuth: false }))
 			dispatch(setCaptchaAC({ url: null }))
 		}
-		if (data.resultCode !== 0 && data.resultCode !== 10) {
+		if (data.resultCode === ResultCodes.ERROR) {
 			return rejectWithValue(data.messages[0])
 		}
 	}
@@ -89,7 +101,7 @@ export const logoutUser = createAsyncThunk<void, undefined, ThunkAPI>(
 export const getCaptchaURL = createAsyncThunk<void, undefined, ThunkAPI>(
 	'auth/getCaptchaURL',
 	async (_, { dispatch }) => {
-		const data = await securityAPI.getCaptchaURL()
+		const data: GetCaptchaURL = await securityAPI.getCaptchaURL()
 		dispatch(setCaptchaAC({ url: data.url }))
 	}
 )

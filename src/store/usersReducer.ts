@@ -5,7 +5,12 @@ import {
 	createSlice
 } from '@reduxjs/toolkit'
 
-import { userAPI } from '../api/api'
+import {
+	FollowUserUnfollowUserUserAPI,
+	GetUsersAPI,
+	ResultCodes,
+	userAPI
+} from '../api/api'
 import { ThunkAPI } from '../types/reducers'
 import { getRandomCity } from '../utils/getRandomCity'
 import { isActionError } from '../utils/isActionError'
@@ -60,7 +65,7 @@ const initialState: InitialStateT = {
 export const getUsers = createAsyncThunk<void, GetUsersT, ThunkAPI>(
 	'users/getUsers',
 	async ({ usersOnPage, page }, { dispatch, rejectWithValue }) => {
-		const data = await userAPI.getUsers(usersOnPage, page)
+		const data: GetUsersAPI = await userAPI.getUsers(usersOnPage, page)
 		if (data.error === null) {
 			dispatch(setUsersAC(data.items))
 			dispatch(setTotalCountAC(data.totalCount))
@@ -78,15 +83,16 @@ export const toggleFollowUnfollow = createAsyncThunk<
 	'users/toggleFollowUnfollow',
 	async ({ user, id }, { dispatch, rejectWithValue }) => {
 		dispatch(setFollowInProgressAC({ isInProgress: true, id }))
-		const promise = user?.followed
+		const promise: FollowUserUnfollowUserUserAPI = user?.followed
 			? await userAPI.unfollowUser(id)
 			: await userAPI.followUser(id)
 		const data = await promise
-		if (data.resultCode === 0) {
+		if (data.resultCode === ResultCodes.SUCCESS) {
 			dispatch(changeToggleAC(id))
 			dispatch(setFollowInProgressAC({ isInProgress: false, id }))
-		} else {
-			return rejectWithValue(data.error)
+		}
+		if (data.resultCode === ResultCodes.ERROR) {
+			return rejectWithValue(data.messages[0])
 		}
 	}
 )

@@ -5,7 +5,14 @@ import {
 	createSlice
 } from '@reduxjs/toolkit'
 
-import { profileAPI } from '../api/api'
+import {
+	GetProfileInfoAPI,
+	ResultCodes,
+	UpdateProfileInfoAPI,
+	UpdateProfilePhotoAPI,
+	UpdateProfileStatusAPI,
+	profileAPI
+} from '../api/api'
 import { ThunkAPI } from '../types/reducers'
 import { getRandomLike } from '../utils/getRandomLike'
 import { isActionError } from '../utils/isActionError'
@@ -71,7 +78,7 @@ const initialState: InitialStateT = {
 export const getProfileInfo = createAsyncThunk<void, number, ThunkAPI>(
 	'profile/getProfileInfo',
 	async (userId, { dispatch }) => {
-		const data = await profileAPI.getProfileInfo(userId)
+		const data: GetProfileInfoAPI = await profileAPI.getProfileInfo(userId)
 		dispatch(setProfileInfoAC(data))
 	}
 )
@@ -79,7 +86,7 @@ export const getProfileInfo = createAsyncThunk<void, number, ThunkAPI>(
 export const getProfileStatus = createAsyncThunk<void, number, ThunkAPI>(
 	'profile/getProfileStatus',
 	async (userId, { dispatch }) => {
-		const data = await profileAPI.getProfileStatus(userId)
+		const data: string = await profileAPI.getProfileStatus(userId)
 		dispatch(setProfileStatusAC(data))
 	}
 )
@@ -87,23 +94,29 @@ export const getProfileStatus = createAsyncThunk<void, number, ThunkAPI>(
 export const updateProfileStatus = createAsyncThunk<void, string, ThunkAPI>(
 	'profile/updateProfileStatus',
 	async (status, { dispatch, rejectWithValue }) => {
-		const data = await profileAPI.updateProfileStatus(status)
-		if (data.resultCode === 0) {
+		const data: UpdateProfileStatusAPI = await profileAPI.updateProfileStatus(
+			status
+		)
+		if (data.resultCode === ResultCodes.SUCCESS) {
 			dispatch(setProfileStatusAC(status))
-		} else {
-			return rejectWithValue(data.error)
+		}
+		if (data.resultCode === ResultCodes.ERROR) {
+			return rejectWithValue(data.messages[0])
 		}
 	}
 )
 
-export const updateProfilePhoto = createAsyncThunk<void, unknown, ThunkAPI>(
+export const updateProfilePhoto = createAsyncThunk<void, File, ThunkAPI>(
 	'profile/updateProfilePhoto',
 	async (file, { dispatch, rejectWithValue }) => {
-		const data = await profileAPI.updateProfilePhoto(file)
-		if (data.resultCode === 0) {
+		const data: UpdateProfilePhotoAPI = await profileAPI.updateProfilePhoto(
+			file
+		)
+		if (data.resultCode === ResultCodes.SUCCESS) {
 			dispatch(setProfilePhotoAC(data.data.photos))
-		} else {
-			return rejectWithValue(data.error)
+		}
+		if (data.resultCode === ResultCodes.ERROR) {
+			return rejectWithValue(data.messages[0])
 		}
 	}
 )
@@ -111,11 +124,14 @@ export const updateProfilePhoto = createAsyncThunk<void, unknown, ThunkAPI>(
 export const updateProfileInfo = createAsyncThunk<void, ProfileInfoT, ThunkAPI>(
 	'profile/updateProfileInfo',
 	async (profile, { dispatch, getState, rejectWithValue }) => {
-		const data = await profileAPI.updateProfileInfo(profile)
-		if (data.resultCode === 0) {
+		const data: UpdateProfileInfoAPI = await profileAPI.updateProfileInfo(
+			profile
+		)
+		if (data.resultCode === ResultCodes.SUCCESS) {
 			dispatch(getProfileInfo(getState().auth.id!))
-		} else {
-			return rejectWithValue(data.error)
+		}
+		if (data.resultCode === ResultCodes.ERROR) {
+			return rejectWithValue(data.messages[0])
 		}
 	}
 )
@@ -165,12 +181,30 @@ const profileSlice = createSlice({
 				state.profileInfoError = action.error.message
 				console.error(state.profileInfoError)
 			})
-			.addCase(getProfileStatus.pending, (state) => {})
-			.addCase(getProfileStatus.fulfilled, (state, action) => {})
-			.addCase(updateProfileStatus.pending, (state) => {})
-			.addCase(updateProfileStatus.fulfilled, (state, action) => {})
-			.addCase(updateProfilePhoto.pending, (state) => {})
-			.addCase(updateProfilePhoto.fulfilled, (state, action) => {})
+			.addCase(getProfileStatus.pending, (state) => {
+				state.profileInfoStatus = 'pending'
+				state.profileInfoError = null
+			})
+			.addCase(getProfileStatus.fulfilled, (state) => {
+				state.profileInfoStatus = 'resolved'
+				state.profileInfoError = null
+			})
+			.addCase(updateProfileStatus.pending, (state) => {
+				state.profileInfoStatus = 'pending'
+				state.profileInfoError = null
+			})
+			.addCase(updateProfileStatus.fulfilled, (state) => {
+				state.profileInfoStatus = 'resolved'
+				state.profileInfoError = null
+			})
+			.addCase(updateProfilePhoto.pending, (state) => {
+				state.profileInfoStatus = 'pending'
+				state.profileInfoError = null
+			})
+			.addCase(updateProfilePhoto.fulfilled, (state) => {
+				state.profileInfoStatus = 'resolved'
+				state.profileInfoError = null
+			})
 			.addCase(updateProfileInfo.pending, (state) => {
 				state.profileInfoUpdateStatus = 'pending'
 				state.profileInfoUpdateError = null
