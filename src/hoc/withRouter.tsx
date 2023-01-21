@@ -3,10 +3,10 @@ import { useParams } from 'react-router-dom'
 
 import { useAppSelector } from '../hook/hooks'
 
-export const withRouter = (Component) => {
-	const ComponentWithRouterProp = (props) => {
-		let params = useParams()
-		let id = useAppSelector((state) => state.auth.id)
+export const withRouter = <T,>(Component: React.ComponentType<T>) => {
+	const ComponentWithRouterProp = (props: T & { id: number }) => {
+		const params = useParams()
+		const id = useAppSelector((state) => state.auth.id)
 		return <Component {...props} currentUserId={params.id || id} userId={id} />
 	}
 

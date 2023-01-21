@@ -1,5 +1,6 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
+import { DarkT, LightT } from '../styles/themes'
 import { ThunkAPI } from '../types/reducers'
 import { isActionError } from '../utils/isActionError'
 import { getAuthUserData } from './authReducer'
@@ -9,16 +10,16 @@ type InitialStateT = {
 	isInitialized: boolean
 	status: string | null
 	error: any | null
-	theme: string | null
+	theme: LightT | DarkT | null
 	language: string | null
 }
 
 export type ThemeT = {
-	theme: string
+	theme: LightT | DarkT
 }
 
 export type LanguageT = {
-	language: string
+	language: 'English' | 'Russian'
 }
 
 const initialState: InitialStateT = {

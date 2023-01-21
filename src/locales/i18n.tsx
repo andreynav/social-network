@@ -24,12 +24,12 @@ i18n.use(initReactI18next).init({
 	resources
 })
 
-type ContextT = {
-	language: string
+type LocaleContextT = {
+	language: 'English' | 'Russian'
 	setLanguage: (e: string) => void
 }
 
-export const LocaleContext = createContext({} as ContextT)
+export const LocaleContext = createContext({} as LocaleContextT)
 
 export const AppLocaleProvider = ({
 	children

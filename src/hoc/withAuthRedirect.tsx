@@ -3,8 +3,8 @@ import { Navigate } from 'react-router-dom'
 
 import { useAppSelector } from '../hook/hooks'
 
-export const withAuthRedirect = (Component) => {
-	const ContainerWithAuthRedirect = (props) => {
+export const withAuthRedirect = <T,>(Component: React.ComponentType<T>) => {
+	const ContainerWithAuthRedirect = (props: T & { isAuth: boolean }) => {
 		const isAuth = useAppSelector((state) => state.auth.isAuth)
 		if (!isAuth) return <Navigate to="/login" />
 		return <Component {...props} />
@@ -13,5 +13,5 @@ export const withAuthRedirect = (Component) => {
 	ContainerWithAuthRedirect.displayName = `withAuthRedirect(${
 		Component.displayName || Component.name
 	})`
-	return ContainerWithAuthRedirect
+	return ContainerWithAuthRedirect as React.FunctionComponent
 }

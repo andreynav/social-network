@@ -26,3 +26,6 @@ export const dark = {
 	colorLike: colorLike,
 	colorError: colorError
 }
+
+export type LightT = Record<keyof typeof light, string>
+export type DarkT = Record<keyof typeof dark, string>
