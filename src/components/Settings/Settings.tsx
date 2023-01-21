@@ -56,11 +56,11 @@ const Settings = () => {
 				<Toggle labelRight={t('settings.general.notifications')} />{' '}
 				{/*will be implemented further*/}
 			</ShowNotifications>
+			<div>* will be implemented in next release</div>
 		</SettingsWrapper>
 	)
 }
 
-// export default compose(withAuthRedirect)(Settings)
 export const SettingsContainer = compose(withAuthRedirect)(Settings)
 
 const SettingsWrapper = styled.div`
