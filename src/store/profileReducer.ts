@@ -6,7 +6,8 @@ import {
 } from '@reduxjs/toolkit'
 
 import {
-	GetProfileInfoAPI,
+	PhotosT,
+	ProfileInfoAPI,
 	ResultCodes,
 	UpdateProfileInfoAPI,
 	UpdateProfilePhotoAPI,
@@ -24,35 +25,9 @@ export type PostT = {
 	like: number
 }
 
-export type PhotosT = {
-	large: string | null
-	small: string | null
-}
-
-export type ContactsT = {
-	facebook: string | null
-	github: string | null
-	instagram: string | null
-	mainLink: string | null
-	twitter: string | null
-	vk: string | null
-	website: string | null
-	youtube: string | null
-}
-
-export type ProfileInfoT = {
-	aboutMe: string | null
-	fullName: string
-	lookingForAJob: boolean
-	lookingForAJobDescription: string | null
-	userId: number
-	photos: PhotosT
-	contacts: ContactsT
-}
-
 type InitialStateT = {
 	myPosts: Array<PostT>
-	profileInfo: ProfileInfoT | null
+	profileInfo: ProfileInfoAPI | null
 	profileStatus: string | null
 	profileInfoStatus: 'pending' | 'resolved' | 'rejected' | null
 	profileInfoError: string | null
@@ -78,7 +53,7 @@ const initialState: InitialStateT = {
 export const getProfileInfo = createAsyncThunk<void, number, ThunkAPI>(
 	'profile/getProfileInfo',
 	async (userId, { dispatch }) => {
-		const data: GetProfileInfoAPI = await profileAPI.getProfileInfo(userId)
+		const data: ProfileInfoAPI = await profileAPI.getProfileInfo(userId)
 		dispatch(setProfileInfoAC(data))
 	}
 )
@@ -121,7 +96,11 @@ export const updateProfilePhoto = createAsyncThunk<void, File, ThunkAPI>(
 	}
 )
 
-export const updateProfileInfo = createAsyncThunk<void, ProfileInfoT, ThunkAPI>(
+export const updateProfileInfo = createAsyncThunk<
+	void,
+	ProfileInfoAPI,
+	ThunkAPI
+>(
 	'profile/updateProfileInfo',
 	async (profile, { dispatch, getState, rejectWithValue }) => {
 		const data: UpdateProfileInfoAPI = await profileAPI.updateProfileInfo(
@@ -156,7 +135,7 @@ const profileSlice = createSlice({
 				}
 			}
 		},
-		setProfileInfoAC(state, action: PayloadAction<ProfileInfoT>) {
+		setProfileInfoAC(state, action: PayloadAction<ProfileInfoAPI>) {
 			state.profileInfo = action.payload
 		},
 		setProfileStatusAC(state, action: PayloadAction<string>) {

@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
-import { ContactsT, ProfileInfoT } from '../../../store/profileReducer'
+import { ContactsT, ProfileInfoAPI } from '../../../api/api'
 import { getProfileInfoSchemeData } from '../../../utils/getProfileInfoSchemeData'
 import { getProfileSchemeData } from '../../../utils/getProfileSchemeData'
 import {
@@ -76,7 +76,7 @@ export const ProfileInfo = memo((props: ProfileT) => {
 		setEditMode((prevEditMode) => !prevEditMode)
 	}
 
-	const onFormSubmit = (data: ProfileInfoT & ContactsT) => {
+	const onFormSubmit = (data: ProfileInfoAPI & ContactsT) => {
 		const updatedInfo = getProfileInfoSchemeData(data)
 		// @ts-expect-error: will be implemented further
 		updateProfileInfo(updatedInfo).then((response) => {

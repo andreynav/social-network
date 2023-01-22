@@ -1,7 +1,7 @@
-import { ProfileInfoT } from '../store/profileReducer'
+import { ProfileInfoAPI } from '../api/api'
 
 export type ProfileSchemeDataT = ReturnType<typeof getProfileSchemeData>
-export const getProfileSchemeData = (profileInfo: ProfileInfoT) => {
+export const getProfileSchemeData = (profileInfo: ProfileInfoAPI) => {
 	return [
 		{
 			itemName: 'profile.fullName',

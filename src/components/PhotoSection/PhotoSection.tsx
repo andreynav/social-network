@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react'
 import styled from 'styled-components'
 
-import { PhotosT } from '../../store/profileReducer'
+import { PhotosT } from '../../api/api'
 import { Avatar } from '../common/Avatar/Avatar'
 import { Button } from '../common/Button/Button'
 

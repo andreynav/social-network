@@ -1,6 +1,6 @@
-import { ContactsT, ProfileInfoT } from '../store/profileReducer'
+import { ContactsT, ProfileInfoAPI } from '../api/api'
 
-export const getProfileInfoSchemeData = (data: ProfileInfoT & ContactsT) => {
+export const getProfileInfoSchemeData = (data: ProfileInfoAPI & ContactsT) => {
 	return {
 		fullName: data.fullName,
 		aboutMe: data.aboutMe,
