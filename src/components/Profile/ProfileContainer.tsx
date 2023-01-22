@@ -2,11 +2,11 @@ import { compose } from '@reduxjs/toolkit'
 import React, { ChangeEvent, FunctionComponent, useEffect } from 'react'
 import { connect } from 'react-redux'
 
+import { ProfileInfoAPI } from '../../api/api'
 import { withAuthRedirect } from '../../hoc/withAuthRedirect'
 import { withRouter } from '../../hoc/withRouter'
 import { useAppDispatch } from '../../hook/hooks'
 import {
-	ProfileInfoT,
 	getProfileInfo,
 	getProfileStatus,
 	selectProfileInfo,
@@ -27,7 +27,7 @@ export type ProfileContainerT = {
 	userId: number
 	getProfileInfo: (userId: number) => void
 	getProfileStatus: (userId: number) => void
-	profileInfo: ProfileInfoT
+	profileInfo: ProfileInfoAPI
 	profileStatus: string
 	updateProfileStatus: (status: string | boolean) => void
 	profileInfoUpdateError: string

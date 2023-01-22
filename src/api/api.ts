@@ -1,7 +1,6 @@
 import axios from 'axios'
 
 import { AuthDataT } from '../store/authReducer'
-import { PhotosT, ProfileInfoT } from '../store/profileReducer'
 import { UserT } from '../store/usersReducer'
 
 const samuraiApi = axios.create({
@@ -19,75 +18,53 @@ export enum ResultCodes {
 }
 
 export type GetUsersAPI = {
-	error: null | string
 	items: Array<UserT>
 	totalCount: number
+	error: string | null
 }
 
-export type FollowUserUnfollowUserUserAPI = {
-	data: object
-	messages: Array<string>
-	resultCode: ResultCodes
+export type PhotosT = {
+	large: string | null
+	small: string | null
 }
 
-export type MeAPI = {
-	data: {
-		id: number
-		email: string
-		login: string
-	}
-	resultCode: ResultCodes
-	messages: Array<string>
+export type ContactsT = {
+	facebook: string | null
+	github: string | null
+	instagram: string | null
+	mainLink: string | null
+	twitter: string | null
+	vk: string | null
+	website: string | null
+	youtube: string | null
 }
 
-export type LoginLogoutAPI = {
-	data: object
-	messages: Array<string>
-	resultCode: ResultCodes
-}
-
-export type GetProfileInfoAPI = {
-	aboutMe: string
+export type ProfileInfoAPI = {
+	aboutMe: string | null
+	fullName: string
 	userId: number
 	lookingForAJob: boolean
-	lookingForAJobDescription: string
-	fullName: string
-	contacts: {
-		facebook: string
-		website: string
-		vk: string
-		twitter: string
-		instagram: string
-		youtube: string
-		github: string
-		mainLink: string
-	}
+	lookingForAJobDescription: string | null
+	contacts: ContactsT
 	photos: PhotosT
-}
-
-export type UpdateProfileStatusAPI = {
-	data: object
-	messages: Array<string>
-	resultCode: ResultCodes
-}
-
-export type UpdateProfilePhotoAPI = {
-	data: {
-		photos: PhotosT
-	}
-	messages: Array<string>
-	resultCode: ResultCodes
-}
-
-export type UpdateProfileInfoAPI = {
-	data: object
-	messages: Array<string>
-	resultCode: ResultCodes
 }
 
 export type GetCaptchaURL = {
 	url: string
 }
+
+type ResponseT<T> = {
+	data: T
+	messages: Array<string>
+	resultCode: ResultCodes
+}
+
+export type FollowUserUnfollowUserUserAPI = ResponseT<object>
+export type LoginLogoutAPI = ResponseT<object>
+export type UpdateProfileStatusAPI = ResponseT<object>
+export type UpdateProfileInfoAPI = ResponseT<object>
+export type MeAPI = ResponseT<{ id: number; email: string; login: string }>
+export type UpdateProfilePhotoAPI = ResponseT<{ photos: PhotosT }>
 
 export const userAPI = {
 	getUsers: (userOnPage: number, pageNumber = 1) => {
@@ -131,7 +108,7 @@ export const authAPI = {
 export const profileAPI = {
 	getProfileInfo: (userId: number) => {
 		return samuraiApi
-			.get<GetProfileInfoAPI>(`profile/${userId}`)
+			.get<ProfileInfoAPI>(`profile/${userId}`)
 			.then((response) => response.data)
 	},
 	getProfileStatus: (id: number) => {
@@ -157,7 +134,7 @@ export const profileAPI = {
 			})
 			.then((response) => response.data)
 	},
-	updateProfileInfo: (profile: ProfileInfoT) => {
+	updateProfileInfo: (profile: ProfileInfoAPI) => {
 		return samuraiApi
 			.put<UpdateProfileInfoAPI>(`profile`, profile)
 			.then((response) => response.data)

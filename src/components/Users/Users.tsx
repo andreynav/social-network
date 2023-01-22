@@ -2,7 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
-import { PhotosT } from '../../store/profileReducer'
+import { PhotosT } from '../../api/api'
 import { UserT } from '../../store/usersReducer'
 import { Loader, Paginator, User } from '../index'
 

@@ -2,8 +2,8 @@ import { compose } from '@reduxjs/toolkit'
 import React, { FunctionComponent, useEffect } from 'react'
 import { connect } from 'react-redux'
 
+import { PhotosT } from '../../api/api'
 import { withAuthRedirect } from '../../hoc/withAuthRedirect'
-import { PhotosT } from '../../store/profileReducer'
 import { RootState } from '../../store/store'
 import {
 	GetUsersT,
