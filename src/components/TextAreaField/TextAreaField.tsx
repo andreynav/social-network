@@ -4,7 +4,6 @@ import styled from 'styled-components'
 
 type TextAreaFieldT = {
 	name: string
-	type?: string
 	register: UseFormRegister<FieldValues>
 	validationSchema: {
 		required?: string
@@ -17,16 +16,8 @@ type TextAreaFieldT = {
 	errors: FieldValues
 }
 
-export const TextAreaField = (props: TextAreaFieldT): JSX.Element => {
-	const {
-		name,
-		type,
-		register,
-		validationSchema,
-		placeholder,
-		errors,
-		...areaProps
-	} = props
+export const TextAreaField = (props: TextAreaFieldT) => {
+	const { name, register, validationSchema, placeholder, errors } = props
 
 	return (
 		<InputWrapper>
@@ -34,7 +25,6 @@ export const TextAreaField = (props: TextAreaFieldT): JSX.Element => {
 				{...register(name, validationSchema)}
 				name={name}
 				placeholder={placeholder}
-				{...areaProps}
 			/>
 			{errors && <Error>{errors?.message}</Error>}
 		</InputWrapper>

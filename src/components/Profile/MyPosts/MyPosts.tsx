@@ -1,10 +1,9 @@
 import React from 'react'
-import { useForm } from 'react-hook-form'
+import { FieldValues, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
 import { PostT } from '../../../store/profileReducer'
-import { DialogDataT } from '../../Dialogs/Dialogs'
 import { FormPostMessage, Post } from '../../index'
 
 type MyPostsPropsT = {
@@ -12,10 +11,7 @@ type MyPostsPropsT = {
 	addNewPostAC: (message: string) => void
 }
 
-export const MyPosts = ({
-	myPosts,
-	addNewPostAC
-}: MyPostsPropsT): JSX.Element => {
+export const MyPosts = ({ myPosts, addNewPostAC }: MyPostsPropsT) => {
 	const { t } = useTranslation()
 	const maxLength = 100
 	const maxLengthError = t('profile.myPosts.errors.maxLength', {
@@ -31,11 +27,10 @@ export const MyPosts = ({
 		handleSubmit,
 		formState: { errors },
 		reset
-	} = useForm<DialogDataT>({ mode: 'onBlur' })
+	} = useForm<FieldValues>({ mode: 'onBlur' })
 
-	const onFormSubmit = (data: DialogDataT) => {
-		const message = data.postMessage
-		addNewPostAC(message!)
+	const onFormSubmit = (data: FieldValues) => {
+		addNewPostAC(data.message)
 		reset()
 	}
 
