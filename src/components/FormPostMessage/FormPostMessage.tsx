@@ -3,12 +3,11 @@ import { FieldValues, UseFormRegister } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
-import { DialogDataT } from '../Dialogs/Dialogs'
 import { Button, TextAreaField } from '../index'
 
 type FormPostMessageT = {
 	onSubmit: FormEventHandler<HTMLFormElement>
-	register: UseFormRegister<FieldValues | DialogDataT>
+	register: UseFormRegister<FieldValues>
 	validationSchema: {
 		required?: string
 		maxLength?: {
@@ -27,10 +26,10 @@ export const FormPostMessage = (props: FormPostMessageT): JSX.Element => {
 		<FormProfilePost onSubmit={onSubmit}>
 			<ProfilePostAreaWrapper>
 				<TextAreaField
-					name={'postMessage'}
+					name="message"
 					register={register}
 					validationSchema={validationSchema}
-					errors={errors?.postMessage}
+					errors={errors?.message}
 				/>
 			</ProfilePostAreaWrapper>
 			<Button fontSize="14px" areaName={'profilePostButton'}>

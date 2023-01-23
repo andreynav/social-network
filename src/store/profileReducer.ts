@@ -123,7 +123,7 @@ const profileSlice = createSlice({
 			reducer: (state, action: PayloadAction<PostT>) => {
 				state.myPosts = [...state.myPosts, action.payload]
 			},
-			prepare: (message) => {
+			prepare: (message: string) => {
 				let postId = initialState.myPosts.length
 
 				return {

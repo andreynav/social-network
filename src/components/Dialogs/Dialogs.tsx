@@ -1,22 +1,22 @@
 import React from 'react'
-import { useForm } from 'react-hook-form'
+import { FieldValues, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
-import { DialogUsersT, MessagesT } from '../../store/dialogReducer'
+import { DialogMessageT, DialogUserT } from '../../store/dialogReducer'
 import { DialogMessage, DialogUser, FormPostMessage } from '../index'
 
 type PropsT = {
-	dialogUsers: Array<DialogUsersT>
-	messages: Array<MessagesT>
+	dialogUsers: Array<DialogUserT>
+	messages: Array<DialogMessageT>
 	addMessageAC: (message: string) => void
 }
 
-export type DialogDataT = {
-	postMessage?: string
-}
+// export type DialogDataT = {
+// 	message: string
+// }
 
-export const Dialogs = (props: PropsT): JSX.Element => {
+export const Dialogs = (props: PropsT) => {
 	const { dialogUsers, messages, addMessageAC } = props
 	const { t } = useTranslation()
 	const maxLength = 100
@@ -25,24 +25,21 @@ export const Dialogs = (props: PropsT): JSX.Element => {
 	})
 
 	const dialogsUsers = dialogUsers.map((user) => (
-		<DialogUser key={user.id} userName={user.name} userId={user.id} />
+		<DialogUser key={user.id} name={user.name} id={user.id} />
 	))
-	const userMessages = messages.map(
-		(message: { message: string }, item: number) => (
-			<DialogMessage key={item} message={message.message} />
-		)
-	)
+	const userMessages = messages.map((messageItem, index) => (
+		<DialogMessage key={index} message={messageItem.message} />
+	))
 
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 		reset
-	} = useForm<DialogDataT>({ mode: 'onBlur' })
+	} = useForm<FieldValues>({ mode: 'onBlur' })
 
-	const onFormSubmit = (data: DialogDataT) => {
-		const message = data.postMessage
-		addMessageAC(message!)
+	const onFormSubmit = (data: FieldValues) => {
+		addMessageAC(data.message)
 		reset()
 	}
 

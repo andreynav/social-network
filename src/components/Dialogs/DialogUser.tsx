@@ -2,16 +2,12 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
-export const DialogUser = ({
-	userName,
-	userId
-}: {
-	userName: string
-	userId: number
-}) => {
+import { DialogUserT } from '../../store/dialogReducer'
+
+export const DialogUser = ({ name, id }: DialogUserT) => {
 	return (
 		<DialogUserWrapper>
-			<NavLink to={`/massages/${userId}`}>{userName}</NavLink>
+			<NavLink to={`/massages/${id}`}>{name}</NavLink>
 		</DialogUserWrapper>
 	)
 }

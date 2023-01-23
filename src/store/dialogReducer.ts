@@ -2,12 +2,12 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 import { RootState } from './store'
 
-export type DialogUsersT = {
+export type DialogUserT = {
 	id: number
 	name: string
 }
 
-export type MessagesT = {
+export type DialogMessageT = {
 	id: number
 	message: string
 }
@@ -18,13 +18,13 @@ const initialState = {
 		{ id: 2, name: 'Anna' },
 		{ id: 3, name: 'Zlata' },
 		{ id: 4, name: 'Yuri' }
-	] as Array<DialogUsersT>,
+	] as Array<DialogUserT>,
 	messages: [
 		{ id: 1, message: 'Good day to learn React!' },
 		{ id: 2, message: 'How are you?' },
 		{ id: 3, message: 'Per Aspera ad Astra' },
 		{ id: 4, message: 'Just do it!!!' }
-	] as Array<MessagesT>
+	] as Array<DialogMessageT>
 }
 
 const dialogsReducer = createSlice({
@@ -32,7 +32,7 @@ const dialogsReducer = createSlice({
 	initialState,
 	reducers: {
 		addMessageAC: {
-			reducer: (state, action: PayloadAction<MessagesT>) => {
+			reducer: (state, action: PayloadAction<DialogMessageT>) => {
 				state.messages = [...state.messages, action.payload]
 			},
 			prepare: (message) => {
