@@ -1,5 +1,4 @@
 import { compose } from '@reduxjs/toolkit'
-import React from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { withAuthRedirect } from '../../hoc/withAuthRedirect'

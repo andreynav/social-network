@@ -1,5 +1,5 @@
 import { compose } from '@reduxjs/toolkit'
-import React, { ChangeEvent, FunctionComponent, useEffect } from 'react'
+import { ChangeEvent, FunctionComponent, useEffect } from 'react'
 import { connect } from 'react-redux'
 
 import { ProfileInfoAPI } from '../../api/api'

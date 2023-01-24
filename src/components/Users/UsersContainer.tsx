@@ -1,5 +1,5 @@
 import { compose } from '@reduxjs/toolkit'
-import React, { FunctionComponent, useEffect } from 'react'
+import { FunctionComponent, useEffect } from 'react'
 import { connect } from 'react-redux'
 
 import { PhotosT } from '../../api/api'

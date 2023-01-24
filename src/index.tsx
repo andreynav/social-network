@@ -1,4 +1,4 @@
-import React from 'react'
+import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
@@ -11,7 +11,7 @@ import { store } from './store/store'
 
 const RootComponent = (): JSX.Element => {
 	return (
-		<React.StrictMode>
+		<StrictMode>
 			<Provider store={store}>
 				<AppLocaleProvider>
 					<AppStylesProvider>
@@ -23,7 +23,7 @@ const RootComponent = (): JSX.Element => {
 					</AppStylesProvider>
 				</AppLocaleProvider>
 			</Provider>
-		</React.StrictMode>
+		</StrictMode>
 	)
 }
 

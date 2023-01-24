@@ -1,5 +1,5 @@
 import { compose } from '@reduxjs/toolkit'
-import React, { FunctionComponent } from 'react'
+import { FunctionComponent } from 'react'
 import { connect } from 'react-redux'
 
 import { withAuthRedirect } from '../../hoc/withAuthRedirect'

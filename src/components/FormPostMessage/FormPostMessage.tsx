@@ -1,4 +1,4 @@
-import React, { FormEventHandler } from 'react'
+import { FormEventHandler } from 'react'
 import { FieldValues, UseFormRegister } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'

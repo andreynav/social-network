@@ -1,4 +1,4 @@
-import React, { createContext, useEffect } from 'react'
+import { createContext, useEffect } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 

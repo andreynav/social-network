@@ -1,5 +1,5 @@
 import { compose } from '@reduxjs/toolkit'
-import React, { Suspense, lazy, useEffect } from 'react'
+import { Suspense, lazy, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Route, Routes } from 'react-router-dom'
 import styled from 'styled-components'
