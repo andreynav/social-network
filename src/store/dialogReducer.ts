@@ -35,7 +35,7 @@ const dialogsReducer = createSlice({
 			reducer: (state, action: PayloadAction<DialogMessageT>) => {
 				state.messages = [...state.messages, action.payload]
 			},
-			prepare: (message) => {
+			prepare: (message: string) => {
 				let messageId = initialState.messages.length
 
 				return {
