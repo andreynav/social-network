@@ -108,11 +108,19 @@ const usersReducer = createSlice({
 				}
 			})
 		},
-		setUsersAC(state, action: PayloadAction<Array<UserT>>) {
-			state.users = [...action.payload]
-			state.users.forEach((user) => {
-				user.city = getRandomCity()
-			})
+		setUsersAC: {
+			reducer: (state, action: PayloadAction<Array<UserT>>) => {
+				state.users = [...action.payload]
+			},
+			prepare: (arr: Omit<Array<UserT>, 'city'>) => {
+				arr.forEach((user: UserT) => {
+					user.city = getRandomCity()
+				})
+
+				return {
+					payload: arr
+				}
+			}
 		},
 		setCurrentPageAC(state, action: PayloadAction<number>) {
 			state.currentPage = action.payload
