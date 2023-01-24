@@ -60,6 +60,7 @@ module.exports = {
 				allowTaggedTemplates: false,
 				enforceForJSX: false
 			}
-		]
+		],
+		semi: 0
 	}
 }

@@ -1,4 +1,3 @@
-import React from 'react'
 import { useTranslation } from 'react-i18next'
 import ReactPaginate from 'react-paginate'
 import styled from 'styled-components'
