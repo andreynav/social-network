@@ -34,8 +34,8 @@ export const FormProfileInfo = ({
 }: FormProfileInfoT): JSX.Element => {
 	const profileItems = profileData.map((item) => {
 		const error = errors?.server
-			?.message!.split(' ')[1]
-			.split(')')[0]
+			?.message!.split(' ')[1]!
+			.split(')')[0]!
 			.toLowerCase()
 		const isPutError = error === item.inputName.toLowerCase()
 

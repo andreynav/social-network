@@ -1,15 +1,17 @@
+import { CityT } from './getRandomCity'
+
 type DataT = {
 	name: string
 	status: string | ''
 	id: number
-	city: string
+	city: CityT
 }
 
 type ReturnedDataT = [
 	{ itemName: string; itemData: string },
 	{ itemName: string; itemData: string },
 	{ itemName: string; itemData: number },
-	{ itemName: string; itemData: string }
+	{ itemName: string; itemData: CityT }
 ]
 
 export const getUserSchemeData = (data: DataT): ReturnedDataT => {

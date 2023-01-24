@@ -44,7 +44,7 @@ const ProfileContainer = (props: ProfileContainerT): JSX.Element => {
 	}, [currentUserId, userId, getProfileInfo, getProfileStatus])
 
 	const onSavePhoto = (e: ChangeEvent<HTMLInputElement>): void => {
-		dispatch(updateProfilePhoto(e.target.files![0]))
+		dispatch(updateProfilePhoto(e.target.files![0]!))
 	}
 
 	return (

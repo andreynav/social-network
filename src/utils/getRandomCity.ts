@@ -18,7 +18,9 @@ const cities = [
 	'Gomel',
 	'Las Vegas',
 	'Los Angeles'
-]
+] as const
+
+export type CityT = ReturnType<typeof getRandomCity>
 
 export const getRandomCity = () => {
 	return cities[Math.floor(Math.random() * cities.length)]

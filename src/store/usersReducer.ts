@@ -12,7 +12,7 @@ import {
 	userAPI
 } from '../api/api'
 import { ThunkAPI } from '../types/reducers'
-import { getRandomCity } from '../utils/getRandomCity'
+import { CityT, getRandomCity } from '../utils/getRandomCity'
 import { isActionError } from '../utils/isActionError'
 import { RootState } from './store'
 
@@ -24,7 +24,7 @@ export type GetUsersT = {
 export type UserT = {
 	followed: boolean
 	id: number
-	city: string
+	city: CityT
 	name: string
 	status: string | ''
 	uniqueUrlName?: string | null

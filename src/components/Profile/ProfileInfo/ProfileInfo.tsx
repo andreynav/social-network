@@ -56,7 +56,7 @@ export const ProfileInfo = memo((props: ProfileT) => {
 	const profileInfoItems = profileData.map((item, index) => (
 		<UserInfoItem
 			key={index}
-			itemData={item.itemData}
+			itemData={item.itemData!}
 			itemName={item.itemName}
 			itemType={item.itemType}
 		/>
