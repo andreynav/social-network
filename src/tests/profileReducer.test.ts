@@ -1,9 +1,9 @@
-import {
-	addNewPostAC,
-	profileReducers,
-	setProfileInfoAC,
-	setProfileStatusAC
-} from '../store/profileReducer'
+// import {
+// 	addNewPostAC,
+// 	profileReducers,
+// 	setProfileInfoAC,
+// 	setProfileStatusAC
+// } from '../store/profileReducer'
 
 const stateProfileReducer = {
 	myPosts: [

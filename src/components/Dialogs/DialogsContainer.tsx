@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import { withAuthRedirect } from '../../hoc/withAuthRedirect'
 import {
-	addMessageAC,
+	dialogActions,
 	selectDialogUsers,
 	selectMessages
 } from '../../store/dialogReducer'
@@ -16,8 +16,10 @@ const mapStateToProps = (state: RootState) => ({
 	messages: selectMessages(state)
 })
 
+const addMessage = dialogActions.addMessageAC
+
 const DialogContainer = compose(
-	connect(mapStateToProps, { addMessageAC }),
+	connect(mapStateToProps, { addMessage }),
 	withAuthRedirect
 )(Dialogs)
 

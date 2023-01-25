@@ -17,8 +17,8 @@ import {
 	selectTotalCount,
 	selectUsers,
 	selectUsersOnPage,
-	setCurrentPageAC,
-	toggleFollowUnfollow
+	toggleFollowUnfollow,
+	userActions
 } from '../../store/usersReducer'
 import { Users } from '../index'
 
@@ -28,7 +28,7 @@ type UsersContainerT = {
 	isFetching: boolean
 	followInProgress?: Array<number>
 	users: Array<UserT & { photos: Partial<PhotosT> }>
-	setCurrentPageAC: (page: number) => void
+	setCurrentPage: (page: number) => void
 	getUsers: ({ usersOnPage, page }: GetUsersT) => void
 	toggleFollowUnfollow: ({ user, id }: ToggleFollowUnfollowT) => void
 	currentPage: number
@@ -36,7 +36,7 @@ type UsersContainerT = {
 
 const UsersContainer = (props: UsersContainerT) => {
 	const {
-		setCurrentPageAC,
+		setCurrentPage,
 		getUsers,
 		usersOnPage,
 		users,
@@ -47,7 +47,7 @@ const UsersContainer = (props: UsersContainerT) => {
 	} = props
 
 	const selectPage = (page: number) => {
-		setCurrentPageAC(page)
+		setCurrentPage(page)
 		getUsers({ usersOnPage: usersOnPage, page })
 	}
 
@@ -59,9 +59,9 @@ const UsersContainer = (props: UsersContainerT) => {
 	}
 
 	useEffect(() => {
-		setCurrentPageAC(1)
+		setCurrentPage(1)
 		getUsers({ usersOnPage: usersOnPage, page: 1 })
-	}, [setCurrentPageAC, getUsers, usersOnPage])
+	}, [setCurrentPage, getUsers, usersOnPage])
 
 	return (
 		<Users
@@ -86,9 +86,11 @@ const mapStateToProps = (state: RootState) => ({
 	error: selectError(state)
 })
 
+const setCurrentPage = userActions.setCurrentPageAC
+
 const UsersContainerWithProps = compose(
 	connect(mapStateToProps, {
-		setCurrentPageAC,
+		setCurrentPage,
 		getUsers,
 		toggleFollowUnfollow
 	}),

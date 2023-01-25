@@ -5,7 +5,7 @@ import { initReactI18next, useTranslation } from 'react-i18next'
 import { AppStylesProvider } from '../hoc/AppStylesProvider'
 import { useAppDispatch } from '../hook/hooks'
 import { useLocalStorage } from '../hook/useLocalStorage'
-import { setLanguageAC } from '../store/appReducer'
+import { appActions } from '../store/appReducer'
 import translationEN from './en/translation.json'
 import translationRU from './ru/translation.json'
 
@@ -41,7 +41,7 @@ export const AppLocaleProvider = ({
 	const { i18n } = useTranslation()
 
 	useEffect(() => {
-		dispatch(setLanguageAC({ language: language }))
+		dispatch(appActions.setLanguageAC({ language: language }))
 		i18n.changeLanguage(language)
 	}, [language, dispatch, i18n])
 

@@ -54,7 +54,7 @@ export const getProfileInfo = createAsyncThunk<void, number, ThunkAPI>(
 	'profile/getProfileInfo',
 	async (userId, { dispatch }) => {
 		const data: ProfileInfoAPI = await profileAPI.getProfileInfo(userId)
-		dispatch(setProfileInfoAC(data))
+		dispatch(profileActions.setProfileInfoAC(data))
 	}
 )
 
@@ -62,7 +62,7 @@ export const getProfileStatus = createAsyncThunk<void, number, ThunkAPI>(
 	'profile/getProfileStatus',
 	async (userId, { dispatch }) => {
 		const data: string = await profileAPI.getProfileStatus(userId)
-		dispatch(setProfileStatusAC(data))
+		dispatch(profileActions.setProfileStatusAC(data))
 	}
 )
 
@@ -73,7 +73,7 @@ export const updateProfileStatus = createAsyncThunk<void, string, ThunkAPI>(
 			status
 		)
 		if (data.resultCode === ResultCodes.SUCCESS) {
-			dispatch(setProfileStatusAC(status))
+			dispatch(profileActions.setProfileStatusAC(status))
 		}
 		if (data.resultCode === ResultCodes.ERROR) {
 			return rejectWithValue(data.messages[0])
@@ -88,7 +88,7 @@ export const updateProfilePhoto = createAsyncThunk<void, File, ThunkAPI>(
 			file
 		)
 		if (data.resultCode === ResultCodes.SUCCESS) {
-			dispatch(setProfilePhotoAC(data.data.photos))
+			dispatch(profileActions.setProfilePhotoAC(data.data.photos))
 		}
 		if (data.resultCode === ResultCodes.ERROR) {
 			return rejectWithValue(data.messages[0])
@@ -222,11 +222,5 @@ export const selectProfileInfoUpdateStatus = (state: RootState) =>
 export const selectProfileInfoUpdateError = (state: RootState) =>
 	state.profile.profileInfoUpdateError
 
-export const {
-	addNewPostAC,
-	setProfileInfoAC,
-	setProfileStatusAC,
-	setProfilePhotoAC
-} = profileSlice.actions
-
-export const profileReducers = profileSlice.reducer
+export const { reducer: profileReducers, actions: profileActions } =
+	profileSlice

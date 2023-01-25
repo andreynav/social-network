@@ -67,8 +67,8 @@ export const getUsers = createAsyncThunk<void, GetUsersT, ThunkAPI>(
 	async ({ usersOnPage, page }, { dispatch, rejectWithValue }) => {
 		const data: GetUsersAPI = await userAPI.getUsers(usersOnPage, page)
 		if (data.error === null) {
-			dispatch(setUsersAC(data.items))
-			dispatch(setTotalCountAC(data.totalCount))
+			dispatch(userActions.setUsersAC(data.items))
+			dispatch(userActions.setTotalCountAC(data.totalCount))
 		} else {
 			return rejectWithValue(data.error)
 		}
@@ -82,14 +82,14 @@ export const toggleFollowUnfollow = createAsyncThunk<
 >(
 	'users/toggleFollowUnfollow',
 	async ({ user, id }, { dispatch, rejectWithValue }) => {
-		dispatch(setFollowInProgressAC({ isInProgress: true, id }))
+		dispatch(userActions.setFollowInProgressAC({ isInProgress: true, id }))
 		const promise: FollowUserUnfollowUserUserAPI = user?.followed
 			? await userAPI.unfollowUser(id)
 			: await userAPI.followUser(id)
 		const data = await promise
 		if (data.resultCode === ResultCodes.SUCCESS) {
-			dispatch(changeToggleAC(id))
-			dispatch(setFollowInProgressAC({ isInProgress: false, id }))
+			dispatch(userActions.changeToggleAC(id))
+			dispatch(userActions.setFollowInProgressAC({ isInProgress: false, id }))
 		}
 		if (data.resultCode === ResultCodes.ERROR) {
 			return rejectWithValue(data.messages[0])
@@ -97,7 +97,7 @@ export const toggleFollowUnfollow = createAsyncThunk<
 	}
 )
 
-const usersReducer = createSlice({
+const usersSlice = createSlice({
 	name: 'users',
 	initialState,
 	reducers: {
@@ -110,7 +110,7 @@ const usersReducer = createSlice({
 		},
 		setUsersAC: {
 			reducer: (state, action: PayloadAction<Array<UserT>>) => {
-				state.users = [...action.payload]
+				state.users = action.payload
 			},
 			prepare: (arr: Omit<Array<UserT>, 'city'>) => {
 				arr.forEach((user: UserT) => {
@@ -176,12 +176,4 @@ export const selectFollowInProgress = (state: RootState) =>
 
 export const selectError = (state: RootState) => state.users.error
 
-export const {
-	changeToggleAC,
-	setUsersAC,
-	setCurrentPageAC,
-	setTotalCountAC,
-	setFollowInProgressAC
-} = usersReducer.actions
-
-export const userReducers = usersReducer.reducer
+export const { reducer: userReducers, actions: userActions } = usersSlice

@@ -27,7 +27,7 @@ const initialState = {
 	] as Array<DialogMessageT>
 }
 
-const dialogsReducer = createSlice({
+const dialogsSlice = createSlice({
 	name: 'dialogs',
 	initialState,
 	reducers: {
@@ -53,6 +53,4 @@ export const selectDialogUsers = (state: RootState) => state.dialogs.dialogUsers
 
 export const selectMessages = (state: RootState) => state.dialogs.messages
 
-export const { addMessageAC } = dialogsReducer.actions
-
-export const dialogReducers = dialogsReducer.reducer
+export const { reducer: dialogReducers, actions: dialogActions } = dialogsSlice
