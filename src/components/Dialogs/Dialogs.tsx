@@ -11,10 +11,6 @@ type PropsT = {
 	addMessageAC: (message: string) => void
 }
 
-// export type DialogDataT = {
-// 	message: string
-// }
-
 export const Dialogs = (props: PropsT) => {
 	const { dialogUsers, messages, addMessageAC } = props
 	const { t } = useTranslation()

@@ -7,10 +7,10 @@ import { FormPostMessage, Post } from '../../index'
 
 type MyPostsPropsT = {
 	myPosts: Array<PostT>
-	addNewPostAC: (message: string) => void
+	addNewPost: (message: string) => void
 }
 
-export const MyPosts = ({ myPosts, addNewPostAC }: MyPostsPropsT) => {
+export const MyPosts = ({ myPosts, addNewPost }: MyPostsPropsT) => {
 	const { t } = useTranslation()
 	const maxLength = 100
 	const maxLengthError = t('profile.myPosts.errors.maxLength', {
@@ -29,7 +29,7 @@ export const MyPosts = ({ myPosts, addNewPostAC }: MyPostsPropsT) => {
 	} = useForm<FieldValues>({ mode: 'onBlur' })
 
 	const onFormSubmit = (data: FieldValues) => {
-		addNewPostAC(data.message)
+		addNewPost(data.message)
 		reset()
 	}
 

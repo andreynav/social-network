@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import { addNewPostAC, selectMyPosts } from '../../../store/profileReducer'
+import { profileActions, selectMyPosts } from '../../../store/profileReducer'
 import { RootState } from '../../../store/store'
 import { MyPosts } from '../../index'
 
@@ -8,6 +8,8 @@ const mapStateToProps = (state: RootState) => ({
 	myPosts: selectMyPosts(state)
 })
 
-const MyPostsContainer = connect(mapStateToProps, { addNewPostAC })(MyPosts)
+const addNewPost = profileActions.addNewPostAC
+
+const MyPostsContainer = connect(mapStateToProps, { addNewPost })(MyPosts)
 
 export default MyPostsContainer

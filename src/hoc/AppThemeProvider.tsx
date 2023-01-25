@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components'
 
 import { useAppDispatch } from '../hook/hooks'
 import { useLocalStorage } from '../hook/useLocalStorage'
-import { setThemeAC } from '../store/appReducer'
+import { appActions } from '../store/appReducer'
 import { dark, light } from '../styles/themes'
 
 type ThemeContextT = {
@@ -24,7 +24,7 @@ export const AppThemeProvider = ({
 	const theme = currentTheme === 'light' ? light : dark
 
 	useEffect(() => {
-		dispatch(setThemeAC({ theme: theme }))
+		dispatch(appActions.setThemeAC({ theme: theme }))
 	}, [theme, dispatch])
 
 	return (

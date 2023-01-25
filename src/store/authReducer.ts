@@ -56,7 +56,7 @@ export const getAuthUserData = createAsyncThunk<void, undefined, ThunkAPI>(
 		const data: MeAPI = await authAPI.me()
 		const { id, login: userName, email } = data.data
 		if (data.resultCode === ResultCodes.SUCCESS) {
-			dispatch(setAuthDataAC({ id, userName, email }))
+			dispatch(authActions.setAuthDataAC({ id, userName, email }))
 		}
 		if (data.resultCode === ResultCodes.ERROR) {
 			return rejectWithValue(data.messages[0])
@@ -81,8 +81,8 @@ export const loginUser = createAsyncThunk<void, AuthDataT, ThunkAPI>(
 		}
 		if (data.resultCode === ResultCodes.CAPTCHA_REQUIRED) {
 			dispatch(getCaptchaURL())
-			dispatch(setLoginDataAC({ id: null, isAuth: false }))
-			dispatch(setCaptchaAC({ url: null }))
+			dispatch(authActions.setLoginDataAC({ id: null, isAuth: false }))
+			dispatch(authActions.setCaptchaAC({ url: null }))
 		}
 		if (data.resultCode === ResultCodes.ERROR) {
 			return rejectWithValue(data.messages[0])
@@ -94,7 +94,7 @@ export const logoutUser = createAsyncThunk<void, undefined, ThunkAPI>(
 	'auth/logout',
 	async (_, { dispatch }) => {
 		await authAPI.logout()
-		dispatch(setCaptchaAC({ url: null }))
+		dispatch(authActions.setCaptchaAC({ url: null }))
 	}
 )
 
@@ -102,7 +102,7 @@ export const getCaptchaURL = createAsyncThunk<void, undefined, ThunkAPI>(
 	'auth/getCaptchaURL',
 	async (_, { dispatch }) => {
 		const data: GetCaptchaURL = await securityAPI.getCaptchaURL()
-		dispatch(setCaptchaAC({ url: data.url }))
+		dispatch(authActions.setCaptchaAC({ url: data.url }))
 	}
 )
 
@@ -176,6 +176,4 @@ export const selectError = (state: RootState) => state.auth.error!
 
 export const selectCaptcha = (state: RootState) => state.auth.captcha
 
-export const { setAuthDataAC, setLoginDataAC, setCaptchaAC } = authSlice.actions
-
-export const authReducers = authSlice.reducer
+export const { reducer: authReducers, actions: authActions } = authSlice

@@ -36,7 +36,7 @@ export const initializeApp = createAsyncThunk<void, undefined, ThunkAPI>(
 		const promise = dispatch(getAuthUserData())
 		Promise.all([promise])
 			.then(() => {
-				dispatch(initializeAppAC())
+				dispatch(appActions.initializeAppAC())
 			})
 			.catch((error) => {
 				return rejectWithValue(error.message)
@@ -78,6 +78,4 @@ const appSlice = createSlice({
 
 export const selectIsInitialized = (state: RootState) => state.app.isInitialized
 
-export const { initializeAppAC, setThemeAC, setLanguageAC } = appSlice.actions
-
-export const appReducers = appSlice.reducer
+export const { reducer: appReducers, actions: appActions } = appSlice
