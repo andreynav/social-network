@@ -50,8 +50,8 @@ export const Button = (
 	props: PropsWithChildren<Partial<ButtonPropsT>>
 ): JSX.Element => {
 	const { t } = useTranslation()
-	// @ts-expect-error: will be implemented further
 	const SimpleButton = (
+		// @ts-expect-error: will be implemented further
 		<StyledButton {...props}>{props.children}</StyledButton>
 	)
 
