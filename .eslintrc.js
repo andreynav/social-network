@@ -7,31 +7,17 @@ module.exports = {
     "plugin:jsx-a11y/recommended",
     "plugin:styled-components-a11y/recommended",
     "plugin:@typescript-eslint/recommended",
-    "eslint/recommended",
     "prettier/prettier",
-    "prettier/react",
-    "prettier/@typescript-eslint",
     "plugin:prettier/recommended",
   ],
   plugins: [
     "import",
     "react",
     "react-hooks",
-    "@typescript-eslint",
     "jsx-a11y",
     "styled-components-a11y",
     "prettier",
   ],
-  settings: {
-    "import/resolver": {
-      typescript: {
-        project: ["tsconfig.json", "package/tsconfig.json"],
-      },
-      node: {
-        project: ["tsconfig.json", "package/tsconfig.json"],
-      },
-    },
-  },
   env: {
     browser: true,
     es6: true,
