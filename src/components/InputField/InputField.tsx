@@ -37,7 +37,8 @@ export const InputField = (props: InputFieldT): JSX.Element => {
 
 	const isProfileFormError = isPutError
 	const isLoginFormError =
-		errors && (name === 'email' || name === 'password' || name === 'captcha')
+		errors &&
+		(name === 'email' || name === 'password' || name === 'captcha')
 	const labelError = (
 		<Label color={'error'}>
 			{(errors[name] && errors[name]?.message) || errors?.server?.message}

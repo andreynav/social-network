@@ -27,7 +27,9 @@ export const ProfileInfoStatus = memo(
 			}
 		}
 
-		const updateStatusValue = (event: ChangeEvent<HTMLInputElement>): void => {
+		const updateStatusValue = (
+			event: ChangeEvent<HTMLInputElement>
+		): void => {
 			setStatus(event.target.value)
 		}
 

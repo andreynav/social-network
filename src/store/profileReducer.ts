@@ -69,9 +69,8 @@ export const getProfileStatus = createAsyncThunk<void, number, ThunkAPI>(
 export const updateProfileStatus = createAsyncThunk<void, string, ThunkAPI>(
 	'profile/updateProfileStatus',
 	async (status, { dispatch, rejectWithValue }) => {
-		const data: UpdateProfileStatusAPI = await profileAPI.updateProfileStatus(
-			status
-		)
+		const data: UpdateProfileStatusAPI =
+			await profileAPI.updateProfileStatus(status)
 		if (data.resultCode === ResultCodes.SUCCESS) {
 			dispatch(profileActions.setProfileStatusAC(status))
 		}
@@ -196,10 +195,13 @@ const profileSlice = createSlice({
 				state.profileInfoUpdateStatus = 'rejected'
 				state.profileInfoUpdateError = action.payload
 			})
-			.addMatcher(isActionError, (state, action: PayloadAction<string>) => {
-				state.profileInfoError = action.payload
-				console.error(state.profileInfoError)
-			})
+			.addMatcher(
+				isActionError,
+				(state, action: PayloadAction<string>) => {
+					state.profileInfoError = action.payload
+					console.error(state.profileInfoError)
+				}
+			)
 	}
 })
 

@@ -68,11 +68,14 @@ const appSlice = createSlice({
 				state.status = 'resolved'
 				state.error = null
 			})
-			.addMatcher(isActionError, (state, action: PayloadAction<string>) => {
-				state.status = 'rejected'
-				state.error = action.payload
-				console.error(state.error)
-			})
+			.addMatcher(
+				isActionError,
+				(state, action: PayloadAction<string>) => {
+					state.status = 'rejected'
+					state.error = action.payload
+					console.error(state.error)
+				}
+			)
 	}
 })
 
