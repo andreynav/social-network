@@ -51,10 +51,17 @@ export const Button = (
 ): JSX.Element => {
 	const { t } = useTranslation()
 	// @ts-expect-error: will be implemented further
-	const SimpleButton = <StyledButton {...props}>{props.children}</StyledButton>
+	const SimpleButton = (
+		<StyledButton {...props}>{props.children}</StyledButton>
+	)
 
 	const UserDownloadPhotoButton = (
-		<FileInput type="file" title=" " name="avatar" onChange={props.onChange} />
+		<FileInput
+			type="file"
+			title=" "
+			name="avatar"
+			onChange={props.onChange}
+		/>
 	)
 
 	const FollowUnfollowButton = (
@@ -64,7 +71,9 @@ export const Button = (
 			followInProgress={props.followInProgress}
 			followed={props.followed}
 			onClick={() => props.toggleFollow!(props.id!)}
-			disabled={props.followInProgress?.some((userId) => userId === props.id)}
+			disabled={props.followInProgress?.some(
+				(userId) => userId === props.id
+			)}
 			height="26px"
 			minWidth="50%"
 			width="70px"
@@ -88,7 +97,8 @@ const StyledButton = styled.button<Partial<PropsWithChildren<StyledButtonT>>>`
 	min-width: ${({ minWidth = '100%' }) => minWidth};
 	width: ${({ width = '25px' }) => width};
 	height: ${({ height = '35px' }) => height};
-	background-color: ${(props) => props.bgColor || props.theme.bgColorSecondary};
+	background-color: ${(props) =>
+		props.bgColor || props.theme.bgColorSecondary};
 	color: ${(props) => props.theme.colorPrimary};
 	font-size: ${({ fontSize = '12px' }) => fontSize};
 	border-width: ${({ brWidth = '1px' }) => brWidth};

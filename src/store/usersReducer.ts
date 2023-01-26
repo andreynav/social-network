@@ -89,7 +89,9 @@ export const toggleFollowUnfollow = createAsyncThunk<
 		const data = await promise
 		if (data.resultCode === ResultCodes.SUCCESS) {
 			dispatch(userActions.changeToggleAC(id))
-			dispatch(userActions.setFollowInProgressAC({ isInProgress: false, id }))
+			dispatch(
+				userActions.setFollowInProgressAC({ isInProgress: false, id })
+			)
 		}
 		if (data.resultCode === ResultCodes.ERROR) {
 			return rejectWithValue(data.messages[0])
@@ -128,10 +130,15 @@ const usersSlice = createSlice({
 		setTotalCountAC(state, action: PayloadAction<number>) {
 			state.totalCount = action.payload
 		},
-		setFollowInProgressAC(state, action: PayloadAction<SetFollowInProgressT>) {
+		setFollowInProgressAC(
+			state,
+			action: PayloadAction<SetFollowInProgressT>
+		) {
 			state.followInProgress = action.payload.isInProgress
 				? [...state.followInProgress, action.payload.id]
-				: state.followInProgress.filter((id) => id !== action.payload.id)
+				: state.followInProgress.filter(
+						(id) => id !== action.payload.id
+				  )
 		}
 	},
 	extraReducers: (builder) => {
@@ -150,10 +157,13 @@ const usersSlice = createSlice({
 			.addCase(toggleFollowUnfollow.fulfilled, (state) => {
 				state.error = ''
 			})
-			.addMatcher(isActionError, (state, action: PayloadAction<string>) => {
-				state.error = action.payload
-				console.error(state.error)
-			})
+			.addMatcher(
+				isActionError,
+				(state, action: PayloadAction<string>) => {
+					state.error = action.payload
+					console.error(state.error)
+				}
+			)
 	}
 })
 

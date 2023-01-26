@@ -142,7 +142,8 @@ const ProfileInfoWrapper = styled.div`
 `
 
 const PhotoBackground = styled.div<PropsWithChildren<PhotoBackgroundT>>`
-	background-color: ${(props) => props.bgColor || props.theme.borderSecondary};
+	background-color: ${(props) =>
+		props.bgColor || props.theme.borderSecondary};
 	border-radius: 8px 8px 0 0;
 `
 

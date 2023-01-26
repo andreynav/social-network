@@ -55,16 +55,37 @@ const App = (props: AppPropsT) => {
 					<Suspense fallback={<Loader />}>
 						<Routes>
 							<Route path="/" element={<ProfileContainer />} />
-							<Route path="/profile" element={<ProfileContainer />} />
-							<Route path="/profile/:id" element={<ProfileContainer />} />
-							<Route path="/massages" element={<DialogsContainer />} />
-							<Route path="/massages/:id" element={<DialogsContainer />} />
+							<Route
+								path="/profile"
+								element={<ProfileContainer />}
+							/>
+							<Route
+								path="/profile/:id"
+								element={<ProfileContainer />}
+							/>
+							<Route
+								path="/massages"
+								element={<DialogsContainer />}
+							/>
+							<Route
+								path="/massages/:id"
+								element={<DialogsContainer />}
+							/>
 							<Route path="/users" element={<UsersContainer />} />
-							<Route path="/users/:id" element={<UsersContainer />} />
+							<Route
+								path="/users/:id"
+								element={<UsersContainer />}
+							/>
 							<Route path="/news" element={<NewsContainer />} />
 							<Route path="/music" element={<MusicContainer />} />
-							<Route path="/settings" element={<SettingsContainer />} />
-							<Route path="/login" element={<LoginWithMapProps />} />
+							<Route
+								path="/settings"
+								element={<SettingsContainer />}
+							/>
+							<Route
+								path="/login"
+								element={<LoginWithMapProps />}
+							/>
 							<Route path="/*" element={<NotFound />} />
 						</Routes>
 					</Suspense>

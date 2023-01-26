@@ -7,7 +7,9 @@ export const withRouter = <T,>(Component: React.ComponentType<T>) => {
 	const ComponentWithRouterProp = (props: T & { id: number }) => {
 		const params = useParams()
 		const id = useAppSelector((state) => state.auth.id)
-		return <Component {...props} currentUserId={params.id || id} userId={id} />
+		return (
+			<Component {...props} currentUserId={params.id || id} userId={id} />
+		)
 	}
 
 	ComponentWithRouterProp.displayName = `withRouter(${

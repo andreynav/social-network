@@ -86,7 +86,9 @@ export const userAPI = {
 
 export const authAPI = {
 	me: () => {
-		return samuraiApi.get<MeAPI>(`auth/me`).then((response) => response.data)
+		return samuraiApi
+			.get<MeAPI>(`auth/me`)
+			.then((response) => response.data)
 	},
 	login: (data: AuthDataT) => {
 		return samuraiApi
