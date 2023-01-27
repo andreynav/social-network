@@ -12,19 +12,24 @@ export type DialogMessageT = {
 	message: string
 }
 
-const initialState = {
+type InitialStateT = {
+	dialogUsers: Array<DialogUserT>
+	messages: Array<DialogMessageT>
+}
+
+const initialState: InitialStateT = {
 	dialogUsers: [
 		{ id: 1, name: 'Andrey' },
 		{ id: 2, name: 'Anna' },
 		{ id: 3, name: 'Zlata' },
 		{ id: 4, name: 'Yuri' }
-	] as Array<DialogUserT>,
+	],
 	messages: [
 		{ id: 1, message: 'Good day to learn React!' },
 		{ id: 2, message: 'How are you?' },
 		{ id: 3, message: 'Per Aspera ad Astra' },
 		{ id: 4, message: 'Just do it!!!' }
-	] as Array<DialogMessageT>
+	]
 }
 
 const dialogsSlice = createSlice({
