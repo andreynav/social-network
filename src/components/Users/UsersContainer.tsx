@@ -53,9 +53,8 @@ const UsersContainer = (props: UsersContainerT) => {
 
 	const onChangeFollow = (id: number) => {
 		const currentUser = users.find((user) => user.id === id)
-		if (currentUser) {
-			toggleFollowUnfollow({ user: currentUser, id })
-		}
+		if (!currentUser) return
+		toggleFollowUnfollow({ user: currentUser, id })
 	}
 
 	useEffect(() => {

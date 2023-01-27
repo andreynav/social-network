@@ -6,8 +6,7 @@ import { useAppSelector } from '../hook/hooks'
 export const withAuthRedirect = <T,>(Component: React.ComponentType<T>) => {
 	const ContainerWithAuthRedirect = (props: T & { isAuth: boolean }) => {
 		const isAuth = useAppSelector((state) => state.auth.isAuth)
-		if (!isAuth) return <Navigate to="/login" />
-		return <Component {...props} />
+		return isAuth ? <Component {...props} /> : <Navigate to="/login" />
 	}
 
 	ContainerWithAuthRedirect.displayName = `withAuthRedirect(${

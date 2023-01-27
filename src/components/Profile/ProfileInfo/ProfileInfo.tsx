@@ -59,13 +59,12 @@ export const ProfileInfo = memo((props: ProfileT) => {
 	))
 
 	const showEditButtonIfOwner = () => {
-		if (isOwner) {
-			return (
-				<Button fontSize="12px" height="30px" onClick={onEditMode}>
-					{t('profile.editProfileBtn')}
-				</Button>
-			)
-		}
+		if (!isOwner) return
+		return (
+			<Button fontSize="12px" height="30px" onClick={onEditMode}>
+				{t('profile.editProfileBtn')}
+			</Button>
+		)
 	}
 
 	const onEditMode = () => {
@@ -78,9 +77,8 @@ export const ProfileInfo = memo((props: ProfileT) => {
 		// @ts-ignore
 		updateProfileInfo(updatedInfo).then((response) => {
 			// refactor then
-			if (!response.messages) {
-				setEditMode((prevEditMode) => !prevEditMode)
-			}
+			if (response.messages) return
+			setEditMode((prevEditMode) => !prevEditMode)
 		})
 	}
 

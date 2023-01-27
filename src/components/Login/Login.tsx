@@ -50,7 +50,8 @@ const Login = ({ isAuth, error, captcha, loginUser }: PropsFromRedux) => {
 		if (error === 'Incorrect Email or Password') {
 			setError('email', { message: error })
 			setError('password', { message: error })
-		} else if (error === 'Incorrect anti-bot symbols') {
+		}
+		if (error === 'Incorrect anti-bot symbols') {
 			setError('captcha', { message: error })
 		}
 	}, [isAuth, error, navigate, setError])
