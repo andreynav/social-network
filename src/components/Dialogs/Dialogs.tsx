@@ -8,11 +8,11 @@ import { DialogMessage, DialogUser, FormPostMessage } from '../index'
 type PropsT = {
 	dialogUsers: Array<DialogUserT>
 	messages: Array<DialogMessageT>
-	addMessageAC: (message: string) => void
+	addMessage: (message: string) => void
 }
 
 export const Dialogs = (props: PropsT) => {
-	const { dialogUsers, messages, addMessageAC } = props
+	const { dialogUsers, messages, addMessage } = props
 	const { t } = useTranslation()
 	const maxLength = 100
 	const maxLengthError = t('profile.myPosts.errors.maxLength', {
@@ -34,7 +34,7 @@ export const Dialogs = (props: PropsT) => {
 	} = useForm<FieldValues>({ mode: 'onBlur' })
 
 	const onFormSubmit = (data: FieldValues) => {
-		addMessageAC(data.message)
+		addMessage(data.message)
 		reset()
 	}
 

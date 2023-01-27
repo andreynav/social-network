@@ -43,9 +43,7 @@ const App = (props: AppPropsT) => {
 		dispatch(initializeApp())
 	}, [dispatch])
 
-	if (!props.isInitialized) {
-		return <Loader />
-	}
+	if (!props.isInitialized) return <Loader />
 
 	return (
 		<AppWrapper>

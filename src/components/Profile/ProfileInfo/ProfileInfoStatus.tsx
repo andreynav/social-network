@@ -24,7 +24,8 @@ export const ProfileInfoStatus = memo(
 		const onEditMode = () => {
 			if (currentUserId === userId) {
 				setEditMode((prevEditMode) => !prevEditMode)
-				if (editMode) updateProfileStatus!(status as string)
+				if (!editMode) return
+				updateProfileStatus!(status as string)
 			}
 		}
 
