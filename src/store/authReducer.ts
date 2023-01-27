@@ -12,30 +12,34 @@ import { ThunkAPI } from '../types/reducers'
 import { isActionError } from '../utils/isActionError'
 import { RootState } from './store'
 
+export type UserNameOrNullT = string | null
+export type IdOrNullT = number | null
+export type CaptchaOrNull = string | null
+
 export type AuthDataT = {
 	email: string
 	password: string
 	rememberMe: boolean
-	captcha?: string
+	captcha?: CaptchaOrNull
 }
 
 type SetAuthDataT = {
-	id: number | null
-	userName: string | null
+	id: IdOrNullT
+	userName: UserNameOrNullT
 	email: string | null
 }
 
 type SetLoginDataT = {
-	id: number | null
+	id: IdOrNullT
 	isAuth: boolean
 }
 
 type InitialStateT = {
-	id: number | null
-	userName: string | null
+	id: IdOrNullT
+	userName: UserNameOrNullT
 	email: string | null
 	isAuth: boolean
-	captcha: string | null
+	captcha: CaptchaOrNull
 	status: string | null
 	error: string | null
 }

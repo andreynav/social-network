@@ -1,5 +1,5 @@
 import { compose } from '@reduxjs/toolkit'
-import { Suspense, lazy, useEffect } from 'react'
+import { FunctionComponent, Suspense, lazy, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Route, Routes } from 'react-router-dom'
 import styled from 'styled-components'
@@ -7,6 +7,7 @@ import styled from 'styled-components'
 import { withRouter } from '../../hoc/withRouter'
 import { useAppDispatch } from '../../hook/hooks'
 import { initializeApp, selectIsInitialized } from '../../store/appReducer'
+import { IdOrNullT } from '../../store/authReducer'
 import { RootState } from '../../store/store'
 import {
 	Footer,
@@ -29,9 +30,9 @@ type MapStateToPropsT = {
 }
 
 type AppPropsT = {
-	currentUserId: number | null
+	currentUserId: IdOrNullT
 	isInitialized: MapStateToPropsT
-	userId: number | null
+	userId: IdOrNullT
 	initializeApp: () => void
 }
 
@@ -100,7 +101,7 @@ const mapStateToProps = (state: RootState): MapStateToPropsT => ({
 	isInitialized: selectIsInitialized(state)
 })
 
-export const AppContainer = compose<React.FunctionComponent>(
+export const AppContainer = compose<FunctionComponent>(
 	connect(mapStateToProps, { initializeApp }),
 	withRouter
 )(App)

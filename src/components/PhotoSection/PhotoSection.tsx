@@ -31,9 +31,8 @@ type StyledUserSectionT = {
 
 export const PhotoSection = (props: PhotoSectionPropsT) => {
 	const { photos, name, id, isOwner, isNavLink, isFollowButton } = props
-
 	return (
-		// @ts-expect-error: will be implemented further
+		// @ts-expect-error: React.HTMLAttributes<T>.id type is 'string' and couldn't be overridden as 'number
 		<StyledUserSection {...props}>
 			<Avatar
 				src={photos?.small}
@@ -47,9 +46,7 @@ export const PhotoSection = (props: PhotoSectionPropsT) => {
 	)
 }
 
-const StyledUserSection = styled.div<
-	StyledUserSectionT & React.ButtonHTMLAttributes<HTMLButtonElement>
->`
+const StyledUserSection = styled.div<StyledUserSectionT>`
 	display: grid;
 	grid-gap: 10px;
 	align-self: start;

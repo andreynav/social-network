@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
 type OwnPropsT = {
-	labelLeft?: string
-	labelRight?: string
 	isChecked: boolean
 	onChange: () => void
+	labelLeft?: string
+	labelRight?: string
 }
 
 export const Toggle = ({
@@ -12,7 +12,7 @@ export const Toggle = ({
 	labelRight,
 	onChange,
 	isChecked
-}: OwnPropsT): JSX.Element => {
+}: OwnPropsT) => {
 	return (
 		<ToggleWrapper>
 			<ToggleLabel>

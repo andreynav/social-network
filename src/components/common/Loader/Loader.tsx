@@ -2,17 +2,15 @@ import { PropsWithChildren } from 'react'
 import styled from 'styled-components'
 
 type StyledLoaderT = {
-	alignSelf?: string
-	justifySelf?: string
+	alignSelf: string
+	justifySelf: string
 }
 
-export const Loader = (
-	props: PropsWithChildren<StyledLoaderT>
-): JSX.Element => {
+export const Loader = (props: PropsWithChildren<Partial<StyledLoaderT>>) => {
 	return <StyledLoader {...props} />
 }
 
-const StyledLoader = styled.div<StyledLoaderT>`
+const StyledLoader = styled.div<Partial<StyledLoaderT>>`
 	display: grid;
 	align-self: ${({ alignSelf = 'center' }) => alignSelf};
 	justify-self: ${({ justifySelf = 'center' }) => justifySelf};

@@ -1,6 +1,7 @@
 import { FieldValues, UseFormRegister } from 'react-hook-form'
 import styled from 'styled-components'
 
+import { ItemData } from '../../types/components'
 import { Label } from '../index'
 
 type InputFieldT = {
@@ -9,8 +10,12 @@ type InputFieldT = {
 	label: string
 	register: UseFormRegister<FieldValues>
 	validationSchema?: {
-		required?: string
+		required: string
 		maxLength?: {
+			value: number
+			message: string
+		}
+		minLength?: {
 			value: number
 			message: string
 		}
@@ -19,9 +24,11 @@ type InputFieldT = {
 	errors: FieldValues
 	isPutError?: boolean
 	onClearErrors: () => void
+	defaultValue?: ItemData
+	height?: string
 }
 
-export const InputField = (props: InputFieldT): JSX.Element => {
+export const InputField = (props: InputFieldT) => {
 	const {
 		name,
 		label,
@@ -50,6 +57,7 @@ export const InputField = (props: InputFieldT): JSX.Element => {
 			<Label htmlFor={name} fontSize="10px">
 				{label}
 			</Label>
+			{/* @ts-ignore */}
 			<Input
 				type={type}
 				{...register(name, validationSchema)}
@@ -69,7 +77,7 @@ const InputWrapper = styled.div`
 	grid-template-rows: 16px auto 16px;
 	align-items: center;
 `
-const Input = styled.input`
+const Input = styled.input<Partial<InputFieldT>>`
 	display: grid;
 	background-color: transparent;
 	color: ${(props) => props.theme.colorPrimary};

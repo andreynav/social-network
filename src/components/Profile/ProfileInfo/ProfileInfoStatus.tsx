@@ -1,11 +1,12 @@
 import { ChangeEvent, memo, useEffect, useState } from 'react'
 import styled from 'styled-components'
 
+import { ItemData } from '../../../types/components'
 import { Label } from '../../index'
 import { ProfileT } from '../Profile'
 
 export type ProfileInfoStatusT = {
-	itemData: string | boolean
+	itemData: ItemData
 	itemName: string | null
 	isPointer: boolean
 } & Partial<ProfileT>
@@ -23,7 +24,7 @@ export const ProfileInfoStatus = memo(
 		const onEditMode = () => {
 			if (currentUserId === userId) {
 				setEditMode((prevEditMode) => !prevEditMode)
-				if (editMode) updateProfileStatus!(status)
+				if (editMode) updateProfileStatus!(status as string)
 			}
 		}
 
@@ -44,8 +45,7 @@ export const ProfileInfoStatus = memo(
 					<ItemInput>
 						<input
 							type="text"
-							// @ts-ignore
-							defaultValue={status}
+							defaultValue={status as string}
 							onBlur={onEditMode}
 							onChange={updateStatusValue}
 						/>

@@ -40,7 +40,6 @@ export const MyPosts = ({ myPosts, addNewPost }: MyPostsPropsT) => {
 				onSubmit={handleSubmit(onFormSubmit)}
 				register={register}
 				validationSchema={{
-					// @ts-expect-error: https://www.i18next.com/overview/typescript#argument-of-type-defaulttfuncreturn-is-not-assignable-to-parameter-of-type-xyz
 					required: t('profile.myPosts.errors.fieldRequired'),
 					maxLength: { value: maxLength, message: maxLengthError }
 				}}

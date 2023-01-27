@@ -5,7 +5,7 @@ type TextAreaFieldT = {
 	name: string
 	register: UseFormRegister<FieldValues>
 	validationSchema: {
-		required?: string
+		required: string
 		maxLength?: {
 			value: number
 			message: string

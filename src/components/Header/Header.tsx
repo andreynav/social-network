@@ -1,19 +1,16 @@
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
+import { UserNameOrNullT } from '../../store/authReducer'
 import { Button, Logo } from '../index'
 
 type OwnPropsT = {
 	isAuth: boolean
-	userName: string | null
+	userName: UserNameOrNullT
 	logoutUser: () => void
 }
 
-export const Header = ({
-	isAuth,
-	userName,
-	logoutUser
-}: OwnPropsT): JSX.Element => {
+export const Header = ({ isAuth, userName, logoutUser }: OwnPropsT) => {
 	const loginButtonProps = {
 		fontSize: '1rem',
 		transform: 'none',

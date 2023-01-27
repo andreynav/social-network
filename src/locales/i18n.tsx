@@ -29,13 +29,11 @@ type LocaleContextT = {
 	setLanguage: (e: string) => void
 }
 
+type ChildrenT = { children: ReturnType<typeof AppStylesProvider> }
+
 export const LocaleContext = createContext({} as LocaleContextT)
 
-export const AppLocaleProvider = ({
-	children
-}: {
-	children: ReturnType<typeof AppStylesProvider>
-}) => {
+export const AppLocaleProvider = ({ children }: ChildrenT) => {
 	const dispatch = useAppDispatch()
 	const [language, setLanguage] = useLocalStorage('lang', 'en')
 	const { i18n } = useTranslation()

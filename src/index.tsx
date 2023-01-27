@@ -9,7 +9,7 @@ import { AppThemeProvider } from './hoc/AppThemeProvider'
 import { AppLocaleProvider } from './locales/i18n'
 import { store } from './store/store'
 
-const RootComponent = (): JSX.Element => {
+const RootComponent = () => {
 	return (
 		<StrictMode>
 			<Provider store={store}>

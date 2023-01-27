@@ -1,16 +1,35 @@
+import { FormEventHandler } from 'react'
+import {
+	FieldValues,
+	UseFormRegister,
+	UseFormRegisterReturn
+} from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
+import { CaptchaOrNull } from '../../store/authReducer'
 import { Button, Captcha, InputField, Label } from '../index'
 
-export const FormLogin = ({
-	onSubmit,
-	registerInput,
-	errors,
-	registerCheckbox,
-	onClearErrors,
-	captcha
-}: any) => {
+type FormLoginT = {
+	onSubmit: FormEventHandler<HTMLFormElement>
+	registerInput: UseFormRegister<FieldValues>
+	registerCheckbox: UseFormRegisterReturn<'rememberMe'>
+	onClearErrors: () => void
+	captcha: CaptchaOrNull
+	errors: {
+		message: string
+	}
+}
+
+export const FormLogin = (props: FormLoginT) => {
+	const {
+		onSubmit,
+		registerInput,
+		registerCheckbox,
+		onClearErrors,
+		captcha,
+		errors
+	} = props
 	const { t } = useTranslation()
 	const minLength = 4
 	const minLengthError = t('auth.errors.minLength', { count: minLength })
@@ -23,7 +42,6 @@ export const FormLogin = ({
 				type={'text'}
 				register={registerInput}
 				validationSchema={{
-					// @ts-expect-error: https://www.i18next.com/overview/typescript#argument-of-type-defaulttfuncreturn-is-not-assignable-to-parameter-of-type-xyz
 					required: t('auth.errors.emailIsRequired'),
 					minLength: { value: minLength, message: minLengthError }
 				}}
@@ -37,7 +55,6 @@ export const FormLogin = ({
 				type={'password'}
 				register={registerInput}
 				validationSchema={{
-					// @ts-expect-error: https://www.i18next.com/overview/typescript#argument-of-type-defaulttfuncreturn-is-not-assignable-to-parameter-of-type-xyz
 					required: t('auth.errors.passwordIsRequired'),
 					minLength: { value: minLength, message: minLengthError }
 				}}
@@ -47,10 +64,10 @@ export const FormLogin = ({
 			/>
 			<LoginCheckboxWrapper>
 				<LoginCheckbox
-					name={'rememberMe'}
 					type={'checkbox'}
 					defaultChecked={true}
 					{...registerCheckbox}
+					name={'rememberMe'}
 					className="geekmark"
 				/>
 				<Label

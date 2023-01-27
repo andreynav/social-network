@@ -9,7 +9,7 @@ type CaptchaPropsT = {
 	label: string
 	register: UseFormRegister<FieldValues>
 	errors: {
-		message?: string
+		message: string
 	}
 	onClearErrors: () => void
 	captcha: string
@@ -24,7 +24,7 @@ export const Captcha = ({
 	onClearErrors,
 	captcha,
 	height
-}: CaptchaPropsT): JSX.Element => {
+}: CaptchaPropsT) => {
 	const { t } = useTranslation()
 
 	return (
@@ -35,7 +35,6 @@ export const Captcha = ({
 				type="text"
 				register={register}
 				validationSchema={{
-					// @ts-expect-error: https://www.i18next.com/overview/typescript#argument-of-type-defaulttfuncreturn-is-not-assignable-to-parameter-of-type-xyz
 					required: t('auth.errors.captchaIsRequired')
 				}}
 				placeholder="captcha"

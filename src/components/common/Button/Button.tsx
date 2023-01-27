@@ -46,12 +46,10 @@ type FileInputT = {
 	opacity: number
 }
 
-export const Button = (
-	props: PropsWithChildren<Partial<ButtonPropsT>>
-): JSX.Element => {
+export const Button = (props: PropsWithChildren<Partial<ButtonPropsT>>) => {
 	const { t } = useTranslation()
 	const SimpleButton = (
-		// @ts-expect-error: will be implemented further
+		// @ts-expect-error: React.HTMLAttributes<T>.id type is 'string' and couldn't be overridden as 'number
 		<StyledButton {...props}>{props.children}</StyledButton>
 	)
 
@@ -66,7 +64,7 @@ export const Button = (
 
 	const FollowUnfollowButton = (
 		<StyledButton
-			// @ts-expect-error: will be implemented further
+			// @ts-expect-error: React.HTMLAttributes<T>.id type is 'string' and couldn't be overridden as 'number
 			id={props.id}
 			followInProgress={props.followInProgress}
 			followed={props.followed}
