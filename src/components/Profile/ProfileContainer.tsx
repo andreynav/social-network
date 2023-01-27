@@ -33,7 +33,7 @@ export type ProfileContainerT = {
 	profileInfoUpdateError: string
 }
 
-const ProfileContainer = (props: ProfileContainerT): JSX.Element => {
+const ProfileContainer = (props: ProfileContainerT) => {
 	const { currentUserId, userId, getProfileInfo, getProfileStatus } = props
 	const dispatch = useAppDispatch()
 

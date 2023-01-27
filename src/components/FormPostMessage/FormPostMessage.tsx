@@ -9,7 +9,7 @@ type FormPostMessageT = {
 	onSubmit: FormEventHandler<HTMLFormElement>
 	register: UseFormRegister<FieldValues>
 	validationSchema: {
-		required?: string
+		required: string
 		maxLength?: {
 			value: number
 			message: string
@@ -18,7 +18,7 @@ type FormPostMessageT = {
 	errors: FieldValues
 }
 
-export const FormPostMessage = (props: FormPostMessageT): JSX.Element => {
+export const FormPostMessage = (props: FormPostMessageT) => {
 	const { onSubmit, register, validationSchema, errors } = props
 	const { t } = useTranslation()
 

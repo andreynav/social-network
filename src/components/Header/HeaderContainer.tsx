@@ -1,11 +1,16 @@
 import { ConnectedProps, connect } from 'react-redux'
 
-import { logoutUser, selectIsAuth, selectLogin } from '../../store/authReducer'
+import {
+	UserNameOrNullT,
+	logoutUser,
+	selectIsAuth,
+	selectLogin
+} from '../../store/authReducer'
 import { RootState } from '../../store/store'
 import { Header } from '../index'
 
 type MapStateToPropsT = {
-	userName: string | null
+	userName: UserNameOrNullT
 	isAuth: boolean
 }
 

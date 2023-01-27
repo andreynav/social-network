@@ -7,6 +7,7 @@ import {
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
+import { ItemData } from '../../../types/components'
 import { ProfileSchemeDataT } from '../../../utils/getProfileSchemeData'
 import { Button } from '../../common/Button/Button'
 import { InputField, Label } from '../../index'
@@ -31,7 +32,7 @@ export const FormProfileInfo = ({
 	errors,
 	profileData,
 	onClearErrors
-}: FormProfileInfoT): JSX.Element => {
+}: FormProfileInfoT) => {
 	const profileItems = profileData.map((item) => {
 		const error = errors?.server
 			?.message!.split(' ')[1]!
@@ -47,8 +48,7 @@ export const FormProfileInfo = ({
 						label={item.itemName}
 						type={item.itemType}
 						register={register}
-						// @ts-ignore
-						defaultValue={item.itemData}
+						defaultValue={item.itemData as ItemData}
 						errors={errors}
 						isPutError={isPutError}
 						onClearErrors={onClearErrors}
@@ -62,8 +62,7 @@ export const FormProfileInfo = ({
 						</Label>
 						<LoginCheckbox
 							type={item.itemType}
-							// @ts-ignore
-							defaultChecked={item.itemData}
+							defaultChecked={item.itemData as boolean}
 							{...registerCheckbox}
 							name={item.inputName}
 						/>

@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
-import { CityT } from '../../../utils/getRandomCity'
+import { ItemData } from '../../../types/components'
 import { Label } from '../../index'
 
 export type UserInfoItemT = {
-	itemData: string | number | boolean | CityT
+	itemData: ItemData
 	itemName: string | null
 	itemType?: string
 }

@@ -15,6 +15,8 @@ export const getProfileInfoSchemeData = (data: ProfileInfoAPI & ContactsT) => {
 			youtube: data.youtube,
 			github: data.github,
 			mainLink: data.facebook
-		}
+		},
+		userId: data.userId,
+		photos: data.photos
 	}
 }

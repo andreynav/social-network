@@ -1,4 +1,4 @@
-import { PropsWithChildren, memo, useEffect, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
@@ -14,10 +14,6 @@ import {
 	UserInfoItem
 } from '../../index'
 import { ProfileT } from '../Profile'
-
-type PhotoBackgroundT = {
-	bgColor?: string
-}
 
 export const ProfileInfo = memo((props: ProfileT) => {
 	const {
@@ -78,11 +74,11 @@ export const ProfileInfo = memo((props: ProfileT) => {
 
 	const onFormSubmit = (data: ProfileInfoAPI & ContactsT) => {
 		const updatedInfo = getProfileInfoSchemeData(data)
-		// @ts-expect-error: will be implemented further
+		// updateProfileInfo is already wrapped to dispatch in mapDispatchToProps
+		// @ts-ignore
 		updateProfileInfo(updatedInfo).then((response) => {
-			//already wrapped to dispatch in mapDispatchToProps
-			if (!response.error) {
-				// refactor then
+			// refactor then
+			if (!response.messages) {
 				setEditMode((prevEditMode) => !prevEditMode)
 			}
 		})
@@ -141,7 +137,7 @@ const ProfileInfoWrapper = styled.div`
 	grid-template-rows: 120px auto;
 `
 
-const PhotoBackground = styled.div<PropsWithChildren<PhotoBackgroundT>>`
+const PhotoBackground = styled.div<{ bgColor?: string }>`
 	background-color: ${(props) =>
 		props.bgColor || props.theme.borderSecondary};
 	border-radius: 8px 8px 0 0;

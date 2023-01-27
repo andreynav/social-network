@@ -12,13 +12,11 @@ type ThemeContextT = {
 	setCurrentTheme: (e: string) => void
 }
 
+type ChildrenT = { children: ReturnType<typeof BrowserRouter> }
+
 export const ThemeContext = createContext({} as ThemeContextT)
 
-export const AppThemeProvider = ({
-	children
-}: {
-	children: ReturnType<typeof BrowserRouter>
-}) => {
+export const AppThemeProvider = ({ children }: ChildrenT) => {
 	const dispatch = useAppDispatch()
 	const [currentTheme, setCurrentTheme] = useLocalStorage('theme', 'light')
 	const theme = currentTheme === 'light' ? light : dark

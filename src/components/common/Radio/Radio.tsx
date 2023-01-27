@@ -6,13 +6,10 @@ type RadioT = {
 	isChecked: boolean
 	value: string
 	label: string
-	defaultChecked?: boolean
-	type?: string
 	id?: string
-	htmlFor?: string | undefined
 }
 
-export const Radio = (props: PropsWithChildren<RadioT>): JSX.Element => {
+export const Radio = (props: PropsWithChildren<RadioT>) => {
 	return (
 		<RadioButton>
 			<input

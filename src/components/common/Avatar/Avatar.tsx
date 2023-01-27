@@ -4,9 +4,9 @@ import styled from 'styled-components'
 import { avatar } from '../../../assets'
 
 export type AvatarPropsT = {
-	src: null | string | undefined
+	src: null | string
 	alt: string
-	id: number
+	id?: number
 	isOwner: boolean
 	isNavLink: boolean
 }
@@ -17,7 +17,7 @@ export type StyledAvatarT = {
 	brRadius: string
 }
 
-export const Avatar = (props: Partial<AvatarPropsT>): JSX.Element => {
+export const Avatar = (props: Partial<AvatarPropsT>) => {
 	const SimpleAvatar = (
 		<img src={props.src || avatar} alt={props.alt || 'avatar'} />
 	)

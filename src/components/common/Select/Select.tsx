@@ -2,7 +2,7 @@ import { ChangeEventHandler } from 'react'
 import styled from 'styled-components'
 
 type SelectT = {
-	options: any
+	options: Array<OptionT>
 	value: string
 	onChange: ChangeEventHandler<HTMLSelectElement>
 }
@@ -12,7 +12,7 @@ type OptionT = {
 	name: string
 }
 
-export const Select = ({ options, value, onChange }: SelectT): JSX.Element => {
+export const Select = ({ options, value, onChange }: SelectT) => {
 	const optionItems = options.map((option: OptionT, index: number) => (
 		<option value={option.value} key={index}>
 			{option.name}

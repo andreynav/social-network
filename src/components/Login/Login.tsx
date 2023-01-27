@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useForm } from 'react-hook-form'
+import { FieldValues, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { ConnectedProps, connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -7,6 +7,7 @@ import styled from 'styled-components'
 
 import {
 	AuthDataT,
+	CaptchaOrNull,
 	loginUser,
 	selectCaptcha,
 	selectError,
@@ -17,16 +18,11 @@ import { FormLogin } from '../index'
 
 type MapStateToPropsT = {
 	isAuth: boolean
-	captcha: string | null
+	captcha: CaptchaOrNull
 	error: string
 }
 
-const Login = ({
-	isAuth,
-	error,
-	captcha,
-	loginUser
-}: PropsFromRedux): JSX.Element => {
+const Login = ({ isAuth, error, captcha, loginUser }: PropsFromRedux) => {
 	const navigate = useNavigate()
 
 	const {
@@ -36,10 +32,10 @@ const Login = ({
 		reset,
 		setError,
 		clearErrors
-	} = useForm<AuthDataT>({ mode: 'onBlur' })
+	} = useForm<FieldValues>({ mode: 'onBlur' })
 
-	const onFormSubmit = (data: AuthDataT) => {
-		loginUser(data)
+	const onFormSubmit = (data: FieldValues | AuthDataT) => {
+		loginUser(data as AuthDataT)
 		if (errors && Object.keys(errors).length !== 0) {
 			reset()
 		}
@@ -68,7 +64,7 @@ const Login = ({
 				<FormLogin
 					onSubmit={handleSubmit(onFormSubmit)}
 					registerInput={register}
-					errors={errors}
+					errors={errors as unknown as { message: string }}
 					onClearErrors={onClearErrors}
 					registerCheckbox={register('rememberMe')}
 					captcha={captcha}

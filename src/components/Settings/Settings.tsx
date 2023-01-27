@@ -53,8 +53,9 @@ const Settings = () => {
 			<ShowNotifications>
 				<h2>{t('settings.general.title')}</h2>
 				{/* @ts-expect-error: will be implemented further */}
-				<Toggle labelRight={t('settings.general.notifications')} />{' '}
-				{/*will be implemented further*/}
+				<Toggle labelRight={t('settings.general.notifications')}
+						onChange={}
+						isChecked={}/>{' '}
 			</ShowNotifications>
 			<div>* will be implemented in next release</div>
 		</SettingsWrapper>
