@@ -44,7 +44,10 @@ const ProfileContainer = (props: ProfileContainerT) => {
 	}, [currentUserId, userId, getProfileInfo, getProfileStatus])
 
 	const onSavePhoto = (e: ChangeEvent<HTMLInputElement>): void => {
-		dispatch(updateProfilePhoto(e.target.files![0]!))
+		const file = e.target.files && e.target.files[0]
+		if (file) {
+			dispatch(updateProfilePhoto(file))
+		}
 	}
 
 	return (
