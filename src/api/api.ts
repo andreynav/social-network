@@ -1,7 +1,6 @@
 import axios from 'axios'
-
-import { AuthDataT } from '../store/authReducer'
-import { UserT } from '../store/usersReducer'
+import { AuthDataT } from 'store/authReducer'
+import { UserT } from 'store/usersReducer'
 
 const samuraiApi = axios.create({
 	baseURL: 'https://social-network.samuraijs.com/api/1.0/',

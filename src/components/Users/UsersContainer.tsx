@@ -1,10 +1,9 @@
 import { compose } from '@reduxjs/toolkit'
+import { PhotosT } from 'api/api'
+import { withAuthRedirect } from 'hoc/withAuthRedirect'
 import { FunctionComponent, useEffect } from 'react'
 import { connect } from 'react-redux'
-
-import { PhotosT } from '../../api/api'
-import { withAuthRedirect } from '../../hoc/withAuthRedirect'
-import { RootState } from '../../store/store'
+import { RootState } from 'store/store'
 import {
 	GetUsersT,
 	ToggleFollowUnfollowT,
@@ -19,8 +18,9 @@ import {
 	selectUsersOnPage,
 	toggleFollowUnfollow,
 	userActions
-} from '../../store/usersReducer'
-import { Users } from '../index'
+} from 'store/usersReducer'
+
+import { Users } from './Users'
 
 type UsersContainerT = {
 	totalCount: number

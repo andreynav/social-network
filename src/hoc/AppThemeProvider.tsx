@@ -1,11 +1,10 @@
+import { useAppDispatch } from 'hook/hooks'
+import { useLocalStorage } from 'hook/useLocalStorage'
 import { createContext, useEffect } from 'react'
 import { BrowserRouter } from 'react-router-dom'
+import { appActions } from 'store/appReducer'
 import { ThemeProvider } from 'styled-components'
-
-import { useAppDispatch } from '../hook/hooks'
-import { useLocalStorage } from '../hook/useLocalStorage'
-import { appActions } from '../store/appReducer'
-import { dark, light } from '../styles/themes'
+import { dark, light } from 'styles/themes'
 
 type ThemeContextT = {
 	currentTheme: 'light' | 'dark'

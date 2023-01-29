@@ -1,14 +1,4 @@
 import { compose } from '@reduxjs/toolkit'
-import { FunctionComponent, Suspense, lazy, useEffect } from 'react'
-import { connect } from 'react-redux'
-import { Route, Routes } from 'react-router-dom'
-import styled from 'styled-components'
-
-import { withRouter } from '../../hoc/withRouter'
-import { useAppDispatch } from '../../hook/hooks'
-import { initializeApp, selectIsInitialized } from '../../store/appReducer'
-import { IdOrNullT } from '../../store/authReducer'
-import { RootState } from '../../store/store'
 import {
 	Footer,
 	HeaderContainerWithMapProps,
@@ -19,11 +9,24 @@ import {
 	NewsContainer,
 	NotFound,
 	SettingsContainer
-} from '../index'
+} from 'components/index'
+import { withRouter } from 'hoc/withRouter'
+import { useAppDispatch } from 'hook/hooks'
+import { FunctionComponent, Suspense, lazy, useEffect } from 'react'
+import { connect } from 'react-redux'
+import { Route, Routes } from 'react-router-dom'
+import { initializeApp, selectIsInitialized } from 'store/appReducer'
+import { IdOrNullT } from 'store/authReducer'
+import { RootState } from 'store/store'
+import styled from 'styled-components'
 
-const DialogsContainer = lazy(() => import('../Dialogs/DialogsContainer'))
-const ProfileContainer = lazy(() => import('../Profile/ProfileContainer'))
-const UsersContainer = lazy(() => import('../Users/UsersContainer'))
+const DialogsContainer = lazy(
+	() => import('components/Dialogs/DialogsContainer')
+)
+const ProfileContainer = lazy(
+	() => import('components/Profile/ProfileContainer')
+)
+const UsersContainer = lazy(() => import('components/Users/UsersContainer'))
 
 type MapStateToPropsT = {
 	isInitialized: boolean

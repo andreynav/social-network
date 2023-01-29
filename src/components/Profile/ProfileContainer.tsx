@@ -1,11 +1,10 @@
 import { compose } from '@reduxjs/toolkit'
+import { ProfileInfoAPI } from 'api/api'
+import { withAuthRedirect } from 'hoc/withAuthRedirect'
+import { withRouter } from 'hoc/withRouter'
+import { useAppDispatch } from 'hook/hooks'
 import { ChangeEvent, FunctionComponent, useEffect } from 'react'
 import { connect } from 'react-redux'
-
-import { ProfileInfoAPI } from '../../api/api'
-import { withAuthRedirect } from '../../hoc/withAuthRedirect'
-import { withRouter } from '../../hoc/withRouter'
-import { useAppDispatch } from '../../hook/hooks'
 import {
 	getProfileInfo,
 	getProfileStatus,
@@ -18,9 +17,10 @@ import {
 	updateProfileInfo,
 	updateProfilePhoto,
 	updateProfileStatus
-} from '../../store/profileReducer'
-import { RootState } from '../../store/store'
-import { Profile } from '../index'
+} from 'store/profileReducer'
+import { RootState } from 'store/store'
+
+import { Profile } from './Profile'
 
 export type ProfileContainerT = {
 	currentUserId: number

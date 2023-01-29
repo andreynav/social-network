@@ -1,6 +1,5 @@
+import { like } from 'assets'
 import styled from 'styled-components'
-
-import { like } from '../../../assets'
 
 export const Like = ({ likeCount }: { likeCount: number }) => {
 	return (

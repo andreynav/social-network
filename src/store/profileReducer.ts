@@ -4,7 +4,6 @@ import {
 	createAsyncThunk,
 	createSlice
 } from '@reduxjs/toolkit'
-
 import {
 	PhotosT,
 	ProfileInfoAPI,
@@ -13,10 +12,11 @@ import {
 	UpdateProfilePhotoAPI,
 	UpdateProfileStatusAPI,
 	profileAPI
-} from '../api/api'
-import { ThunkAPI } from '../types/reducers'
-import { getRandomLike } from '../utils/getRandomLike'
-import { isActionError } from '../utils/isActionError'
+} from 'api/api'
+import { ThunkAPI } from 'types/reducers'
+import { getRandomLike } from 'utils/getRandomLike'
+import { isActionError } from 'utils/isActionError'
+
 import { RootState } from './store'
 
 export type PostT = {

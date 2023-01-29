@@ -1,7 +1,6 @@
 import { compose } from '@reduxjs/toolkit'
+import { withAuthRedirect } from 'hoc/withAuthRedirect'
 import { useTranslation } from 'react-i18next'
-
-import { withAuthRedirect } from '../../hoc/withAuthRedirect'
 
 const Music = () => {
 	const { t } = useTranslation()

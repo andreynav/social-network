@@ -1,7 +1,6 @@
+import { useAppSelector } from 'hook/hooks'
 import * as React from 'react'
 import { useParams } from 'react-router-dom'
-
-import { useAppSelector } from '../hook/hooks'
 
 export const withRouter = <T,>(Component: React.ComponentType<T>) => {
 	const ComponentWithRouterProp = (props: T & { id: number }) => {

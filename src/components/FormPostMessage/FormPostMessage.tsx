@@ -1,9 +1,8 @@
+import { Button, TextAreaField } from 'components/index'
 import { FormEventHandler } from 'react'
 import { FieldValues, UseFormRegister } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-
-import { Button, TextAreaField } from '../index'
 
 type FormPostMessageT = {
 	onSubmit: FormEventHandler<HTMLFormElement>

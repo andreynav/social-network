@@ -1,4 +1,5 @@
-import { GlobalStyles } from '../styles/GlobalStyles'
+import { GlobalStyles } from 'styles/GlobalStyles'
+
 import { AppThemeProvider } from './AppThemeProvider'
 
 type ChildrenT = { children: ReturnType<typeof AppThemeProvider> }

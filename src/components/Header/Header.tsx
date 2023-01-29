@@ -1,8 +1,7 @@
+import { Button, Logo } from 'components/index'
 import { useTranslation } from 'react-i18next'
+import { UserNameOrNullT } from 'store/authReducer'
 import styled from 'styled-components'
-
-import { UserNameOrNullT } from '../../store/authReducer'
-import { Button, Logo } from '../index'
 
 type OwnPropsT = {
 	isAuth: boolean

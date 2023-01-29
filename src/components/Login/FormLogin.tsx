@@ -1,3 +1,4 @@
+import { Button, Captcha, InputField, Label } from 'components/index'
 import { FormEventHandler } from 'react'
 import {
 	FieldValues,
@@ -5,10 +6,8 @@ import {
 	UseFormRegisterReturn
 } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import { CaptchaOrNull } from 'store/authReducer'
 import styled from 'styled-components'
-
-import { CaptchaOrNull } from '../../store/authReducer'
-import { Button, Captcha, InputField, Label } from '../index'
 
 type FormLoginT = {
 	onSubmit: FormEventHandler<HTMLFormElement>

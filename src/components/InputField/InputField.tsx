@@ -1,8 +1,7 @@
+import { Label } from 'components/index'
 import { FieldValues, UseFormRegister } from 'react-hook-form'
 import styled from 'styled-components'
-
-import { ItemData } from '../../types/components'
-import { Label } from '../index'
+import { ItemData } from 'types/components'
 
 type InputFieldT = {
 	name: string

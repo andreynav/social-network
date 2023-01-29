@@ -1,6 +1,5 @@
+import { Avatar, Like } from 'components/index'
 import styled from 'styled-components'
-
-import { Avatar, Like } from '../../index'
 
 type PostPropsT = {
 	message: string

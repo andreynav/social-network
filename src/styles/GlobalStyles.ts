@@ -1,8 +1,7 @@
+import MontserratLight from 'fonts/Montserrat-Light.ttf'
+import MontserratMedium from 'fonts/Montserrat-Medium.ttf'
+import MontserratRegular from 'fonts/Montserrat-Regular.ttf'
 import { createGlobalStyle } from 'styled-components'
-
-import MontserratLight from '../fonts/Montserrat-Light.ttf'
-import MontserratMedium from '../fonts/Montserrat-Medium.ttf'
-import MontserratRegular from '../fonts/Montserrat-Regular.ttf'
 
 export const GlobalStyles = createGlobalStyle`
   :root {

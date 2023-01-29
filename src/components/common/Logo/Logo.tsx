@@ -1,6 +1,5 @@
+import { ReactComponent as LogoSVG } from 'assets/img/logo.svg'
 import styled from 'styled-components'
-
-import { ReactComponent as LogoSVG } from '../../../assets/img/logo.svg'
 
 export const Logo = () => {
 	return (

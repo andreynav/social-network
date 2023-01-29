@@ -1,13 +1,13 @@
 import { ConnectedProps, connect } from 'react-redux'
-
 import {
 	UserNameOrNullT,
 	logoutUser,
 	selectIsAuth,
 	selectLogin
-} from '../../store/authReducer'
-import { RootState } from '../../store/store'
-import { Header } from '../index'
+} from 'store/authReducer'
+import { RootState } from 'store/store'
+
+import { Header } from './Header'
 
 type MapStateToPropsT = {
 	userName: UserNameOrNullT

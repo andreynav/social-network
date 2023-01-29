@@ -1,39 +1,44 @@
 {
   "compilerOptions": {
     /* Language and Environment */
-    "target": "es2016" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
-    "jsx": "react-jsx" /* Specify what JSX code is generated. */,
+    "target": "es2016",
+    "jsx": "react-jsx",
 
     /* Modules */
-    "module": "commonjs" /* Specify what module code is generated. */,
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "baseUrl": "src",
 
     /* JavaScript Support */
-    "allowJs": true /* Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. */,
+    "allowJs": false,
 
     /* Emit */
-    "outDir": "./build" /* Specify an output folder for all emitted files. */,
-    "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,
-    "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
+    "outDir": "build",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
 
     /* Type Checking */
-    "strict": true /* Enable all strict type-checking options. */,
-    "noImplicitAny": true /* Enable error reporting for expressions and declarations with an implied 'any' type. */,
-    "strictNullChecks": true /* When type checking, take into account 'null' and 'undefined'. */,
-    "strictFunctionTypes": true /* When assigning functions, check to ensure parameters and the return values are subtype-compatible. */,
-    "strictBindCallApply": true /* Check that the arguments for 'bind', 'call', and 'apply' methods match the original function. */,
-    "strictPropertyInitialization": true /* Check for class properties that are declared but not set in the constructor. */,
-    "noImplicitThis": true /* Enable error reporting when 'this' is given the type 'any'. */,
-    "alwaysStrict": true /* Ensure 'use strict' is always emitted. */,
-    "noUncheckedIndexedAccess": true /* Add 'undefined' to a type when accessed using an index. */,
-    "noUnusedLocals": false /* Enable error reporting when local variables aren't read. */,
-    "noImplicitReturns": false /* Enable error reporting for codepaths that do not explicitly return in a function. */,
-    "allowUnusedLabels": false /* Disable error reporting for unused labels. */,
-    "allowUnreachableCode": false /* Disable error reporting for unreachable code. */,
+    "strict": true,
+    "alwaysStrict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "allowUnusedLabels": true,
+    "allowUnreachableCode": false,
 
     /* Completeness */
-    "skipDefaultLibCheck": true /* Skip type checking .d.ts files that are included with TypeScript. */,
-    "skipLibCheck": true /* Skip type checking all .d.ts files. */
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true
   },
-  "include": ["src/**/*", "src/types/custom.d.ts", "src/types/fonts.d.ts"],
+  "include": ["src/**/*", "src/types/*"],
   "exclude": ["node_modules", "build/**/*"]
 }

@@ -4,16 +4,16 @@ import {
 	createSelector,
 	createSlice
 } from '@reduxjs/toolkit'
-
 import {
 	FollowUserUnfollowUserUserAPI,
 	GetUsersAPI,
 	ResultCodes,
 	userAPI
-} from '../api/api'
-import { ThunkAPI } from '../types/reducers'
-import { CityT, getRandomCity } from '../utils/getRandomCity'
-import { isActionError } from '../utils/isActionError'
+} from 'api/api'
+import { ThunkAPI } from 'types/reducers'
+import { CityT, getRandomCity } from 'utils/getRandomCity'
+import { isActionError } from 'utils/isActionError'
+
 import { RootState } from './store'
 
 export type GetUsersT = {
@@ -170,7 +170,7 @@ const usersSlice = createSlice({
 export const selectUsers = createSelector(
 	// fake selector for demonstrating cashing of createSelector functionality
 	(state: RootState) => state.users.users,
-	(users) => users.filter((user) => true)
+	(users) => users.filter((_user) => true)
 )
 
 export const selectCurrentPage = (state: RootState) => state.users.currentPage

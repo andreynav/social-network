@@ -1,13 +1,11 @@
 import { compose } from '@reduxjs/toolkit'
+import { Radio, Select, Toggle } from 'components/index'
+import { ThemeContext } from 'hoc/AppThemeProvider'
+import { withAuthRedirect } from 'hoc/withAuthRedirect'
+import { LocaleContext } from 'locales/i18n'
 import { ChangeEvent, useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-
-import { ThemeContext } from '../../hoc/AppThemeProvider'
-import { withAuthRedirect } from '../../hoc/withAuthRedirect'
-import { LocaleContext } from '../../locales/i18n'
-import { Toggle } from '../common/Toggle/Toggle'
-import { Radio, Select } from '../index'
 
 const Settings = () => {
 	const { t } = useTranslation()

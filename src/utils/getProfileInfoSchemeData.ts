@@ -1,4 +1,4 @@
-import { ContactsT, ProfileInfoAPI } from '../api/api'
+import { ContactsT, ProfileInfoAPI } from 'api/api'
 
 export const getProfileInfoSchemeData = (data: ProfileInfoAPI & ContactsT) => {
 	return {

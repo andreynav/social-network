@@ -1,9 +1,8 @@
+import { PhotosT } from 'api/api'
+import { Loader, Paginator, User } from 'components/index'
 import { useTranslation } from 'react-i18next'
+import { UserT } from 'store/usersReducer'
 import styled from 'styled-components'
-
-import { PhotosT } from '../../api/api'
-import { UserT } from '../../store/usersReducer'
-import { Loader, Paginator, User } from '../index'
 
 type UsersPropsT = {
 	totalCount: number

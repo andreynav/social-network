@@ -1,6 +1,5 @@
-import { create } from 'react-test-renderer'
-
-import { ProfileInfoStatus } from '../components'
+// import { ProfileInfoStatus } from 'components'
+// import { create } from 'react-test-renderer'
 
 describe('ProfileInfoStatus tests', () => {
 	// test('Status from props should be in the state', () => {
