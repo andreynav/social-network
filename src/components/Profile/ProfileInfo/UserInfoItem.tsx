@@ -1,7 +1,6 @@
+import { Label } from 'components/index'
 import styled from 'styled-components'
-
-import { ItemData } from '../../../types/components'
-import { Label } from '../../index'
+import { ItemData } from 'types/components'
 
 export type UserInfoItemT = {
 	itemData: ItemData

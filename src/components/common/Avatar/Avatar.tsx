@@ -1,7 +1,6 @@
+import { avatar } from 'assets'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
-
-import { avatar } from '../../../assets'
 
 export type AvatarPropsT = {
 	src: null | string

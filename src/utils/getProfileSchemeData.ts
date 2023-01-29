@@ -1,4 +1,4 @@
-import { ProfileInfoAPI } from '../api/api'
+import { ProfileInfoAPI } from 'api/api'
 
 export type ProfileSchemeDataT = ReturnType<typeof getProfileSchemeData>
 export const getProfileSchemeData = (profileInfo: ProfileInfoAPI) => {

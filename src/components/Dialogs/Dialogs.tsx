@@ -1,9 +1,8 @@
+import { DialogMessage, DialogUser, FormPostMessage } from 'components/index'
 import { FieldValues, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import { DialogMessageT, DialogUserT } from 'store/dialogReducer'
 import styled from 'styled-components'
-
-import { DialogMessageT, DialogUserT } from '../../store/dialogReducer'
-import { DialogMessage, DialogUser, FormPostMessage } from '../index'
 
 type PropsT = {
 	dialogUsers: Array<DialogUserT>

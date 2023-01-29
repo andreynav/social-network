@@ -1,11 +1,10 @@
+import { PhotosT } from 'api/api'
+import { PhotoSection, UserInfoItem } from 'components/index'
 import { memo } from 'react'
 import { useTranslation } from 'react-i18next'
+import { UserT } from 'store/usersReducer'
 import styled from 'styled-components'
-
-import { PhotosT } from '../../api/api'
-import { UserT } from '../../store/usersReducer'
-import { getUserSchemeData } from '../../utils/getUserSchemeData'
-import { PhotoSection, UserInfoItem } from '../index'
+import { getUserSchemeData } from 'utils/getUserSchemeData'
 
 export type UserPropsT = {
 	followInProgress?: Array<number>

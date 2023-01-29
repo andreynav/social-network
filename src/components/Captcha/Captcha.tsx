@@ -1,8 +1,7 @@
+import { InputField } from 'components/index'
 import { FieldValues, UseFormRegister } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-
-import { InputField } from '../index'
 
 type CaptchaPropsT = {
 	name: 'captcha'

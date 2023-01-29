@@ -1,9 +1,8 @@
+import { FormPostMessage, Post } from 'components/index'
 import { FieldValues, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import { PostT } from 'store/profileReducer'
 import styled from 'styled-components'
-
-import { PostT } from '../../../store/profileReducer'
-import { FormPostMessage, Post } from '../../index'
 
 type MyPostsPropsT = {
 	myPosts: Array<PostT>

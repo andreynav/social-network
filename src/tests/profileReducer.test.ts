@@ -3,7 +3,7 @@
 // 	profileReducers,
 // 	setProfileInfoAC,
 // 	setProfileStatusAC
-// } from '../store/profileReducer'
+// } from 'store/profileReducer'
 
 const stateProfileReducer = {
 	myPosts: [

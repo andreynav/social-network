@@ -1,3 +1,4 @@
+import { Button, InputField, Label } from 'components/index'
 import { FormEventHandler } from 'react'
 import {
 	FieldValues,
@@ -6,11 +7,8 @@ import {
 } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-
-import { ItemData } from '../../../types/components'
-import { ProfileSchemeDataT } from '../../../utils/getProfileSchemeData'
-import { Button } from '../../common/Button/Button'
-import { InputField, Label } from '../../index'
+import { ItemData } from 'types/components'
+import { ProfileSchemeDataT } from 'utils/getProfileSchemeData'
 
 type FormProfileInfoT = {
 	onSubmit: FormEventHandler<HTMLFormElement>

@@ -1,9 +1,7 @@
+import { PhotosT } from 'api/api'
+import { Avatar, Button } from 'components/index'
 import { ChangeEvent } from 'react'
 import styled from 'styled-components'
-
-import { PhotosT } from '../../api/api'
-import { Avatar } from '../common/Avatar/Avatar'
-import { Button } from '../common/Button/Button'
 
 type PhotoSectionPropsT = {
 	photos: Partial<PhotosT>

@@ -1,8 +1,8 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { DarkT, LightT } from 'styles/themes'
+import { ThunkAPI } from 'types/reducers'
+import { isActionError } from 'utils/isActionError'
 
-import { DarkT, LightT } from '../styles/themes'
-import { ThunkAPI } from '../types/reducers'
-import { isActionError } from '../utils/isActionError'
 import { getAuthUserData } from './authReducer'
 import { RootState } from './store'
 

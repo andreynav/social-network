@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
+import { profileActions, selectMyPosts } from 'store/profileReducer'
+import { RootState } from 'store/store'
 
-import { profileActions, selectMyPosts } from '../../../store/profileReducer'
-import { RootState } from '../../../store/store'
-import { MyPosts } from '../../index'
+import { MyPosts } from './MyPosts'
 
 const mapStateToProps = (state: RootState) => ({
 	myPosts: selectMyPosts(state)

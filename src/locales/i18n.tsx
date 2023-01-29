@@ -1,11 +1,11 @@
+import { AppStylesProvider } from 'hoc/AppStylesProvider'
+import { useAppDispatch } from 'hook/hooks'
+import { useLocalStorage } from 'hook/useLocalStorage'
 import i18n from 'i18next'
 import { createContext, useEffect } from 'react'
 import { initReactI18next, useTranslation } from 'react-i18next'
+import { appActions } from 'store/appReducer'
 
-import { AppStylesProvider } from '../hoc/AppStylesProvider'
-import { useAppDispatch } from '../hook/hooks'
-import { useLocalStorage } from '../hook/useLocalStorage'
-import { appActions } from '../store/appReducer'
 import translationEN from './en/translation.json'
 import translationRU from './ru/translation.json'
 

@@ -1,5 +1,4 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-
 import {
 	GetCaptchaURL,
 	LoginLogoutAPI,
@@ -7,9 +6,10 @@ import {
 	ResultCodes,
 	authAPI,
 	securityAPI
-} from '../api/api'
-import { ThunkAPI } from '../types/reducers'
-import { isActionError } from '../utils/isActionError'
+} from 'api/api'
+import { ThunkAPI } from 'types/reducers'
+import { isActionError } from 'utils/isActionError'
+
 import { RootState } from './store'
 
 export type UserNameOrNullT = string | null

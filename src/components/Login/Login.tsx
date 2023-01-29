@@ -3,8 +3,6 @@ import { FieldValues, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { ConnectedProps, connect } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import styled from 'styled-components'
-
 import {
 	AuthDataT,
 	CaptchaOrNull,
@@ -12,9 +10,11 @@ import {
 	selectCaptcha,
 	selectError,
 	selectIsAuth
-} from '../../store/authReducer'
-import { RootState } from '../../store/store'
-import { FormLogin } from '../index'
+} from 'store/authReducer'
+import { RootState } from 'store/store'
+import styled from 'styled-components'
+
+import { FormLogin } from './FormLogin'
 
 type MapStateToPropsT = {
 	isAuth: boolean

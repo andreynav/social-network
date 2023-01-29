@@ -1,8 +1,8 @@
+import { ProfileInfoAPI } from 'api/api'
+import { Loader, MyPostsContainer, ProfileInfo } from 'components/index'
 import { ChangeEvent } from 'react'
 import styled from 'styled-components'
 
-import { ProfileInfoAPI } from '../../api/api'
-import { Loader, MyPostsContainer, ProfileInfo } from '../index'
 import { ProfileContainerT } from './ProfileContainer'
 
 export type ProfileT = {

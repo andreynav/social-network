@@ -1,6 +1,5 @@
+import { Avatar } from 'components/index'
 import styled from 'styled-components'
-
-import { Avatar } from '../common/Avatar/Avatar'
 
 type PropsT = { message: string }
 

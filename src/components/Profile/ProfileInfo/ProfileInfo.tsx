@@ -1,18 +1,20 @@
-import { memo, useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
-import styled from 'styled-components'
-
-import { ContactsT, ProfileInfoAPI } from '../../../api/api'
-import { getProfileInfoSchemeData } from '../../../utils/getProfileInfoSchemeData'
-import { getProfileSchemeData } from '../../../utils/getProfileSchemeData'
+// import { getProfileSchemeData } from '@utils'
+// import { getProfileInfoSchemeData } from '@utils'
+import { ContactsT, ProfileInfoAPI } from 'api/api'
 import {
 	Button,
 	FormProfileInfo,
 	PhotoSection,
 	ProfileInfoStatus,
 	UserInfoItem
-} from '../../index'
+} from 'components/index'
+import { memo, useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
+import styled from 'styled-components'
+import { getProfileInfoSchemeData } from 'utils/getProfileInfoSchemeData'
+import { getProfileSchemeData } from 'utils/getProfileSchemeData'
+
 import { ProfileT } from '../Profile'
 
 export const ProfileInfo = memo((props: ProfileT) => {

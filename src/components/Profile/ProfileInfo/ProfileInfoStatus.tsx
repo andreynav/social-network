@@ -1,9 +1,8 @@
+import { ProfileT } from 'components/Profile/Profile'
+import { Label } from 'components/index'
 import { ChangeEvent, memo, useEffect, useState } from 'react'
 import styled from 'styled-components'
-
-import { ItemData } from '../../../types/components'
-import { Label } from '../../index'
-import { ProfileT } from '../Profile'
+import { ItemData } from 'types/components'
 
 export type ProfileInfoStatusT = {
 	itemData: ItemData
