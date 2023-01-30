@@ -1,5 +1,3 @@
-// import { getProfileSchemeData } from '@utils'
-// import { getProfileInfoSchemeData } from '@utils'
 import { ContactsT, ProfileInfoAPI } from 'api/api'
 import {
 	Button,
