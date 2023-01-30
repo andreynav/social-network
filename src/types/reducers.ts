@@ -1,7 +1,7 @@
 import { AppDispatch, RootState } from 'store/store'
 
 export type ThunkAPI = {
-	dispatch?: AppDispatch
-	rejectWithValue?: string
-	state: RootState
+  dispatch?: AppDispatch
+  rejectWithValue?: string
+  state: RootState
 }

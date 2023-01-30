@@ -5,7 +5,7 @@ import { RootState } from 'store/store'
 import { MyPosts } from './MyPosts'
 
 const mapStateToProps = (state: RootState) => ({
-	myPosts: selectMyPosts(state)
+  myPosts: selectMyPosts(state)
 })
 
 const addNewPost = profileActions.addNewPostAC

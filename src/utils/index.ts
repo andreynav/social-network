@@ -6,10 +6,10 @@ import { getUserSchemeData } from './getUserSchemeData'
 import { isActionError } from './isActionError'
 
 export {
-	getProfileInfoSchemeData,
-	getProfileSchemeData,
-	getRandomCity,
-	getRandomLike,
-	getUserSchemeData,
-	isActionError
+  getProfileInfoSchemeData,
+  getProfileSchemeData,
+  getRandomCity,
+  getRandomLike,
+  getUserSchemeData,
+  isActionError
 }

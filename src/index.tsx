@@ -10,21 +10,21 @@ import { AppLocaleProvider } from './locales/i18n'
 import { store } from './store/store'
 
 const RootComponent = () => {
-	return (
-		<StrictMode>
-			<Provider store={store}>
-				<AppLocaleProvider>
-					<AppStylesProvider>
-						<AppThemeProvider>
-							<BrowserRouter>
-								<AppContainer />
-							</BrowserRouter>
-						</AppThemeProvider>
-					</AppStylesProvider>
-				</AppLocaleProvider>
-			</Provider>
-		</StrictMode>
-	)
+  return (
+    <StrictMode>
+      <Provider store={store}>
+        <AppLocaleProvider>
+          <AppStylesProvider>
+            <AppThemeProvider>
+              <BrowserRouter>
+                <AppContainer />
+              </BrowserRouter>
+            </AppThemeProvider>
+          </AppStylesProvider>
+        </AppLocaleProvider>
+      </Provider>
+    </StrictMode>
+  )
 }
 
 const container = document.getElementById('root')
