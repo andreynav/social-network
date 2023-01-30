@@ -7,15 +7,15 @@ import { profileReducers } from './profileReducer'
 import { userReducers } from './usersReducer'
 
 const rootReducer = combineReducers({
-	dialogs: dialogReducers,
-	profile: profileReducers,
-	users: userReducers,
-	auth: authReducers,
-	app: appReducers
+  dialogs: dialogReducers,
+  profile: profileReducers,
+  users: userReducers,
+  auth: authReducers,
+  app: appReducers
 })
 
 const store = configureStore({
-	reducer: rootReducer
+  reducer: rootReducer
 })
 
 export { store }

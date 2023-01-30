@@ -1,38 +1,38 @@
 import { ConnectedProps, connect } from 'react-redux'
 import {
-	UserNameOrNullT,
-	logoutUser,
-	selectIsAuth,
-	selectLogin
+  UserNameOrNullT,
+  logoutUser,
+  selectIsAuth,
+  selectLogin
 } from 'store/authReducer'
 import { RootState } from 'store/store'
 
 import { Header } from './Header'
 
 type MapStateToPropsT = {
-	userName: UserNameOrNullT
-	isAuth: boolean
+  userName: UserNameOrNullT
+  isAuth: boolean
 }
 
 type MapDispatchToPropsT = {
-	logoutUser: () => void
+  logoutUser: () => void
 }
 
 const HeaderContainer = ({
-	isAuth,
-	userName,
-	logoutUser: logout
+  isAuth,
+  userName,
+  logoutUser: logout
 }: PropsFromRedux) => {
-	return <Header logoutUser={logout} isAuth={isAuth} userName={userName} />
+  return <Header logoutUser={logout} isAuth={isAuth} userName={userName} />
 }
 
 const mapStateToProps = (state: RootState): MapStateToPropsT => ({
-	userName: selectLogin(state),
-	isAuth: selectIsAuth(state)
+  userName: selectLogin(state),
+  isAuth: selectIsAuth(state)
 })
 
 const mapDispatchToProps: MapDispatchToPropsT = {
-	logoutUser
+  logoutUser
 }
 
 const connector = connect(mapStateToProps, mapDispatchToProps)
