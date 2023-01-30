@@ -1,5 +1,6 @@
 {
   "name": "social-network",
+  "package-name": "git+https://andreynav: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@github.com/andreynav/social-network.git",
   "version": "0.1.0",
   "description": "Social network 4GEEKS",
   "author": "Nalivaiko Andrey",
