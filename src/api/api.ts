@@ -6,7 +6,7 @@ const samuraiApi = axios.create({
   baseURL: 'https://social-network.samuraijs.com/api/1.0/',
   withCredentials: true,
   headers: {
-    'API-KEY': 'b055b506-f05b-42fe-928f-891da5e27dea'
+    'API-KEY': `${process.env.REACT_APP_API_KEY}`
   }
 })
 
