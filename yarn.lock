@@ -2085,7 +2085,7 @@
 
 "@types/json5@^0.0.29":
   version "0.0.29"
-  resolved "https://artifactory.intouchhealth.io/artifactory/api/npm/npm/@types/json5/-/json5-0.0.29.tgz"
+  resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
   integrity sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==
 
 "@types/mime@*":
@@ -6183,7 +6183,7 @@ json-stable-stringify-without-jsonify@^1.0.1:
 
 json5@^1.0.1:
   version "1.0.2"
-  resolved "https://artifactory.intouchhealth.io/artifactory/api/npm/npm/json5/-/json5-1.0.2.tgz"
+  resolved "https://registry.yarnpkg.com/json5/-/json5-1.0.2.tgz#63d98d60f21b313b77c4d6da18bfa69d80e1d593"
   integrity sha512-g1MWMLBiz8FKi1e4w0UyVL3w+iJceWAFBAaBnnGKOpNa5f8TLktkbre1+s6oICydWAm+HRUGTmI+//xv2hvXYA==
   dependencies:
     minimist "^1.2.0"
@@ -8894,7 +8894,7 @@ tryer@^1.0.1:
 
 tsconfig-paths@^3.14.1:
   version "3.14.1"
-  resolved "https://artifactory.intouchhealth.io/artifactory/api/npm/npm/tsconfig-paths/-/tsconfig-paths-3.14.1.tgz"
+  resolved "https://registry.yarnpkg.com/tsconfig-paths/-/tsconfig-paths-3.14.1.tgz#ba0734599e8ea36c862798e920bcf163277b137a"
   integrity sha512-fxDhWnFSLt3VuTwtvJt5fpwxBHg5AdKWMsgcPOOIilyjymcYVZoCQF8fvFRezCNfblEXmi+PcM1eYHeOAgXCOQ==
   dependencies:
     "@types/json5" "^0.0.29"
