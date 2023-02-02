@@ -4,6 +4,15 @@ The current project is a project of social network executed due to the React, Re
 
 The project used the API calls to back-end, possibility to set up your own user profile, set up the languages and themes.
 
+## Demo
+
+You can open and use the app by [social network app link](https://social-network-4geeks-git-master-andreynav.vercel.app/) 
+
+Use free account for login: **Email:** `free@samuraijs.com` **Password:** `free`
+
+To find an author's private profile use the endpoint `/profile/26100` inside the app 🙂
+
+
 ## Project structure
 
 The project has multilayer structure:
