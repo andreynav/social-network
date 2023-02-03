@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "description": "Social network 4GEEKS",
   "author": "Nalivaiko Andrey",
-  "license": "MIT",
+  "license": "Apache License 2.0",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",
