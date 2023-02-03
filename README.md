@@ -1,3 +1,11 @@
+<div align="center">
+
+![GitHub repo size](https://img.shields.io/github/repo-size/andreynav/social-network?style=for-the-badge)
+![GitHub deployments](https://img.shields.io/github/deployments/andreynav/social-network/production?label=vercel%20deployment&style=for-the-badge)
+![Website](https://img.shields.io/website?label=social%20network%20status&style=for-the-badge&url=https%3A%2F%2Fsocial-network-4geeks-git-master-andreynav.vercel.app%2F)
+
+</div>
+
 # General Notes
 
 The current project is a project of social network executed due to the React, Redux, Styled components.
@@ -6,9 +14,9 @@ The project used the API calls to back-end, possibility to set up your own user 
 
 ## Demo
 
-You can open and use the app by [social network app link](https://social-network-4geeks-git-master-andreynav.vercel.app/) 
+You can open and use the app by [social network app link](https://social-network-4geeks-git-master-andreynav.vercel.app/). 
 
-Use free account for login: **Email:** `free@samuraijs.com` **Password:** `free`
+Use free account for login: **Email:** `free@samuraijs.com` **Password:** `free`.
 
 To find an author's private profile use the endpoint `/profile/26100` inside the app 🙂
 
@@ -86,7 +94,20 @@ The project has multilayer structure:
 
 ## Dependencies
 
-The project has the next dependencies in the [package.json](package.json) file
+The project has the next dependencies in the [package.json](package.json) file.
+
+<div align="center">
+
+![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/andreynav/social-network/react?style=for-the-badge)
+![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/andreynav/social-network/@reduxjs/toolkit?style=for-the-badge)
+![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/andreynav/social-network/react-router-dom?style=for-the-badge)
+![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/andreynav/social-network/react-hook-form?style=for-the-badge)
+![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/andreynav/social-network/styled-components?style=for-the-badge)
+![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/andreynav/social-network/axios?style=for-the-badge)
+![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/andreynav/social-network/i18next?style=for-the-badge)
+
+</div>
+
 
 ## Installation
 
@@ -131,7 +152,7 @@ See the folder [tests](src/tests) for information about existing tests.
 
 To run build, open the root directory and enter the following command:
 
-```bash
+```console
   yarn build
 ```
 
