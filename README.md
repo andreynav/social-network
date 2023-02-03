@@ -43,53 +43,53 @@ The project has multilayer structure:
 - `utils` - used to keep utils for helping
 
 ```
-
+.
 ├── public
-├── src
-│   ├── api
-│   ├── assets
-│   ├── components
-│   │   ├── App
-│   │   ├── Captcha
-│   │   ├── Dialogs
-│   │   ├── Footer
-│   │   ├── FormPostMessage
-│   │   ├── Header
-│   │   ├── InputField
-│   │   ├── Login
-│   │   ├── Music
-│   │   ├── Navbar
-│   │   ├── News
-│   │   ├── NotFound
-│   │   ├── Paginator
-│   │   ├── PhotoSection
-│   │   ├── Profile
-│   │   │   ├── MyPosts
-│   │   │   └── ProfileInfo
-│   │   ├── Settings
-│   │   ├── TextAreaField
-│   │   ├── Users
-│   │   ├── common
-│   │   │   ├── Avatar
-│   │   │   ├── Button
-│   │   │   ├── Label
-│   │   │   ├── Like
-│   │   │   ├── Loader
-│   │   │   ├── Logo
-│   │   │   ├── Radio
-│   │   │   ├── Select
-│   │   │   └── Toggle
-│   ├── fonts
-│   ├── hoc
-│   ├── hook
-│   ├── locales
-│   │   ├── en
-│   │   └── ru
-│   ├── store
-│   ├── styles
-│   ├── tests
-│   ├── types
-│   └── utils
+└── src
+    ├── api
+    ├── assets
+    ├── components
+    │   ├── App
+    │   ├── Captcha
+    │   ├── Dialogs
+    │   ├── Footer
+    │   ├── FormPostMessage
+    │   ├── Header
+    │   ├── InputField
+    │   ├── Login
+    │   ├── Music
+    │   ├── Navbar
+    │   ├── News
+    │   ├── NotFound
+    │   ├── Paginator
+    │   ├── PhotoSection
+    │   ├── Profile
+    │   │   ├── MyPosts
+    │   │   └── ProfileInfo
+    │   ├── Settings
+    │   ├── TextAreaField
+    │   ├── Users
+    │   ├── common
+    │   │   ├── Avatar
+    │   │   ├── Button
+    │   │   ├── Label
+    │   │   ├── Like
+    │   │   ├── Loader
+    │   │   ├── Logo
+    │   │   ├── Radio
+    │   │   ├── Select
+    │   │   └── Toggle
+    ├── fonts
+    ├── hoc
+    ├── hook
+    ├── locales
+    │   ├── en
+    │   └── ru
+    ├── store
+    ├── styles
+    ├── tests
+    ├── types
+    └── utils
 ```
 
 ## Dependencies
