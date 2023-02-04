@@ -92,9 +92,9 @@ export const ProfileInfo = memo((props: ProfileT) => {
       <UserDataWrapper>
         <PhotoSection
           isOwner={isOwner}
-          height={'100'}
-          width={'100'}
-          brRadius={'50'}
+          height="100"
+          width="100"
+          brRadius="50"
           photos={profileInfo!.photos}
           name={profileInfo!.fullName}
           onChange={onSavePhoto}

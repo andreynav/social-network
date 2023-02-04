@@ -8,7 +8,7 @@ export type AvatarPropsT = {
   id?: number
   isOwner: boolean
   isNavLink: boolean
-}
+} & StyledAvatarT
 
 export type StyledAvatarT = {
   height: string
@@ -25,13 +25,14 @@ export const Avatar = (props: Partial<AvatarPropsT>) => {
     <NavLink to={`/profile/${props.id}`}>{SimpleAvatar}</NavLink>
   )
   return (
-    <StyledAvatar>
+    // @ts-expect-error:
+    <StyledAvatar {...props}>
       {props.isNavLink ? AvatarWithNavLink : SimpleAvatar}
     </StyledAvatar>
   )
 }
 
-const StyledAvatar = styled.div<Partial<StyledAvatarT>>`
+const StyledAvatar = styled.div<Partial<AvatarPropsT>>`
   display: grid;
   align-self: start;
   align-items: start;

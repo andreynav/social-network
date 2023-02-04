@@ -28,7 +28,18 @@ type StyledUserSectionT = {
 }
 
 export const PhotoSection = (props: PhotoSectionPropsT) => {
-  const { photos, name, id, isOwner, isNavLink, isFollowButton } = props
+  const {
+    photos,
+    name,
+    id,
+    isOwner,
+    isNavLink,
+    isFollowButton,
+    height,
+    width,
+    brRadius
+  } = props
+
   return (
     // @ts-expect-error: React.HTMLAttributes<T>.id type is 'string' and couldn't be overridden as 'number
     <StyledUserSection {...props}>
@@ -38,6 +49,9 @@ export const PhotoSection = (props: PhotoSectionPropsT) => {
         id={id}
         isOwner={isOwner}
         isNavLink={isNavLink}
+        height={height}
+        width={width}
+        brRadius={brRadius}
       />
       {(isOwner || isFollowButton) && <Button {...props} />}
     </StyledUserSection>
@@ -49,11 +63,4 @@ const StyledUserSection = styled.div<StyledUserSectionT>`
   grid-gap: 10px;
   align-self: start;
   justify-self: start;
-
-  & img {
-    border: 1px solid ${(props) => props.theme.borderSecondary};
-    height: ${({ height = '70' }) => height}px;
-    width: ${({ width = '70' }) => width}px;
-    border-radius: ${({ brRadius = '35' }) => brRadius}px;
-  }
 `
