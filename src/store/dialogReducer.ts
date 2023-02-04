@@ -41,7 +41,6 @@ const dialogsSlice = createSlice({
         state.messages = [...state.messages, action.payload]
       },
       prepare: (message: string) => {
-        console.log(message)
         let messageId = initialState.messages.length
 
         return {
